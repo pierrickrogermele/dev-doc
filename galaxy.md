@@ -11,13 +11,6 @@ GALAXY
 
   * A Galaxy instance can be connected to a local cluster in order to execute HPC jobs.
 
- * After quickly reviewing the GitHub page of [John Chilton](https://github.com/jmchilton?tab=repositories) found by Steffen, putting aside repositories not recently updated (last year or before):
-   - [Docker build](https://github.com/jmchilton/docker-build): is forked from [Galaxy Project's starforge](https://github.com/galaxyproject/starforge). It is a docker for building Galaxy Tool Shed dependencies. I did not test it. Could be interesting for the W4M VM, but not for Phenomenal microservices where tools will be embedded in Docker containers.
-   - [Galaxy Docker Image](https://github.com/jmchilton/docker-galaxy-stable): is forked from [Björn Grüning's repository](https://github.com/bgruening/docker-galaxy-stable). Works, but can't run port forwarding on MacOS-X => *try it under Linux*.
-   - [Ansible Galaxy Tool Shed](https://github.com/jmchilton/ansible-galaxy-toolshed): An Ansible role for installing and managing Galaxy Tool Shed servers.
-   - [Ansible Galaxy](https://github.com/galaxyproject/ansible-galaxy/): An Ansible role for installing and managing Galaxy servers.
-   - [Pulsar](https://github.com/jmchilton/pulsar): Python server application that allows a Galaxy server to run jobs on remote systems (including Windows). See John Chilton's page at Galaxy Project site: <https://wiki.galaxyproject.org/JohnChilton>.
-
  * [Ansible Galaxy tools role](https://github.com/galaxyproject/ansible-galaxy-tools). An Ansible role for automated installation of tools from a Tool Shed into Galaxy, with a example of use at <https://github.com/afgane/galaxy-tools-playbook>, a ready-to-use Ansible playbook for the Galaxy Tools role.
  * [ArtBio projet Galaxy tools](https://github.com/mvdbeek/tools-artbio). Use Jenkins for testing.
  * [Galaxy Tool testing in Jenkins](https://github.com/galaxy-iuc/jenkins-testing).
@@ -42,13 +35,6 @@ git checkout -b master origin/master    # in order to get the stable version
 
 ```bash
 sh run.sh
-```
-
-Note:
-In the W4M version, the script running the Galaxy service is `/etc/rc.d/init.d/galaxy`. It calls the script `/galaxy/dist/galaxy-pfem/run.sh`.
-To get the version of the installed instance of Galaxy, run:
-```
-grep -i version /galaxy/dist/galaxy-pfem/PATCHNOTES.txt
 ```
 
 ## Job runners/schedulers

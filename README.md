@@ -1,4 +1,4 @@
 DEVELOPMENT DOCUMENTATION
 =========================
 
-This repository contains Markdown files about miscellaneous development languages, environments, software and technics.
+This repository contains notes, in Markdown formats, about miscellaneous development languages, environments, software and technics.
