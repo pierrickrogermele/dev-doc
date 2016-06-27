@@ -190,6 +190,26 @@ It's not there
 
 ### Command
 
+The use of the interpreter attribute is now deprecated:
+```xml
+<command interpreter="Rscript"><![CDATA[
+	search-mz -i "$mzrtinput"
+]]></command>
+```
+
+It has to be replaced by a direct call to your tool, which then need to use a shebang line.
+Thus the command tag now looks like this:
+```xml
+<command><![CDATA[
+	search-mz -i "$mzrtinput"
+]]></command>
+```
+and the first line of the script must be:
+```r
+#!/usr/bin/env Rscript
+```
+Of course the script must have execution access rights.
+
 #### Variables
 
 The '$var' variables come from parameter fields.
