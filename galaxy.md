@@ -92,6 +92,39 @@ Be careful to use the variable `$__tool_directory__` to call the tool:
 ]]></command>
 ```
 
+#### Developing a new package for bioconda
+
+Either ask to be part of Bioconda team for contributing to new recipes (repository bioconda-recipes) as explained in [Bioconda recipes README](https://github.com/bioconda/bioconda-recipes), or fork [bioconda-recipes](https://github.com/bioconda/bioconda-recipes) and send a pull-request.
+
+Follow the instructions in [Bioconda recipes README](https://github.com/bioconda/bioconda-recipes) and [Guidelines for bioconda recipes](https://github.com/bioconda/bioconda-recipes/blob/master/GUIDELINES.md).
+
+For testing your recipe, you will need conda.
+
+Installing miniconda on macOS:
+```bash
+brew cask install miniconda
+```
+The installation is done in `~/miniconda2` and `~/miniconda3`. The binaries are installed inside `~/miniconda2/bin` and `~/miniconda3/bin`. The version 3 is preferred for bioconda.
+
+Then install `conda-build`:
+```bash
+~/miniconda3/bin/conda install conda-build
+```
+
+To build your recipe, run:
+```bash
+~/miniconda3/bin/conda build recipes/myrecipe
+```
+If it is a R package add the option `--channel r`, and if it depends on other bioconda recipes add `--channel bioconda`.
+
+To update your conda installation:
+```bash
+conda update conda
+conda update conda-build
+```
+
+See also [Conda build recipes](http://conda.pydata.org/docs/building/recipe.html).
+
 ## Workflows
 
 You can export a workflow from Galaxy, it will have the `.ga` extension. You can the import it, at the condition that all required tools are already installed.
