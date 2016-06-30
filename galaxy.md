@@ -94,11 +94,13 @@ Be careful to use the variable `$__tool_directory__` to call the tool:
 
 #### Developing a new package for bioconda
 
+First you need to check that your recipe does not exist already. You have to look both in [anaconda](https://anaconda.org) and in [bioconda recipes](https://github.com/bioconda/bioconda-recipes).
+
 Either ask to be part of Bioconda team for contributing to new recipes (repository bioconda-recipes) as explained in [Bioconda recipes README](https://github.com/bioconda/bioconda-recipes), or fork [bioconda-recipes](https://github.com/bioconda/bioconda-recipes) and send a pull-request.
 
-Follow the instructions in [Bioconda recipes README](https://github.com/bioconda/bioconda-recipes) and [Guidelines for bioconda recipes](https://github.com/bioconda/bioconda-recipes/blob/master/GUIDELINES.md).
+Follow the instructions in [Bioconda recipes README](https://github.com/bioconda/bioconda-recipes).
 
-For testing your recipe, you will need conda.
+For writing and testing your recipe, you will need conda.
 
 Installing miniconda on macOS:
 ```bash
@@ -109,6 +111,12 @@ The installation is done in `~/miniconda2` and `~/miniconda3`. The binaries are 
 Then install `conda-build`:
 ```bash
 ~/miniconda3/bin/conda install conda-build
+```
+
+To write your recipe, follow the instructions in [Guidelines for bioconda recipes](https://github.com/bioconda/bioconda-recipes/blob/master/GUIDELINES.md). You will find instructions for each development language. For instance for writing a recipe for a R CRAN package, use the skeleton generator:
+```bash
+cd recipes
+~/miniconda3/bin/conda skeleton cran mypkg
 ```
 
 To build your recipe, run:
@@ -134,6 +142,7 @@ You can also publish a workflow on a Toolshed (**TODO: how ?**), and when instal
 ## XML tool file
 
   * [Tool XML file syntax](https://wiki.galaxyproject.org/Admin/Tools/ToolConfigSyntax).
+  * [Galaxy Intergalactic Utilities Commission Standards and Best Practices](https://galaxy-iuc-standards.readthedocs.io/en/latest/).
 
 ### Selection list from an external file
 
