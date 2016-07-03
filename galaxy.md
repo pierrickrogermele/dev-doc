@@ -63,6 +63,36 @@ Running planemo on an XML tool file:
 planemo lint mytool.xml
 ```
 
+### Planemo custom directory
+
+Planemo needs a directory to install files (like the Galaxy source code).
+By default it is `~/.planemo`, but it can be changed on command line:
+```bash
+planemo --directory /my/own/planemo/dir
+```
+
+If not already done, initialize conda:
+```bash
+planemo conda_init --conda_prefix conda.local
+```
+With the `--conda_prefix` option, we specify the use of a local directory for conda installation. This avoids to mix with other tool testing, as it is the case when using a single global conda installation folder. Attention to not choose a too much long prefix, otherwise it could give issue with R Ncurses package, in case your tool depends on it. You would get the error `Error: ERROR: placeholder '/Users/aaronmeurer/anaconda/envs/_build_placehold_placehold_placehold_placehold_' too short in: ncurses-5.9-1`. This issue will be solved in Conda-Build 2.0.0.
+
+### Conda custom folder
+
+Conda installs all its files inside `~/miniconda2` by default.
+When testing the requirements, it may be that you forget to specify some requirements for your tool, but that your test pass anyway. This is because the requirements were already installed inside `~/miniconda2`, possibly while testing another tool.
+
+A first solution to avoid this is to erase the `~/miniconda2` before running `planemo conda_install .`.
+
+A second solution is to choose a custom folder for conda for your tool through the `--conda_prefix` option:
+```bash
+planemo conda_init --conda_prefix conda.local
+planemo conda_install --conda_prefix conda.local mytool.xml
+planemo test --conda_prefix conda.local --galaxy_branch release_16.01 --conda_dependency_resolution mytool.xml
+```
+
+Attention to not choose a too much long prefix, otherwise it could give issue with R Ncurses package, in case your tool depends on it. You would get the error `Error: ERROR: placeholder '/Users/aaronmeurer/anaconda/envs/_build_placehold_placehold_placehold_placehold_' too short in: ncurses-5.9-1`. This issue will be solved in Conda-Build 2.0.0.
+
 ### Using Conda
 
  * [Using Conda with Planemo](http://planemo.readthedocs.io/en/latest/readme.html#conda).
@@ -106,7 +136,7 @@ Installing miniconda on macOS:
 ```bash
 brew cask install miniconda
 ```
-The installation is done in `~/miniconda2` and `~/miniconda3`. The binaries are installed inside `~/miniconda2/bin` and `~/miniconda3/bin`. The version 3 is preferred for bioconda.
+The installation is done in `~/miniconda3`. The binaries are installed inside `~/miniconda3/bin`.
 
 Then install `conda-build`:
 ```bash
