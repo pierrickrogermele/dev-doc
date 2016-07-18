@@ -46,6 +46,12 @@ sh run.sh
 
 Galaxy should work with any DRM (Distributed Resources Managers) that implements a [DRMAA](http://www.drmaa.org/) interface.
 
+## Toolshed
+
+ * [Galaxy Tool Shed](http://toolshed.g2.bx.psu.edu/). gmail / prog / init lc new perso. 
+ * [Galaxy Test Tool Shed](https://testtoolshed.g2.bx.psu.edu). Idem main tool shed.
+ * [The Galaxy Tool Shed Wiki](https://wiki.galaxyproject.org/ToolShed).
+
 ## Planemo
 
  * [Planemo](https://github.com/galaxyproject/planemo).
@@ -162,6 +168,10 @@ conda update conda-build
 ```
 
 See also [Conda build recipes](http://conda.pydata.org/docs/building/recipe.html).
+
+### Using planemo to publish on a toolshed
+
+ * [Publishing to the Tool Shed](http://planemo.readthedocs.io/en/latest/publishing.html).
 
 ## Workflows
 
