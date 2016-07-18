@@ -1,0 +1,15 @@
+# -*- mode: ruby -*-
+# vi: ft=ruby ts=2 et
+
+Vagrant.configure(2) do |config|
+
+  config.vm.box = "ubuntu/trusty64"
+  config.vm.hostname = "ubuntu-xfce4"
+
+  config.vm.provider "virtualbox" do |v|
+    v.gui = true
+  end
+  
+  config.vm.provision :shell, path: "install-xfce4.sh"
+
+end
