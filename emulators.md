@@ -118,6 +118,12 @@ On error `Error response from daemon: client is newer than server`, run:
 docker-machine upgrade default
 ```
 
+### Linux
+
+ * [Docker installation on Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
+
+Normally you have to be part of the group `docker` to run Docker. However it may not work, in which case you will be forced to run Docker as root (`sudo docker ...`).
+
 ## Vagrant
 
  * [Vagrant](https://www.vagrantup.com) official site.
