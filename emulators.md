@@ -96,6 +96,13 @@ The `docker-machine` utility creates such a virtual machine for you and configur
 ```bash
 docker-machine create -d virtualbox mydockermachinename
 ```
+To create a docker machine with more memory, use:
+```bash
+docker-machine create -d virtualbox --virtualbox-memory 2048  mydockermachinename
+```
+The `/` is mount as a tmpfs system, so it uses RAM memory and not disk memory, so don't use `--virtualbox-disk-size`.
+Increasing memory will be needed if you get the error message `no space left on device`.
+
 
 To get a list of all created docker machines:
 ```bash
@@ -123,6 +130,13 @@ docker-machine upgrade default
  * [Docker installation on Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntulinux/).
 
 Normally you have to be part of the group `docker` to run Docker. However it may not work, in which case you will be forced to run Docker as root (`sudo docker ...`).
+
+### Container orchestrators
+
+ * [Running Kubernetes Locally via Minikube](http://kubernetes.io/docs/getting-started-guides/minikube/).
+ * [minikube](https://github.com/kubernetes/minikube/releases).
+
+To install `kubeclt` under macOS, run `brew install kubernetes-cli`.
 
 ## Vagrant
 
