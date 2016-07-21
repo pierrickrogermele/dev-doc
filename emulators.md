@@ -41,10 +41,34 @@ Uses VirtualBox.
  * [Ansible & containers - a natural fit](http://www.ansible.com/docker).
  * [Kubernetes](http://kubernetes.io/) is docker scheduler that can run applications contained inside docker images on a cluster/cloud.
 
+### Images
+
+To build a container from a Dockerfile image, run:
+```bash
+docker build -t myimage .
+```
+
 To list images:
 ```bash
 docker images
 ```
+
+Searching for public docker base images:
+```bash
+docker search centos
+```
+
+Export an image:
+```bash
+docker save -o myimage.img myimage
+```
+
+Import an image:
+```bash
+docker load -i myimage.img
+```
+
+### Containers
 
 To list running containers:
 ```bash
@@ -55,16 +79,6 @@ To run a command inside a running container:
 ```bash
 docker exec 0440ee7a58e5 pwd
 docker exec -i 0440ee7a58e5 /bin/bash # to run interactively
-```
-
-Searching for public docker base images:
-```bash
-docker search centos
-```
-
-To build a container from a Dockerfile image, run:
-```bash
-docker build -t myimage .
 ```
 
 To run the container
