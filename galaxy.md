@@ -324,7 +324,14 @@ However this feature does not seem available in Galaxy 2014.06.12.
 
 Happens when the names of output files are wrong. For instance if a wrong (i.e.: non existing) variable is used to form the name of an output file. In the following example, the error occurs if the variable `input` is not defined:
 ```xml
-	<outputs>
-		<data name="mainoutput" label="${tool.name}_${input.name}" format="tabular"/>
-	</outputs>
+<outputs>
+	<data name="mainoutput" label="${tool.name}_${input.name}" format="tabular"/>
+</outputs>
 ```
+
+## Running a docker
+
+You can create a tool that executes a docker container instead of a normal executable or script.
+
+ * [Integrating Docker-based tools within Galaxy](https://github.com/apetkau/galaxy-hackathon-2014).
+ * [Integration of SMALT into Galaxy and Docker](https://github.com/apetkau/galaxy-hackathon-2014/tree/master/smalt).
