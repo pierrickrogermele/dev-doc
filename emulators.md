@@ -68,6 +68,11 @@ Import an image:
 docker load -i myimage.img
 ```
 
+To go inside a docker image:
+```bash
+docker run -t -i --entrypoint=bash myimage
+```
+
 ### Containers
 
 To list running containers:
