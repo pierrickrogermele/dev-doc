@@ -37,6 +37,16 @@ git checkout -b master origin/master    # in order to get the stable version
 sh run.sh
 ```
 
+To start in daemon mode:
+```bash
+./run.sh --daemon
+```
+
+To stop galaxy daemon:
+```bash
+./run.sh --stop-daemon
+```
+
 ## Job runners/schedulers
 
  * [Running Galaxy Tools on a Cluster](https://wiki.galaxyproject.org/Admin/Config/Performance/Cluster).
