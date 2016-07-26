@@ -39,7 +39,7 @@ Uses VirtualBox.
  * [Docker](http://docs.docker.com/).
  * [Docker wikipedia page](https://en.wikipedia.org/wiki/Docker_%28software%29).
  * [Ansible & containers - a natural fit](http://www.ansible.com/docker).
- * [Kubernetes](http://kubernetes.io/) is docker scheduler that can run applications contained inside docker images on a cluster/cloud.
+ * [Kubernetes](http://kubernetes.io/) is a docker scheduler that can run applications contained inside docker images on a cluster/cloud.
 
 ### Images
 
