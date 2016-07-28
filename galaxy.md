@@ -58,8 +58,8 @@ Galaxy should work with any DRM (Distributed Resources Managers) that implements
 
 ## Toolshed
 
- * [Galaxy Tool Shed](http://toolshed.g2.bx.psu.edu/). gmail / prog / init lc new perso. 
- * [Galaxy Test Tool Shed](https://testtoolshed.g2.bx.psu.edu). Idem main tool shed.
+ * [Galaxy Tool Shed](http://toolshed.g2.bx.psu.edu/).
+ * [Galaxy Test Tool Shed](https://testtoolshed.g2.bx.psu.edu).
  * [The Galaxy Tool Shed Wiki](https://wiki.galaxyproject.org/ToolShed).
 
 ## Planemo
@@ -182,6 +182,104 @@ See also [Conda build recipes](http://conda.pydata.org/docs/building/recipe.html
 ### Using planemo to publish on a toolshed
 
  * [Publishing to the Tool Shed](http://planemo.readthedocs.io/en/latest/publishing.html).
+
+#### Setup planemo global configuration file
+
+If you do not have a `~/.planemo.yml`, run the following command to get one:
+```bash
+planemo config_init
+```
+
+The created file will look like this:
+```yaml
+## Planemo Global Configuration File.
+## Everything in this file is completely optional - these values can all be
+## configured via command line options for the corresponding commands.
+
+## Specify a default galaxy_root for test and server commands here.
+#galaxy_root: /path/to/galaxy_root
+## Username used with toolshed(s).
+#shed_username: "<TODO>"
+sheds:
+  # For each tool shed you wish to target, uncomment key or both email and
+  # password.
+  toolshed:
+    #key: "<TODO>"
+    #email: "<TODO>"
+    #password: "<TODO>"
+  testtoolshed:
+    #key: "<TODO>"
+    #email: "<TODO>"
+    #password: "<TODO>"
+  local:
+    #key: "<TODO>"
+    #email: "<TODO>"
+    #password: "<TODO>"
+```
+
+You need to have a configure account on both the toolshed and the testtoolshed. If you do not have one yet, then go first to the [Galaxy Tool Shed](http://toolshed.g2.bx.psu.edu/) and create one. Use the same account on the [Galaxy Test Tool Shed](https://testtoolshed.g2.bx.psu.edu). On both tool sheds, generate an API key : menu User -> API keys.
+
+Edit the `.planemo.yml` file with your prefered editor, and set your username:
+```yaml
+shed_username: "yourusername"
+```
+Then set your API keys for both tool sheds:
+```yaml
+  toolshed:
+    key: "yourkey"
+```
+and
+```yaml
+  testtoolshed:
+    key: "yourotherkey"
+```
+
+#### Create your `.shed.yml` file
+
+This file is a description of your tool. It is placed inside your tool's directory and looks like this:
+```yaml
+categories: [Metabolomics]
+description: '[W4M][LC-MS] Annotate LCMS spectrum using an in-house spectra database.'
+homepage_url: http://workflow4metabolomics.org
+long_description: 'Part of the W4M project (http://workflow4metabolomics.org). Annotate LCMS spectrum using an in-house spectra database, provided as a TSV file. Two algorithms are proposed, a simple matching on MZ and RT values, and a more complex one that makes sure for each candidate that its precursor peak is matched.'
+name: lcmsmatching
+owner: prog
+remote_repository_url: https://github.com/workflow4metabolomics/lcmsmatching.git
+```
+
+You need to fill all fields in this file:
+ * `categories`: You can look at the toolshed site for a list of all categories.
+ * `description`: A short description of your tool. This is this field that will be used when running a search on the toolshed website.
+ * `homepage_url`: Your tool, project or orginsation website.
+ * `long_description`: A long description of your tool.
+ * `name`: The name of your tool.
+ * `owner`: Your username on the toolshed.
+ * `remote_repository_url`: The URL of your tool's repository on GitHub, GitLab or anyother online versioning system.
+
+#### Publish on tool sheds
+
+Now that your `.shed.yml` file is defined, you can use planemo to create and the update a toolshed repository.
+
+To create a tool repository on the test tool shed, run:
+```bash
+planemo shed_create --shed_target testtoolshed
+```
+to do the same on the toolshed:
+```bash
+planemo shed_create --shed_target toolshed
+```
+
+To get the difference between your current local files and the tool repository on the toolshed, run:
+```bash
+planemo shed_diff --shed_target toolshed
+```
+Replace `toolshed` by `testtoolshed` to run the same command on the test tool shed.
+
+To update the tool repository on the toolshed with your changes, run:
+```bash
+planemo shed_update --check_diff --shed_target toolshed
+```
+Replace `toolshed` by `testtoolshed` to run the same command on the test tool shed.
 
 ## Workflows
 
