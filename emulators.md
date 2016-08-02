@@ -153,9 +153,63 @@ Normally you have to be part of the group `docker` to run Docker. However it may
 ### Container orchestrators
 
  * [Running Kubernetes Locally via Minikube](http://kubernetes.io/docs/getting-started-guides/minikube/).
- * [minikube](https://github.com/kubernetes/minikube/releases).
 
-To install `kubeclt` under macOS, run `brew install kubernetes-cli`.
+#### minikube on macOS
+
+##### Install
+
+See [minikube](https://github.com/kubernetes/minikube/releases).
+
+First check VT-x/AMD-v virtualization is enabled in BIOS:
+```bash
+sysctl -a | grep machdep.cpu.features | grep VMX
+```
+
+Install `kubeclt`:
+```bash
+brew install kubernetes-cli
+```
+
+Download and install minikube:
+```bash
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.7.1/minikube-darwin-amd64
+chmod +x minikube
+mv minikube /usr/local/bin/
+```
+
+##### Use
+
+Start a minikube cluster:
+```bash
+minikube start
+```
+It creates a “minikube” context, and set it to default in kubectl.
+
+To stop the cluster:
+```bash
+minikube stop
+```
+
+Switch to context and look at pods (you should see the "manager" and the "dashboard"):
+```bash
+kubectl config use-context minikube
+kubectl get pods --all-namespaces
+```
+
+Open the Kubernetes dashboard inside a browser (need first to switch to context):
+```bash
+minikube dashboard
+```
+
+Get the nodes in the cluser:
+```bash
+kubectl get nodes
+```
+
+Minikube contains a built-in Docker daemon that for running containers. If you use another Docker daemon for building your containers, you will have to publish them to a registry before minikube can pull them. You can use minikube’s built in Docker daemon to avoid this extra step of pushing your images. Use the built-in Docker daemon with:
+```bash
+eval $(minikube docker-env)
+```
 
 ## Vagrant
 
