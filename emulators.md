@@ -190,6 +190,11 @@ To stop the cluster:
 minikube stop
 ```
 
+To destroy a stopped cluster:
+```bash
+minikube delete
+```
+
 Switch to context and look at pods (you should see the "manager" and the "dashboard"):
 ```bash
 kubectl config use-context minikube
@@ -288,6 +293,11 @@ end
 ## VirtualBox
 
  * [VirtualBox](https://www.virtualbox.org) official site.
+
+Get VirtualBox version:
+```bash
+VBoxManage --version
+```
 
 ## VMWare
 
