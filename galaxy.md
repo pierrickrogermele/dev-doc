@@ -2,6 +2,7 @@ GALAXY
 ======
 
   * [Galaxy](https://galaxyproject.org) official site.
+  * [Galaxy wiki](https://wiki.galaxyproject.org/FrontPage).
   * [Un petit tutoriel](http://cati-bbric.toulouse.inra.fr/doku.php/galaxy).
   * [IFB Galaxy tutorial](http://www.france-bioinformatique.fr/sites/default/files/20150522v0.99.1-galaxyadvancedfeaturesfortoolintegration_0.pdf).
 
@@ -443,3 +444,13 @@ You can create a tool that executes a docker container instead of a normal execu
 
  * [Integrating Docker-based tools within Galaxy](https://github.com/apetkau/galaxy-hackathon-2014).
  * [Integration of SMALT into Galaxy and Docker](https://github.com/apetkau/galaxy-hackathon-2014/tree/master/smalt).
+
+## Issues
+
+### `dynamic_options` issue
+
+The python function called inside `dynamic_options` attribute of tag `param` does not get the parameter values already defined in the tool XML.
+
+Apparently this bug has already occured (<https://github.com/galaxyproject/galaxy/pull/67/files>) in version 15 and has been fixed.
+
+The tool *cummeRbund* from [galaxyproject/tools-devteam]<https://github.com/galaxyproject/tools-devteam> uses the `dynamic_options` feature.
