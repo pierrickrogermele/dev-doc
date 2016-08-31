@@ -1,0 +1,14 @@
+<tool id="dynamicopt" name="Example for dynamic_options" version="1.0">
+
+	<code file="get-opt-values.py"/>
+
+	<command><![CDATA[
+		echo Nothing to run.
+	]]></command>
+
+	<inputs>
+		<param name="length" label="Length" type="integer" value="5"/>
+		<param name="choicelist" type="select" label="Multiple choice list" multiple="true" dynamic_options="get_opt_values(length)"/>
+	</inputs>
+
+</tool>
