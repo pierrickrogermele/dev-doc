@@ -7,8 +7,25 @@
 	]]></command>
 
 	<inputs>
-		<param name="length" label="Length" type="integer" value="5"/>
+
+		<!-- select dynamic_options using a simple param -->
+		<param name="length" label="Length" type="integer" value="5" refresh_on_change="true"/>
 		<param name="choicelist" type="select" label="Multiple choice list" multiple="true" dynamic_options="get_opt_values(length)"/>
+
+		<!-- select dynamic_options using a param included inside a conditional tag -->
+		<conditional name="cond">
+
+			<param name="thetype" label="Type" type="select" refresh_on_change="true">
+				<option value="typeA">Type A</option>
+				<option value="typeB">Type B</option>
+			</param>
+
+			<when value="typeA"/>
+			<when value="typeB"/>
+
+		</conditional>
+		<param name="choicelist2" type="select" label="Multiple choice list" multiple="true" dynamic_options="get_opt_values_2(cond['thetype'])"/>
+
 	</inputs>
 
 </tool>
