@@ -1,0 +1,62 @@
+#!/usr/bin/env python3
+import sys
+from PyQt4 import QtGui
+
+# MACOS-X: the menubar doesn't work. File menu isn't displayed.
+
+class MainWindow(QtGui.QMainWindow):
+
+	#############
+	# CONSTANTS #
+	#############
+
+	TITLE = "Easy OCR"
+
+	###############
+	# CONSTRUCTOR #
+	###############
+
+	def __init__(self):
+		super(MainWindow, self).__init__()
+		self.initUI()
+
+	###########
+	# INIT UI #
+	###########
+
+	def initUI(self):
+
+		# Exit action
+		exitAction = QtGui.QAction('&Exit', self)        
+		exitAction.setShortcut('Ctrl+Q')
+		exitAction.setStatusTip('Exit application')
+		exitAction.triggered.connect(QtGui.qApp.quit)
+
+		# Status bar
+		self.statusBar().showMessage('Ready')
+
+		# Menu bar
+		menubar = QtGui.QMenuBar()
+		fileMenu = menubar.addMenu('&File')
+		fileMenu.addAction(exitAction)
+#		self.setMenuBar(menubar)
+
+		# Title
+		self.setWindowTitle(MainWindow.TITLE)
+
+		# Show
+		self.show()
+		self.raise_() # On MacOS-X, force to make this window the activated window.
+
+########
+# MAIN #
+########
+
+def main():
+#	app = QtGui.QApplication([MainWindow.TITLE])
+	app = QtGui.QApplication(sys.argv)
+	main = MainWindow()
+	sys.exit(app.exec_())
+
+if __name__ == '__main__':
+	main() 

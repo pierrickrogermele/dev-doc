@@ -1,0 +1,16 @@
+#!/usr/bin/env Rscript
+# vi: ft=R
+args <- commandArgs(trailingOnly = F)
+script.path <- sub("--file=","",args[grep("--file",args)])
+
+library(rJava)
+.jinit()
+.jaddClassPath("javalib1/build")
+print(.jclassPath())
+.jcall('javalib1/Lib1', 'V', 'init')
+
+.jaddClassPath("javalib2/javalib2.jar")
+print(.jclassPath())
+.jcall('javalib2/Lib2', 'V', 'init')
+
+.jcall('javalib1/Lib1', 'V', 'init')

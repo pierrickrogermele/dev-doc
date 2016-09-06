@@ -1,0 +1,23 @@
+<project name="calling.java" default="all">
+
+	<!-- DIRECTORIES -->
+	<property name="build.dir"  value="build"/>
+
+	<!-- ALL -->
+	<target name="all">
+		<ant dir="javalib1" target="all" inheritAll="false"/>
+		<ant dir="javalib2" target="all" inheritAll="false"/>
+	</target>
+
+	<!-- RUN -->
+	<target name="run">
+	</target>
+
+	<!-- CLEAN -->
+	<target name="clean">
+		<ant dir="javalib1" target="clean" inheritAll="false"/>
+		<ant dir="javalib2" target="clean" inheritAll="false"/>
+	</target>
+
+</project>
+

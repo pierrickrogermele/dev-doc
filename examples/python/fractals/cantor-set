@@ -1,0 +1,58 @@
+#!/usr/bin/env python
+
+import sys
+from PIL import Image, ImageDraw
+
+#####################
+# CREATE CANTOR SET #
+#####################
+
+def create_cantor_set(n, image, filename):
+
+	# incoherent value
+	if n < 1:
+		return []
+
+	# first set
+	if n == 1:
+		draw = ImageDraw.Draw(image)
+		draw.rectangle([(0, image.size[1] / 4), (image.size[0], 3 * image.size[1] / 4)], fill="black")
+		cantor_set = [(0, 1.0)]
+
+	else:
+		cantor_set_n_1 = create_cantor_set(n-1, image, filename)
+		cantor_set = []
+		# loop on all ranges of cantor set (n-1)
+		for r in cantor_set_n_1:
+			# get the third of the range length
+			left =  (2*r[0] +   r[1]) / 3.0
+			right = (  r[0] + 2*r[1]) / 3.0
+
+			# remove the third of this range (in middle) from the image
+			draw = ImageDraw.Draw(image)
+			draw.rectangle([(left * image.size[0], image.size[1] / 4), (right * image.size[0], 3 * image.size[1] / 4)], fill="white")
+
+			# remove this third from actual range and create two new ranges that we put inside new cantor set
+			cantor_set.append((r[0], left))
+			cantor_set.append((right, r[1]))
+
+	# save image
+	image.save(filename.format(n), "PNG")
+
+	return cantor_set
+
+########
+# MAIN #
+########
+
+# Get program's name
+prog_name = sys.argv[0]
+
+# Read argument
+n = int(sys.argv[1])
+
+# Create image
+im = Image.new("1", (256, 16), "white")
+
+# Generate all images
+create_cantor_set(n, image=im, filename=prog_name+'-{0:02d}.png')

@@ -1,0 +1,66 @@
+#!/usr/bin/env python
+
+import sys
+from PIL import Image, ImageDraw
+
+#####################
+# CREATE CANTOR SET #
+#####################
+
+def create_sierpinski_square(n, image, filename):
+
+	# incoherent value
+	if n < 1:
+		return []
+
+	# first set
+	if n == 1:
+		draw = ImageDraw.Draw(image)
+		draw.rectangle([(0, 0), (image.size[0], image.size[1])], fill="black")
+		sierpinski_square = [(0, 0, 1, 1)] # square x1,y1,x2,y2
+
+	else:
+		sierpinski_square_n_1 = create_sierpinski_square(n-1, image, filename)
+		sierpinski_square = []
+		# loop on all ranges of cantor set (n-1)
+		for r in sierpinski_square_n_1:
+			# get coordinates of center sqare to remove
+			left  =  (2*r[0] +   r[2]) / 3.0
+			right =  (  r[0] + 2*r[2]) / 3.0
+			top   =  (2*r[1] +   r[3]) / 3.0
+			bottom = (  r[1] + 2*r[3]) / 3.0
+
+			# remove the middle square
+			draw = ImageDraw.Draw(image)
+			draw.rectangle([(left * image.size[0], top * image.size[1]), (right * image.size[0], bottom * image.size[1])], fill="white")
+
+			# create 8 new squares
+			sierpinski_square.append((r[0], r[1], left, top))
+			sierpinski_square.append((left, r[1], right, top))
+			sierpinski_square.append((right, r[1], r[2], top))
+			sierpinski_square.append((r[0], top, left, bottom))
+			sierpinski_square.append((right, top, r[2], bottom))
+			sierpinski_square.append((r[0], bottom, left, r[3]))
+			sierpinski_square.append((left, bottom, right, r[3]))
+			sierpinski_square.append((right, bottom, r[2], r[3]))
+
+	# save image
+	image.save(filename.format(n), "PNG")
+
+	return sierpinski_square
+
+########
+# MAIN #
+########
+
+# Get program's name
+prog_name = sys.argv[0]
+
+# Read argument
+n = int(sys.argv[1])
+
+# Create image
+im = Image.new("1", (256, 256), "white")
+
+# Generate all images
+create_sierpinski_square(n, image=im, filename=prog_name+'-{0:02d}.png')

@@ -1,0 +1,2196 @@
+R
+=
+
+## Installing
+
+Under macOS, run:
+```bash
+brew tap homebrew/science
+brew install r
+```
+
+There exists a GUI application downloadable [here](http://www.cran.r-project.org).
+On macOS, to uninstall it run:
+```bash
+rm -rf /Library/Frameworks/R.framework /Applications/R.app /usr/bin/R /usr/bin/Rscript
+```
+
+Under Debian/Ubuntu:
+```bash
+apt-get install r-base
+```
+
+To get the latest R version under Ubuntu, setup the CRAN package repository.
+Add the following line to `/etc/apt/sources.list` file:
+	deb http://mirrors.ebi.ac.uk/CRAN/bin/linux/ubuntu trusty/
+See [UBUNTU PACKAGES FOR R](https://cran.r-project.org/bin/linux/ubuntu/).
+
+## Running
+
+Execute specified file:
+```bash
+R -f myfile
+```
+
+Don't print startup message:
+```bash
+R -q ...
+```
+
+Print neither startup message, nor lines of program:
+```bash
+R --slave ...
+```
+
+For running from a standalone script, use the following shebang:
+```r
+#!/usr/bin/env R --slave -f
+```
+
+To pass arguments:
+```bash
+R --args ...
+```
+
+To run a script, use preferably the `Rscript` executable:
+```bash
+Rscript myscript.R
+```
+
+Another way to run a script:
+```bash
+R CMD BATCH myscript.R
+```
+
+Quit:
+```r
+q()
+q(status = 1)
+quit()
+quit(status = 1)
+```
+
+## Packages
+
+Getting information about loaded packages (package version, ...) in a session:
+```r
+sessionInfo()
+```
+
+### Installing packages
+
+R packages can be found on [CRAN](http://cran.r-project.org/) web site.
+
+Select CRAN mirror:
+```r
+chooseCRANmirror()
+chooseCRANmirror(graphics = FALSE) # Avoid opening of X11 window when selecting mirror site:
+```
+
+Installing a CRAN package:
+```r
+install.packages("pkgname")
+```
+
+Install with all dependencies:
+```r
+install.packages("pkgname", dependencies = TRUE)
+```
+
+For installing a particular place (like some system path, for system wide installation), first look at the list of available destination directories:
+```r
+.libPaths()
+```
+then choose the destination you want by using the `lib` option:
+```r
+install.packages("pkgname", lib = .libPaths()[2])
+```
+
+Installing a package from source:
+```r
+install.packages('RMySQL', type='source')
+```
+
+Installing a package from local source bundle:
+```r
+install.packages('C:/RMySQL.tar.gz', repos = NULL, type='source')
+```
+
+Installing using the command line:
+```bash
+R -e "install.packages('getopt', dependencies = TRUE, repos='http://lib.ugent.be/CRAN/')"
+```
+
+### Removing packages
+
+```r
+remove.packages("rJava")
+```
+
+### Loading packages
+
+List available packages:
+```r
+library()
+```
+
+Load package:
+```r
+library(mypackage)
+```
+`library()` gives an error if the package can not be loaded.
+
+```r
+if (require(mypackage)) {
+	# stuff to do
+}
+```
+`requires()` returns `FALSE` and gives a warning if the package can not be loaded. It is designed to be used inside a function.
+
+Non-verbose loading:
+```r
+library(RMySQL, quietly = TRUE)
+```
+
+### Creating packages
+
+ * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
+ * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
+
+## Types
+
+### NA
+
+This i a logical value of length 1:
+```r
+NA # means Not Available
+```
+
+Constants for other atomic vector types:
+```r
+NA_integer_
+NA_real_
+NA_complex_
+NA_character_ 
+```
+
+Testing:
+```r
+is.na(myvar)
+```
+
+Affecting inside a vector:
+```r
+(xx <- c(0:4))
+is.na(xx) <- c(2, 4)
+xx                     #> 0 NA  2 NA  4
+```
+
+### NULL
+
+ * [R : NA vs. NULL](http://www.r-bloggers.com/r-na-vs-null/).
+
+Test:
+```r
+is.null(myvar)
+```
+
+Convert:
+```r
+as.null(myvar) # --> returns NULL whatever is passed to it
+```
+
+### Strings
+
+Getting the length of a string:
+```r
+l = nchar(s)
+```
+
+Concatenate strings:
+```r
+s <- paste(s1, s2, sep="")
+s <- paste(s1, s2, s3, s4, sep="")
+```
+Be careful, by default the separator ('sep' argument) is the space character.
+
+Putting to lower or upper case
+```r
+s <- tolower(s)
+s <- toupper(s)
+```
+
+Getting character code:
+```r
+charToRaw('A') # Returns a string containing the hex code of A.
+```
+
+#### Substrings
+
+Substring extraction:
+```r
+substr(text, start, stop)
+substring(...)
+```
+
+Substring replacement:
+```r
+substr(text, start, stop) <- s
+```
+
+#### Split & join
+
+Spliting:
+```r
+v <- strsplit(s, ";") # Split all strings in vector s, and returns a list of vectors of strings.
+```
+
+Joining:
+```r
+s <- paste(v, collapse = " ")
+```
+
+#### Trimming
+
+Trimming leading white spaces:
+```r
+trim.leading <- function (x)  sub("^\\s+", "", x)
+```
+
+Trimming trailing white spaces:
+```r
+trim.trailing <- function (x) sub("\\s+$", "", x)
+```
+
+Trimming leading and trailing white spaces:
+```r
+trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+```
+
+#### Array
+
+Arrays are objects that can have more than 2 dimensions. Matrix is a special case of arrays.
+
+Create a vector with integers from 1 to 10:
+```r
+x <- c(1:10)
+```
+
+Length of a vector:
+```r
+length(x)
+```
+
+Create an array 4x5, initialized with integer values from 1 to 20:
+```r
+A<-array(1:20,dim=c(4,5))
+```
+
+A 3D array:
+```r
+arr <- array(data = c(m1, m2), dim = c(3,2,2)) # construct a 3D array from two 3x2 matrices.
+```
+
+Test if two arrays are equal:
+```r
+isTRUE(all.equal(A, B, tol=0))  # tol is tolerance
+```
+
+Example of operations on a array:
+```r
+x <- c(1:10)
+x[(x>8) | (x<5)]
+```
+yeilds 1 2 3 4 9 10.
+
+Another example which counts the number of elements of an array which are <= 1:
+```r
+p <- sum(v <= 1) # where v is an array
+```
+
+### Vector
+
+Elements of a vector can be of the following types: logical, integer, double, complex, character and raw.
+
+Vectors are also called "atomic vectors", to distinguish them from list (called "generic vectors" or "recursive vectors")
+
+Create a vector x:
+```r
+x <- c(10.5, 9.3, 10.2, 4.1)
+assign("x", c(10.5, 9.3, 10.2, 4.1))
+c(10.5, 9.3, 10.2, 4.1) -> x
+y <- vector(length = 2)
+y <- vector(mode = 'integer', length = 0)
+a <- numeric()
+y <- 5:8
+y <- 5:1
+y <- seq(from = 12, to = 30, by = 3) # 12 15 18 21 24 27 30
+y <- seq(from = 1.1, to = 2, length = 10)
+y <- rep(8,4) # 8 8 8 8
+y <- rep(c(1,2),4) # 1 2 1 2 1 2 1 2
+y <- rep(c(5,12,13), each = 2) # 5 5 12 12 13 13
+```
+
+Empty vector:
+```r
+numeric()
+character()
+```
+
+Concatenating vectors:
+```r
+y <- c(x, 0, x)
+y <- c(1, 2, c(6, 7)) # gives 1 2 6 7. Vectors are flattened.
+```
+
+Appending to a vector:
+```r
+a <- c(a, 2)
+```
+
+Getting value:
+```r
+v[4]
+```
+
+Setting value:
+```r
+v[5] <- 19
+# Attention, this operation may involve a reassignment of v (i.e.: a creation of a new vector and destruction of this old). As a matter of fact, what happens is that the operator/function [<- is called as is :
+v <- "[<-"(v, 5, value = 19)
+# This should trigger a reassignment, but in fact R tries to avoid this and modify the vector in-place.
+# This is possible when the vector pointed to by v is not pointed by another variable. If this vector is pointed by several variables (at least 2 :-)), then R makes a copy. The following code will trigger a copy, you can use the function tracemem() to check this fact:
+v <- 1:10
+w <- v # w and v point to the same vector.
+tracemem(v)
+v[5] <- 90 # triggers a copy of v. v points to a new vector.
+tracemem(v)
+```
+
+Preallocating a vector. Appending is time consuming since it builds each time a new vector.
+```r
+v <- vector(length = n)
+	# fill values inside v, and use variable i as the last index in v.
+v <- v[1:i] # we shrink the vector
+```
+
+Inserting inside a vector
+```r
+x <- c(x[1:3], 168, x[4])
+```
+
+Taking sub-vector (indexing):
+```r
+y[c(1,3)] # takes elements 1 and 3
+y[2:3] # takes elements 2 to 3
+y[v] # takes the elements whose indices are listed in v
+y[-3] # all elements except element 3
+```
+
+Vectors don't need to be of the same length, the short vectors will be expanded by repeating their values to match the size of the biggest vector.
+```r
+v <- 2*x + y + 1
+```
+
+Size (length) of a vector:
+```r
+s <- length(v)
+```
+
+Sum of the elements of a vector:
+```r
+s <- sum(v)
+```
+
+Loop on a vector:
+```r
+for (i in 1:length(v)) # Attention if length(v) == 0, then there will be two iterations: 1, 0.
+	do_something(i)
+for (i in seq(v)) # No iteration if length(v) == 0.
+	do_something(i)
+```
+
+Search for a value:
+```r
+index <- match('myval', v)
+```
+
+Test for a value:
+```r
+if ('myval' %in% v) {
+}
+```
+
+Addition:
+```r
+c(1,2) + c(5,6,7,8,9) # is actually executed as c(1,2,1,2,1) + c(5,6,7,8,9). R recycles vector values in order to complete it if needed.
+"+"(1:2,3:4) # The operators +,*,/,%%, and others are functions.
+```
+
+Multiplication:
+```r
+c(1,2) * c(3,4) # gives c(3,8) since the * operator, like the + operator, is applied element by element.
+```
+
+Other element wise operators:
+```r
+c(1,2) / c(3,4) 
+c(1,2) %% c(3,4) 
+```
+
+Filtering:
+```r
+z <- c(5,2,-3,8)
+w <- z[z*z > 8] # 5 -3 8
+x[x > 3] <- 0 # replaces all elements of x greater than 3 with 0.
+x <- c(6, 1, NA, 12)
+x[x > 5] # gives 6, NA, 12
+subset(x, x > 5) # gives 6, 12. subset removes NA values.
+which(z*z > 8) # gives 1 3 4, the index positions of the elements that satisfy the condition.
+ifelse(b, u, v) # returns a vector of values of u and v, choosing u[i] if b[i] is true and v[i] otherwise.
+```
+
+Removing duplicates:
+```r
+x <- x[!duplicated(x)]
+```
+
+Elements can be given names (~ keys):
+```r
+names(x) # get the names
+names(x) <- c("a", "b", "c") # set names
+x["b"] # get value by name
+names(x) <- NULL # remove names
+```
+
+Getting the intersection of two sets:
+```r
+x <- intersect(v, w)
+```
+
+#### vapply
+
+Applying a function on all elements of a vector:
+```r
+w <- vapply(v, my_fct(x), FUN.VALUE = 1)
+```
+
+If the function has other parameters:
+```r
+w <- vapply(v, function(x) my_fct(x, param1, param2), FUN.VALUE = 1)
+```
+
+Be careful if the input vector is a character vector, `vapply` will then set rownames of output vector to the values of input vector. To disable this feature, you have to set USE.NAMES parameter to false:
+```r
+w <- vapply(v, my_fct(x), FUN.VALUE = 1, USE.NAMES = FALSE)
+```
+
+### List
+
+A list is a type of vector called "generic vector" ir "recursive vector"
+A list can contain any type of R objects. => it can contains elements of different types.
+A list is always ordered
+
+Initializing a list:
+```r
+x <- list() # empty list or NULL object ?
+x <- list(1, 2, 3, 4) # a list of 4 vectors, each of size 1
+x <- list(1:4) # a list of 1 vector of size 4
+z <- vector(node = "list") # a list can be created with the vector() function, since lists are vectors.
+```
+
+Querying fields on a list:
+```r
+b <- NULL
+b[['blabla']] # returns NULL
+b[['blabla']][['zap']] # returns NULL
+b <- list()
+b[['blabla']] # returns NULL
+b[['blabla']][['zap']] # returns NULL
+```
+
+Appending to a list:
+```r
+mylist <- c(mylist, myvalue)
+```
+
+Adding components to a list:
+```r
+mylist$bla <- 12 # Add component named "bla" if it doesn't already exist.
+mylist[10:12] <- c(1,2,3)
+```
+
+Deleting a list component:
+```r
+z$b <- NULL
+```
+
+Concatenating lists:
+```r
+c(list("Joe", 55000, T),list(5))
+```
+
+Getting list length:
+```r
+length(mylist)
+```
+
+Testing if a list is empty:
+```r
+if (length(mylist) == 0) ...
+```
+
+To access objects of a list use operator [[. For instance, for a list mylist with 2 records:
+```r
+mylist[[1]]
+mylist[[2]]
+```
+
+Operator [[]] returns a single item:
+```r
+s[[2]]
+```
+
+Operator [] returns a list of the selected items:
+```r
+s[1,3,5]
+s[4]
+s['a', 'e'] # it works also with names
+```
+
+Tags/names:
+```r
+j <- list(name="Joe", salary=55000, union=T)
+j$salary
+j[['salary']]
+j$sal # name can be abbreviated when used
+j <- unname(j) # remove names
+names(j) <- NULL # remove names
+names(j) # get names
+sorted_list <- mylist[sort(names(mylist))] # reorder a list by sorting its tags/names.
+```
+
+Transforming a list into a vector:
+```r
+v <- unlist(mylist)
+```
+
+Components of a list can be of any type, even list or vector:
+```r
+mylist[["bla"]] <- c(mylist[["bla"]], value) # Add value to vector stored by component "bla". 
+```
+
+List apply:
+```r
+lapply(list(1:3,25:29),median) # returns a list
+```
+
+Simplified apply, `sapply` returns either a vector or a matrix
+```r
+sapply(list(1:3,25:29),median) # returns a vector
+```
+
+Recursive list:
+```r
+c(list(a=1,b=2,c=list(d=5,e=9))) # real recursive list (c is a list)
+c(list(a=1,b=2,c=list(d=5,e=9)),recursive=T) # non-recursive list. List is flatened and only the names are resursive: a, b, c.d, c.e.
+```
+
+### Matrix
+
+A matrix is a vector with attributes for the number of rows and columns. The vector has the size n x m.
+Matrices are in fact part of a more generalized type of object in R: arrays. Arrays can be of 3 dimensions or higher.
+
+Matrices are storred internally in column-major order (i.e.: first all of column 1 is stored, then all of column 2, etc.).
+
+Create a matrix:
+```r
+m <- matrix(nrow = 10, ncol = 20)
+m <- matrix(1:8, ncol=2)
+m <- matrix(c(1,2,3,4,5,6),nrow=2,byrow=T) # byrow=T means that data is input in row-major order. But storage is still in column-major order.
+m <- matrix(rep(v, 5), ncol = 5) # build a matrix by repeating the same vector in each column.
+m <- matrix(rep(v, 5), nrow = 5, byrow = TRUE) # build a matrix by repeating the same vector in each row.
+m <- as.matrix(v) # create a matrix from a vector
+```
+
+Getting size (dimensions) of a matrix:
+```r
+d <- dim(m)
+# d[1] is first dimension (nb rows, since matrices are stored in column-major mode)
+# d[2] is second dimension (nb columns)
+# ...
+p <- nrow(m) # get number of rows
+q <- ncol(m) # get number of rows
+```
+
+Getting rows:
+```r
+m[1,] # row 1
+```
+
+Getting columns:
+```r
+m[,2] # column 2
+```
+
+Removing columns and rows:
+```r
+m[c(1,3),] # keeps only rows 1 and 3
+m[c(-2),] # removes row 2
+m[,c(-2)] # removes column 2
+```
+
+For inversion of a matrix, see R/LAPACK/ATLAS.
+
+Submatrices:
+```r
+y[c(1,3),] <- matrix(c(1,1,8,12),nrow=2) # assign values to a submatrix
+y[2,, drop = FALSE] # The option drop=FALSE avoid obtaining a vector instead of a matrix in case the resulting submatrix is a 1-by-n or n-by-1 matrix.
+```
+
+Multiplication:
+```r
+m %*% c(1,1)
+```
+
+Addition:
+```r
+m + 10:13 # Since matrices are vectors, we can add a vector of total size nxm to a matrix nxm.
+```
+
+Apply:
+```r
+apply(m, MARGIN = 1, func) # MARGIN is the code for the dimension (1 = rows, 2 = columns). It tells if the function func is applied on rows or columns.
+```
+
+Names:
+```r
+colnames(m) <- c("a", "b")
+m[,"a"]
+```
+
+### Data frames
+
+A data frame is a list of vectors, factors or matrices of equal lengths.
+It can aso be view as a matrix with columns of different modes.
+A data frame can also contain other data frames.
+
+Creation:
+```r
+n <- c(2, 3, 5) 
+s <- c("aa", "bb", "cc") 
+b <- c(TRUE, FALSE, TRUE) 
+df <- data.frame(n, s, b)       # df is a data frame
+```
+or
+```r
+d <- data.frame(kids=c("Jack","Jill"),ages=c(12,10))
+d <- data.frame(kids=c("Jack","Jill"),ages=c(12,10), stringsAsFactors=FALSE) # don't create factors
+```
+
+Columns and rows can be created at will:
+```r
+df <- data.frame()
+df['zap', 'hop'] <- 4
+```
+
+Accessing:
+```r
+d[[1]] # get first column
+d[,1] # get first column
+d$kids # get column "kids"
+```
+
+A data frame can have a names attribute (for naming columns):
+```r
+names(my_data_frame)
+```
+
+Check that a named column exists:
+```r
+'mycol' %in% colnames(my_data_frame)
+```
+
+Filtering:
+```r
+examsquiz[examsquiz$Exam.1 >= 3.8,]
+subset(examsquiz,Exam.1 >= 3.8)
+```
+
+NA values:
+```r
+mean(x,na.rm=TRUE) # remove NA values when computing the mean.
+d4[complete.cases(d4),] # keep only the lines containing no NA values.
+```
+
+Apply() can be used on a data frame if all columns are of the same type:
+```r
+apply(examsquiz,1,max)
+lapply(d, sort) # sorts all columns of d individually, and returns a list of the sorted vectors.
+```
+
+Appending/inserting a column or a row:
+```r
+rbind(d,list("Laura",19)) # append a row
+examsquiz$ExamDiff <- examsquiz$Exam.2 - examsquiz$Exam.1 # append a column made of a computation on other columns.
+d$new_col <- c(1,2) # append a new column and use recycling if c(1,2) is too short compared to the length of columns of d.
+```
+
+Using `plyr` library, for appending two data frames with different columns:
+```r
+library(plyr)
+a <- rbind.fill(b, c)
+```
+If a column is missing in b or in c, it is filled with NA values.
+
+#### Reading
+
+Reading a data.frame from file:
+```r
+df <- read.table("exams", header=TRUE) # In the header, blanks are replaced with period in names.
+all2006 <- read.csv("2006.csv", header=TRUE, as.is=TRUE) # read CSV file. as.is=TRUE disable use of factors (identical to stringsAsFactors=FALSE)
+```
+
+Reading a UTF-16 file, with tab separated columns:
+```r
+df <- read.table("SPI-N1.txt", header=TRUE, stringsAsFactors = FALSE, sep="\t", fileEncoding="UTF-16")
+```
+
+#### Writing
+
+```r
+write.csv(df, file = "myfile.csv") # period for decimal separator and comma for field separator
+write.csv2(df, file = "myfile.csv") # coma for decimal separator and semicolon for field separtor
+write.table(df, file = "myfile.tsv", sep = "\t")
+write.table(df, file = "myfile.tsv", sep = "\t", row.names = FALSE) # Do not write row names
+```
+
+#### Subdata frames
+
+```r
+examsquiz[2:5,]
+examsquiz[2:5, 2] # returns a vector
+examsquiz[2:5, 2, drop=FALSE] # returns a one column data frame
+```
+
+### Factors (enum)
+
+```r
+gender <- c(rep("male",20), rep("female", 30)) 
+gender <- factor(gender) 
+
+mons = c("March","April","January","November","January",
+         "September","October","September","November","August",
+         "January","November","November","February","May","August",
+         "July","December","August","August","September","November",
+         "February","April")
+mons = factor(mons)
+```
+
+There exists an ordered factor where values can be ordered (ex: small, medium, high):
+```r
+mons = factor(mons,
+              levels=c("January","February","March",
+                       "April","May","June","July","August","September",
+                       "October","November","December"),
+              ordered=TRUE)
+```
+
+### Table
+
+Compute an histogram: count occurences of each value.
+
+```r
+hist <- table(c(1,45,1,6,3,14,45,6,6))
+```
+
+## Statements
+
+## External libraries
+
+### RMySQL
+
+```r
+library(RMySQL)
+```
+
+Open the default test database provided by MySQL installation:
+```r
+if (mysqlHasDefault()) {
+	conn <- dbConnect(RMySQL::MySQL(), dbname = "test")
+	# Do some stuff...
+	dbDisconnect(conn)
+}
+```
+
+Send a query:
+```r
+result <- try(dbSendQuery(conn, query))
+```
+
+Test if everything went right:
+```r
+if (dbHasCompleted(result)) ...
+```
+
+#### .my.cnf file
+
+One can define connection settings inside the .my.cnf file:
+``` {.linux-config}
+[my_conn_settings]
+host = localhost
+user = root
+password = root
+database = 2biodb
+```
+
+The file should be of course only readable by the user.
+And then use group parameter to dbConnect
+```r
+dbConnect(MySQL(), group = 'my_conn_settings')
+```
+The configuration file path is defined by the default.file parameter of dbConnect, that, by default, is set to `$HOME/.my.cnf` under UNIX type platforms and `C:\my.cnf` under Windows platforms.
+
+#### Installing RMySQL on Windows
+
+On windows platform the RMySQL package isn't provided as binary. One needs to compile it.
+
+For this, one needs to install Rtools and MySQL, and then run:
+```r
+install.packages('RMySQL', type='source')
+```
+Be careful of choosing compatible binary versions (32 or 64 bits) for the 3 software: R, Rtools (and the extension to install: "Extras to build 32 bit R: TCL/TK, bitmap code, internationalization") and MySQL.
+Eventually look at <http://www.r-bloggers.com/installing-the-rmysql-package-on-windows-7/>.
+You'll have to define `MYSQL_HOME` env var to be `C:\Program Files\MySQL\MySQL Server 5.6`, and also to copy `libmysql.dll` from the lib folder of `C:\Program Files\MySQL\MySQL Server 5.6` to its bin folder.
+
+### R.matlab
+
+ * [Package R.matlab](http://search.r-project.org/library/R.matlab/html/R.matlab-package.html).
+
+```r
+library(R.matlab)
+```
+
+#### Read/write matlab data files
+
+```r
+A <- matrix(1:27, ncol=3)
+B <- as.matrix(1:10)
+
+filename <- paste(tempfile(), ".mat", sep="")
+writeMat(filename, A=A, B=B)
+data <- readMat(filename)
+print(data)
+unlink(filename)
+```
+
+#### Evaluate matlab code
+
+Run Matlab server:
+```r
+Matlab$startServer()
+```
+The 'matlab' executable must be in the PATH.
+
+Create a matlab client:
+```r
+matlab <- Matlab()
+```
+
+Open connection:
+```r
+open(matlab)
+```
+
+Set detailed output:
+```r
+setVerbose(matlab, -2)
+```
+
+Evaluate matlab code:
+```r
+evaluate(matlab, "A=1+2;", "B=ones(2,20);")
+```
+
+Get variables:
+```r
+matlab_vars <- getVariable(matlab, c("a", "b"))
+```
+
+Create a function:
+```r
+setFunction(matlab, "          \
+	function [win,aver]=dice(B)  \
+	%Play the dice game B times  \
+	gains=[-1,2,-3,4,-5,6];      \
+	plays=unidrnd(6,B,1);        \
+	win=sum(gains(plays));       \
+	aver=win/B;                  \
+");
+```
+
+Call function:
+```r
+evaluate(matlab, "[w,a]=dice(1000);")
+```
+
+Close client and server (to verify: only if this is the last client ?):
+```r
+close(matlab)
+```
+
+### RCurl
+
+```r
+library(RCurl)
+```
+
+Getting URL content:
+```r
+txt <- getURL("http:/.../")
+```
+
+Setting the user agent:
+```r
+txt <- getURL("http:/.../", useragent="MyApp ; www.myapp.fr ; pierrick.rogermele@icloud.com")
+```
+
+### XML
+
+```r
+library(XML)
+```
+
+Parsing XML from string:
+```r
+xml <- xmlInternalTreeParse(s, asText = TRUE)
+```
+
+#### XPath
+
+```r
+library(XML)
+```
+
+Get a node's text content:
+```r
+txt <- xpathSApply(xmldoc, "//mynode", xmlValue)
+```
+
+XML using an anonymous namespace
+If the XML top node contains an xmlns attribute (ex: <mytopnode xmlns="http://..../"...>), then it must be defined with a prefix while searching using XPath, otherwise XPath will return nothing.
+```r
+txt <- xpathSApply(xmldoc, "//mynamespace:mynode", xmlValue, namespaces = c(mynamespace = "http://..../"))
+```
+
+### rJava
+
+Allows to call Java from R.
+
+#### Install
+
+If a jar is compiled with more recent version of Java than the one configure inside R and used to compile rJava, then rJava will complain telling something like "Unsupported major.minor version 52.0".
+
+So be Careful of the version with which R is configured. To reconfigure Java inside R, run:
+```bash
+R CMD javareconf
+#sudo chmod a+r /Library/Frameworks/R.framework/Resources/etc/ldpaths /Library/Frameworks/R.framework/Resources/etc/Makeconf
+```
+To get help about `javareconf`:
+```bash
+R CMD javareconf --help
+```
+On MacOS-X, make sure to set the proper env vars to point to the right version of Java. If `JAVA_HOME` is properly set, it should be:
+```bash
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/darwin"
+export JAVA_LIBS="-L$JAVA_HOME/jre/lib/server -L$JAVA_HOME/jre/lib -ljvm"
+export JAVA_LD_LIBRARY_PATH="$JAVA_HOME/jre/lib/server:$JAVA_HOME/jre/lib"
+R CMD javareconf
+```
+
+Then reinstall rJava from R:
+```r
+install.packages('rJava', type='source', dependencies = TRUE)
+# or for most recent package:
+install.packages("rJava",,"http://rforge.net/",type="source")
+```
+
+To check the version of Java used by rJava:
+```r
+library(rJava)
+.jinit()
+print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
+```
+If it prints version 1.6 and you want 1.8, and you are under MacOS-X, then there may be an issue with Java OS-X version. Re-install the OS-X Java with (<https://support.apple.com/kb/DL1572?locale=en_US>).
+It still doesn't work, then first try to look at what libs are loaded:
+```bash
+DYLD_PRINT_LIBRARIES=1 R
+```
+
+The loading of rJava
+```r
+library(rJava)
+```
+should print the line:
+	dyld: loaded: /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jli/libjli.dylib
+And the initializatio
+```r
+.jinit()
+```
+should print the lines:
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bundle/Libraries/libclient64.dylib
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/../Libraries/libjvmlinkage.dylib
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libverify.dylib
+	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/JavaNativeFoundation
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libjava.jnilib
+	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaRuntimeSupport.framework/Versions/A/JavaRuntimeSupport
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libzip.jnilib
+Check which is the current JDK:
+```bash
+ls -l /System/Library/Frameworks/JavaVM.framework/Versions
+```
+Reinstall Oracle JDK 1.8.
+Reconfigure R (`R CMD javareconf`) and reinstall rJava.
+
+#### Use
+
+Initialize rJava:
+```r
+.jinit()
+```
+
+Printing JRE version:
+```r
+print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
+```
+
+Set class path and call a class method:
+```r
+library(rJava)
+.jaddClassPath("my/paths/to/classes")
+.jcall('my/name/space/MyClass', 'V', 'myMethod')
+```
+`.jcall` uses the JNI notation for returned parameter:
+Type                    | Description
+----------------------- | -------------
+`V`                     | Void.
+`B`                     | Byte.
+`C`                     | Char.
+`I`                     | Int.
+`J`                     | Long.
+`S`                     | Short.
+`Z`                     | Boolean.
+`F`                     | Float.
+`D`                     | Double.
+`[I`                    | 1D array of integers.
+`[[I`                   | 2D array of integers.
+`Lfr/path/to/my/Class`  | An object of that class.
+`[Lfr/path/to/my/Class` | 1D array of instances of that class.
+
+To know the signature of a java method, use `javap -s ...`.
+
+Create an object:
+```r
+obj <- .jnew('my.name.space.MyClass')
+```
+
+Get the class path:
+```r
+cp <- .jclassPath()
+```
+
+### Rserve
+
+Allows to call R from Java.
+See [How to make a simple program to call R from java using eclipse and Rserve](http://stackoverflow.com/questions/10216014/how-to-make-a-simple-program-to-call-r-from-java-using-eclipse-and-rserve).
+
+```r
+install.packages("Rserve")
+library(Rserve)
+Rserve()
+```
+
+In Java, use the jars RserveEngine.jar and REngine.jar:
+```java
+import org.rosuda.REngine.*;
+import org.rosuda.REngine.Rserve.*;
+
+public class rserveuseClass {
+	public static void main(String[] args) throws RserveException {
+		try {
+			RConnection c = new RConnection();// make a new local connection on default port (6311)
+			double d[] = c.eval("rnorm(10)").asDoubles();
+			org.rosuda.REngine.REXP x0 = c.eval("R.version.string");
+			System.out.println(x0.asString());
+		} catch (REngineException e) {
+		//manipulation
+		}       
+	}
+}
+```
+
+### RJSONIO
+
+[RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
+
+### tripack
+
+Triangulation of irregularly spaced data (Delaunay triangulation). Used for visualizing Voronoï cells.
+
+### Rdist
+
+Euclidian distance.
+
+### hyperSpec
+
+Read SPC files (spectrometry files). See [official website](http://hyperspec.r-forge.r-project.org).
+
+### R.utils
+
+Various programming utilities.
+
+### caTools
+
+Contains trapz() function for integration (needs bitops).
+
+AUC (Area Under Curve):
+```r
+library(caTools)
+area <- trapz(vx, vy)
+```
+
+### RCDK
+
+ * [rcdk sources](https://github.com/rajarshi/cdkr).
+ * [rcdk Java sources](https://github.com/rajarshi/cdkr/tree/master/rcdkjar).
+
+### MASS
+
+LDA (Linear discriminant analysis) function:
+```r
+library(MASS)
+lda(x, ...)
+```
+
+LDA function can complain that "variables appear to be constant within groups".
+This means that it has detected the matrix as singular.
+It can be true, which really means some variables are constant.
+Or it can be that the data is poorly scaled. In that case the threshold must be changed.
+The condition to detect that the matrix is singular is that a variable has within-group variance less than tol^2.
+"tol" can be set in the parameters
+```r
+lda(....., tol = 0.0000001, ....)
+```
+
+### Bioconductor
+
+ * [Bioconductor](http://www.bioconductor.org).
+ * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
+ 
+Install all Bioconductor packages:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+```
+
+Install a package of Bioconductor:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GenomicFeatures", "AnnotationDbi"))
+```
+
+#### Creating a bioconductor package
+
+Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
+
+#### Rdisop
+
+Annotation of mass spectra (Steffen Neumann). Part of BioConductor.
+
+#### Rmassbank
+
+[RMassBank](https://bioconductor.org/packages/release/bioc/html/RMassBank.html) is a Bioconductor package. It is a workflow designed to process MS data and build MassBank records.
+
+#### XCMS
+
+Framework for processing and visualization of chromatographically separated and single-spectra mass spectral data.
+
+ * [XCMS official page](http://www.bioconductor.org/packages/release/bioc/html/xcms.html).
+ * [XCMS^plus^](http://sciex.com/about-us/news-room/xcmssupplus/sup), commercial version which is a personal cloud version of *XCMS Online*.
+
+To install XCMS library, run the following lines in R:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("xcms")
+```
+
+#### metfRag
+
+[MetFragR](https://github.com/c-ruttkies/MetFragR).
+
+Installing:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("KEGGREST")
+library(devtools)
+install_github("c-ruttkies/MetFragR/metfRag")
+```
+
+```r
+library(metfRag)
+```
+
+### Testthat
+
+ * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
+ * [Package ‘testthat’](https://cran.r-project.org/web/packages/testthat/testthat.pdf).
+
+### RUnit
+
+```r
+library(RUnit)
+```
+	
+Assert true:
+```r
+checkTrue(1 < 2, "check1.")
+```
+
+Assert equality:
+```r
+checkEquals(10, my_var, "some text.")
+```
+
+Assert identity:
+```r
+checkIdentical(character(0), some_var, "Something isn't right.")
+```
+
+Assert exception:
+```r
+checkException(some_expression_or_function, "Some message") # checks that an exception is thrown
+checkException(some_expression_or_function, "Some message", silent = TRUE) # Tells 'try' to do not print error message.
+```
+
+## Home
+
+Get R HOME directory:
+```r
+R.home()
+```
+
+## Command line arguments
+
+```r
+args <- commandArgs(trailingOnly = TRUE)
+my_first_arg = args[1]
+```
+The option `trailingOnly` keeps only arguments after `--args` flag.
+
+Getting script path:
+```r
+args <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=", "", args[grep("--file=", args)])
+```
+
+### Getopt package
+
+```r
+library(getopt)
+
+spec = matrix(c(
+#   longname        shortname   arg_presence    arg_type        description
+	'db',           'd',        1,              'character',    'Database name.',
+	'help',         'h',        0,              'logical',      'Print this help.',
+	'input',        'i',        1,              'character',    'Input excel file.'
+# arg_presence can be 0 (no arg), 1 (required), 2 (optional)
+	), byrow = TRUE, ncol = 5)
+
+opt <- getopt(spec)
+```
+
+## Merge
+
+Merging data frames (equivalent of SQL join):
+```r
+merge(d1, d2) # try to find a column C in common, and only keep rows whose values of C are in d1 and d2.
+merge(d1, d2, by.x="col1", by.y="col2") # specify explicitly the columns
+```
+
+By default merge will make an exclusive join, and thus will eliminate rows that are only in one of the data frames. To keep those rows:
+```r
+merge(d1, d2, all = TRUE) # keep single rows of both d1 and d2.
+merge(d1, d2, all.x = TRUE) # keep single rows from d1.
+merge(d1, d2, all.y = TRUE) # keep single rows from d2.
+```
+
+## Data
+
+The data() function loads specified data sets, or list the available data sets.
+
+Loading unknown data set into a separate environment in order to check what is inside:
+```r
+data(crude, verbose = TRUE, envir = e <- new.env())
+ls(e) # check what is in `e`
+class(e$crude)
+summary(e$crude)
+rm(e)
+```
+
+Load into workspace:
+```r
+data(crude)
+```
+
+## Load data
+
+Load data from a plain text file with lines like:
+1224.233 1228.12e12
+and put result in a list
+```r
+mylist <- scan(file="myfile.txt", what=list(t=0.0, f=0.0))
+```
+
+See also `read.table()` in DATA FRAMES.
+
+## Equality
+
+Testing elements of a vector:
+```r
+x < 8 # returns a vector of logical values
+all(x < 8) # returns true if all elements of x are < 8
+all(v == w) # returns true if v and w are equals.
+identical(v, w) # returns true if v and w are identical (same type, same values). A vector of integers won't be identical to a vector of floating points even if values are equal.
+any(x < 8) # returns true if at least one element of x is < 8
+```
+
+## Maths
+
+Logarithm:
+```r
+log10(x)
+```
+
+Power:
+```r
+10^3
+```
+
+Integer division:
+```r
+5 %/% 2
+```
+
+Truncating integer:
+```r
+trunc(1.23)
+floor(1.23)
+```
+
+## Operators
+
+Arithmetic operators:
+
+Operator  | Description
+--------- | ----------------------
+`+`       | Addition.
+`-`       | Subtraction.
+`*`       | Multiplication.
+`/`       | Division.
+`^`, `**` | Exponentiation.
+`%%`      | Modulus (x mod y) 5%%2 is 1.
+`%/%`     | Integer division 5%/%2 is 2.
+
+Logical operators:
+
+Operator    | Description
+----------- | --------------------------
+`<`	        | Less than.
+`<=`        | Less than or equal to.
+`>`	        | Greater than.
+`>=`        | Greater than or equal to.
+`==`        | Exactly equal to.
+`!=`        | Not equal to.
+`!`         | Not.
+`|`         | Or.
+`&`         | And.
+`isTRUE(x)` | Test if x is TRUE.
+
+## I/O
+
+### File information
+
+Get file size:
+```r
+sz <- file.info(myfile)$size
+sz <- file.size(myfile)  # Only available from R 3.3.
+```
+
+### Reading from a file
+
+Read all characters from a file and put them into a string:
+```r
+s <- readChar(filename, file.info(filename)$size)
+```
+
+Read lines:
+```r
+lines <- readLines(filename)
+```
+
+### Reading from stdin
+
+Reading strings from stdin:
+```r
+con <- file("stdin")
+strings <- readLines(con)
+close(con) # close stdin to avoid warning message "closing unused connection 3 (stdin)"
+```
+
+Reading floats from stdin:
+```r
+values <- as.numeric(readLines(file("stdin")))
+```
+
+Reading line by line stdin:
+```r
+con <- file("stdin")
+open(con)
+while (TRUE) {
+	line <- readLines(con, n = 1)
+	if (length(line) == 0)
+		break
+}
+close(con)
+```
+
+### Writing to a file
+
+```r
+cat(..., file = "myfile.txt")
+write(x, file = "myfile.txt")
+writeLines(content, file.path)
+```
+
+### Default output
+
+Redirect output to a file:
+```r
+sink("myfile")
+```
+
+Redirect to console again:
+```r
+sink()
+```
+
+### Printing
+
+Print a variable:
+```r
+print(myvar)
+```
+
+`str` (structure) prints an object in a compact mode:
+```r
+str(myobject)
+str(mylist)
+```
+
+`cat` print as is (without all the transformations print() makes):
+```r
+cat('Computed PI=',pi,'\n');
+```
+
+Print on standard error stream:
+```r
+write("prints to stderr", stderr())
+write("prints to stderr", file = stderr())
+```
+
+Print information about an object (field length, field mode, ...):
+```r
+summary(myobject)
+```
+
+Print double values:
+```r
+print(83.247837878523745) # will be truncated on output
+```
+
+## cbind / rbind
+
+Combine vector, matrix or data frame by row or columns.
+
+```r
+m <- rbind(c(1,4),c(2,2)) # rbind = row bind
+m <- cbind(c(1,4),c(2,2)) # cbind = column bind
+```
+
+If you encounter the warning message "row names were found from a short variable and have been discarded" with cbind, this means that one of the input has row names and that rows need to be duplicated. To avoid this warning, discard the row names by using the `row.names` option:
+```r
+z <- cbind(x, y, row.names = NULL)
+```
+
+Adding columns and rows to a matrix
+```r
+rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
+cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
+```
+
+## Regex
+
+Replacing with regexp:
+```r
+result <- sub('\\.in$', '.out', variable)    # replace first occurence only
+new_str <- sub('^.*/([^/]+)$', '\\1', str, perl = TRUE)
+result <- gsub('\\.in$', '.out', variable)   # replace all occurences
+```
+
+`grep`:
+```r
+grep("blabla", df) # returns a list of indices
+length(grep("blabla", df)) > 0
+```
+
+`grepl` searches for regexp in vector, and returns a vector of booleans:
+```r
+if (grepl("^blabla", my_string, perl=TRUE)) do_something()
+grepl("^blabla", c(s1, s2, s3), perl=TRUE) # --> returns a vector
+```
+
+Extracting substrings:
+```r
+library("stringr")
+str_extract("blabla lala", "la") # search once for the regexp
+str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
+```
+
+Searching for groups:
+```r
+library(stringr)
+regexp <- "([[:digit:]]{2}) ([[:alpha:]]+) ([[:digit:]]{4})"
+string <- "blabla 23 mai 2000 blabla 18 mai 2004"
+str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups
+str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups
+```
+
+Ignoring case:
+```r
+str_match(str_vect, ignore.case(pattern))
+```
+
+## Statements
+
+### For
+
+Loop on existing array:
+```r
+for (i in vect) {
+}
+```
+
+Loop on explicit range:
+```r
+for(i in 1:N) {
+	y <- i*i
+}
+```
+
+Best way to iterate on all indices of a vector:
+```r
+for (i in seq(v))
+	v[i] <- compute(v[i], i)
+```
+There will be no iteration if `length(v) == 0`.
+
+How to break / continue:
+```r
+break
+next
+```
+
+### If / else
+
+`if()` is a function in R.
+```r
+if (TRUE) x <- 2 else x <- 10
+```
+
+Logical negation:
+```r
+if ( ! condition) ...
+```
+
+Ternary operator using if/else:
+```r
+x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
+```
+
+The `else` clause must appear at the end and on the same line than the `then` clause:
+```r
+if (...) do_1() else do_2()
+```
+or
+```r
+if (...) {
+	do_1()
+} else {
+	do_2()
+}
+```
+
+### Switch
+
+Value must not be null, and must be a vector of length 1.
+The possible values (str1, str2) must be strings and not integer. If these are integers, they must be quoted in order to be strings.
+```r
+switch(value, # value to test
+       str1 = EXPR,
+       str2 = EXPR,
+       EXPR # default
+       )
+```
+
+### Assignment
+
+Local assignment:
+```r
+a <- 3
+```
+It creates a local object.
+
+Non-local assignment:
+```r
+n <<- 100
+```
+Used in OOP, to modify a field's value.
+
+Assigning dynamically:
+```r
+assign("varname", value, pos = .GlobalEnv) # create a new variable varname in global environment.
+```
+
+## Throwing error
+
+```r
+stopifnot(cond1, cond2, ...)
+```
+
+## Eval
+
+Evaluation an expression contained in a string:
+```r
+a <- 1
+x <- eval(parse(text="1+4+a"))
+```
+
+## Function
+
+Declaring a function:
+```r
+myfunc <- function(n) {
+	return(n+5)
+}
+```
+
+Arguments can have default values:
+```r
+myfunc <- function(a, b = 2, c = FALSE) {
+}
+```
+
+Returning a value:
+```r
+return(n) # Can be used at any place in the function
+return() # idem
+```
+The last value of the function is returned.
+If the caller doesn't assign the returned value of a function, then it's printed. To avoid this behaviour, use the invisible primitive:
+```r
+invisible(x)
+return(invisible(x))
+```
+
+Returning multiple values:
+```r
+list[a, b] <- myfunc(c) # myfunc returns a list with two values.
+list[, b] <- myfunc(c) # we only want the second value
+```
+
+Calling a function from its name as a string:
+```r
+do.call("my_func", list(arg1, arg2, arg3))
+```
+
+Construct a call as a string than can be evaluated with `eval`:
+```r
+my_str_call <- call("my_func", arg1, arg2, arg3)
+eval(call("my_func", arg1, arg2, arg3))
+```
+
+## Error handling & debugging
+
+Throwing an error:
+```r
+stop("Bad bad error !") # Print message on stderr and quit function immediatly
+stopifnot(cond1, cond2, cond3, ...) # quit if conditions are not satisfied. No possibility of leaving a message.
+```
+To have traceback printed when an error occur, we must provide a user defined function:
+```r
+options(error = function() { traceback(2) ; q(status = 1) } )
+```
+
+To have warnings treated as errors, set the `warn` option to 2:
+```r
+options(error = function() { traceback(2) ; q(status = 1) }, warn = 2 )
+```
+
+Printing a warning:
+```r
+warning("This was wrong...") # Print message
+```
+Warning are not displayed by default.
+To display them as they occur:
+```r
+options(warn = 1)
+```
+To treat them as errors:
+```r
+options(warn = 2)
+```
+By default `warn` is set to 0, which means that warnings are stored until the top-level function returns. In order to display all stored warnings, you need to call the `warnings()` method at the end of your code:
+```r
+warnings()
+```
+
+Call a function and display all errors on stderr without failing:
+```r
+try(my_function(a,b,c))
+```
+
+### Error during wrapup
+
+`Error during wrapup: one of "yes", "no", "ask" or "default" expected.`
+An `Error during wrapup` happens when inside the error callback function defined with `options(error = ...)` (see upon).
+The message `one of "yes", "no", "ask" or "default" expected.` is due to the fact that a bad value is passed to the save parameter if the `quit()` method.
+
+## Memory
+
+Get pointer/reference of an object:
+```r
+tracemem(x)
+```
+
+Getting reference count:
+```r
+library(pryr)
+address(x) # reference
+refs(x) # reference ocunt
+```
+
+## Environment variables
+
+Getting all environment variables, into a hash map:
+```r
+env <- Sys.getenv()
+home <- env[["HOME"]]
+```
+
+Getting a selected list of environment variables, into a regular vector:
+```r
+env <- Sys.getenv(c("HOME", "USER", "PATH"))
+home <- env[[1]]
+user <- env[[2]]
+path <- env[[3]]
+```
+
+## Help
+
+Get help on a function:
+```r
+help(solve)
+?solve
+help("[[")
+```
+
+Getting help about a package:
+```r
+help(package=MASS)
+```
+
+Search:
+```r
+help.search(solve)
+??solve
+```
+
+Get examples:
+```r
+example(topic)
+```
+
+## File system
+
+Current working directory:
+```r
+wd <- getwd()
+setwd(dir)
+```
+
+Glob (list files):
+```r
+Sys.glob('*.txt')
+Sys.glob(c('*.txt', '*.csv'))
+```
+
+Getting current script path:
+```r
+args <- commandArgs(trailingOnly = F)
+script_path <- dirname(sub("--file=","",args[grep("--file",args)]))
+```
+
+Test that a file or directory exists:
+```r
+file.exists(path)
+```
+
+Concatenate two paths:
+```r
+newpath <- file.path(path1, path2)
+```
+
+Rename a file:
+```r
+file.rename(current.file.name, new.file.name)
+```
+
+## System call
+
+```r
+system('mycommand')
+```
+
+## Workspace
+
+List workspace:
+```r
+ls()
+```
+
+Clear workspace:
+```r
+rm(list = ls())
+```
+
+## Types
+
+Name        Description
+---------   --------------------
+logical     Boolean.
+numeric     Float.
+character   String.
+vector      A 1-D array of same basic type (logical, numeric, character) elements.
+list
+matrix
+data.frame  A list of vectors of same length.
+
+Testing type:
+```r
+is.numeric(x)
+is.character(x)
+is.vector(x)
+is.matrix(x)
+is.data.frame(x)
+is.list(x)
+```
+
+Converting:
+```r
+y <- as.numeric(x)
+y <- as.character(x)
+y <- as.vector(x)
+y <- as.matrix(x)
+y <- as.data.frame(x)
+```
+
+Getting type:
+```r
+typeof(x)
+```
+
+Getting mode (type of object: list, numeric, ...):
+```r
+mode(x)
+```
+
+Getting class (object's class, list, numeric, ...):
+```r
+class(x)
+```
+The `class` function returns a vector in case of a class inheriting from other classes.
+The `inherits` function eases inheritance test:
+```r
+inherits(x, "SomeClass")
+```
+
+## Random
+
+Generate a floating random number, with Uniform distribution:
+```r
+x <- runif(1, 5.0, 7.5)     # generates a random number between 5.0 and 7.5 included
+x <- runif(1)   # generates a number in [0.0;1.0]
+v <- runif(10)  # generates an array if 10 numbers
+```
+
+## Basic statistical functions
+
+Getting the minimum:
+```r
+a <- min(v)
+```
+
+Getting this index of the minimum in v:
+```r
+i <- which.min(v)
+```
+
+Mean:
+```r
+mean(c(2,5,8))
+```
+
+Standard deviation (écart type):
+```r
+sd(c(1,4,7.5,6.9))
+```
+
+## Sorting
+
+Sort a vector:
+```r
+v <- (5,1,3,9,10)
+sort(v)
+```
+
+Get the reordering of indicies of the vector:
+```r
+order(v)
+```
+
+Sort vector:
+```r
+v <- rbind(v)[,order(v)]
+```
+
+Sort data frame:
+```r
+df <- df[order(df[[1]]), ] # sort on first column.
+df <- df[order(df[[1]], df[[3]]), ] # sort on columns 1 and 3 in that order.
+```
+
+Sorting a list/vector of objects:
+```r
+molecules <- db$getMolecules()
+molecules <- rbind(molecules)[,order(vapply(molecules, function(x) x$getId(), FUN.VALUE = 1))]
+```
+
+Sort x in the same order as y, when x and y have elements starting at 1, and x is as long as y or longer than y (i.e.: with duplicated elements):
+```r
+x <- c(1,3,3,4,1,1,2)
+y <- c(4,2,3,1)
+y[sort(order(y)[x])]
+```
+
+Sort x in the same order as y, when x and y have the same number of elements:
+```r
+x <- c(5,10,3,9)
+y <- c(9,5,3,10)
+x[order(x)[order(y)]]
+```
+
+## Objetcs (OOP)
+
+ * [OO in R](http://www.r-bloggers.com/oo-in-r/).
+ * [OO field guide](http://adv-r.had.co.nz/OO-essentials.html).
+ * [Package ‘R.oo’](https://cran.r-project.org/web/packages/R.oo/R.oo.pdf).
+ * [Reference classes](http://adv-r.had.co.nz/R5.html).
+ * [Objects With Fields Treated by Reference (OOP-style)](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/refClass.html).
+ * [S4 Classes in 15 pages, more or less](https://www.stat.auckland.ac.nz/S-Workshop/Gentleman/S4Objects.pdf).
+
+Workspace = collection of objects.
+
+List objects in memory:
+```r
+objects()
+ls()
+```
+
+Delete objects:
+```r
+rm(x,y,w)
+```
+
+Get a list of attributes and their values (object fields):
+```r
+attributes(x)
+```
+
+### R5 (Reference classes)
+
+```r
+library(methods)
+```
+
+Fields declaration:
+```r
+MyClass <- setRefClass('MyClass', fields = list(size = 'numeric', name = 'character'))
+```
+
+A field type can be a class:
+```r
+MyClass <- setRefClass('MyClass', fields = list(size = 'numeric', name = 'character', somefield = 'SomeOtherClass'))
+```
+But then the field must be initialized to a class instance of that (or a derived class). It can't be initialized to NULL.
+In order to be able to set a field to NULL, the field must be of type ANY.
+A more correct solution is to set the field to NA in the constructor declaration.
+
+#### Inheritance
+
+To inherit from another class
+```r
+MyClassA <- setRefClass("MyClassA", contains = "MyClassB")
+```
+
+!!! For inheritance to work, all arguments of a parent's constructor must have default values (i.e.: an empty constructor must be provided). This is a S4 requirement.
+```r
+A <- setRefClass("A", fields = list(n = "numeric"),
+				 methods = list( initialize = function(a = 0, ...) {
+				                 n <<- a
+				                 callSuper(...)
+				               	 }
+							   ))
+
+B <- setRefClass("B", methods = list(initialize = function(...) {
+                                     callSuper(...)
+                                     }
+                                    ))
+```
+
+To avoid setting default values of fields to empty values like 0 or "", one can set them to NA:
+```r
+A <- setRefClass("A", fields = list(n = "numeric"),
+				 methods = list( initialize = function(a = NA_integer_, ...) {
+				                 n <<- a
+				                 callSuper(...)
+				               	 }
+							   ))
+```
+
+To test inheritance:
+```r
+inherits(stream, "MsDbInputStream") || stop("Input stream must inherit from MsDbInputStream class.")
+```
+
+#### Field validity
+
+```r
+A <- setRefClass("A", fields=list(x="numeric"))
+
+setValidity("A", function(object) {
+                if (length(object$x) != 1L || !all(object$x < 11))
+                        "'x' must be length 1 and < 11"
+                            else NULL
+                            })
+# and then
+# > a = A(x=11)
+# > validObject(a)
+# Error in validObject(a) : 
+# invalid class "A" object: 'x' must be length 1 and < 11
+```
+
+## Profiling
+
+```r
+Rprof()
+# some code
+Rprof(NULL)
+# write a file Rprof.out
+```
+
+To read Rprof.out:
+```r
+summaryRprof()
+```
+
+## Graphical output
+
+```r
+pdf("xh.pdf")
+hist(rnorm(100))
+dev.off()
+```
+
+Plot a set of points:
+```r
+plot(x, y)
+```
+
+To a open a new window for plotting:
+```r
+windows() # on Windows platform
+quartz() # on MacOS-X platform
+X11() # on UNIX platform (opens a Quartz window on MacOS-X)
+```
+
+## HPC
+
+ * [High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
+
+[GPU computing](http://www.r-tutor.com/gpu-computing).
+
+[Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
+[Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
+
+## Source
+
+Use source() command to include/load another R file:
+```r
+source('myfile.R')
+```
+
+Switch to sourced file directory while sourcing:
+```r
+source('../../blabla/myfile.R', chdir = TRUE)
+```
+Before sourcing the file, R will change to directory `../../blabla`.
+
+Get the path of the current sourced file:
+```r
+current.file.path <- parent.frame(2)$ofile
+```
+
+### Loading module realtivily to script path
+
+Solution 1:
+```r
+args <- commandArgs(trailingOnly = F)
+scriptPath <- dirname(sub("--file=","",args[grep("--file",args)]))
+source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
+```
+
+Solution 2:
+```r
+#Get path of current R script to source using a relative directory:
+source(file.path(dirname(rscript_current()), '../myfile.R'))
+# Where rscript_current is:
+rscript_current <- function() {
+	stack <- rscript_stack()
+	r <- as.character(stack[length(stack)])
+	first_char <- substring(r, 1, 1)
+	if (first_char != '~' && first_char != .Platform$file.sep) {
+		r <- file.path(getwd(), r)
+	}
+	r
+}
+```

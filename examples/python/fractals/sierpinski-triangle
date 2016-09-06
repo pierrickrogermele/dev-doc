@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+
+import sys
+from PIL import Image, ImageDraw
+
+#####################
+# CREATE CANTOR SET #
+#####################
+
+def create_sierpinski_triangle(n, image, filename):
+
+	# incoherent value
+	if n < 1:
+		return []
+
+	# first set
+	if n == 1:
+		draw = ImageDraw.Draw(image)
+		draw.polygon([(0, image.size[1]), (image.size[0] / 2, 0), (image.size[0], image.size[1])], fill="black")
+		sierpinski_triangle = [((0, 1), (0.5, 0), (1, 1))] # triangle (x1,y1),(x2,y2),(x3,y3)
+
+	else:
+		sierpinski_triangle_n_1 = create_sierpinski_triangle(n-1, image, filename)
+		sierpinski_triangle = []
+		# loop on all ranges of cantor set (n-1)
+		for r in sierpinski_triangle_n_1:
+			# get coordinates of center sqare to remove
+			point1 = ((r[0][0] + r[1][0]) / 2.0, (r[0][1] + r[1][1]) / 2.0)
+			point2 = ((r[1][0] + r[2][0]) / 2.0, (r[1][1] + r[2][1]) / 2.0)
+			point3 = ((r[0][0] + r[2][0]) / 2.0, (r[0][1] + r[2][1]) / 2.0)
+
+			# remove the middle square
+			draw = ImageDraw.Draw(image)
+			draw.polygon([(point1[0] * image.size[0], point1[1] * image.size[1]),
+						  (point2[0] * image.size[0], point2[1] * image.size[1]),
+						  (point3[0] * image.size[0], point3[1] * image.size[1])],
+						 fill="white")
+
+			# create 8 new squares
+			sierpinski_triangle.append((r[0], point1, point3))
+			sierpinski_triangle.append((point1, r[1], point2))
+			sierpinski_triangle.append((point3, point2, r[2]))
+
+	# save image
+	image.save(filename.format(n), "PNG")
+
+	return sierpinski_triangle
+
+########
+# MAIN #
+########
+
+# Get program's name
+prog_name = sys.argv[0]
+
+# Read argument
+n = int(sys.argv[1])
+
+# Create image
+im = Image.new("1", (256, 256), "white")
+
+# Generate all images
+create_sierpinski_triangle(n, image=im, filename=prog_name+'-{0:02d}.png')

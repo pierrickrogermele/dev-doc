@@ -1,0 +1,20 @@
+#!/opt/local/bin/python
+
+import sys
+from PyQt4 import Qt
+app = Qt.QApplication(sys.argv)
+
+# Our function to call when the button is clicked
+def sayHello():
+	print "Hello, World!"
+ 
+# Instantiate the button
+hellobutton = Qt.QPushButton("Say 'Hello world !'", None)
+	
+# And connect the action "sayHello" to the event "button has been clicked"
+app.connect(hellobutton, Qt.SIGNAL("clicked()"), sayHello)
+ 
+# show button
+hellobutton.show()
+
+app.exec_()

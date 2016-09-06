@@ -1,0 +1,25 @@
+#!/usr/bin/env python
+
+import sys
+
+#############
+# FACTORIAL #
+#############
+
+def factorial(n):
+	if n == 1:
+		return 1
+	return factorial(n-1) * n
+
+########
+# MAIN #
+########
+
+# Read argument
+n = int(sys.argv[1])
+
+# Compute factorial
+f = factorial(n)
+
+# Print result
+print('{0}! = {1}.'.format(n,f))

@@ -1,0 +1,29 @@
+<project name="calling.java.lib2" default="all">
+
+	<!-- DIRECTORIES -->
+	<property name="build.dir"  value="build"/>
+
+	<!-- SRC -->
+	<property name="src.dir" value="src"/>
+
+	<!-- COMPILE -->
+	<target name="compile">
+		<mkdir dir="${build.dir}"/>
+		<javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true" debuglevel="lines,vars,source"/>
+	</target>
+
+	<!-- JAR PACKAGE -->
+	<target name="jar" depends="compile">
+		<jar basedir="${build.dir}" destfile="javalib2.jar"/>
+	</target>
+
+	<!-- ALL -->
+	<target name="all" depends="jar"/>
+
+	<!-- CLEAN -->
+	<target name="clean">
+		<delete dir="${build.dir}"/>
+		<delete dir="." includes="*.jar"/>
+	</target>
+
+</project>

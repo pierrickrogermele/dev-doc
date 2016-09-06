@@ -1,0 +1,11 @@
+#!/usr/bin/env R -f
+# vi: ft=R
+
+library(R.matlab)
+Matlab$startServer()
+matlab <- Matlab()
+open(matlab)
+evaluate(matlab, "cur_dir=get_cur_dir;")
+matlab_vars <- getVariable(matlab, c("cur_dir"))
+print(matlab_vars)
+close(matlab)

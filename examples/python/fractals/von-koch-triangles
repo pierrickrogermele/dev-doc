@@ -1,0 +1,94 @@
+#!/usr/bin/env python
+
+import sys, math
+from PIL import Image, ImageDraw
+
+#######################
+# DRAW VON KOCH CURVE #
+#######################
+
+def draw_von_koch_curve(image, curve):
+
+	draw = ImageDraw.Draw(image)
+
+	# erase image
+	draw.rectangle([(0,0), image.size], fill="white")
+
+	# scale and reverse curve (on image y=0 is at top)
+	scaled_curve = []
+	for p in curve:
+		scaled_curve.append((p[0] * (image.size[0] - 1), (1.0 - p[1]) * (image.size[1] - 5)))
+
+	# draw lines
+	draw.line(scaled_curve)
+
+#########################
+# CREATE VON KOCH CURVE #
+#########################
+
+def create_von_koch_curve(n, image, filename):
+
+	# incoherent value
+	if n < 1:
+		return []
+
+	# first set
+	if n == 1:
+		von_koch_curve = [(0, 0), (1, 0)]
+
+	else:
+		von_koch_curve_n_1 = create_von_koch_curve(n-1, image, filename)
+		von_koch_curve = []
+
+		# loop on all points
+		p = von_koch_curve_n_1[0]
+		von_koch_curve.append(p)
+		for q in von_koch_curve_n_1[1:]:
+
+			# There are 3 new points p1, p2 and p3 to compute.
+			# p1 and p3 are easy to compute, since they are one pq segment, at one third from beginning and end.
+
+			# p2 is more difficult to compute, since it is outside pq segment. It's the third vertex of an equilateral triangle formed with p1 and p3.
+			# To find the coordinates of p2, we will compute the vector N orthogonal to (p,q). We devide it by Lpq to make it a unit vector.
+			Lpq = math.sqrt((q[0] - p[0])**2 + (q[1] - p[1])**2) # distance from p to q 
+			N = ( - (q[1] - p[1]) / Lpq, (q[0] - p[0]) / Lpq)
+			# Then we compute the middle point m of pq segment
+			m  = ((  p[0] +   q[0]) / 2.0, (  p[1] +   q[1]) / 2.0) # middle point (between p and q).
+			# And the height of equilateral triangle
+			l  = math.sqrt(3) / 2 * Lpq / 3.0 # length from m to p2 (the height of the equilateral triangle)
+
+			# create the new 3 points that form an equilateral triangle
+			p1 = ((2*p[0] +   q[0]) / 3.0, (2*p[1] +   q[1]) / 3.0) # p1 is at one third from p (beginning of pq)
+			p3 = ((  p[0] + 2*q[0]) / 3.0, (  p[1] + 2*q[1]) / 3.0) # p3 is at one third from q (end of pq)
+			p2 = (m[0] + N[0] * l, m[1] + N[1] * l) # p2 is on the orthogonal to pq that goes through point m.
+
+			# append the new points and q
+			von_koch_curve.append(p1)
+			von_koch_curve.append(p2)
+			von_koch_curve.append(p3)
+			von_koch_curve.append(q)
+
+			# make q the beginning of the next segment
+			p = q
+
+	# draw & save image
+	draw_von_koch_curve(image, von_koch_curve)
+	image.save(filename.format(n), "PNG")
+
+	return von_koch_curve
+
+########
+# MAIN #
+########
+
+# Get program's name
+prog_name = sys.argv[0]
+
+# Read argument
+n = int(sys.argv[1])
+
+# Create image
+im = Image.new("1", (512, 512), "white")
+
+# Generate all images
+create_von_koch_curve(n, image=im, filename=prog_name+'-{0:02d}.png')

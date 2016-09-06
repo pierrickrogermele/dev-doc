@@ -1,0 +1,13 @@
+#!/usr/bin/env Rscript
+# vi: ft=r
+args <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=", "", args[grep("--file=", args)])
+
+library(testthat)
+
+# Run all test files 'test-*.R' in the directory.
+test_dir(dirname(script.path))
+
+# Run explicitly some test files.
+test_file(file.path(dirname(script.path), "test-foo.R"), start_end_reporter = FALSE) # Do not end reporter now, but use it for the next call of test_file
+test_file(file.path(dirname(script.path), "test-foo.R"))
