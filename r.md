@@ -356,269 +356,17 @@ v[4]
 Setting value:
 ```r
 v[5] <- 19
-# Attention, this operation may involve a reassignment of v (i.e.: a creation of a new vector and destruction of this old). As a matter of fact, what happens is that the operator/function [<- is called as is :
+```
+Attention, this operation may involve a reassignment of v (i.e.: a creation of a new vector and destruction of this old). As a matter of fact, what happens is that the operator/function [<- is called as is :
+```r
 v <- "[<-"(v, 5, value = 19)
-# This should trigger a reassignment, but in fact R tries to avoid this and modify the vector in-place.
-# This is possible when the vector pointed to by v is not pointed by another variable. If this vector is pointed by several variables (at least 2 :-)), then R makes a copy. The following code will trigger a copy, you can use the function tracemem() to check this fact:
-v <- 1:10
-w <- v # w and v point to the same vector.
-tracemem(v)
-v[5] <- 90 # triggers a copy of v. v points to a new vector.
-tracemem(v)
 ```
+This should trigger a reassignment, but in fact R tries to avoid this and modify the vector in-place.
+ - d[1] is first dimension (nb rows, since matrices are stored in column-major mode)
+ - d[2] is second dimension (nb columns)
+ - ...
 
-Preallocating a vector. Appending is time consuming since it builds each time a new vector.
 ```r
-v <- vector(length = n)
-	# fill values inside v, and use variable i as the last index in v.
-v <- v[1:i] # we shrink the vector
-```
-
-Inserting inside a vector
-```r
-x <- c(x[1:3], 168, x[4])
-```
-
-Taking sub-vector (indexing):
-```r
-y[c(1,3)] # takes elements 1 and 3
-y[2:3] # takes elements 2 to 3
-y[v] # takes the elements whose indices are listed in v
-y[-3] # all elements except element 3
-```
-
-Vectors don't need to be of the same length, the short vectors will be expanded by repeating their values to match the size of the biggest vector.
-```r
-v <- 2*x + y + 1
-```
-
-Size (length) of a vector:
-```r
-s <- length(v)
-```
-
-Sum of the elements of a vector:
-```r
-s <- sum(v)
-```
-
-Loop on a vector:
-```r
-for (i in 1:length(v)) # Attention if length(v) == 0, then there will be two iterations: 1, 0.
-	do_something(i)
-for (i in seq(v)) # No iteration if length(v) == 0.
-	do_something(i)
-```
-
-Search for a value:
-```r
-index <- match('myval', v)
-```
-
-Test for a value:
-```r
-if ('myval' %in% v) {
-}
-```
-
-Addition:
-```r
-c(1,2) + c(5,6,7,8,9) # is actually executed as c(1,2,1,2,1) + c(5,6,7,8,9). R recycles vector values in order to complete it if needed.
-"+"(1:2,3:4) # The operators +,*,/,%%, and others are functions.
-```
-
-Multiplication:
-```r
-c(1,2) * c(3,4) # gives c(3,8) since the * operator, like the + operator, is applied element by element.
-```
-
-Other element wise operators:
-```r
-c(1,2) / c(3,4) 
-c(1,2) %% c(3,4) 
-```
-
-Filtering:
-```r
-z <- c(5,2,-3,8)
-w <- z[z*z > 8] # 5 -3 8
-x[x > 3] <- 0 # replaces all elements of x greater than 3 with 0.
-x <- c(6, 1, NA, 12)
-x[x > 5] # gives 6, NA, 12
-subset(x, x > 5) # gives 6, 12. subset removes NA values.
-which(z*z > 8) # gives 1 3 4, the index positions of the elements that satisfy the condition.
-ifelse(b, u, v) # returns a vector of values of u and v, choosing u[i] if b[i] is true and v[i] otherwise.
-```
-
-Removing duplicates:
-```r
-x <- x[!duplicated(x)]
-```
-
-Elements can be given names (~ keys):
-```r
-names(x) # get the names
-names(x) <- c("a", "b", "c") # set names
-x["b"] # get value by name
-names(x) <- NULL # remove names
-```
-
-Getting the intersection of two sets:
-```r
-x <- intersect(v, w)
-```
-
-#### vapply
-
-Applying a function on all elements of a vector:
-```r
-w <- vapply(v, my_fct(x), FUN.VALUE = 1)
-```
-
-If the function has other parameters:
-```r
-w <- vapply(v, function(x) my_fct(x, param1, param2), FUN.VALUE = 1)
-```
-
-Be careful if the input vector is a character vector, `vapply` will then set rownames of output vector to the values of input vector. To disable this feature, you have to set USE.NAMES parameter to false:
-```r
-w <- vapply(v, my_fct(x), FUN.VALUE = 1, USE.NAMES = FALSE)
-```
-
-### List
-
-A list is a type of vector called "generic vector" ir "recursive vector"
-A list can contain any type of R objects. => it can contains elements of different types.
-A list is always ordered
-
-Initializing a list:
-```r
-x <- list() # empty list or NULL object ?
-x <- list(1, 2, 3, 4) # a list of 4 vectors, each of size 1
-x <- list(1:4) # a list of 1 vector of size 4
-z <- vector(node = "list") # a list can be created with the vector() function, since lists are vectors.
-```
-
-Querying fields on a list:
-```r
-b <- NULL
-b[['blabla']] # returns NULL
-b[['blabla']][['zap']] # returns NULL
-b <- list()
-b[['blabla']] # returns NULL
-b[['blabla']][['zap']] # returns NULL
-```
-
-Appending to a list:
-```r
-mylist <- c(mylist, myvalue)
-```
-
-Adding components to a list:
-```r
-mylist$bla <- 12 # Add component named "bla" if it doesn't already exist.
-mylist[10:12] <- c(1,2,3)
-```
-
-Deleting a list component:
-```r
-z$b <- NULL
-```
-
-Concatenating lists:
-```r
-c(list("Joe", 55000, T),list(5))
-```
-
-Getting list length:
-```r
-length(mylist)
-```
-
-Testing if a list is empty:
-```r
-if (length(mylist) == 0) ...
-```
-
-To access objects of a list use operator [[. For instance, for a list mylist with 2 records:
-```r
-mylist[[1]]
-mylist[[2]]
-```
-
-Operator [[]] returns a single item:
-```r
-s[[2]]
-```
-
-Operator [] returns a list of the selected items:
-```r
-s[1,3,5]
-s[4]
-s['a', 'e'] # it works also with names
-```
-
-Tags/names:
-```r
-j <- list(name="Joe", salary=55000, union=T)
-j$salary
-j[['salary']]
-j$sal # name can be abbreviated when used
-j <- unname(j) # remove names
-names(j) <- NULL # remove names
-names(j) # get names
-sorted_list <- mylist[sort(names(mylist))] # reorder a list by sorting its tags/names.
-```
-
-Transforming a list into a vector:
-```r
-v <- unlist(mylist)
-```
-
-Components of a list can be of any type, even list or vector:
-```r
-mylist[["bla"]] <- c(mylist[["bla"]], value) # Add value to vector stored by component "bla". 
-```
-
-List apply:
-```r
-lapply(list(1:3,25:29),median) # returns a list
-```
-
-Simplified apply, `sapply` returns either a vector or a matrix
-```r
-sapply(list(1:3,25:29),median) # returns a vector
-```
-
-Recursive list:
-```r
-c(list(a=1,b=2,c=list(d=5,e=9))) # real recursive list (c is a list)
-c(list(a=1,b=2,c=list(d=5,e=9)),recursive=T) # non-recursive list. List is flatened and only the names are resursive: a, b, c.d, c.e.
-```
-
-### Matrix
-
-A matrix is a vector with attributes for the number of rows and columns. The vector has the size n x m.
-Matrices are in fact part of a more generalized type of object in R: arrays. Arrays can be of 3 dimensions or higher.
-
-Matrices are storred internally in column-major order (i.e.: first all of column 1 is stored, then all of column 2, etc.).
-
-Create a matrix:
-```r
-m <- matrix(nrow = 10, ncol = 20)
-m <- matrix(1:8, ncol=2)
-m <- matrix(c(1,2,3,4,5,6),nrow=2,byrow=T) # byrow=T means that data is input in row-major order. But storage is still in column-major order.
-m <- matrix(rep(v, 5), ncol = 5) # build a matrix by repeating the same vector in each column.
-m <- matrix(rep(v, 5), nrow = 5, byrow = TRUE) # build a matrix by repeating the same vector in each row.
-m <- as.matrix(v) # create a matrix from a vector
-```
-
-Getting size (dimensions) of a matrix:
-```r
-d <- dim(m)
-# d[1] is first dimension (nb rows, since matrices are stored in column-major mode)
-# d[2] is second dimension (nb columns)
-# ...
 p <- nrow(m) # get number of rows
 q <- ncol(m) # get number of rows
 ```
@@ -966,10 +714,19 @@ Parsing XML from string:
 xml <- xmlInternalTreeParse(s, asText = TRUE)
 ```
 
-#### XPath
-
+Saving an XML tree into a file:
 ```r
-library(XML)
+saveXML(myxml, myfile)
+```
+
+Writing an XML tree into a string:
+```r
+xmlstr <- saveXML(myxml)
+```
+
+Getting a list of nodes:
+```r
+nodes <- getNodeSet(xml, "//ExtendedCompoundInfo")
 ```
 
 Get a node's text content:
@@ -981,6 +738,12 @@ XML using an anonymous namespace
 If the XML top node contains an xmlns attribute (ex: <mytopnode xmlns="http://..../"...>), then it must be defined with a prefix while searching using XPath, otherwise XPath will return nothing.
 ```r
 txt <- xpathSApply(xmldoc, "//mynamespace:mynode", xmlValue, namespaces = c(mynamespace = "http://..../"))
+```
+
+Getting XML namespaces:
+```r
+xml <-  xmlInternalTreeParse(xmlstr, asText = TRUE)
+print(xmlNamespace(xmlRoot(xml)))
 ```
 
 ### rJava
