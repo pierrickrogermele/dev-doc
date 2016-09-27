@@ -554,487 +554,6 @@ hist <- table(c(1,45,1,6,3,14,45,6,6))
 
 ## Statements
 
-## External libraries
-
-### RMySQL
-
-```r
-library(RMySQL)
-```
-
-Open the default test database provided by MySQL installation:
-```r
-if (mysqlHasDefault()) {
-	conn <- dbConnect(RMySQL::MySQL(), dbname = "test")
-	# Do some stuff...
-	dbDisconnect(conn)
-}
-```
-
-Send a query:
-```r
-result <- try(dbSendQuery(conn, query))
-```
-
-Test if everything went right:
-```r
-if (dbHasCompleted(result)) ...
-```
-
-#### .my.cnf file
-
-One can define connection settings inside the .my.cnf file:
-``` {.linux-config}
-[my_conn_settings]
-host = localhost
-user = root
-password = root
-database = 2biodb
-```
-
-The file should be of course only readable by the user.
-And then use group parameter to dbConnect
-```r
-dbConnect(MySQL(), group = 'my_conn_settings')
-```
-The configuration file path is defined by the default.file parameter of dbConnect, that, by default, is set to `$HOME/.my.cnf` under UNIX type platforms and `C:\my.cnf` under Windows platforms.
-
-#### Installing RMySQL on Windows
-
-On windows platform the RMySQL package isn't provided as binary. One needs to compile it.
-
-For this, one needs to install Rtools and MySQL, and then run:
-```r
-install.packages('RMySQL', type='source')
-```
-Be careful of choosing compatible binary versions (32 or 64 bits) for the 3 software: R, Rtools (and the extension to install: "Extras to build 32 bit R: TCL/TK, bitmap code, internationalization") and MySQL.
-Eventually look at <http://www.r-bloggers.com/installing-the-rmysql-package-on-windows-7/>.
-You'll have to define `MYSQL_HOME` env var to be `C:\Program Files\MySQL\MySQL Server 5.6`, and also to copy `libmysql.dll` from the lib folder of `C:\Program Files\MySQL\MySQL Server 5.6` to its bin folder.
-
-### R.matlab
-
- * [Package R.matlab](http://search.r-project.org/library/R.matlab/html/R.matlab-package.html).
-
-```r
-library(R.matlab)
-```
-
-#### Read/write matlab data files
-
-```r
-A <- matrix(1:27, ncol=3)
-B <- as.matrix(1:10)
-
-filename <- paste(tempfile(), ".mat", sep="")
-writeMat(filename, A=A, B=B)
-data <- readMat(filename)
-print(data)
-unlink(filename)
-```
-
-#### Evaluate matlab code
-
-Run Matlab server:
-```r
-Matlab$startServer()
-```
-The 'matlab' executable must be in the PATH.
-
-Create a matlab client:
-```r
-matlab <- Matlab()
-```
-
-Open connection:
-```r
-open(matlab)
-```
-
-Set detailed output:
-```r
-setVerbose(matlab, -2)
-```
-
-Evaluate matlab code:
-```r
-evaluate(matlab, "A=1+2;", "B=ones(2,20);")
-```
-
-Get variables:
-```r
-matlab_vars <- getVariable(matlab, c("a", "b"))
-```
-
-Create a function:
-```r
-setFunction(matlab, "          \
-	function [win,aver]=dice(B)  \
-	%Play the dice game B times  \
-	gains=[-1,2,-3,4,-5,6];      \
-	plays=unidrnd(6,B,1);        \
-	win=sum(gains(plays));       \
-	aver=win/B;                  \
-");
-```
-
-Call function:
-```r
-evaluate(matlab, "[w,a]=dice(1000);")
-```
-
-Close client and server (to verify: only if this is the last client ?):
-```r
-close(matlab)
-```
-
-### RCurl
-
-```r
-library(RCurl)
-```
-
-Getting URL content:
-```r
-txt <- getURL("http:/.../")
-```
-
-Setting the user agent:
-```r
-txt <- getURL("http:/.../", useragent="MyApp ; www.myapp.fr ; pierrick.rogermele@icloud.com")
-```
-
-### XML
-
-```r
-library(XML)
-```
-
-Parsing XML from string:
-```r
-xml <- xmlInternalTreeParse(s, asText = TRUE)
-```
-
-Saving an XML tree into a file:
-```r
-saveXML(myxml, myfile)
-```
-
-Writing an XML tree into a string:
-```r
-xmlstr <- saveXML(myxml)
-```
-
-Getting a list of nodes:
-```r
-nodes <- getNodeSet(xml, "//ExtendedCompoundInfo")
-```
-
-Get a node's text content:
-```r
-txt <- xpathSApply(xmldoc, "//mynode", xmlValue)
-```
-
-XML using an anonymous namespace
-If the XML top node contains an xmlns attribute (ex: <mytopnode xmlns="http://..../"...>), then it must be defined with a prefix while searching using XPath, otherwise XPath will return nothing.
-```r
-txt <- xpathSApply(xmldoc, "//mynamespace:mynode", xmlValue, namespaces = c(mynamespace = "http://..../"))
-```
-
-Getting XML namespaces:
-```r
-xml <-  xmlInternalTreeParse(xmlstr, asText = TRUE)
-print(xmlNamespace(xmlRoot(xml)))
-```
-
-### rJava
-
-Allows to call Java from R.
-
-#### Install
-
-If a jar is compiled with more recent version of Java than the one configure inside R and used to compile rJava, then rJava will complain telling something like "Unsupported major.minor version 52.0".
-
-So be Careful of the version with which R is configured. To reconfigure Java inside R, run:
-```bash
-R CMD javareconf
-#sudo chmod a+r /Library/Frameworks/R.framework/Resources/etc/ldpaths /Library/Frameworks/R.framework/Resources/etc/Makeconf
-```
-To get help about `javareconf`:
-```bash
-R CMD javareconf --help
-```
-On MacOS-X, make sure to set the proper env vars to point to the right version of Java. If `JAVA_HOME` is properly set, it should be:
-```bash
-export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/darwin"
-export JAVA_LIBS="-L$JAVA_HOME/jre/lib/server -L$JAVA_HOME/jre/lib -ljvm"
-export JAVA_LD_LIBRARY_PATH="$JAVA_HOME/jre/lib/server:$JAVA_HOME/jre/lib"
-R CMD javareconf
-```
-
-Then reinstall rJava from R:
-```r
-install.packages('rJava', type='source', dependencies = TRUE)
-# or for most recent package:
-install.packages("rJava",,"http://rforge.net/",type="source")
-```
-
-To check the version of Java used by rJava:
-```r
-library(rJava)
-.jinit()
-print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
-```
-If it prints version 1.6 and you want 1.8, and you are under MacOS-X, then there may be an issue with Java OS-X version. Re-install the OS-X Java with (<https://support.apple.com/kb/DL1572?locale=en_US>).
-It still doesn't work, then first try to look at what libs are loaded:
-```bash
-DYLD_PRINT_LIBRARIES=1 R
-```
-
-The loading of rJava
-```r
-library(rJava)
-```
-should print the line:
-	dyld: loaded: /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jli/libjli.dylib
-And the initializatio
-```r
-.jinit()
-```
-should print the lines:
-	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bundle/Libraries/libclient64.dylib
-	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/../Libraries/libjvmlinkage.dylib
-	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libverify.dylib
-	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/JavaNativeFoundation
-	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libjava.jnilib
-	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaRuntimeSupport.framework/Versions/A/JavaRuntimeSupport
-	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libzip.jnilib
-Check which is the current JDK:
-```bash
-ls -l /System/Library/Frameworks/JavaVM.framework/Versions
-```
-Reinstall Oracle JDK 1.8.
-Reconfigure R (`R CMD javareconf`) and reinstall rJava.
-
-#### Use
-
-Initialize rJava:
-```r
-.jinit()
-```
-
-Printing JRE version:
-```r
-print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
-```
-
-Set class path and call a class method:
-```r
-library(rJava)
-.jaddClassPath("my/paths/to/classes")
-.jcall('my/name/space/MyClass', 'V', 'myMethod')
-```
-`.jcall` uses the JNI notation for returned parameter:
-Type                    | Description
------------------------ | -------------
-`V`                     | Void.
-`B`                     | Byte.
-`C`                     | Char.
-`I`                     | Int.
-`J`                     | Long.
-`S`                     | Short.
-`Z`                     | Boolean.
-`F`                     | Float.
-`D`                     | Double.
-`[I`                    | 1D array of integers.
-`[[I`                   | 2D array of integers.
-`Lfr/path/to/my/Class`  | An object of that class.
-`[Lfr/path/to/my/Class` | 1D array of instances of that class.
-
-To know the signature of a java method, use `javap -s ...`.
-
-Create an object:
-```r
-obj <- .jnew('my.name.space.MyClass')
-```
-
-Get the class path:
-```r
-cp <- .jclassPath()
-```
-
-### Rserve
-
-Allows to call R from Java.
-See [How to make a simple program to call R from java using eclipse and Rserve](http://stackoverflow.com/questions/10216014/how-to-make-a-simple-program-to-call-r-from-java-using-eclipse-and-rserve).
-
-```r
-install.packages("Rserve")
-library(Rserve)
-Rserve()
-```
-
-In Java, use the jars RserveEngine.jar and REngine.jar:
-```java
-import org.rosuda.REngine.*;
-import org.rosuda.REngine.Rserve.*;
-
-public class rserveuseClass {
-	public static void main(String[] args) throws RserveException {
-		try {
-			RConnection c = new RConnection();// make a new local connection on default port (6311)
-			double d[] = c.eval("rnorm(10)").asDoubles();
-			org.rosuda.REngine.REXP x0 = c.eval("R.version.string");
-			System.out.println(x0.asString());
-		} catch (REngineException e) {
-		//manipulation
-		}       
-	}
-}
-```
-
-### RJSONIO
-
-[RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
-
-### tripack
-
-Triangulation of irregularly spaced data (Delaunay triangulation). Used for visualizing Voronoï cells.
-
-### Rdist
-
-Euclidian distance.
-
-### hyperSpec
-
-Read SPC files (spectrometry files). See [official website](http://hyperspec.r-forge.r-project.org).
-
-### R.utils
-
-Various programming utilities.
-
-### caTools
-
-Contains trapz() function for integration (needs bitops).
-
-AUC (Area Under Curve):
-```r
-library(caTools)
-area <- trapz(vx, vy)
-```
-
-### RCDK
-
- * [rcdk sources](https://github.com/rajarshi/cdkr).
- * [rcdk Java sources](https://github.com/rajarshi/cdkr/tree/master/rcdkjar).
-
-### MASS
-
-LDA (Linear discriminant analysis) function:
-```r
-library(MASS)
-lda(x, ...)
-```
-
-LDA function can complain that "variables appear to be constant within groups".
-This means that it has detected the matrix as singular.
-It can be true, which really means some variables are constant.
-Or it can be that the data is poorly scaled. In that case the threshold must be changed.
-The condition to detect that the matrix is singular is that a variable has within-group variance less than tol^2.
-"tol" can be set in the parameters
-```r
-lda(....., tol = 0.0000001, ....)
-```
-
-### Bioconductor
-
- * [Bioconductor](http://www.bioconductor.org).
- * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
- 
-Install all Bioconductor packages:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite()
-```
-
-Install a package of Bioconductor:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite(c("GenomicFeatures", "AnnotationDbi"))
-```
-
-#### Creating a bioconductor package
-
-Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
-
-#### Rdisop
-
-Annotation of mass spectra (Steffen Neumann). Part of BioConductor.
-
-#### Rmassbank
-
-[RMassBank](https://bioconductor.org/packages/release/bioc/html/RMassBank.html) is a Bioconductor package. It is a workflow designed to process MS data and build MassBank records.
-
-#### XCMS
-
-Framework for processing and visualization of chromatographically separated and single-spectra mass spectral data.
-
- * [XCMS official page](http://www.bioconductor.org/packages/release/bioc/html/xcms.html).
- * [XCMS^plus^](http://sciex.com/about-us/news-room/xcmssupplus/sup), commercial version which is a personal cloud version of *XCMS Online*.
-
-To install XCMS library, run the following lines in R:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite("xcms")
-```
-
-#### metfRag
-
-[MetFragR](https://github.com/c-ruttkies/MetFragR).
-
-Installing:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite("KEGGREST")
-library(devtools)
-install_github("c-ruttkies/MetFragR/metfRag")
-```
-
-```r
-library(metfRag)
-```
-
-### Testthat
-
- * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
- * [Package ‘testthat’](https://cran.r-project.org/web/packages/testthat/testthat.pdf).
-
-### RUnit
-
-```r
-library(RUnit)
-```
-	
-Assert true:
-```r
-checkTrue(1 < 2, "check1.")
-```
-
-Assert equality:
-```r
-checkEquals(10, my_var, "some text.")
-```
-
-Assert identity:
-```r
-checkIdentical(character(0), some_var, "Something isn't right.")
-```
-
-Assert exception:
-```r
-checkException(some_expression_or_function, "Some message") # checks that an exception is thrown
-checkException(some_expression_or_function, "Some message", silent = TRUE) # Tells 'try' to do not print error message.
-```
-
 ## Home
 
 Get R HOME directory:
@@ -1957,3 +1476,493 @@ rscript_current <- function() {
 	r
 }
 ```
+## Interesting packages
+
+### RMySQL
+
+```r
+library(RMySQL)
+```
+
+Open the default test database provided by MySQL installation:
+```r
+if (mysqlHasDefault()) {
+	conn <- dbConnect(RMySQL::MySQL(), dbname = "test")
+	# Do some stuff...
+	dbDisconnect(conn)
+}
+```
+
+Send a query:
+```r
+result <- try(dbSendQuery(conn, query))
+```
+
+Test if everything went right:
+```r
+if (dbHasCompleted(result)) ...
+```
+
+#### .my.cnf file
+
+One can define connection settings inside the .my.cnf file:
+``` {.linux-config}
+[my_conn_settings]
+host = localhost
+user = root
+password = root
+database = 2biodb
+```
+
+The file should be of course only readable by the user.
+And then use group parameter to dbConnect
+```r
+dbConnect(MySQL(), group = 'my_conn_settings')
+```
+The configuration file path is defined by the default.file parameter of dbConnect, that, by default, is set to `$HOME/.my.cnf` under UNIX type platforms and `C:\my.cnf` under Windows platforms.
+
+#### Installing RMySQL on Windows
+
+On windows platform the RMySQL package isn't provided as binary. One needs to compile it.
+
+For this, one needs to install Rtools and MySQL, and then run:
+```r
+install.packages('RMySQL', type='source')
+```
+Be careful of choosing compatible binary versions (32 or 64 bits) for the 3 software: R, Rtools (and the extension to install: "Extras to build 32 bit R: TCL/TK, bitmap code, internationalization") and MySQL.
+Eventually look at <http://www.r-bloggers.com/installing-the-rmysql-package-on-windows-7/>.
+You'll have to define `MYSQL_HOME` env var to be `C:\Program Files\MySQL\MySQL Server 5.6`, and also to copy `libmysql.dll` from the lib folder of `C:\Program Files\MySQL\MySQL Server 5.6` to its bin folder.
+
+### R.matlab
+
+ * [Package R.matlab](http://search.r-project.org/library/R.matlab/html/R.matlab-package.html).
+
+```r
+library(R.matlab)
+```
+
+#### Read/write matlab data files
+
+```r
+A <- matrix(1:27, ncol=3)
+B <- as.matrix(1:10)
+
+filename <- paste(tempfile(), ".mat", sep="")
+writeMat(filename, A=A, B=B)
+data <- readMat(filename)
+print(data)
+unlink(filename)
+```
+
+#### Evaluate matlab code
+
+Run Matlab server:
+```r
+Matlab$startServer()
+```
+The 'matlab' executable must be in the PATH.
+
+Create a matlab client:
+```r
+matlab <- Matlab()
+```
+
+Open connection:
+```r
+open(matlab)
+```
+
+Set detailed output:
+```r
+setVerbose(matlab, -2)
+```
+
+Evaluate matlab code:
+```r
+evaluate(matlab, "A=1+2;", "B=ones(2,20);")
+```
+
+Get variables:
+```r
+matlab_vars <- getVariable(matlab, c("a", "b"))
+```
+
+Create a function:
+```r
+setFunction(matlab, "          \
+	function [win,aver]=dice(B)  \
+	%Play the dice game B times  \
+	gains=[-1,2,-3,4,-5,6];      \
+	plays=unidrnd(6,B,1);        \
+	win=sum(gains(plays));       \
+	aver=win/B;                  \
+");
+```
+
+Call function:
+```r
+evaluate(matlab, "[w,a]=dice(1000);")
+```
+
+Close client and server (to verify: only if this is the last client ?):
+```r
+close(matlab)
+```
+
+### RCurl
+
+```r
+library(RCurl)
+```
+
+Getting URL content:
+```r
+txt <- getURL("http:/.../")
+```
+
+Setting the user agent:
+```r
+txt <- getURL("http:/.../", useragent="MyApp ; www.myapp.fr ; pierrick.rogermele@icloud.com")
+```
+
+### XML
+
+```r
+library(XML)
+```
+
+Parsing XML from string:
+```r
+xml <- xmlInternalTreeParse(s, asText = TRUE)
+```
+
+Saving an XML tree into a file:
+```r
+saveXML(myxml, myfile)
+```
+
+Writing an XML tree into a string:
+```r
+xmlstr <- saveXML(myxml)
+```
+
+Getting a list of nodes:
+```r
+nodes <- getNodeSet(xml, "//ExtendedCompoundInfo")
+```
+
+Get a node's text content:
+```r
+txt <- xpathSApply(xmldoc, "//mynode", xmlValue)
+```
+
+XML using an anonymous namespace
+If the XML top node contains an xmlns attribute (ex: <mytopnode xmlns="http://..../"...>), then it must be defined with a prefix while searching using XPath, otherwise XPath will return nothing.
+```r
+txt <- xpathSApply(xmldoc, "//mynamespace:mynode", xmlValue, namespaces = c(mynamespace = "http://..../"))
+```
+
+Getting XML namespaces:
+```r
+xml <-  xmlInternalTreeParse(xmlstr, asText = TRUE)
+print(xmlNamespace(xmlRoot(xml)))
+```
+
+### rJava
+
+Allows to call Java from R.
+
+#### Install
+
+If a jar is compiled with more recent version of Java than the one configure inside R and used to compile rJava, then rJava will complain telling something like "Unsupported major.minor version 52.0".
+
+So be Careful of the version with which R is configured. To reconfigure Java inside R, run:
+```bash
+R CMD javareconf
+#sudo chmod a+r /Library/Frameworks/R.framework/Resources/etc/ldpaths /Library/Frameworks/R.framework/Resources/etc/Makeconf
+```
+To get help about `javareconf`:
+```bash
+R CMD javareconf --help
+```
+On MacOS-X, make sure to set the proper env vars to point to the right version of Java. If `JAVA_HOME` is properly set, it should be:
+```bash
+export JAVA_CPPFLAGS="-I$JAVA_HOME/include -I$JAVA_HOME/include/darwin"
+export JAVA_LIBS="-L$JAVA_HOME/jre/lib/server -L$JAVA_HOME/jre/lib -ljvm"
+export JAVA_LD_LIBRARY_PATH="$JAVA_HOME/jre/lib/server:$JAVA_HOME/jre/lib"
+R CMD javareconf
+```
+
+Then reinstall rJava from R:
+```r
+install.packages('rJava', type='source', dependencies = TRUE)
+# or for most recent package:
+install.packages("rJava",,"http://rforge.net/",type="source")
+```
+
+To check the version of Java used by rJava:
+```r
+library(rJava)
+.jinit()
+print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
+```
+If it prints version 1.6 and you want 1.8, and you are under MacOS-X, then there may be an issue with Java OS-X version. Re-install the OS-X Java with (<https://support.apple.com/kb/DL1572?locale=en_US>).
+It still doesn't work, then first try to look at what libs are loaded:
+```bash
+DYLD_PRINT_LIBRARIES=1 R
+```
+
+The loading of rJava
+```r
+library(rJava)
+```
+should print the line:
+	dyld: loaded: /Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/jre/lib/jli/libjli.dylib
+And the initializatio
+```r
+.jinit()
+```
+should print the lines:
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/bundle/Libraries/libclient64.dylib
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/../Libraries/libjvmlinkage.dylib
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libverify.dylib
+	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaNativeFoundation.framework/Versions/A/JavaNativeFoundation
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libjava.jnilib
+	dyld: loaded: /System/Library/Frameworks/JavaVM.framework/Versions/A/Frameworks/JavaRuntimeSupport.framework/Versions/A/JavaRuntimeSupport
+	dyld: loaded: /Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries/libzip.jnilib
+Check which is the current JDK:
+```bash
+ls -l /System/Library/Frameworks/JavaVM.framework/Versions
+```
+Reinstall Oracle JDK 1.8.
+Reconfigure R (`R CMD javareconf`) and reinstall rJava.
+
+#### Use
+
+Initialize rJava:
+```r
+.jinit()
+```
+
+Printing JRE version:
+```r
+print(.jcall('java/lang/System', 'S', 'getProperty', "java.version"))
+```
+
+Set class path and call a class method:
+```r
+library(rJava)
+.jaddClassPath("my/paths/to/classes")
+.jcall('my/name/space/MyClass', 'V', 'myMethod')
+```
+`.jcall` uses the JNI notation for returned parameter:
+Type                    | Description
+----------------------- | -------------
+`V`                     | Void.
+`B`                     | Byte.
+`C`                     | Char.
+`I`                     | Int.
+`J`                     | Long.
+`S`                     | Short.
+`Z`                     | Boolean.
+`F`                     | Float.
+`D`                     | Double.
+`[I`                    | 1D array of integers.
+`[[I`                   | 2D array of integers.
+`Lfr/path/to/my/Class`  | An object of that class.
+`[Lfr/path/to/my/Class` | 1D array of instances of that class.
+
+To know the signature of a java method, use `javap -s ...`.
+
+Create an object:
+```r
+obj <- .jnew('my.name.space.MyClass')
+```
+
+Get the class path:
+```r
+cp <- .jclassPath()
+```
+
+### Rserve
+
+Allows to call R from Java.
+See [How to make a simple program to call R from java using eclipse and Rserve](http://stackoverflow.com/questions/10216014/how-to-make-a-simple-program-to-call-r-from-java-using-eclipse-and-rserve).
+
+```r
+install.packages("Rserve")
+library(Rserve)
+Rserve()
+```
+
+In Java, use the jars RserveEngine.jar and REngine.jar:
+```java
+import org.rosuda.REngine.*;
+import org.rosuda.REngine.Rserve.*;
+
+public class rserveuseClass {
+	public static void main(String[] args) throws RserveException {
+		try {
+			RConnection c = new RConnection();// make a new local connection on default port (6311)
+			double d[] = c.eval("rnorm(10)").asDoubles();
+			org.rosuda.REngine.REXP x0 = c.eval("R.version.string");
+			System.out.println(x0.asString());
+		} catch (REngineException e) {
+		//manipulation
+		}       
+	}
+}
+```
+
+### RJSONIO
+
+[RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
+
+### tripack
+
+Triangulation of irregularly spaced data (Delaunay triangulation). Used for visualizing Voronoï cells.
+
+### Rdist
+
+Euclidian distance.
+
+### hyperSpec
+
+Read SPC files (spectrometry files). See [official website](http://hyperspec.r-forge.r-project.org).
+
+### R.utils
+
+Various programming utilities.
+
+### caTools
+
+Contains trapz() function for integration (needs bitops).
+
+AUC (Area Under Curve):
+```r
+library(caTools)
+area <- trapz(vx, vy)
+```
+
+### RCDK
+
+ * [rcdk sources](https://github.com/rajarshi/cdkr).
+ * [rcdk Java sources](https://github.com/rajarshi/cdkr/tree/master/rcdkjar).
+
+### MASS
+
+LDA (Linear discriminant analysis) function:
+```r
+library(MASS)
+lda(x, ...)
+```
+
+LDA function can complain that "variables appear to be constant within groups".
+This means that it has detected the matrix as singular.
+It can be true, which really means some variables are constant.
+Or it can be that the data is poorly scaled. In that case the threshold must be changed.
+The condition to detect that the matrix is singular is that a variable has within-group variance less than tol^2.
+"tol" can be set in the parameters
+```r
+lda(....., tol = 0.0000001, ....)
+```
+
+### Bioconductor
+
+ * [Bioconductor](http://www.bioconductor.org).
+ * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
+ 
+Install all Bioconductor packages:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+```
+
+Install a package of Bioconductor:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GenomicFeatures", "AnnotationDbi"))
+```
+
+#### Creating a bioconductor package
+
+Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
+
+#### Rdisop
+
+Annotation of mass spectra (Steffen Neumann). Part of BioConductor.
+
+#### Rmassbank
+
+[RMassBank](https://bioconductor.org/packages/release/bioc/html/RMassBank.html) is a Bioconductor package. It is a workflow designed to process MS data and build MassBank records.
+
+#### XCMS
+
+Framework for processing and visualization of chromatographically separated and single-spectra mass spectral data.
+
+ * [XCMS official page](http://www.bioconductor.org/packages/release/bioc/html/xcms.html).
+ * [XCMS^plus^](http://sciex.com/about-us/news-room/xcmssupplus/sup), commercial version which is a personal cloud version of *XCMS Online*.
+
+To install XCMS library, run the following lines in R:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("xcms")
+```
+
+#### metfRag
+
+[MetFragR](https://github.com/c-ruttkies/MetFragR).
+
+Installing:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("KEGGREST")
+library(devtools)
+install_github("c-ruttkies/MetFragR/metfRag")
+```
+
+```r
+library(metfRag)
+```
+
+### Testthat
+
+ * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
+ * [Package ‘testthat’](https://cran.r-project.org/web/packages/testthat/testthat.pdf).
+
+### RUnit
+
+```r
+library(RUnit)
+```
+	
+Assert true:
+```r
+checkTrue(1 < 2, "check1.")
+```
+
+Assert equality:
+```r
+checkEquals(10, my_var, "some text.")
+```
+
+Assert identity:
+```r
+checkIdentical(character(0), some_var, "Something isn't right.")
+```
+
+Assert exception:
+```r
+checkException(some_expression_or_function, "Some message") # checks that an exception is thrown
+checkException(some_expression_or_function, "Some message", silent = TRUE) # Tells 'try' to do not print error message.
+```
+
+### SSOAP
+
+No more in CRAN.
+
+ * [Using R SOAP (SSOAP) to retrieve data from NOAA](http://stackoverflow.com/questions/24528351/using-r-soap-ssoap-to-retrieve-data-from-noaa).
+ * [R Package SSOAP](http://arademaker.github.io/blog/2012/01/02/package-SSOAP.html).
+ * [SOAP Client with WSDL for R](http://stackoverflow.com/questions/32594448/soap-client-with-wsdl-for-r). --> Example of using RCurl in replacement of SSOAP.
+
+
