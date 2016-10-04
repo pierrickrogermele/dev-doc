@@ -1,6 +1,12 @@
 MUTT
 ====
 
+## Saving an email
+
+Piping email: hit `|` for running the pipe command, and type `cat >myfile.eml`. The email will be written into myfile.eml with full header and all attachments.
+
+Note: an eml file can be parsed for extracting text and/or attachments with munpack (mpack package) or ripmime.
+
 ## Trash
 
 Installing with trash patch:
