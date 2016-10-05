@@ -37,6 +37,7 @@ Automates the deployment of applications inside software containers.
 Uses VirtualBox.
 
  * [Docker](http://docs.docker.com/).
+ * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
  * [Docker wikipedia page](https://en.wikipedia.org/wiki/Docker_%28software%29).
  * [Ansible & containers - a natural fit](http://www.ansible.com/docker).
  * [Kubernetes](http://kubernetes.io/) is a docker scheduler that can run applications contained inside docker images on a cluster/cloud.
@@ -142,6 +143,11 @@ Now you can use docker client.
 On error `Error response from daemon: client is newer than server`, run:
 ```bash
 docker-machine upgrade default
+```
+
+Port forwarding:
+```bash
+docker-machine ssh vb8g -f -N -L 8080:localhost:8080
 ```
 
 ### Linux
