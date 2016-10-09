@@ -284,7 +284,7 @@ Replace `toolshed` by `testtoolshed` to run the same command on the test tool sh
 
 ## Workflows
 
-You can export a workflow from Galaxy, it will have the `.ga` extension. You can the import it, at the condition that all required tools are already installed.
+You can export a workflow from Galaxy, it will have the `.ga` extension. You can then import it, at the condition that all required tools are already installed.
 
 You can also publish a workflow on a Toolshed (**TODO: how ?**), and when installing it, Galaxy should install all required tools (**TODO: to check.**).
 
