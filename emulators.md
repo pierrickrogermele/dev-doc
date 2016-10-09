@@ -178,7 +178,7 @@ brew install kubernetes-cli
 
 Download and install minikube:
 ```bash
-curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.7.1/minikube-darwin-amd64
+curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.9.0/minikube-darwin-amd64 # ! Check for newer version of minikube
 chmod +x minikube
 mv minikube /usr/local/bin/
 ```
@@ -217,9 +217,14 @@ Get the nodes in the cluser:
 kubectl get nodes
 ```
 
-Minikube contains a built-in Docker daemon that for running containers. If you use another Docker daemon for building your containers, you will have to publish them to a registry before minikube can pull them. You can use minikube’s built in Docker daemon to avoid this extra step of pushing your images. Use the built-in Docker daemon with:
+Minikube contains a built-in Docker daemon for running containers. If you use another Docker daemon for building your containers, you will have to publish them to a registry before minikube can pull them. You can use minikube’s built in Docker daemon to avoid this extra step of pushing your images. Use the built-in Docker daemon with:
 ```bash
 eval $(minikube docker-env)
+```
+
+To log into a running pod:
+```bash
+kubect exec -i -t my-pod bash
 ```
 
 ## Vagrant
