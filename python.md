@@ -79,6 +79,13 @@ Getting the type of a variable:
 ```python
 type(myvar)
 ```
+Returns an object of type `type`.
+
+Testing the type:
+```python
+if isinstance(myvar, str):
+	do_something()
+```
 
 ### Constants
 
