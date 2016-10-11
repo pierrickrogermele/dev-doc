@@ -270,7 +270,6 @@ Command                 | Description
 Command                 | Description
 ----------------------- | ---------------------
 `:tabnew`               | Create a new tab.
-`Ctrl-W gf`             | Open file under cursor into a new tab.
 `:tabedit {file}`       | Edit specified file in a new tab.
 `:tabfind {file}`       | Open a new tab with filename given, searching the 'path' to find it.
 `:tabclose`             | Close current tab.
@@ -1090,10 +1089,12 @@ call mkdir("mynewdir")
 
 ## Go to file/url
 
-KEYS | DESCRIPTION
----- | -----------
-`gx` | Open link in browser.
-`gf` | Open the file whose name under the cursor.
+KEYS        | DESCRIPTION
+----------- | -----------
+`gx`        | Open link in browser.
+`gf`        | Open the file whose name under the cursor.
+`Ctrl-W f`  | Open file under cursor into a new window (horizontal split).
+`Ctrl-W gf` | Open file under cursor into a new tab.
 
 The file is searched inside the vim path. To see its actual value run `:echo &path`.
 The path is a comma separated list of directories.
