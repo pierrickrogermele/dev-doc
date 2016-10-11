@@ -193,13 +193,13 @@ planemo config_init
 
 The created file will look like this:
 ```yaml
-## Planemo Global Configuration File.
-## Everything in this file is completely optional - these values can all be
-## configured via command line options for the corresponding commands.
+#- Planemo Global Configuration File.
+#- Everything in this file is completely optional - these values can all be
+#- configured via command line options for the corresponding commands.
 
-## Specify a default galaxy_root for test and server commands here.
+#- Specify a default galaxy_root for test and server commands here.
 #galaxy_root: /path/to/galaxy_root
-## Username used with toolshed(s).
+#- Username used with toolshed(s).
 #shed_username: "<TODO>"
 sheds:
   # For each tool shed you wish to target, uncomment key or both email and
@@ -288,9 +288,13 @@ You can export a workflow from Galaxy, it will have the `.ga` extension. You can
 
 You can also publish a workflow on a Toolshed (**TODO: how ?**), and when installing it, Galaxy should install all required tools (**TODO: to check.**).
 
+## Parallel execution & multiple output files
+
+ * [Multiple File Datasets](http://msi-galaxy-p.readthedocs.io/en/latest/sections/multiple_file_datasets.html), by Galaxy-P. How to display set of related files (datasets) as a single dataset.
+
 ## XML tool file
 
-  * [Tool XML file syntax](https://wiki.galaxyproject.org/Admin/Tools/ToolConfigSyntax).
+  * [Tool XML file syntax](https://docs.galaxyproject.org/en/latest/dev/schema.html).
   * [Galaxy Intergalactic Utilities Commission Standards and Best Practices](https://galaxy-iuc-standards.readthedocs.io/en/latest/).
 
 ### Selection list from an external file
