@@ -581,11 +581,11 @@ script.path <- sub("--file=", "", args[grep("--file=", args)])
 library(getopt)
 
 spec = matrix(c(
-#   longname        shortname   arg_presence    arg_type        description
+#-  longname        shortname   arg_presence    arg_type        description
 	'db',           'd',        1,              'character',    'Database name.',
 	'help',         'h',        0,              'logical',      'Print this help.',
 	'input',        'i',        1,              'character',    'Input excel file.'
-# arg_presence can be 0 (no arg), 1 (required), 2 (optional)
+#- arg_presence can be 0 (no arg), 1 (required), 2 (optional)
 	), byrow = TRUE, ncol = 5)
 
 opt <- getopt(spec)
@@ -1291,7 +1291,7 @@ y <- c(9,5,3,10)
 x[order(x)[order(y)]]
 ```
 
-## Objetcs (OOP)
+## Objects (OOP)
 
  * [OO in R](http://www.r-bloggers.com/oo-in-r/).
  * [OO field guide](http://adv-r.had.co.nz/OO-essentials.html).
@@ -1384,20 +1384,19 @@ setValidity("A", function(object) {
                         "'x' must be length 1 and < 11"
                             else NULL
                             })
-# and then
-# > a = A(x=11)
-# > validObject(a)
-# Error in validObject(a) : 
-# invalid class "A" object: 'x' must be length 1 and < 11
+a = A(x=11)
+validObject(a)
 ```
+Error in validObject(a) : 
+	invalid class "A" object: 'x' must be length 1 and < 11
 
 ## Profiling
 
 ```r
 Rprof()
-# some code
+#- some code
 Rprof(NULL)
-# write a file Rprof.out
+#- write a file Rprof.out
 ```
 
 To read Rprof.out:
@@ -1463,9 +1462,9 @@ source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
 
 Solution 2:
 ```r
-#Get path of current R script to source using a relative directory:
+#- Get path of current R script to source using a relative directory:
 source(file.path(dirname(rscript_current()), '../myfile.R'))
-# Where rscript_current is:
+#- Where rscript_current is:
 rscript_current <- function() {
 	stack <- rscript_stack()
 	r <- as.character(stack[length(stack)])
@@ -1966,3 +1965,9 @@ No more in CRAN.
  * [SOAP Client with WSDL for R](http://stackoverflow.com/questions/32594448/soap-client-with-wsdl-for-r). --> Example of using RCurl in replacement of SSOAP.
 
 
+
+### Grid
+
+ * [Grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html).
+
+Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html) to export grid object to SVG file.
