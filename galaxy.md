@@ -284,7 +284,11 @@ Replace `toolshed` by `testtoolshed` to run the same command on the test tool sh
 
 ## Workflows
 
-You can export a workflow from Galaxy, it will have the `.ga` extension. You can then import it, at the condition that all required tools are already installed.
+You can export a workflow from Galaxy, it will have the `.ga` extension. You can then import it, at the condition that all required tools are already installed. If tools were installed locally, then edit the `.ga` file, which is just a JSON format, and change each `tool_id` field so it contains only the tool name, and not the whole path.
+For instance, if you have a line like:
+      "tool_id": "toolshed4metabolomics.sb-roscoff.fr:9009/repos/cea/multivariate/Multivariate/2.3.0", 
+then replace it by:
+      "tool_id": "Multivariate", 
 
 You can also publish a workflow on a Toolshed (**TODO: how ?**), and when installing it, Galaxy should install all required tools (**TODO: to check.**).
 
