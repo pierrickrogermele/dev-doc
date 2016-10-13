@@ -1695,8 +1695,10 @@ R CMD javareconf
 Then reinstall rJava from R:
 ```r
 install.packages('rJava', type='source', dependencies = TRUE)
-# or for most recent package:
-install.packages("rJava",,"http://rforge.net/",type="source")
+```
+or for most recent package:
+```r
+install.packages("rJava",,"http://rforge.net/",type="source", dependencies = TRUE)
 ```
 
 To check the version of Java used by rJava:
