@@ -1092,6 +1092,7 @@ call mkdir("mynewdir")
 KEYS        | DESCRIPTION
 ----------- | -----------
 `gx`        | Open link in browser.
+`viWgx`     | Select "word" (it will select special chars like '?') under cursor and open the corresponding link in browser.
 `gf`        | Open the file whose name under the cursor.
 `Ctrl-W f`  | Open file under cursor into a new window (horizontal split).
 `Ctrl-W gf` | Open file under cursor into a new tab.
