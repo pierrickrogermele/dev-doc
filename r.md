@@ -225,6 +225,16 @@ Getting character code:
 charToRaw('A') # Returns a string containing the hex code of A.
 ```
 
+#### Reading/writing from/to a string
+
+```r
+my.dataframe <- data.frame(a = c(1,2), b = (4.10, 10.6))
+readtc <- textConnection("my.string", "w", local = TRUE)
+write.csv(my.dataframe, readtc)
+writetc <- textConnection("my.string", "r", local = TRUE)
+df <- read.csv(writetc)
+```
+
 #### Substrings
 
 Substring extraction:
@@ -267,7 +277,7 @@ Trimming leading and trailing white spaces:
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 ```
 
-#### Array
+### Array
 
 Arrays are objects that can have more than 2 dimensions. Matrix is a special case of arrays.
 
