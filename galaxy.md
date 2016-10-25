@@ -292,8 +292,10 @@ then replace it by:
 
 You can also publish a workflow on a Toolshed (**TODO: how ?**), and when installing it, Galaxy should install all required tools (**TODO: to check.**).
 
-## Parallel execution & multiple output files
+## Datasets
 
+ * [Adding a New Data Type](https://wiki.galaxyproject.org/Admin/Datatypes/Adding%20Datatypes).
+ * [Galaxy composite datatype](https://wiki.galaxyproject.org/Admin/Datatypes/Composite%20Datatypes).
  * [Multiple File Datasets](http://msi-galaxy-p.readthedocs.io/en/latest/sections/multiple_file_datasets.html), by Galaxy-P. How to display set of related files (datasets) as a single dataset.
 
 ## XML tool file
