@@ -36,6 +36,46 @@ gem help the_command
 
 For indentation, use 2 spaces, no tabs.
 
+## Types & variables
+
+### Nil
+
+Test if an object is nil:
+```ruby
+if myobj.nil?
+  do_something
+end
+```
+
+### Environment variables
+
+```ruby
+myenvvar = ENV['MY_ENV_VAR']
+```
+
+### Strings
+
+Put in lowercase:
+```ruby
+s = 'My String'.lowercase
+```
+
+Test string equality:
+```ruby
+s == 'bof'
+```
+or
+```ruby
+s.eql? 'bof'
+```
+
+### Arrays
+
+Check if a value is inside an array:
+```ruby
+is_in_array = ['zap', 'hop', 'plouf'].include? 'zap'
+```
+
 ## Statements
 
 ### If
@@ -50,20 +90,25 @@ else
 end
 ```
 
+### Logical operators
+
+```ruby
+enabled = ! a.nil? and a == 5
+```
+
+### Function
+
+```ruby
+def envvar_enabled(x)
+  x + 5
+end
+```
+
 ### System call
 
 Call program:
 ```ruby
 system "myprog", "arg1", "arg2"
-```
-
-## Nil
-
-Test if an object is nil:
-```ruby
-if myobj.nil?
-  do_something
-end
 ```
 
 ## File system
