@@ -296,7 +296,28 @@ You can also publish a workflow on a Toolshed (**TODO: how ?**), and when instal
 
  * [Adding a New Data Type](https://wiki.galaxyproject.org/Admin/Datatypes/Adding%20Datatypes).
  * [Galaxy composite datatype](https://wiki.galaxyproject.org/Admin/Datatypes/Composite%20Datatypes).
+ * [The Galaxy Tool Shed: Including Custom Datatypes in Repositories](http://gregvonkuster.org/galaxy-tool-shed-including-custom-datatypes-repositories/).
+
+ * [Strategies for tools that create more than one output file](https://wiki.galaxyproject.org/Admin/Tools/MultipleOutputFiles).
  * [Multiple File Datasets](http://msi-galaxy-p.readthedocs.io/en/latest/sections/multiple_file_datasets.html), by Galaxy-P. How to display set of related files (datasets) as a single dataset.
+
+Access additional files. HTML files (as primary files of composite datatypes) can be associated with additional files. The field used to access the additional files directory (`.extra_files_path` or `.files_path`) depends on whether we are dealing with an input or an output.
+```xml
+<command><![CDATA[
+	myscript
+	--input-file "$inputfile"
+	--input-directory "$inputfile.extra_files_path"
+	--output-file "$outputfile"
+	--output-directory "$outputfile.files_path"
+]]></command>
+<!-- ... -->
+<inputs>
+	<param name="inputfile" type="text" format="html" .../>
+</inputs>
+<outputs>
+	<data name="outputfile" label="myoutput.html" format="html"/>
+</outputs>
+```
 
 ## XML tool file
 
