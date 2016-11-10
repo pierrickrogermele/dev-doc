@@ -310,6 +310,11 @@ Get VirtualBox version:
 VBoxManage --version
 ```
 
+List virtual machines:
+```bash
+VBoxManage list vms
+```
+
 ## VMWare
 
 ### Migration d'un PC en machine virtuelle
