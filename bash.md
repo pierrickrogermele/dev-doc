@@ -209,6 +209,11 @@ Push a value into an array:
 myarr+=('newval')
 ```
 
+Getting first value of an array:
+```bash
+${my_array[0]}
+```
+
 Getting all values of an array:
 ```bash
 ${my_array[@]}
