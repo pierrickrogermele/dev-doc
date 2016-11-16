@@ -121,6 +121,11 @@ Installing using the command line:
 R -e "install.packages('getopt', dependencies = TRUE, repos='http://lib.ugent.be/CRAN/')"
 ```
 
+Getting a list of installed packages:
+```r
+rownames(installed.packages())
+```
+
 ### Removing packages
 
 ```r
@@ -150,6 +155,12 @@ if (require(mypackage)) {
 Non-verbose loading:
 ```r
 library(RMySQL, quietly = TRUE)
+```
+
+Test if a package is loaded:
+```r
+library(R.utils)
+isPackageLoaded('mypkg')
 ```
 
 ### Creating packages
@@ -425,6 +436,16 @@ Names:
 ```r
 colnames(m) <- c("a", "b")
 m[,"a"]
+```
+
+Getting duplicated elements:
+```r
+x <- duplicated(y) # Returns a vector of boolean
+```
+
+Getting unique elements (remove duplicates):
+```r
+x <- y[ ! duplicated(y)]
 ```
 
 ### Data frames
