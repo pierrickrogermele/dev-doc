@@ -168,6 +168,10 @@ isPackageLoaded('mypkg')
  * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
  * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
 
+## Compiling code
+
+ * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
+
 ## Types
 
 ### NA
