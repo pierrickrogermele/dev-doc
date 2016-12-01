@@ -245,9 +245,10 @@ done
 
 It's also possible to define associative arrays (from bash 4):
 ```bash
-declare -A my_array=()
+declare -A my_array
 my_array[some_key]=some_value
 echo ${my_array[some_key]}
+keys=${!my_array[@]}
 ```
 
 ## Strings
