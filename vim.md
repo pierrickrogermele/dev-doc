@@ -342,6 +342,19 @@ class Zoup { // {{{1
 }
 ```
 
+Key  | Description
+---- | -----------------------
+`zc` | Close a fold.
+`zo` | Open a fold.
+`za` | Toggle a fold.
+`zC` | Close all folds at current position.
+`zO` | Open all folds at current position.
+`zA` | Toggle all folds at current position.
+`zr` | Open all folds by one more level.
+`zR` | Open all levels of all folds.
+`zm` | Close all folds by one more level.
+`zM` | Close all levels of all folds.
+
 ## Argdo
 
 See also tabdo, windo and bufdo.
@@ -421,6 +434,11 @@ Command           | Description
 `:set noic`       | Do not ignore case while searching.
 `f mychar`        | Find a character forward.
 `F mychar`        | Find a character backward.
+
+Regex code        | Description
+----------------- | ----------------------------------------
+`\n`              | Newline character when searching.
+`\r`              | Newline character when replacing.
 
 Search for character with its hexadecimal code: `/\%x95`.
 
