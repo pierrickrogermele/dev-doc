@@ -1344,6 +1344,8 @@ x[order(x)[order(y)]]
  * [Reference classes](http://adv-r.had.co.nz/R5.html).
  * [Objects With Fields Treated by Reference (OOP-style)](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/refClass.html).
  * [S4 Classes in 15 pages, more or less](https://www.stat.auckland.ac.nz/S-Workshop/Gentleman/S4Objects.pdf).
+ * [R Inheritance](https://www.programiz.com/r-programming/inheritance).
+ * [Introduction to R6 classes](https://cran.r-project.org/web/packages/R6/vignettes/Introduction.html).
 
 Workspace = collection of objects.
 
@@ -1361,6 +1363,33 @@ rm(x,y,w)
 Get a list of attributes and their values (object fields):
 ```r
 attributes(x)
+```
+
+### S3
+
+Check inheritance:
+```r
+if (inherits(o, "MyClass"))
+	doSomething()
+```
+`inherits` has been extended to work for S4, but is not reliable. I've experienced malfunctioning from inside a package, when testing if an object inherits from a base class.
+
+### S4
+
+```r
+library(methods)
+```
+
+Check inheritance for an object:
+```r
+if (is(o, "MyClass"))
+	doSomething()
+```
+
+Check inheritance between classes:
+```r
+if (extends("SubClass", "SuperClass"))
+	doSomething()
 ```
 
 ### R5 (Reference classes)
