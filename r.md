@@ -1443,10 +1443,7 @@ A <- setRefClass("A", fields = list(n = "numeric"),
 							   ))
 ```
 
-To test inheritance:
-```r
-inherits(stream, "MsDbInputStream") || stop("Input stream must inherit from MsDbInputStream class.")
-```
+To test inheritance, see S4.
 
 #### Field validity
 
