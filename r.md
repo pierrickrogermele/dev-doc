@@ -1943,6 +1943,7 @@ lda(....., tol = 0.0000001, ....)
 
  * [Bioconductor](http://www.bioconductor.org).
  * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
+ * [Bioc-devel -- Bioconductor Developers' List](https://stat.ethz.ch/mailman/listinfo/bioc-devel).
  
 Install all Bioconductor packages:
 ```r
