@@ -74,6 +74,12 @@ To go inside a docker image:
 docker run -t -i --entrypoint=bash myimage
 ```
 
+For removing all images:
+```bash
+docker rm $(docker ps -aq)
+docker rmi $(docker images -qa)
+```
+
 ### Containers
 
 To list running containers:
