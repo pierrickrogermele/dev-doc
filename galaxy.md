@@ -292,6 +292,9 @@ then replace it by:
 
 You can also publish a workflow on a Toolshed (**TODO: how ?**), and when installing it, Galaxy should install all required tools (**TODO: to check.**).
 
+ * [wft4galaxy](https://github.com/phnmnl/wft4galaxy), a workflow tester for Galaxy, part of the PhenoMeNal project.
+ * [ToolShed workflow sharing](https://wiki.galaxyproject.org/ToolShedWorkflowSharing).
+
 ## Datasets
 
  * [Adding a New Data Type](https://wiki.galaxyproject.org/Admin/Datatypes/Adding%20Datatypes).
