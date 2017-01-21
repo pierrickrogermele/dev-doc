@@ -250,6 +250,11 @@ Getting character code:
 charToRaw('A') # Returns a string containing the hex code of A.
 ```
 
+Repeat a character or string n times:
+```r
+paste(rep(s, 3), sep = '')
+```
+
 #### Reading/writing from/to a string
 
 ```r
@@ -370,6 +375,11 @@ Empty vector:
 ```r
 numeric()
 character()
+```
+
+Condition on vector elements:
+```r
+ifelse(v, 'A', 'B')
 ```
 
 Concatenating vectors:
@@ -1960,6 +1970,18 @@ biocLite(c("GenomicFeatures", "AnnotationDbi"))
 #### Creating a bioconductor package
 
 Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
+
+#### Risa
+
+Load ISA-Tab:
+```r
+isa <- readISAtab('some_isatab_dir')
+```
+
+Get assay file names:
+```r
+assay.fiel.names <- getMSAssayFilenames(isa)
+```
 
 #### Rdisop
 
