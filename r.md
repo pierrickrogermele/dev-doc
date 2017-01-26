@@ -616,6 +616,11 @@ Get R HOME directory:
 R.home()
 ```
 
+## Environments and namespaces
+
+ * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
+ * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
+
 ## Command line arguments
 
 ```r
