@@ -1,0 +1,58 @@
+<html>
+	<head>
+		<title>Table tag</title>
+	</head>
+
+	<body>
+		<h1>Simple table</h1>
+		<table>
+			<tr> <!-- row -->
+				<td>First line</td> <!-- cell -->
+			</tr>
+			<tr>
+				<td>Second line</td>
+			</tr>
+		</table>
+
+		<h1>Table with a border</h1>
+		<table border>
+			<th>My header line</th>
+			<tr><td>blabla</td></tr>
+			<tr><td>blabla</td></tr>
+		</table>
+
+		<h1>Table with background colors</h1>
+		<table border bgcolor="#99CCFF">
+			<tr><td>blabla</td></tr>
+			<tr><td bgcolor="#ff0000">blabla</td></tr>
+		</table>
+
+		<h1>Header line</h1>
+		<table border>
+			<th>My header line</th>
+			<tr><td>blabla</td></tr>
+		</table>
+
+		<h1>Spanning of rows and columns</h1>
+		<table border>
+			<tr>
+				<td rowspan=2>Text on two rows</td>
+				<td>single cell 1</td>
+				<td>single cell 2</td>
+				<td>single cell 3</td>
+			</tr>
+			<tr>
+				<td colspan=2>Text on two columns</td>
+				<td>single cell</td>
+			</tr>
+		</table>
+
+		<h1>Setting width of columns</h1>
+		<table border="1" width="100%">
+			<tr>
+				<td width="25%">Column 1</td>
+				<td>Column 2</td>
+			</tr>
+		</table>
+	</body>
+</html>
