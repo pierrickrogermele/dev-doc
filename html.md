@@ -139,3 +139,7 @@ For a paragraph:
 ```html
 <p style = "background-color: yellow">
 ```
+
+## Scripts
+
+ * [Scripts](file:///Users/pierrick/Google%20Drive/doc-sciences/computer%20science/HTML/Scripts%20in%20HTML%20documents.webarchive).
