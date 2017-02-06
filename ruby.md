@@ -69,11 +69,25 @@ or
 s.eql? 'bof'
 ```
 
+String interpolation:
+```ruby
+s = "Using some var inside a literal string: #{some.other.string.var}."
+```
+
 ### Arrays
 
 Check if a value is inside an array:
 ```ruby
 is_in_array = ['zap', 'hop', 'plouf'].include? 'zap'
+```
+
+## Operators
+
+ * [Ruby Operators](https://www.tutorialspoint.com/ruby/ruby_operators.htm).
+
+Ternary operator:
+```ruby
+x = a == 1 ? a : a * 2  
 ```
 
 ## Statements
