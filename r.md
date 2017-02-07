@@ -1712,45 +1712,41 @@ txt <- getURL("http:/.../", useragent="MyApp ; www.myapp.fr ; pierrick.rogermele
 
 ### XML
 
-```r
-library(XML)
-```
-
 Parsing XML from string:
 ```r
-xml <- xmlInternalTreeParse(s, asText = TRUE)
+xml <- XML::xmlInternalTreeParse(s, asText = TRUE)
 ```
 
 Saving an XML tree into a file:
 ```r
-saveXML(myxml, myfile)
+XML::saveXML(myxml, myfile)
 ```
 
 Writing an XML tree into a string:
 ```r
-xmlstr <- saveXML(myxml)
+xmlstr <- XML::saveXML(myxml)
 ```
 
 Getting a list of nodes:
 ```r
-nodes <- getNodeSet(xml, "//ExtendedCompoundInfo")
+nodes <- XML::getNodeSet(xml, "//ExtendedCompoundInfo")
 ```
 
 Get a node's text content:
 ```r
-txt <- xpathSApply(xmldoc, "//mynode", xmlValue)
+txt <- XML::xpathSApply(xmldoc, "//mynode", XML::xmlValue)
 ```
 
 XML using an anonymous namespace
 If the XML top node contains an xmlns attribute (ex: <mytopnode xmlns="http://..../"...>), then it must be defined with a prefix while searching using XPath, otherwise XPath will return nothing.
 ```r
-txt <- xpathSApply(xmldoc, "//mynamespace:mynode", xmlValue, namespaces = c(mynamespace = "http://..../"))
+txt <- XML::xpathSApply(xmldoc, "//mynamespace:mynode", XML::xmlValue, namespaces = c(mynamespace = "http://..../"))
 ```
 
 Getting XML namespaces:
 ```r
-xml <-  xmlInternalTreeParse(xmlstr, asText = TRUE)
-print(xmlNamespace(xmlRoot(xml)))
+xml <-  XML::xmlInternalTreeParse(xmlstr, asText = TRUE)
+print(XML::xmlNamespace(xmlRoot(xml)))
 ```
 
 ### rJava
