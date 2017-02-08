@@ -257,12 +257,21 @@ paste(rep(s, 3), sep = '')
 
 #### Reading/writing from/to a string
 
+Write a data frame into a string:
 ```r
 my.dataframe <- data.frame(a = c(1,2), b = (4.10, 10.6))
-readtc <- textConnection("my.string", "w", local = TRUE)
-write.csv(my.dataframe, readtc)
-writetc <- textConnection("my.string", "r", local = TRUE)
-df <- read.csv(writetc)
+writetc <- textConnection("my.string", "w", local = TRUE)
+write.csv(my.dataframe, writetc)
+```
+
+Read a data frame from a string:
+```r
+readtc <- textConnection("my.string", "r", local = TRUE)
+df <- read.csv(readtc)
+```
+or
+```r
+df <- read.table(text = my.string) 
 ```
 
 #### Substrings
