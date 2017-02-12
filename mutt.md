@@ -1,6 +1,11 @@
 MUTT
 ====
 
+## macOS configuration
+
+ * [Getting started with Mutt on OSX](http://www.lucianofiandesio.com/getting-started-with-mutt-on-osx).
+ * [How to integrate iCloud contact, calendar, or email accounts on the BlackBerry 10 smartphone](http://support.blackberry.com/kb/articleDetail?ArticleNumber=000033812).
+
 ## Saving an email
 
 Piping email: hit `|` for running the pipe command, and type `cat >myfile.eml`. The email will be written into myfile.eml with full header and all attachments.
