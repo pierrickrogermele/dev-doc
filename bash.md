@@ -108,7 +108,7 @@ If the -e option does not work in the terminal (like in OS-X), use the $'' featu
 echo $'\e[34mCOLORS\e[0m'
 ```
 
-Light color | Value | Dark color   | Value
+Dark color  | Value | Light color  | Value
 ----------- | ----- | ------------ | -----
 Black       | 0;30  | Dark Gray    | 1;30
 Red         | 0;31  | Light Red    | 1;31

@@ -910,6 +910,18 @@ if (grepl("^blabla", my_string, perl=TRUE)) do_something()
 grepl("^blabla", c(s1, s2, s3), perl=TRUE) # --> returns a vector
 ```
 
+Get index of first match:
+```r
+pos <- regexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
+index <- as.integer(pos)
+```
+
+Get indices of all matches:
+```r
+pos <- gregexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
+indices <- as.integer(pos)
+```
+
 Extracting substrings:
 ```r
 library("stringr")
@@ -920,8 +932,6 @@ str_extract_all("blabla lala", "la") # search several times for the same regexp:
 Searching for groups:
 ```r
 library(stringr)
-regexp <- "([[:digit:]]{2}) ([[:alpha:]]+) ([[:digit:]]{4})"
-string <- "blabla 23 mai 2000 blabla 18 mai 2004"
 str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups
 str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups
 ```
