@@ -126,6 +126,16 @@ Getting a list of installed packages:
 rownames(installed.packages())
 ```
 
+Installing from a git repos:
+```r
+devtools::install_git("https://gitlab.com/proger/biodb.git", branch='develop', credentials=git2r::cred_user_pass ("proger", getPass::getPass()))
+```
+
+Installing local sources:
+```r
+devtools::install_local('~/dev/biodb/')
+```
+
 ### Removing packages
 
 ```r
@@ -168,6 +178,8 @@ isPackageLoaded('mypkg')
  * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
  * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
  * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+
+ * [How to Install R Packages using devtools on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-r-packages-using-devtools-on-ubuntu-16-04).
 
  * `R CMD check`: [Automated checking](http://r-pkgs.had.co.nz/check.html).
  * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
