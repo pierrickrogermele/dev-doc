@@ -877,6 +877,11 @@ Insert at beginning of list or string:
 set myopt^=myval
 ```
 
+Set an environment variable:
+```vim
+let $MYVAR='myvalue'
+```
+
 ### Options
 
 Options can be set either with set or let:
