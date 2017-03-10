@@ -76,6 +76,12 @@ Command                | Description
 
 ## Bind keys
 
+ * [Key Binding](http://web.mit.edu/gnu/doc/html/screen_13.html).
+
+Key     | Description
+------- | --------------------------
+`C-a ?` | List all key bindings
+
 ```
 bind j focus down
 bind V screen vim $HOME/dev
