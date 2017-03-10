@@ -1,0 +1,14 @@
+#!/bin/bash
+
+toto=coucou
+varname=toto
+
+echo $toto
+echo ${toto}
+echo ${varname}
+echo ${!varname}
+
+toto_email=zoup@gmail.com
+echo $toto_email
+varname2=${varname}_email
+echo ${!varname2}

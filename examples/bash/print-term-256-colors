@@ -1,0 +1,77 @@
+#!/bin/bash
+
+####################
+# GLOBAL VARIABLES #
+####################
+
+g_target="fg"
+g_bg_color=0    # black
+g_fg_color=255  # white
+g_nb_colors_per_line=16
+
+###############
+# GET OPT VAL #
+###############
+
+function get_opt_val {
+	if [ -z "$2" ] ; then
+		printf "ERROR: \"$1\" requires a non-empty option argument.\n" >&2
+		exit 1
+	fi
+	echo $2
+}
+
+##################
+# READ ARGUMENTS #
+##################
+
+while true ; do
+	case $1 in
+		-f|--fg) g_target="fg" ; shift ;;
+		-b|--bg) g_target="bg" ; shift ;;
+		--fg-color) g_fg_color=$(get_opt_val $1 $2) ; shift 2 ;;
+		--bg-color) g_bg_color=$(get_opt_val $1 $2) ; shift 2 ;;
+		-l|--nb-colors-per-line) g_nb_colors_per_line=$(get_opt_val $1 $2) ; shift 2 ;;
+		-h|--help) ;;
+		*) break
+	esac
+done
+
+########
+# MAIN #
+########
+
+# Loop on all 256 colors
+newline_required=
+for i in {0..255} ; do
+
+	# Align numbers
+	if [ $i -ge 100 ] ; then
+		echo -n ' '
+	elif [ $i -ge 10 ] ; then
+		echo -n '  '
+	else
+		echo -n '   '
+	fi
+
+	# Display color number in its color
+	if [ "$g_target" = "fg" ] ; then
+		echo -n $'\e[48;5;'$g_bg_color'm'   # background
+		echo -n $'\e[38;5;'$i'm'            # foreground
+	else
+		echo -n $'\e[48;5;'$i'm'            # background
+		echo -n $'\e[38;5;'$g_fg_color'm'   # foreground
+	fi
+	echo -n $i
+	echo -n $'\e[0m' # reset settings
+	newline_required=true
+
+	# Go to new line each 16 colors
+	if [ $((i % g_nb_colors_per_line == g_nb_colors_per_line - 1)) -eq 1 ] ; then
+		echo
+		newline_required=
+	else
+		echo -n ' '
+	fi
+done
+[ -z "$newline_required" ] || echo

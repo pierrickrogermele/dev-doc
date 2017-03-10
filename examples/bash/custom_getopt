@@ -1,0 +1,109 @@
+#!/bin/bash
+# vi: fdm=marker
+
+# Constants {{{1
+# ==============
+
+PROG_NAME=$(basename $0)
+YES=yes
+
+# Global variables {{{1
+# =====================
+
+DEBUG=0
+ARG_A=
+ARG_B=
+SOME_FLAG=
+
+# Print help {{{1
+# ===============
+
+function print_help {
+	echo "Usage: $PROG_NAME [options] [remaining arguments]"
+	echo
+	echo "My short description."
+	echo "My long description."
+	echo
+	echo "Options:"
+	echo "   -a, --arg-a value  Set value of argument ARG_A."
+	echo "   -b, --arg-b value  Set value of argument ARG_B."
+	echo "   -f, --some-flag    Set some flag."
+	echo "   -g, --debug        Debug mode."
+	echo "   -h, --help         Print this help message."
+}
+
+# Error {{{1
+# ==========
+
+function error {
+
+	local msg=$1
+
+	echo "ERROR: $msg" >&2
+
+	exit 1
+}
+
+# Print debug msg {{{1
+# ====================
+
+function print_debug_msg {
+
+	local dbglvl=$1
+	local dbgmsg=$2
+
+	[ $DEBUG -ge $dbglvl ] && echo "[DEBUG] $dbgmsg" >&2
+}
+
+# Get opt val {{{1
+# ================
+
+function get_opt_val {
+	[ -n "$2" ] || error "\"$1\" requires a non-empty option argument."
+	echo $2
+}
+
+# Read args {{{1
+# ==============
+
+function read_args {
+
+	local args="$*" # save arguments for debugging purpose
+	
+	# Read options
+	while true ; do
+		shift_count=1
+		case $1 in
+			-a|--arg-a)         ARG_A=$(get_opt_val $1 $2) ; shift_count=2 ;;
+			-b|--arg-b)         ARG_B=$(get_opt_val $1 $2) ; shift_count=2 ;;
+			-f|--some-flag)     SOME_FLAG=$YES ;;
+			-g|--debug)         DEBUG=$((DEBUG + 1)) ;;
+			-h|--help)          print_help ; exit 0 ;;
+			-) error "Illegal option $1." ;;
+			--) error "Illegal option $1." ;;
+			--*) error "Illegal option $1." ;;
+			-?) error "Unknown option $1." ;;
+			-[^-]*) split_opt=$(echo $1 | sed 's/^-//' | sed 's/\([a-zA-Z]\)/ -\1/g') ; set -- $1$split_opt "${@:2}" ;;
+			*) break
+		esac
+		shift $shift_count
+	done
+	shift $((OPTIND - 1))
+
+	# Read remaining arguments
+	if [ -n "$*" ] ; then
+		REMAIN_ARGS=("$@") # Use an array for remaining arguments
+	fi
+
+	# Debug
+	print_debug_msg 1 "Arguments are : $args"
+	print_debug_msg 1 "Remainig arguments are : $REMAIN_ARGS"
+	[ -n "$SOME_FLAG" ] && print_debug_msg 1 "Some flag is enabled."
+	[ -n "$ARG_A" ] && print_debug_msg 1 "Argument ARG_A set to \"$ARG_A\"."
+	[ -n "$ARG_B" ] && print_debug_msg 1 "Argument ARG_A set to \"$ARG_B\"."
+}
+
+# MAIN {{{1
+# =========
+
+read_args "$@"
