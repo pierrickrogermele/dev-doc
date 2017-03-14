@@ -1238,6 +1238,11 @@ Rename a file:
 file.rename(current.file.name, new.file.name)
 ```
 
+Create a directory:
+```r
+dir.create(mydir)
+```
+
 ## System call
 
 ```r
