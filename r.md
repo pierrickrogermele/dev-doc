@@ -185,6 +185,31 @@ isPackageLoaded('mypkg')
  * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
  * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
 
+#### Writing documentation with roxygen2
+
+ * [Generating Rd files](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html).
+ * [Object documentation](http://r-pkgs.had.co.nz/man.html).
+ * [How to properly document S4 class slots using Roxygen2?](http://stackoverflow.com/questions/7368262/how-to-properly-document-s4-class-slots-using-roxygen2).
+
+Note that constructors of subclasses are ignored by roxygen2. You cannot document them.
+
+Defining documentation separated from any code:
+```r
+#' Title 
+#' 
+#' Other stuff 
+#' 
+#' @name MyClass_fooey 
+#' @param foo_value numeric blah blah blah 
+#' @return numeric 
+#' @examples{ 
+#'	\dontrun{ 
+#'	blah blah blah 
+#'      } 
+#' } 
+NULL 
+```
+
 ## Compiling code
 
  * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
