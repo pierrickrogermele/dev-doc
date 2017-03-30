@@ -74,11 +74,32 @@ String interpolation:
 s = "Using some var inside a literal string: #{some.other.string.var}."
 ```
 
+Split string into array:
+```ruby
+s.split(',')
+s.split(/[a-z]/)
+```
+
+Regex match:
+```ruby
+s = 'My string'[/^.* (.*)$/, 1]
+```
+
 ### Arrays
+
+Create an array:
+```ruby
+myarray = ['1', '2', 'a']
+```
 
 Check if a value is inside an array:
 ```ruby
 is_in_array = ['zap', 'hop', 'plouf'].include? 'zap'
+```
+
+Push in an array:
+```ruby
+myarray.push('x', 'y')
 ```
 
 ## Operators
@@ -102,6 +123,27 @@ elsif someothercond
 else
   do_something_else_else
 end
+```
+
+### Loop
+
+For loop:
+```ruby
+s = 0
+for i in myarray
+	s += i
+end
+```
+
+Ruby style loop:
+```ruby
+myarray.each do |i|
+	s += i
+end
+```
+or
+```ruby
+myarray.each { |i| s += i }
 ```
 
 ### Logical operators
@@ -130,4 +172,9 @@ system "myprog", "arg1", "arg2"
 Create a file:
 ```ruby
 File.open('myfile.txt', 'w') { |file| file.write("mytext") }
+```
+
+List files matching pattern:
+```ruby
+Dir.glob('*.txt') { |file| do.something(file) }
 ```
