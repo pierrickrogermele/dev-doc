@@ -33,8 +33,9 @@ set copy= yes # actually save sent messages
 
 Alias:
 ```muttrc
-alias myaliasname some.address@somewhere.earth another.address@near.there
+alias nickname Long Name address@example.com
 ```
+See [Mutt aliases](https://dev.mutt.org/trac/wiki/MuttGuide/Aliases).
 
 ## Command
 
