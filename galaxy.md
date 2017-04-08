@@ -490,3 +490,8 @@ The python function called inside `dynamic_options` attribute of tag `param` doe
 Apparently this bug has already occured (<https://github.com/galaxyproject/galaxy/pull/67/files>) in version 15 and has been fixed.
 
 The tool *cummeRbund* from [galaxyproject/tools-devteam]<https://github.com/galaxyproject/tools-devteam> uses the `dynamic_options` feature.
+
+## Extended features
+
+ * Webhooks: a way using plugins to extend Galaxy interface (new menu, add an entry in History menu, etc).
+ * Galaxy Interactive Tour: step by step guided demo (windows are displayed), using JQuery for interacting with the Galaxy interface. Defined in a YAML file.
