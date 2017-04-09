@@ -11,6 +11,21 @@ PYTHON
 pip install virtualenv
 ```
 
+Create a virtual env:
+```bash
+virtualenv my/venv/dir
+```
+
+Activating a virtual env:
+```bash
+source my/venv/dir/bin/activate
+```
+
+Deactivating a virtual env:
+```bash
+deactivate
+```
+
 ### Installing different versions of Python
 
 Installating specific versions of Python in Homebrew:
