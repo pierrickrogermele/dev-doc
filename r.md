@@ -25,6 +25,8 @@ Add the following line to `/etc/apt/sources.list` file:
 	deb http://mirrors.ebi.ac.uk/CRAN/bin/linux/ubuntu trusty/
 See [UBUNTU PACKAGES FOR R](https://cran.r-project.org/bin/linux/ubuntu/).
 
+To get the latest version under Debian, see [Debian Packages of R Software](http://cran.univ-paris1.fr/bin/linux/debian/).
+
 ## Running
 
 Execute specified file:
