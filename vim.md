@@ -863,7 +863,7 @@ To get a correct path to a file/dir using `~`, use the `expand` keyword:
 let wordsfile = expand("~/.vim/spell/en.utf-8.add")
 ```
 
-### Variables & co
+### Variables
 
 See <http://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables>.
 
@@ -877,9 +877,21 @@ Insert at beginning of list or string:
 set myopt^=myval
 ```
 
+For printing a variable:
+```vim
+echo myvar
+```
+
+### Environment variables
+
 Set an environment variable:
 ```vim
 let $MYVAR='myvalue'
+```
+
+Print an environment variable:
+```vim
+echo $MYVAR
 ```
 
 ### Options
@@ -918,11 +930,6 @@ For printing an option:
 ```vim
 set myopt
 echo &myopt
-```
-
-For printing a variable:
-```vim
-echo myvar
 ```
 
 ## Printing
