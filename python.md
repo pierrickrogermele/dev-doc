@@ -1117,6 +1117,18 @@ Testing if an attribute exists:
 hasattr(obj, 'name')
 ```
 
+### Introspection
+
+Getting class information:
+```python
+type(myinstance)
+```
+
+Getting the class name:
+```python
+type(myinstance).__name__
+```
+
 ### Iterators
 
 When looping with for statement, as in:
@@ -1524,6 +1536,12 @@ Upgrade `setuptools` & `pip`:
 pip install --upgrade setuptools
 pip install --upgrade pip
 ```
+
+See [Installing Python Modules](https://docs.python.org/2/install/) for installing packages in the user home directory. For installing in `/.local`, use `--user` option:
+```bash
+pip install --user mymodule
+```
+
 
 ### Packages
 	
