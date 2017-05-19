@@ -1236,7 +1236,7 @@ wd <- getwd()
 setwd(dir)
 ```
 
-Glob (list files):
+Glob (list files inside current directory):
 ```r
 Sys.glob('*.txt')
 Sys.glob(c('*.txt', '*.csv'))
@@ -1266,6 +1266,11 @@ file.rename(current.file.name, new.file.name)
 Create a directory:
 ```r
 dir.create(mydir)
+```
+
+Remove a directory and its content:
+```r
+unlink(mydir, recursive = TRUE)
 ```
 
 ## System call

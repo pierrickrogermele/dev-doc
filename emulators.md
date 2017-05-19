@@ -450,7 +450,43 @@ Mounting a local dir to C:
 mount c: ~/mydir
 ```
 
-## Old computers
+## Amstrad CPC computes
+
+ * [CPC Game reviews](http://www.cpcgamereviews.com).
+ * [Arnold emulator for MacOS-X](http://bannister.org/software/arnold.htm).
+ * [Amstrad CPC user manuals](http://www.cpcwiki.eu/index.php/User_Manual).
+ 
+### CPC 6128
+
+To run a game, most of the time use:
+run "disc"
+If it doesn't work, first list files:
+cat
+Then call the right file:
+run "myfile"
+
+## Thomson computers
 
  * [DCMO5](http://dcmo5.free.fr/v11/dcmo5v11fr.html). THOMSON MO5/TO7. Multi-plateform, to compile.
 
+## TO CLEAN
+
+	===================== emulators/MS-DOS/Best old games.txt
+	www.bestoldgames.net
+	downloadable games===================== emulators/MS-DOS/emulators.txt
+	DosBox
+	======
+	games-emulation/dosbox under Gentoo
+	ALT+ENTER : enter/exit fullscreen
+	ALT+PAUSE : pause
+	CTRL+F10 : capture/release mouse
+	===================== emulators/Spectrum/World of Spectrum.txt
+	www.worldofspectrum.org
+	===================== emulators/Spectrum/emulators.txt
+	fuse
+	====
+	app-emulation/fuse under Gentoo
+	
+	Spectemu
+	=======
+	app-emulation/spectemu under Gentoo

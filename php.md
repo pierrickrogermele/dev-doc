@@ -1210,3 +1210,16 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
 ## Networking
 
  * [WOL (Wake-on-LAN) example](http://www.hackernotcracker.com/2006-04/wol-wake-on-lan-tutorial-with-bonus-php-script.html).
+
+### SOAP
+
+ * [Massbank PHP example](http://www.massbank.jp/manuals/api-doc_en/getRecordInfo.php).
+
+Getting message sent:
+```php
+<?php
+	$soap = new SoapClient(my_wsdl_url, array('trace' => 1));
+	$res = $soap->SomeFunction($params);
+	echo "REQUEST:\n" . $soap->__getLastRequest() . "\n";
+	echo "REQUEST HEADERS:\n" . $soap->__getLastRequestHeaders() . "\n";
+?>
