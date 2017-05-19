@@ -3,6 +3,9 @@ SHELLS
 
  * [Interactive and non-interactive shells and scripts](http://www.tldp.org/LDP/abs/html/intandnonint.html).
 
+`~/.xessionrc` is read when loging graphically under Debian familly systems.
+ * [Difference between .xinitrc, .xsession and .xsessionrc](https://unix.stackexchange.com/questions/281858/difference-between-xinitrc-xsession-and-xsessionrc).
+
 ## SH
 
 sh doesn't accept `for ((...` statement structure. It's reserved to bash.
