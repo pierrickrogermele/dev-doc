@@ -41,6 +41,8 @@ For activating a virtual environment:
 . .venv/bin/activate
 ```
 
+ * [Installing Python 3.6 on Debian](https://unix.stackexchange.com/questions/332641/how-to-install-python-3-6).
+
 ## Running
 
 It is possible to write a python file that can be either imported as a module or run as a script. For this you have to test the `__name__` built-in variable:
