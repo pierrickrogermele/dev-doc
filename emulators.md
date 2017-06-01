@@ -42,6 +42,8 @@ Uses VirtualBox.
  * [Ansible & containers - a natural fit](http://www.ansible.com/docker).
  * [Kubernetes](http://kubernetes.io/) is a docker scheduler that can run applications contained inside docker images on a cluster/cloud.
 
+ * [Installing docker on Debian](https://docs.docker.com/engine/installation/linux/debian/#install-using-the-repository).
+
 ### Images
 
 To build a container from a Dockerfile image, run:
