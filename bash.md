@@ -9,9 +9,9 @@ i.e.: .bashrc is read when bash is executed or when a new terminal/shell window 
 
 `.bash_profile`:
 personal initialization file
+Sourced when started in interactive login mode (from ssh login or OS login in console mode).
 /etc/profile is read first, then :  first of ~/.bash_profile, ~/.bash_login, or ~/.profile.
 executed/loaded when run as interactive login shell.
-i.e.: .bash_profile is read when login from ssh or the OS login console.
 
 `~/.bash_logout`:
 executed when exiting from login shell
