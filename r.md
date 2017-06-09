@@ -21,9 +21,13 @@ apt-get install r-base
 ```
 
 To get the latest R version under Ubuntu, setup the CRAN package repository.
-Add the following line to `/etc/apt/sources.list` file:
-	deb http://mirrors.ebi.ac.uk/CRAN/bin/linux/ubuntu trusty/
 See [UBUNTU PACKAGES FOR R](https://cran.r-project.org/bin/linux/ubuntu/).
+Add the following line to `/etc/apt/sources.list` file:
+	deb http://cran.stat.unipd.it/bin/linux/ubuntu zesty/
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt-get update
+```
 
 To get the latest version under Debian, see [Debian Packages of R Software](http://cran.univ-paris1.fr/bin/linux/debian/).
 
@@ -88,6 +92,7 @@ Select CRAN mirror:
 chooseCRANmirror()
 chooseCRANmirror(graphics = FALSE) # Avoid opening of X11 window when selecting mirror site:
 ```
+CRAN mirror can be set permanently inside `.Rprofile` configuration file. See <https://stackoverflow.com/questions/8475102/set-default-cran-mirror-permanent-in-r>.
 
 Installing a CRAN package:
 ```r
@@ -107,6 +112,12 @@ then choose the destination you want by using the `lib` option:
 ```r
 install.packages("pkgname", lib = .libPaths()[2])
 ```
+
+For installing in user home directory, see `.libPaths()` documentation. On Ubuntu with R 3.4, the following directory need to be created:
+```bash
+mkdir -p $HOME/R/x86_64-pc-linux-gnu-library/3.4
+```
+This is the default value of the `R_LIBS_USER` environement variable for R.
 
 Installing a package from source:
 ```r
