@@ -1441,6 +1441,17 @@ compiled_re = re.compile(pattern)
 result = compiled_re.match(string)
 ```
 
+## Conda
+
+For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On macos you can also use Homebrew:
+```bash
+brew cask install miniconda
+```
+
+### Bioconda recipes
+
+ * [Contributing a recipe](https://bioconda.github.io/contribute-a-recipe.html).
+
 ## Packages and modules
 
 A module is a file with `.py` and whose name is the module's name.
