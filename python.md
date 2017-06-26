@@ -1133,6 +1133,14 @@ type(myinstance).__name__
 
 ### Iterators
 
+On an iterable object, one can call `next()` to get the next object in interation:
+```python
+try:
+	x = obj.next()
+except StopIteration: # Raised in case no more objects are avaible in the iteration.
+	do_something()
+```
+
 When looping with for statement, as in:
 ```python
 for element in [1, 2, 3]:
