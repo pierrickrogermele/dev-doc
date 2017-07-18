@@ -84,6 +84,7 @@ script_dir="${0%/*}"
 PS1="\[\033[0;33m\][\$(date +%H%M)][\u@\h:\w]$\[\033[0m\] "
 export PS1='\[\e[1;32m\][\u@\h \W]\$\[\e[0m\] '
 ```
+Backslashed brackets are here to enclose command characters that control coloring. This allows bash to isolate those characters and do not count them when computing prompt length. Prompt length is needed when going backward into previous commands, searching into previous commands, wraping and going to the beginning of line.
 
 Escape sequence | Description
 --------------- | ----------------------
