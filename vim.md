@@ -274,7 +274,7 @@ Command                 | Description
 `:tabfind {file}`       | Open a new tab with filename given, searching the 'path' to find it.
 `:tabclose`             | Close current tab.
 `:tabclose {i}`         | Close i-th tab.
-`:tabonly`              | Close all other tabs (show only the current tab).
+`:tabo[nly]`            | Close all other tabs (show only the current tab).
 `:tab split`            | Copy the current window to a new tab of its own.
 `Ctrl-w T`              | Move current window to a new tab page.
 ----------------------- | ---------------------
