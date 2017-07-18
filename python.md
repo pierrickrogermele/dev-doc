@@ -1133,6 +1133,14 @@ type(myinstance).__name__
 
 ### Iterators
 
+On an iterable object, one can call `next()` to get the next object in interation:
+```python
+try:
+	x = obj.next()
+except StopIteration: # Raised in case no more objects are avaible in the iteration.
+	do_something()
+```
+
 When looping with for statement, as in:
 ```python
 for element in [1, 2, 3]:
@@ -1432,6 +1440,17 @@ Compile --> compile a regexp into an object, so evaluation is faster:
 compiled_re = re.compile(pattern)
 result = compiled_re.match(string)
 ```
+
+## Conda
+
+For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On macos you can also use Homebrew:
+```bash
+brew cask install miniconda
+```
+
+### Bioconda recipes
+
+ * [Contributing a recipe](https://bioconda.github.io/contribute-a-recipe.html).
 
 ## Packages and modules
 
