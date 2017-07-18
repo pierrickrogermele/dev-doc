@@ -117,7 +117,11 @@ For installing in user home directory, see `.libPaths()` documentation. On Ubunt
 ```bash
 mkdir -p $HOME/R/x86_64-pc-linux-gnu-library/3.4
 ```
-This is the default value of the `R_LIBS_USER` environement variable for R.
+This is the default value of the `R_LIBS_USER` environement variable for R under Linux.
+For macOS:
+```bash
+mkdir -p $HOME/Library/R/3.4/library
+```
 
 Installing a package from source:
 ```r
