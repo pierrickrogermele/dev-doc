@@ -1139,7 +1139,7 @@ Calling a function from its name as a string:
 do.call("my_func", list(arg1, arg2, arg3))
 ```
 
-Construct a call as a string than can be evaluated with `eval`:
+Construct a call as a string that can be evaluated with `eval`:
 ```r
 my_str_call <- call("my_func", arg1, arg2, arg3)
 eval(call("my_func", arg1, arg2, arg3))
