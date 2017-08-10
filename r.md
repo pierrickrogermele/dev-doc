@@ -113,7 +113,7 @@ then choose the destination you want by using the `lib` option:
 install.packages("pkgname", lib = .libPaths()[2])
 ```
 
-For installing in user home directory, see `.libPaths()` documentation. On Ubuntu with R 3.4, the following directory need to be created:
+For installing in user home directory, see `.libPaths()` documentation. On Ubuntu with R 3.4, the following directory needs to be created:
 ```bash
 mkdir -p $HOME/R/x86_64-pc-linux-gnu-library/3.4
 ```
