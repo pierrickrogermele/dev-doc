@@ -457,11 +457,11 @@ or restart the computer.
 For a tutorial, type `INTRO` on the command line.
 
 Mounting a local dir to C:
-```
+```bash
 mount c: ~/mydir
 ```
 
-## Amstrad CPC computes
+## Amstrad CPC computers
 
  * [CPC Game reviews](http://www.cpcgamereviews.com).
  * [Arnold emulator for MacOS-X](http://bannister.org/software/arnold.htm).
