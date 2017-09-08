@@ -108,6 +108,10 @@ if isinstance(myvar, str):
 
 There are no constants in Python.
 
+### Mutability
+
+ * [PYTHON OBJECTS: MUTABLE VS. IMMUTABLE](https://codehabitude.com/2013/12/24/python-objects-mutable-vs-immutable/).
+
 ### None
 
 None is the equivalent of NULL in Python:
@@ -250,6 +254,11 @@ Split a string into a list:
 mylist = s.split(',')
 ```
 
+Split all characters of a string (i.e.: transform a string into a list of its characters):
+```python
+chars = list('My string text')
+```
+
 Join:
 ```python
 import string
@@ -336,6 +345,12 @@ a[-2] # start from end
 a[1:3] # both are indices
 ```
 	
+Test if an element is in a list:
+```python
+if x in my_list:
+	pass
+```
+
 Concatenate:
 ```python
 a + b
@@ -683,6 +698,24 @@ s = 'a=3,b=9,c=10'
 mydict = dict(u.split("=") for u in s.split(","))
 ```
 
+Iterate over indices of a list:
+```python
+for i in xrange(len(data)):
+	data[i] = ...
+```
+
+Iterate over indices and elements of a list:
+```python
+for i, x in enumerate(data):
+	data[i] = "something" if x > 24 else "something else"
+```
+
+Iterate over indices of a list with enumerate but forget about the elements:
+```python
+for i, _ in enumerate(data):
+	data[i] = "something"
+```
+
 ### Structure
 
 To create a struture, one uses an empty class:
@@ -734,6 +767,9 @@ Operator | Description
 `==`     | Equal to.
 `!=`     | Not equal to.
 `<>`     | An obsolete form of 'not equal to'.
+`+=`     | 
+
+No `--` and `++` operators exist.
 
 Ternary expression:
 ```python
@@ -1893,3 +1929,8 @@ To see stdout and stderr, open the console:
 ```bash
 open -a Console
 ```
+
+### Pandas
+
+ * [Pandas](https://pandas.pydata.org/).
+ * [Data frames](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
