@@ -789,6 +789,14 @@ def myfunc(n):
 	return some_value
 ```
 
+For returning several values, use a tuple:
+```python
+def myfunc():
+	return a, b
+# ...
+x, y = myfunc()
+```
+
 Default values for arguments:
 ```python
 def myfunc(n = 2):
