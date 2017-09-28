@@ -371,6 +371,59 @@ Trimming leading and trailing white spaces:
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 ```
 
+
+#### Search, replace and regex
+
+Replacing with regexp:
+```r
+result <- sub('\\.in$', '.out', variable)    # replace first occurence only
+new_str <- sub('^.*/([^/]+)$', '\\1', str, perl = TRUE)
+result <- gsub('\\.in$', '.out', variable)   # replace all occurences
+```
+
+`grep`:
+```r
+grep("blabla", df) # returns a list of indices
+length(grep("blabla", df)) > 0
+```
+
+`grepl` searches for regexp in vector, and returns a vector of booleans:
+```r
+if (grepl("^blabla", my_string, perl=TRUE)) do_something()
+grepl("^blabla", c(s1, s2, s3), perl=TRUE) # --> returns a vector
+```
+
+Get index of first match:
+```r
+pos <- regexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
+index <- as.integer(pos)
+```
+
+Get indices of all matches:
+```r
+pos <- gregexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
+indices <- as.integer(pos)
+```
+
+Extracting substrings:
+```r
+library("stringr")
+str_extract("blabla lala", "la") # search once for the regexp
+str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
+```
+
+Searching for groups:
+```r
+library(stringr)
+str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups
+str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups
+```
+
+Ignoring case:
+```r
+str_match(str_vect, ignore.case(pattern))
+```
+
 ### Array
 
 Arrays are objects that can have more than 2 dimensions. Matrix is a special case of arrays.
@@ -944,58 +997,6 @@ rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
 cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
 ```
 
-## Regex
-
-Replacing with regexp:
-```r
-result <- sub('\\.in$', '.out', variable)    # replace first occurence only
-new_str <- sub('^.*/([^/]+)$', '\\1', str, perl = TRUE)
-result <- gsub('\\.in$', '.out', variable)   # replace all occurences
-```
-
-`grep`:
-```r
-grep("blabla", df) # returns a list of indices
-length(grep("blabla", df)) > 0
-```
-
-`grepl` searches for regexp in vector, and returns a vector of booleans:
-```r
-if (grepl("^blabla", my_string, perl=TRUE)) do_something()
-grepl("^blabla", c(s1, s2, s3), perl=TRUE) # --> returns a vector
-```
-
-Get index of first match:
-```r
-pos <- regexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
-index <- as.integer(pos)
-```
-
-Get indices of all matches:
-```r
-pos <- gregexpr('\\.[a-z]', 'zap.plouf.hop', perl = TRUE)[[1]]
-indices <- as.integer(pos)
-```
-
-Extracting substrings:
-```r
-library("stringr")
-str_extract("blabla lala", "la") # search once for the regexp
-str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
-```
-
-Searching for groups:
-```r
-library(stringr)
-str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups
-str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups
-```
-
-Ignoring case:
-```r
-str_match(str_vect, ignore.case(pattern))
-```
-
 ## Statements
 
 ### For
@@ -1543,6 +1544,12 @@ A <- setRefClass("A", fields = list(n = "numeric"),
 ```
 
 To test inheritance, see S4.
+
+To inherit from more than one class, use a vector to declare all super classes:
+```r
+C <- setRefClass('C', contains = c('A', 'B'))
+```
+Apparently, only the first class will provide field members, subsequent classes will only be seen as interfaces.
 
 #### Field validity
 
