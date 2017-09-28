@@ -179,6 +179,12 @@ Normally you have to be part of the group `docker` to run Docker. However it may
 
 #### minikube on macOS
 
+ Using minikube with Docker for macOS (see [Minikube Setup: Docker for Mac / Sierra](https://gist.github.com/inadarei/7c4f4340d65b0cc90d42d6382fb63130)):
+```bash
+brew install xhyve docker-machine-driver-xhyve
+minikube start --vm-driver=xhyve
+```
+
 ##### Install
 
 See [minikube](https://github.com/kubernetes/minikube/releases).
@@ -457,11 +463,11 @@ or restart the computer.
 For a tutorial, type `INTRO` on the command line.
 
 Mounting a local dir to C:
-```
+```bash
 mount c: ~/mydir
 ```
 
-## Amstrad CPC computes
+## Amstrad CPC computers
 
  * [CPC Game reviews](http://www.cpcgamereviews.com).
  * [Arnold emulator for MacOS-X](http://bannister.org/software/arnold.htm).
