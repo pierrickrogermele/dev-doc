@@ -439,8 +439,7 @@ for f in $files ; do
 done
 ```
 
-## `IFS`
-
+Change of character separator in a loop:
 `IFS` is a built-in variable that stores the characters used to separate elements of a list. By default it is set to space, tabulation and new line, but it can be set to any value.
 
 To loop on elements of a list separated by colon (like in `PATH`):
