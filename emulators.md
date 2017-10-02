@@ -120,52 +120,55 @@ docker run -v /Users/myname/somedir/blabla:/files/mydir:ro myimage
 
 ### macOS
 
-Can be installed with `brew` on macOS:
-```bash
-brew install docker-machine
-brew install docker
-```
+There is now a native docker for macOS. No need for docker-machine. See Docker website.
 
-Docker runs containers inside a docker server (daemon) that needs to run on a Linux OS.
-Thus on macOS, we need to run the docker server inside a Linux virtual machine.
-
-The `docker-machine` utility creates such a virtual machine for you and configure the docker client to communicate with it, see [Docker Machine](https://docs.docker.com/machine/). VPNs must be stopped while using the docker-machine.
-```bash
-docker-machine create -d virtualbox mydockermachinename
-```
-To create a docker machine with more memory, use:
-```bash
-docker-machine create -d virtualbox --virtualbox-memory 2048  mydockermachinename
-```
-The `/` is mount as a tmpfs system, so it uses RAM memory and not disk memory, so don't use `--virtualbox-disk-size`.
-Increasing memory will be needed if you get the error message `no space left on device`.
-
-
-To get a list of all created docker machines:
-```bash
-docker-machine ls
-```
-
-To run a stopped docker machine:
-```bash
-docker-machine start mymachine
-```
-
-Then run the following command to configure your host:
-```bash
-eval $(docker-machine env lucydocker)
-```
-Now you can use docker client.
-
-On error `Error response from daemon: client is newer than server`, run:
-```bash
-docker-machine upgrade default
-```
-
-Port forwarding:
-```bash
-docker-machine ssh vb8g -f -N -L 8080:localhost:8080
-```
+DEPRECATED:
+	Can be installed with `brew` on macOS:
+	```bash
+	brew install docker-machine
+	brew install docker
+	```
+	
+	Docker runs containers inside a docker server (daemon) that needs to run on a Linux OS.
+	Thus on macOS, we need to run the docker server inside a Linux virtual machine.
+	
+	The `docker-machine` utility creates such a virtual machine for you and configure the docker client to communicate with it, see [Docker Machine](https://docs.docker.com/machine/). VPNs must be stopped while using the docker-machine.
+	```bash
+	docker-machine create -d virtualbox mydockermachinename
+	```
+	To create a docker machine with more memory, use:
+	```bash
+	docker-machine create -d virtualbox --virtualbox-memory 2048  mydockermachinename
+	```
+	The `/` is mount as a tmpfs system, so it uses RAM memory and not disk memory, so don't use `--virtualbox-disk-size`.
+	Increasing memory will be needed if you get the error message `no space left on device`.
+	
+	
+	To get a list of all created docker machines:
+	```bash
+	docker-machine ls
+	```
+	
+	To run a stopped docker machine:
+	```bash
+	docker-machine start mymachine
+	```
+	
+	Then run the following command to configure your host:
+	```bash
+	eval $(docker-machine env lucydocker)
+	```
+	Now you can use docker client.
+	
+	On error `Error response from daemon: client is newer than server`, run:
+	```bash
+	docker-machine upgrade default
+	```
+	
+	Port forwarding:
+	```bash
+	docker-machine ssh vb8g -f -N -L 8080:localhost:8080
+	```
 
 ### Linux
 
@@ -179,7 +182,7 @@ Normally you have to be part of the group `docker` to run Docker. However it may
 
 #### minikube on macOS
 
- Using minikube with Docker for macOS (see [Minikube Setup: Docker for Mac / Sierra](https://gist.github.com/inadarei/7c4f4340d65b0cc90d42d6382fb63130)):
+Using minikube with Docker for macOS (see [Minikube Setup: Docker for Mac / Sierra](https://gist.github.com/inadarei/7c4f4340d65b0cc90d42d6382fb63130)):
 ```bash
 brew install xhyve docker-machine-driver-xhyve
 minikube start --vm-driver=xhyve
