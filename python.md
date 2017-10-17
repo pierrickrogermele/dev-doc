@@ -1390,6 +1390,11 @@ Thus it is always preferable to put parenthesis.
 ```python
 print(mylist, sep=',', end="\n")
 ```
+To get the behaviour of the Python 3 `print()` function into Python 2, use the `__future__` library:
+```python
+from __future__ import print_function
+print(mylist, sep=',', end="\n")
+```
 
 Format:
 ```python
