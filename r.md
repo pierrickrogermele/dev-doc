@@ -407,7 +407,7 @@ indices <- as.integer(pos)
 
 Extracting substrings:
 ```r
-library("stringr")
+library(stringr)
 str_extract("blabla lala", "la") # search once for the regexp
 str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
 ```
@@ -587,6 +587,20 @@ x <- duplicated(y) # Returns a vector of boolean
 Getting unique elements (remove duplicates):
 ```r
 x <- y[ ! duplicated(y)]
+```
+
+### Lists
+
+Remove values from a list:
+```r
+mylist <- list(4, 6, 3, 1, 3, 0)
+mylist[1,3] <- NULL
+```
+
+Set values to NULL in a list:
+```r
+mylist <- list(4, 6, 3, 1, 3, 0)
+mylist[1,3] <- list(NULL)
 ```
 
 ### Data frames
