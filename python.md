@@ -1612,6 +1612,10 @@ See [Installing Python Modules](https://docs.python.org/2/install/) for installi
 pip install --user mymodule
 ```
 
+How to install from a GitHub repos:
+```bash
+pip install --user git+https://github.com/ISA-tools/isa-api@develop
+```
 
 ### Packages
 	
