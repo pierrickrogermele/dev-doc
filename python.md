@@ -767,7 +767,6 @@ Operator | Description
 `==`     | Equal to.
 `!=`     | Not equal to.
 `<>`     | An obsolete form of 'not equal to'.
-`+=`     | 
 
 No `--` and `++` operators exist.
 
@@ -1359,6 +1358,7 @@ To parse command line, use `argparse`:
 ```python
 import argparse
 ```
+See [argparse](https://docs.python.org/3/library/argparse.html#module-argparse).
 
 Create parser:
 ```python
