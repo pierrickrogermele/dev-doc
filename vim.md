@@ -412,6 +412,8 @@ Set filetype:
 
 ## Search & replace
 
+ * [Search and replace](http://vim.wikia.com/wiki/Search_and_replace).
+
 Command           | Description
 ----------------- | --------------------------------------
 `*`               | Search for current word (the one under the cursor).
