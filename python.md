@@ -16,6 +16,11 @@ Create a virtual env:
 virtualenv my/venv/dir
 ```
 
+Specify a python version:
+```bash
+virtualenv -p python2.7 my/venv/dir
+```
+
 Activating a virtual env:
 ```bash
 source my/venv/dir/bin/activate
@@ -222,6 +227,11 @@ EFG"""
 Concatenation:
 ```python
 s = 'AB' + 'CD'
+```
+
+Append characters to the end of a string:
+```python
+s += 'blabla'
 ```
 
 Repeat a string:
