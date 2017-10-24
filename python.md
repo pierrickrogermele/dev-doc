@@ -1060,6 +1060,17 @@ except MyError as e:
 	print 'My exception occurred, value:', e.value
 ```
 
+### With
+
+ * [The with statement in Python 2](https://docs.python.org/2/reference/compound_stmts.html#with).
+
+```python
+with open(myfilepath, 'rb') as csvfile:
+	...
+```
+
+The expression between `with` and `as` must return a [context manager](https://docs.python.org/2/reference/datamodel.html#context-managers).
+
 ## OOP
 	
 Class definition:
