@@ -1,5 +1,7 @@
-UNIX TOOLS
-==========
+UNIX
+====
+
+These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
@@ -122,6 +124,10 @@ msmtp-queue -r
 ```
 Which means it could be used inside a cron task.
 
+#### macOS install
+
+msmtp exists in brew, but it doesn't install queueing scripts. However they are present in '/usr/local/Cellar/msmtp/<version>/share/msmtp/scripts/msmtpq/'.
+
 ### rsync
 	
 Use verbose flag to print processed files:
@@ -182,21 +188,6 @@ Regular sync (revursive, links, times), doesn't synchronize the permissions:
 rsync -rlt ...
 ```
 
-#### macOS install
-
-msmtp exists in brew, but it doesn't install queueing scripts.
-So it's better to download the package (<http://msmtp.sourceforge.net/download.html>) and install it.
-```bash
-./configure
-make
-make install
-cd scripts/msmtpq/
-install msmtpq msmtp-queue /usr/local/bin
-#- modify LOG variable inside msmtpq:
-LOG=~/.msmtp.queue.log
-#- remove -w4 option of ping
-```
-
 ### ssh
 	
 Generate private and public keys:
@@ -220,13 +211,163 @@ ssh -L 1993:imap.mail.me.com:993 -g -N server.addr
 ```
 Local port used is 1993. Everything going to this local port will be forwarded to imap.mail.me.com:993 through server.addr:22.
 
-## Machine name
+### NTP, Network Time Protocol
+
+ * [NTP configuration on Debian](https://wiki.debian.org/NTP).
+ python3=$python36
+
+### Wake On LAN
+
+On Debian, see <https://wiki.debian.org/WakeOnLan>.
+
+## System
+
+### OS info
+
+Get Ubuntu version:
+```bash
+lsb_release -a
+```
+
+Get system information on Ubuntu:
+```bash
+sudo lshw
+sudo lshw -C network # Filter on network components
+```
+
+### Machine name
 
 Under macOS, to set the name of a machine, run:
 ```bash
 sudo scutil --set HostName lucy
 sudo scutil --set LocalHostName lucy
 sudo scutil --set ComputerName lucy
+```
+
+### Run levels
+
+ * [Run levels](http://www.tldp.org/LDP/sag/html/run-levels-intro.html).
+
+To get current level:
+```bash
+runlevel
+```
+
+Change run level:
+```bash
+init 5
+```
+
+The booting run level is defined inside the file `/etc/inittab`.
+
+Services starting scripts are located inside `/etc/rc.d/init.d`.
+They are run according to the runlevel. A symbolic is created inside the relevant runlevel folder for a service that we want to stop or start.
+The runlevel folder is of the form `/etc/rc.d/rc?.d`, where `?` is replaced the runlevel number.
+The name of the symbolic link begin by `K` for stopping the service and `S` for starting it, and is followed by a number. The number allows to sort the services in the order we want them to stop or to start.
+
+LOGIN
+
+Remove login manager:
+```bash
+update-rc.d -f gdm remove
+```
+
+Restore login manager:
+```bash
+update-rc.d -f gdm defaults
+```
+
+
+### Users and groups
+
+```bash
+usermod -a -G somegroup someuser
+```
+### date
+
+Convert a date to Epoch time:
+```bash
+date -j '01171200' +%s # BSD
+```
+
+Flag        | Description
+----------- | -----------------------
+`-j`        | Do not try to set date.
+`-f '...'`  | set another format for input date. Default is [[[mm]dd]HH]MM[[cc]yy][.ss] (mm=month, cc=century).
+
+
+### Hardware
+
+Get list of PCI devides in Debian:
+```bash
+lspci
+```
+
+Get list of USB devices in Debian:
+```bash
+lsusb
+```
+
+#### iPad/iPhone
+
+##### Charging
+
+For charging an iPad under Linux, see [Charge iPad / iPhone 4s / iPod Touch in Ubuntu](http://ubuntuguide.net/charge-ipad-iphone-4s-ipod-touch-in-ubuntu).
+Under Ubuntu:
+```bash
+sudo apt-get install libusb-1.0-0 libusb-1.0-0-dev git git-core
+git clone https://github.com/mkorenkov/ipad_charge.git
+cd ipad_charge
+make
+sudo make install
+```
+
+Then to start charging connected devices:
+```bash
+ipad_charge
+```
+
+And to stop charging connected devices:
+```bash
+ipad_charge -0
+```
+
+#### Keyboard
+
+ * [Configure Apple keyboard under Debian](https://wiki.debian.org/MacBook#Keyboard).
+
+To see current keyboard configuration under Ubuntu:
+```bash
+localectl status
+```
+
+To configure the keyboard for the session only, run:
+```bash
+sudo loadkeys us
+```
+or for French AZERTY keyboard:
+```bash
+sudo loadkeys fr
+```
+
+To configure keyboard permanently under CentOS:
+```bash
+sudo system-config-keyboard
+```
+
+To configure keyboard permanently under Ubuntu, it will open an X window:
+```bash
+sudo dpkg-reconfigure keyboard-configuration 
+```
+Under Ubuntu, to configure permanently from command line, and make it also available at boot time (i.e.: at login console), edit the file `/etc/rc.local` and put the line `loadkeys fr` just before the line `exit 0`. `fr` is for french keyboard layout, replace it with whatever keyboard layout you want.
+
+### Services
+
+#### Ubuntu
+
+List all services:
+```bash
+service --status-all
 ```
 
 ## File system
@@ -251,31 +392,6 @@ tmp_file=$(mktemp $options)
 Or always set XXXXX template:
 ```bash
 tmp_file=$(mktemp -t tmp.XXXXXX)
-```
-
-### zip, unzip
-
-To compress a folder:
-```bash
-zip my_zip_file file1 file2 ...
-zip -r my_dir my_dir # recursive
-zip -j foo foo/* # to leave off the path
-```
-
-To uncompress:
-```bash
-unzip myfile.zip
-```
-
-List files contained inside a zip:
-```bash
-unzip -l myfile.zip
-```
-
-Unzip quietly:
-```bash
-unzip -q myfile.zip
-unzip -qq myfile.zip
 ```
 
 ### basename
@@ -415,6 +531,82 @@ find <dir> -perm /u=x
 Print output with \0 separator for results instead of \n:
 ```bash
 find ... -print0
+```
+
+### chmod
+
+When the sgid bit is set on a directory, all files & dirs created in this directory will automatically have the same group as the directory:
+```bash
+chmod g+s mydir
+```
+
+Set execute/search flag for directories only:
+```
+chmod -R g+X mypath
+```
+
+### umask
+
+`umask` set the default permissions for new files.
+
+## Compression and uncompression
+
+### tar
+
+To tar files without the parent directory, first change to that dir:
+```bash
+tar -cjf my_pkg.tbz -C my_dir .
+```
+The `-C <dir>` option, change to the specified directory.
+
+Incremental backup (GNU only):
+```bash
+tar -cf /backup/my_dir.0.tar -g /backup/my_dir.snar /my/dir
+tar -cf /backup/my_dir.1.tar -g /backup/my_dir.snar /my/dir
+tar -cf /backup/my_dir.2.tar -g /backup/my_dir.snar /my/dir
+```
+Best practice is to do one full dump each week, and then a level 1 backup (incremental backup from the full dump) each day.
+Note the option `--no-check-device`, which tells `tar` to do not rely on device numbers when preparing a list of changed files for an incremental dump. Device numbers are not reliable with NFS.
+To restore an incremental backup:
+```bash
+tar -xf /backup/my_dir.0.tar -g /dev/null
+tar -xf /backup/my_dir.1.tar -g /dev/null
+tar -xf /backup/my_dir.2.tar -g /dev/null
+```
+
+Use xz:
+```bash
+tar -cJf mydir.tar.xz mydir
+```
+
+Extract in another directory:
+```bash
+tar -xzf my.file.tar.gz -C my/dest/dir
+```
+
+### zip, unzip
+
+To compress a folder:
+```bash
+zip my_zip_file file1 file2 ...
+zip -r my_dir my_dir # recursive
+zip -j foo foo/* # to leave off the path
+```
+
+To uncompress:
+```bash
+unzip myfile.zip
+```
+
+List files contained inside a zip:
+```bash
+unzip -l myfile.zip
+```
+
+Unzip quietly:
+```bash
+unzip -q myfile.zip
+unzip -qq myfile.zip
 ```
 
 ## File filtering
@@ -1011,22 +1203,6 @@ bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
 
  * [Battery plugin](https://github.com/tmux-plugins/tmux-battery).
 
-## chmod
-
-When the sgid bit is set on a directory, all files & dirs created in this directory will automatically have the same group as the directory:
-```bash
-chmod g+s mydir
-```
-
-Set execute/search flag for directories only:
-```
-chmod -R g+X mypath
-```
-
-## umask
-
-`umask` set the default permissions for new files.
-
 ## `test` / `[`
 
 File test operators:
@@ -1097,18 +1273,6 @@ Monter un fichier iso en disque pour explorer son contenu :
 mount -o loop file.iso <folder>
 ```
 
-## date
-
-Convert a date to Epoch time:
-```bash
-date -j '01171200' +%s # BSD
-```
-
-Flag        | Description
------------ | -----------------------
-`-j`        | Do not try to set date.
-`-f '...'`  | set another format for input date. Default is [[[mm]dd]HH]MM[[cc]yy][.ss] (mm=month, cc=century).
-
 ## xargs
 
 Flag        | Description
@@ -1157,52 +1321,11 @@ Running a command:
 sudo <command>
 ```
 
-## bc
-
-Set the number of decimals to print for output:
-```
-scale=2
-```
-By default only integer parts are printed (zero decimals).
-
 ## zenity
 
 Opens a dialog box and possibly get user input.
 ```bash
 zenity –question –title="Query" –text="Would you like to run the script?"
-```
-
-## tar
-
-To tar files without the parent directory, first change to that dir:
-```bash
-tar -cjf my_pkg.tbz -C my_dir .
-```
-The `-C <dir>` option, change to the specified directory.
-
-Incremental backup (GNU only):
-```bash
-tar -cf /backup/my_dir.0.tar -g /backup/my_dir.snar /my/dir
-tar -cf /backup/my_dir.1.tar -g /backup/my_dir.snar /my/dir
-tar -cf /backup/my_dir.2.tar -g /backup/my_dir.snar /my/dir
-```
-Best practice is to do one full dump each week, and then a level 1 backup (incremental backup from the full dump) each day.
-Note the option `--no-check-device`, which tells `tar` to do not rely on device numbers when preparing a list of changed files for an incremental dump. Device numbers are not reliable with NFS.
-To restore an incremental backup:
-```bash
-tar -xf /backup/my_dir.0.tar -g /dev/null
-tar -xf /backup/my_dir.1.tar -g /dev/null
-tar -xf /backup/my_dir.2.tar -g /dev/null
-```
-
-Use xz:
-```bash
-tar -cJf mydir.tar.xz mydir
-```
-
-Extract in another directory:
-```bash
-tar -xzf my.file.tar.gz -C my/dest/dir
 ```
 
 ## crontab
@@ -1424,6 +1547,14 @@ Option          | Description
  -a             | Display also processes of all users.
  -x             | display also processes which do not have a controlling terminal.
  -U username    | Display the processes owned by the specified user.
+
+## bc
+
+Set the number of decimals to print for output:
+```
+scale=2
+```
+By default only integer parts are printed (zero decimals).
 
 ## calc
 
