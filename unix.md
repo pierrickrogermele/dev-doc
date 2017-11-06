@@ -41,10 +41,10 @@ echo "my text" | mail -s "my_subject" user.name
 
 Check that a port is open:
 ```bash
-nmap -p 8180 localhost
+nmap -p 8180 mymachine
 ```
 
-### port information
+### Firewall & ports
 
 Get port rules:
 ```bash
@@ -54,6 +54,11 @@ sudo iptables -L
 If `ufw` (firewall) is running:
 ```bash
 sudo ufw status
+```
+
+Under macos 10, for listing the rules:
+```bash
+sudo pfctl -s rules
 ```
 
 ### offlineimap
