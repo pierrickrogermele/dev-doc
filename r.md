@@ -135,7 +135,7 @@ install.packages('C:/RMySQL.tar.gz', repos = NULL, type='source')
 
 Installing using the command line:
 ```bash
-R -e "install.packages('getopt', dependencies = TRUE, repos='http://lib.ugent.be/CRAN/')"
+R -e "install.packages('getopt', dependencies = TRUE, repos='https://cloud.r-project.org/')"
 ```
 
 Getting a list of installed packages:
