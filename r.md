@@ -1160,6 +1160,13 @@ my_str_call <- call("my_func", arg1, arg2, arg3)
 eval(call("my_func", arg1, arg2, arg3))
 ```
 
+Ellipsis:
+```r
+foo <- function(x, ...) {
+	foo2(z = x, ...)
+}
+```
+
 ## Error handling & debugging
 
 Throwing an error:
