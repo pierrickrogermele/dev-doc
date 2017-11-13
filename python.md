@@ -1,6 +1,8 @@
 PYTHON
 ======
 
+ * [Cheat Sheet: Writing Python 2-3 compatible code](http://python-future.org/compatible_idioms.html).
+
 ## Installing
 
 ### Virtual environments
@@ -1678,6 +1680,19 @@ from ..package import module3
 ```
 
 ## Some interesting libraries
+
+### csv
+
+To read CSV file in both Python 2 and 3:
+```python
+import sys
+import csv
+if sys.version_info[0] < 3: 
+    fp = open(path, 'rb')
+else:
+    fp = open(path, 'r', newline='', encoding='utf8')
+reader = csv.reader(fp)
+```
 
 ### Decimal
 	
