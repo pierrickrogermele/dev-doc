@@ -1746,6 +1746,13 @@ Enable displaying of stdout and stderr:
 py.test -s
 ```
 
+### unittest
+
+Running tests from files in tests subfolder:
+```bash
+python -m unittest tests.my_filename
+```
+
 ### Tox
 
 Automate Python code testing.
