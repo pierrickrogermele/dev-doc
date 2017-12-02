@@ -1131,6 +1131,20 @@ Get battery information:
 pmset -g batt
 ```
 
+## Media
+
+### ffmpeg
+
+To convert from AIFF to Apple Lossless:
+```bash
+ffmpeg -i audio.wav -acodec alac audio.m4a
+```
+
+To convert m4a into mp3:
+```bash
+ffmpeg -i myfile.m4a -acodec libmp3lame -ab 96k myfile.mp3
+```
+
 ## tmux
 
 Reload config file from within tmux:
