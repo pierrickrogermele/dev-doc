@@ -554,6 +554,73 @@ chmod -R g+X mypath
 
 `umask` set the default permissions for new files.
 
+### ls
+
+BSD ls and GNU ls are different.
+GNU ls command is part of the coreutils package.
+
+Quoting names and escaping characters:
+```bash
+ls -Q
+```
+
+Print access time instead of last modification time:
+```bash
+ls -u *
+```
+
+In MacOS-X, a `@` character after permissions means that the file has additional attributes. You can see these additional attributes by typing the following command:
+```bash
+xattr -l <filename>
+xattr -d <attrname> <filename> # to remove an attribute
+```
+
+In MacOS-X, a `+` character after permissions means that the file has an ACL, short for Access Control List, which is used to give fine grained control over file permissions, beyond what is available with the regular unix permission tables.
+Entering the following command will show these additional permissions for files in a directory:
+```bash
+ls -le
+```
+
+`LSCOLORS` (see man ls), is an environment variable that defines the colors to be used by `ls` command. The default is "exfxcxdxbxegedabagacad", i.e. blue foreground and default background for regular directories, black foreground and red background for setuid executables, etc.
+
+Color code | Descrption
+---------- | -----------------------------------------------
+a          |  Black.
+b          |  Red.
+c          |  Green.
+d          |  Brown.
+e          |  Blue.
+f          |  Magenta.
+g          |  Cyan.
+h          |  Light grey.
+A          |  Bold black, usually shows up as dark grey.
+B          |  Bold red.
+C          |  Bold green.
+D          |  Bold brown, usually shows up as yellow.
+E          |  Bold blue.
+F          |  Bold magenta.
+G          |  Bold cyan.
+H          |  Bold light grey; looks like bright white.
+x          |  Default foreground or background.
+
+Note that the above are standard ANSI colors.  The actual display may differ depending on the color capabilities of the terminal in use.
+
+The order of the attributes are as follows:
+
+Rank | Description
+---- | ---------------------------------
+1    | Directory.
+2    | Symbolic link.
+3    | Socket.
+4    | Pipe.
+5    | Executable.
+6    | Block special.
+7    | Character special.
+8    | Executable with setuid bit set.
+9    | Executable with setgid bit set.
+10   | Directory writable to others, with sticky bit.
+11   | Directory writable to others, without sticky bit.
+
 ## Compression and uncompression
 
 ### tar
@@ -1131,7 +1198,273 @@ Get battery information:
 pmset -g batt
 ```
 
+## Package management
+
+### brew
+
+ * <http://mxcl.github.com/homebrew/>.
+ * <https://github.com/mxcl/homebrew/>.
+
+For installing in `/usr/local`:
+```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.github.com/gist/323731)"
+```
+
+For installing elsewhere:
+```bash
+mkdir homebrew && curl -L https://github.com/mxcl/homebrew/tarball/master | tar xz --strip 1 -C homebrew
+```
+
+Install a package:
+```bash
+brew install <package>
+brew install --HEAD <package>	# to install with the developpement version (HEAD) of the brew formulae (ruby file)
+brew install --build-from-source <package> # force installing from sources, even if a bottle version is available.
+```
+
+Installing from another formulæ repository:
+```bash
+brew install homebrew/science/myformula
+```
+or
+```bash
+brew tap homebrew/science
+brew install myformula
+```
+
+Extract sources into a new local dir:
+```bash
+brew unpack my.formula
+brew unpack -p my.formula   # Apply also patches.
+```
+
+Get cache path:
+```bash
+brew --cache
+```
+
+Get all installed packages that depend on another package:
+```bash
+brew uses --installed mypkg
+```
+
+List all files of a package:
+```bash
+brew list mypkg
+```
+
+#### Maintenance tasks
+
+Clean unused old packages:
+```bash
+brew cleanup
+```
+
+Run diagnostics:
+```bash
+brew doctor
+```
+
+Update packages information:
+```bash
+brew update
+```
+
+Upgrade installed packages:
+```bash
+brew upgrade
+```
+
+#### Cask
+
+Install third party applications, in binary (Goole Earth, VLC, ...)
+
+Clean cask:
+```bash
+brew cask cleanup
+```
+
+#### Writing a formula
+
+ * [Contributing to Homebrew](https://github.com/Homebrew/homebrew-core/blob/master/.github/CONTRIBUTING.md).
+ * [Formula Cookbook](https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/Formula-Cookbook.md).
+ * [Class: Formula](http://www.rubydoc.info/github/Homebrew/brew/master/Formula).
+ * [How To Open a Homebrew Pull Request (and get it merged)](https://github.com/Homebrew/brew/blob/master/share/doc/homebrew/How-To-Open-a-Homebrew-Pull-Request-(and-get-it-merged).md).
+
+You may encounter the following error while running `brew tests`:
+```
+1) Failure:
+LanguageModuleRequirementTests#test_good_ruby_deps [/usr/local/Library/Homebrew/test/test_language_module_requirement.rb:51]:
+Expected #<LanguageModuleRequirement: "languagemodule" [:ruby, "date", nil]>
+ to be satisfied?
+```
+In that case, check if you have installed ruby using Homebrew. If that is the case, uninstall it. `brew` will then use the macOS ruby.
+
+### apt (Ubuntu, Debian)
+
+ * [Ubuntu Packages Search](http://packages.ubuntu.com).
+
+Adding a ppa (normally, add also the key):
+```bash
+sudo apt-add-repository ppa:gwibber-daily/ppa
+```
+
+To install a missing public key:
+```bash
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 2EA8F35793D8809A
+```
+
+Updating repositories database:
+```bash
+sudo apt-get update
+```
+
+Searching for packages:
+```bash
+apt-cache search qt4
+```
+
+Getting info about a package:
+```bash
+apt-cache show qt4
+apt-cache showpkg qt4 # Show dependencies
+dpkg -s qt4 # Show information on installed package
+```
+
+Update packages:
+```bash
+sudo apt-get upgrade
+```
+
+Only shows what it would do, but don't do it:
+```bash
+sudo apt-get -s upgrade
+```
+
+Selecting java installation:
+```bash
+update-java-alternatives -l
+sudo update-java-alternatives -s java-1.5.0-sun
+```
+
+To uninstall a package:
+```bash
+sudo apt-get remove mypkg
+```
+
+### snap (Ubuntu, Debian)
+
+Installing a package:
+```bash
+snap install kubectl --classic
+```
+
+### gdebi (Ubuntu, Debian)
+
+`gdebi` installs Debian packages (.deb).
+To install it:
+```bash
+sudo apt-get install gdebi
+```
+
+To install a package with it:
+```bash
+sudo gdebi mypackage.deb
+```
+
+### `yum` (CentOS, RedHat, Fedora)
+
+Search for a package:
+```bash
+yum search mypkg
+```
+
+Install a package:
+```bash
+yum install mypkg
+```
+
+Installing a package and answering yes automatically to any question:
+```bash
+yum -y install mypkg
+```
+
+### `zypper` (Suse)
+
+Looking for the package to which a command belongs:
+```bash
+cnf <command>
+```
+
+Installing a package:
+```bash
+sudo zypper install <package>
+```
+
+Getting information about a package:
+```bash
+zypper info <package>
+```
+
+adding a repository to package manager
+sudo zypper addrepo <URL> <alias>
+or
+sudo zypper ar <URL> <alias>
+
+refresh a repository
+sudo zypper refresh --repo <alias>
+
+upgrade packages inside a repository
+sudo zypper dist-upgrade --repo <alias>
+
+Packman repository.
+Contains that are not distributed with Linux distributions,
+like aMule.
+http://packman.jacobs-university.de/suse/11.2/
+
+installing kernel sources
+kernel sources are in /usr/src
+run uname to know the current kernel version (kernel-default, kernel-desktop, ...):
+uname -r
+run the following command to install last version of the corresponding kernel:
+sudo zypper install kernel-default
+run the following command to install the corresponding kernel sources:
+sudo zypper install kernel-source
+or
+sudo zypper install --type srcpackage kernel-default
+
+### `emerge` (gentoo)
+
+Updating:
+```bash
+sudo emerge --sync
+```
+
+Searching:
+```bash
+equery mypkg
+```
+
+If you do not have `equery` you can install it with:
+```bash
+emerge -a gentoolkit
+```
+
+Installing:
+```bash
+sudo emerge mypkg
+```
+
+
+
 ## Media
+
+### Sound configuration
+
+Configure sound on Debian with ALSA system:
+```bash
+alsactl init
+```
 
 ### ffmpeg
 
@@ -1451,73 +1784,6 @@ Generate a sequence of numbers:
 seq 4 # --> 1 2 3 4
 seq 100 104 # --> 100 101 102 103 104
 ```
-
-## ls
-
-BSD ls and GNU ls are different.
-GNU ls command is part of the coreutils package.
-
-Quoting names and escaping characters:
-```bash
-ls -Q
-```
-
-Print access time instead of last modification time:
-```bash
-ls -u *
-```
-
-In MacOS-X, a `@` character after permissions means that the file has additional attributes. You can see these additional attributes by typing the following command:
-```bash
-xattr -l <filename>
-xattr -d <attrname> <filename> # to remove an attribute
-```
-
-In MacOS-X, a `+` character after permissions means that the file has an ACL, short for Access Control List, which is used to give fine grained control over file permissions, beyond what is available with the regular unix permission tables.
-Entering the following command will show these additional permissions for files in a directory:
-```bash
-ls -le
-```
-
-`LSCOLORS` (see man ls), is an environment variable that defines the colors to be used by `ls` command. The default is "exfxcxdxbxegedabagacad", i.e. blue foreground and default background for regular directories, black foreground and red background for setuid executables, etc.
-
-Color code | Descrption
----------- | -----------------------------------------------
-a          |  Black.
-b          |  Red.
-c          |  Green.
-d          |  Brown.
-e          |  Blue.
-f          |  Magenta.
-g          |  Cyan.
-h          |  Light grey.
-A          |  Bold black, usually shows up as dark grey.
-B          |  Bold red.
-C          |  Bold green.
-D          |  Bold brown, usually shows up as yellow.
-E          |  Bold blue.
-F          |  Bold magenta.
-G          |  Bold cyan.
-H          |  Bold light grey; looks like bright white.
-x          |  Default foreground or background.
-
-Note that the above are standard ANSI colors.  The actual display may differ depending on the color capabilities of the terminal in use.
-
-The order of the attributes are as follows:
-
-Rank | Description
----- | ---------------------------------
-1    | Directory.
-2    | Symbolic link.
-3    | Socket.
-4    | Pipe.
-5    | Executable.
-6    | Block special.
-7    | Character special.
-8    | Executable with setuid bit set.
-9    | Executable with setgid bit set.
-10   | Directory writable to others, with sticky bit.
-11   | Directory writable to others, without sticky bit.
 
 ## hexdump
 
