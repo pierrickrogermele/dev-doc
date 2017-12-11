@@ -143,15 +143,7 @@ Getting a list of installed packages:
 rownames(installed.packages())
 ```
 
-Installing from a git repos:
-```r
-devtools::install_git("https://gitlab.com/proger/biodb.git", branch='develop', credentials=git2r::cred_user_pass ("proger", getPass::getPass()))
-```
-
-Installing local sources:
-```r
-devtools::install_local('~/dev/biodb/')
-```
+See also devtools package.
 
 ### Removing packages
 
@@ -1674,6 +1666,23 @@ rscript_current <- function() {
 }
 ```
 ## Interesting packages
+
+### devtools
+
+Installing from a git repos:
+```r
+devtools::install_git("https://gitlab.com/proger/biodb.git", branch='develop', credentials=git2r::cred_user_pass ("proger", getPass::getPass()))
+```
+
+Installing local sources:
+```r
+devtools::install_local('~/dev/biodb/')
+```
+
+Building on Windows for testing:
+```r
+devtools::build_win('~/dev/biodb')
+```
 
 ### RMySQL
 
