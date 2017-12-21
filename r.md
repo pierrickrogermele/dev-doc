@@ -758,6 +758,13 @@ args <- commandArgs(trailingOnly = FALSE)
 script.path <- sub("--file=", "", args[grep("--file=", args)])
 ```
 
+Getting script name:
+```r
+args <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=", "", args[grep("--file=", args)])
+script.name <- basename(script.path)
+```
+
 ### Getopt package
 
 ```r
