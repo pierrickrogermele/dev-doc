@@ -1074,7 +1074,14 @@ with open(myfilepath, 'rb') as csvfile:
 The expression between `with` and `as` must return a [context manager](https://docs.python.org/2/reference/datamodel.html#context-managers).
 
 ## OOP
+
+Public/private:
+All methods and attributes are public in Python.
+A common convention is to prefix by an underscore all methods and attributes that we want to be private.
+See [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
 	
+### Definition
+
 Class definition:
 ```python
 class MyClass:
@@ -1083,12 +1090,14 @@ class MyClass:
 	def f(self):
 		return ’hello world’
 ```
-	
+
+### Instantation
+
 Class instantiation:
 ```python
 obj = MyClass()
 ```
-	
+
 Initialization method:
 ```python
 class MyClass:
@@ -1099,6 +1108,8 @@ class MyComplex:
 		self.r = realpart
 		self.i = imagpart
 ```
+
+### Inheritance
 
 Calling mother class' constructor:
 ```python
@@ -1111,13 +1122,6 @@ You can't define multiple constructors, `__init__()` method is unique.
 Solutions are:
  1. Accept different arguments, and test their type inside `__init__()` in order to decide what to do.
  2. Define a factory method using the `@classmethod` attribute.
-	
-Class method:
-```python
-@classmethod
-def make_from_file(cls, filename):
-	# ...
-```
 
 Reference to class object:
 ```python
@@ -1130,11 +1134,6 @@ def myfunc(self, x, y) # absolutely awful !
 	return x+y
 class MyClass:
 	myfunc_in_class = myfunc
-```
-
-Testing the class/type of an object:
-```python
-isinstance(obj, int) # is True if obj.__class__ is int.
 ```
 
 Inheritance:
@@ -1150,11 +1149,6 @@ issubclass(bool, int)	 # <-- True
 issubclass(unicode, str) # <-- False
 ```
 
-Calling a method of a base class:
-```python
-MyBaseClass.method_name(self, arg1, arg2)
-```
-
 Multiple inheritance:
 ```python
 class MyDerivedClass(Base1, Base2, Base3):
@@ -1162,18 +1156,29 @@ class MyDerivedClass(Base1, Base2, Base3):
 Old-style classes: rule for searching an attribute or method is depth-first, then left-to-right.
 New-style classes: the method resolution order changes dynamically to support cooperative calls to super(). --> TODO: search for more explanations.
 
-Virtual methods: all methods are virtual in Python.
+### Methods
 
-Public/private:
-All methods and attributes are public in Python.
-A common convention is to prefix by an underscore all methods and attributes that we want to be private.
-See [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
+Class method:
+```python
+@classmethod
+def make_from_file(cls, filename):
+	# ...
+```
+
+Calling a method of a base class:
+```python
+MyBaseClass.method_name(self, arg1, arg2)
+```
+
+Virtual methods: all methods are virtual in Python.
 
 Instance method objects have two attributes:
 ```python
 m.im_self	# The instance object
 m.im_func	# the function object
 ```
+
+### Attributes
 
 Adding a property dynamically to an instance:
 ```python
@@ -1195,6 +1200,11 @@ type(myinstance)
 Getting the class name:
 ```python
 type(myinstance).__name__
+```
+
+Testing the class/type of an object:
+```python
+isinstance(obj, int) # is True if obj.__class__ is int.
 ```
 
 ### Iterators
