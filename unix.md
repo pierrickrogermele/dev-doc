@@ -1478,6 +1478,39 @@ To convert m4a into mp3:
 ffmpeg -i myfile.m4a -acodec libmp3lame -ab 96k myfile.mp3
 ```
 
+### pdfimages
+
+From package xpdf or poppler.
+
+Extract images from PDF:
+```bash
+mkdir myfolder
+pdfimages -j myfile.pdf myfolder/myprefix
+```
+
+### convert (ImageMagick)
+
+Resize to 50%:
+```bash
+magick convert -resize 50% input.jpg output.jpg
+```
+
+Make a PDF from images:
+```bash
+magick convert *.jpg myfile.pdf
+```
+
+Image quality for jpeg and mpeg (1 lowest, 100 best):
+```bash
+magick convert -quality 60% input.jpg output.jpg
+```
+See <http://www.imagemagick.org/script/command-line-options.php#quality>.
+
+Convert to gray scale:
+```bash
+magick convert -colorspace Gray input.jpg output.jpg
+```
+
 ## tmux
 
 Reload config file from within tmux:
