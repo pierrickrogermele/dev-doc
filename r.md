@@ -1029,10 +1029,17 @@ for(i in 1:N) {
 
 Best way to iterate on all indices of a vector:
 ```r
+for (i in seq_along(v))
+	v[i] <- compute(v[i], i)
+```
+`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
+
+*Wrong* way to iterate on all indices of a vector:
+```r
 for (i in seq(v))
 	v[i] <- compute(v[i], i)
 ```
-There will be no iteration if `length(v) == 0`.
+There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
 
 How to break / continue:
 ```r
