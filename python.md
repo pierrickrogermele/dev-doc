@@ -461,6 +461,24 @@ range(5, 10) # [5, 6, 7, 8, 9]
 range(0, 10, 3) # [0, 3, 6, 9]
 range(-10, -100, -30) # [-10, -40, -70]
 ```
+
+Iterate over indices of a list:
+```python
+for i in xrange(len(data)):
+	data[i] = ...
+```
+
+Iterate over indices and elements of a list:
+```python
+for i, x in enumerate(data):
+	data[i] = "something" if x > 24 else "something else"
+```
+
+Iterate over indices of a list with enumerate but forget about the elements:
+```python
+for i, _ in enumerate(data):
+	data[i] = "something"
+```
 	
 List comprehension is a concise way to transform a list:
 ```python
@@ -708,24 +726,6 @@ Split a string of key values into a dictionary:
 ```python
 s = 'a=3,b=9,c=10'
 mydict = dict(u.split("=") for u in s.split(","))
-```
-
-Iterate over indices of a list:
-```python
-for i in xrange(len(data)):
-	data[i] = ...
-```
-
-Iterate over indices and elements of a list:
-```python
-for i, x in enumerate(data):
-	data[i] = "something" if x > 24 else "something else"
-```
-
-Iterate over indices of a list with enumerate but forget about the elements:
-```python
-for i, _ in enumerate(data):
-	data[i] = "something"
 ```
 
 ### Structure
@@ -1113,9 +1113,27 @@ class MyComplex:
 
 Calling mother class' constructor:
 ```python
-class MyDaughterClass(MyMotherClass):
+class B(A):
 	def __init__(self, arg1):
 		super(self.__class__, self).__init__(arg1)
+```
+Does not work in Python 2, but the following works:
+```python
+class B(A):
+	def __init__(self, arg1):
+        super(B, self).__init__(arg1)
+```
+or
+```python
+class B(A):
+	def __init__(self, arg1):
+        A._init__(arg1)
+```
+To pass all parameters to mother class without knowing them use `**kwd`:
+```python
+class B(A):
+	def __init__(self, **kwd):
+        super(B, self).__init__(**kwd)
 ```
 
 You can't define multiple constructors, `__init__()` method is unique.
@@ -1189,6 +1207,13 @@ Testing if an attribute exists:
 ```python
 hasattr(obj, 'name')
 ```
+
+Looping on all attributes of an object:
+```python
+for attr, value in myobj.__dict__.iteritems():
+	print(str(attr) + ': ' + str(value))
+```
+`__dict__` is of type `dict`.
 
 ### Introspection
 
