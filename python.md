@@ -1190,6 +1190,12 @@ Testing if an attribute exists:
 hasattr(obj, 'name')
 ```
 
+Loop on all attributes of an object:
+```python
+for attr, value in myobj.__dict__.iteritems():
+	print(str(attr) + ': ' + str(value))
+```
+
 ### Introspection
 
 Getting class information:
