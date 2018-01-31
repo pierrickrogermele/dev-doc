@@ -752,17 +752,12 @@ my_first_arg = args[1]
 ```
 The option `trailingOnly` keeps only arguments after `--args` flag.
 
-Getting script path:
-```r
-args <- commandArgs(trailingOnly = FALSE)
-script.path <- sub("--file=", "", args[grep("--file=", args)])
-```
-
-Getting script name:
+Getting script path, script name and script directory:
 ```r
 args <- commandArgs(trailingOnly = FALSE)
 script.path <- sub("--file=", "", args[grep("--file=", args)])
 script.name <- basename(script.path)
+script.dir <- dirname(script.path)
 ```
 
 ### Getopt package
