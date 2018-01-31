@@ -1555,6 +1555,27 @@ For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On ma
 brew cask install miniconda
 ```
 
+Installing anaconda:
+```bash
+brew cash install anaconda
+```
+
+Updating conda:
+```bash
+conda update conda
+```
+
+Using conda to install conda virtual env:
+```bash
+conda create -n myvenv python=3.6 anaconda
+source activate myvenv
+```
+
+Installing a precise version of R:
+```bash
+conda install -c r r=3.3.2
+```
+
 ### Bioconda recipes
 
  * [Contributing a recipe](https://bioconda.github.io/contribute-a-recipe.html).
