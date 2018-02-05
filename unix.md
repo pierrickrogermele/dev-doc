@@ -1253,6 +1253,11 @@ List all files of a package:
 brew list mypkg
 ```
 
+Install Xcode command line tools:
+```bash
+xcode-select --install
+```
+
 #### Maintenance tasks
 
 Clean unused old packages:
