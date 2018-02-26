@@ -885,6 +885,10 @@ Operator    | Description
 
 ## I/O
 
+### dput and dget
+
+`dput` and `dget` are used to serialize and deserialize an R object.
+
 ### File information
 
 Get file size:
@@ -1865,6 +1869,11 @@ nodes <- XML::getNodeSet(xml, "//ExtendedCompoundInfo")
 Get a node's text content:
 ```r
 txt <- XML::xpathSApply(xmldoc, "//mynode", XML::xmlValue)
+```
+
+Get attributes:
+```r
+ids <- XML::xpathSApply(xml, '//book', XML::xmlGetAttr, 'id')
 ```
 
 XML using an anonymous namespace
