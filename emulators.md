@@ -330,15 +330,26 @@ end
 ## VirtualBox
 
  * [VirtualBox](https://www.virtualbox.org) official site.
+ * [Oracle VM VirtualBox: Networking options and how-to manage them](https://blogs.oracle.com/scoter/networking-in-virtualbox-v2).
 
 Get VirtualBox version:
 ```bash
 VBoxManage --version
 ```
 
-List virtual machines:
+List VMs:
 ```bash
 VBoxManage list vms
+```
+
+List running VMs:
+```bash
+VBoxManage list runningvms
+```
+
+Start a VM without display:
+```bash
+VBoxManage startvm my_vm --type headless
 ```
 
 ## VMWare
