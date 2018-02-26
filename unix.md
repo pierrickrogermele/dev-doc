@@ -212,7 +212,7 @@ ssh-copy-id -i ~/.ssh/id_dsa.pub username@remotebox
 
 Using local tunneling for accessing mail server:
 ```bash
-ssh -L 1993:imap.mail.me.com:993 -g -N server.addr
+ssh -gNL 1993:imap.mail.me.com:993 server.addr
 ```
 Local port used is 1993. Everything going to this local port will be forwarded to imap.mail.me.com:993 through server.addr:22.
 
