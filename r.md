@@ -143,15 +143,7 @@ Getting a list of installed packages:
 rownames(installed.packages())
 ```
 
-Installing from a git repos:
-```r
-devtools::install_git("https://gitlab.com/proger/biodb.git", branch='develop', credentials=git2r::cred_user_pass ("proger", getPass::getPass()))
-```
-
-Installing local sources:
-```r
-devtools::install_local('~/dev/biodb/')
-```
+See also devtools package.
 
 ### Removing packages
 
@@ -195,13 +187,47 @@ isPackageLoaded('mypkg')
  * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
  * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
  * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
- * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
 
  * [How to Install R Packages using devtools on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-r-packages-using-devtools-on-ubuntu-16-04).
 
  * `R CMD check`: [Automated checking](http://r-pkgs.had.co.nz/check.html).
  * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
  * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
+
+#### Writing a vignette
+
+ * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
+ * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
+
+Example of header for an Rmd vignette using knitr package and BiocStyle package:
+```rmd
+---
+title: "Configuring biodb"
+author: "Pierrick Roger"
+output:
+  BiocStyle::html_document:
+#    toc_float: true    # TOC implies enabling a theme.
+    theme: null         # A theme uses around 700KB.
+#    highlight: null     # Highlighting uses around 60KB.
+#    mathjax: null
+package: biodb
+abstract: |
+  How to configure biodb package.
+vignette: |
+  %\VignetteIndexEntry{Configuring biodb}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+```
+
+Here is the settings to put insisde the `DESCRIPTION` file:
+```
+VignetteBuilder: knitr
+Suggests:
+	BiocStyle,
+	knitr,
+	rmarkdown
+```
 
 #### Writing documentation with roxygen2
 
@@ -308,6 +334,11 @@ charToRaw('A') # Returns a string containing the hex code of A.
 Repeat a character or string n times:
 ```r
 paste(rep(s, 3), sep = '')
+```
+
+Pading character strings:
+```r
+stringr::str_pad(c('abc', 'defghi', '', 'jk'), width = 10, side = 'right', pad = ' ')
 ```
 
 #### Reading/writing from/to a string
@@ -760,10 +791,12 @@ my_first_arg = args[1]
 ```
 The option `trailingOnly` keeps only arguments after `--args` flag.
 
-Getting script path:
+Getting script path, script name and script directory:
 ```r
 args <- commandArgs(trailingOnly = FALSE)
 script.path <- sub("--file=", "", args[grep("--file=", args)])
+script.name <- basename(script.path)
+script.dir <- dirname(script.path)
 ```
 
 ### Getopt package
@@ -890,6 +923,10 @@ Operator    | Description
 `isTRUE(x)` | Test if x is TRUE.
 
 ## I/O
+
+### dput and dget
+
+`dput` and `dget` are used to serialize and deserialize an R object.
 
 ### File information
 
@@ -1030,10 +1067,17 @@ for(i in 1:N) {
 
 Best way to iterate on all indices of a vector:
 ```r
+for (i in seq_along(v))
+	v[i] <- compute(v[i], i)
+```
+`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
+
+*Wrong* way to iterate on all indices of a vector:
+```r
 for (i in seq(v))
 	v[i] <- compute(v[i], i)
 ```
-There will be no iteration if `length(v) == 0`.
+There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
 
 How to break / continue:
 ```r
@@ -1675,6 +1719,23 @@ rscript_current <- function() {
 ```
 ## Interesting packages
 
+### devtools
+
+Installing from a git repos:
+```r
+devtools::install_git("https://gitlab.com/proger/biodb.git", branch='develop', credentials=git2r::cred_user_pass ("proger", getPass::getPass()))
+```
+
+Installing local sources:
+```r
+devtools::install_local('~/dev/biodb/')
+```
+
+Building on Windows for testing:
+```r
+devtools::build_win('~/dev/biodb')
+```
+
 ### RMySQL
 
 ```r
@@ -1847,6 +1908,11 @@ nodes <- XML::getNodeSet(xml, "//ExtendedCompoundInfo")
 Get a node's text content:
 ```r
 txt <- XML::xpathSApply(xmldoc, "//mynode", XML::xmlValue)
+```
+
+Get attributes:
+```r
+ids <- XML::xpathSApply(xml, '//book', XML::xmlGetAttr, 'id')
 ```
 
 XML using an anonymous namespace

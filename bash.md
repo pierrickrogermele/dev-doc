@@ -71,6 +71,13 @@ myprog & sleep 5 ; kill $!
 
 See <http://stackoverflow.com/questions/687948/timeout-a-command-in-bash-without-unnecessary-delay> for a generic script.
 
+## Debugging a script
+
+THe `-x` option displays each line of the script:
+```bash
+bash -x myscript.sh
+```
+
 ## Program name
 
 ```bash

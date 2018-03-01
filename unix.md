@@ -212,7 +212,7 @@ ssh-copy-id -i ~/.ssh/id_dsa.pub username@remotebox
 
 Using local tunneling for accessing mail server:
 ```bash
-ssh -L 1993:imap.mail.me.com:993 -g -N server.addr
+ssh -gNL 1993:imap.mail.me.com:993 server.addr
 ```
 Local port used is 1993. Everything going to this local port will be forwarded to imap.mail.me.com:993 through server.addr:22.
 
@@ -1253,6 +1253,11 @@ List all files of a package:
 brew list mypkg
 ```
 
+Install Xcode command line tools:
+```bash
+xcode-select --install
+```
+
 #### Maintenance tasks
 
 Clean unused old packages:
@@ -1476,6 +1481,39 @@ ffmpeg -i audio.wav -acodec alac audio.m4a
 To convert m4a into mp3:
 ```bash
 ffmpeg -i myfile.m4a -acodec libmp3lame -ab 96k myfile.mp3
+```
+
+### pdfimages
+
+From package xpdf or poppler.
+
+Extract images from PDF:
+```bash
+mkdir myfolder
+pdfimages -j myfile.pdf myfolder/myprefix
+```
+
+### convert (ImageMagick)
+
+Resize to 50%:
+```bash
+magick convert -resize 50% input.jpg output.jpg
+```
+
+Make a PDF from images:
+```bash
+magick convert *.jpg myfile.pdf
+```
+
+Image quality for jpeg and mpeg (1 lowest, 100 best):
+```bash
+magick convert -quality 60% input.jpg output.jpg
+```
+See <http://www.imagemagick.org/script/command-line-options.php#quality>.
+
+Convert to gray scale:
+```bash
+magick convert -colorspace Gray input.jpg output.jpg
 ```
 
 ## tmux

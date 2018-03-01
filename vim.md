@@ -444,10 +444,18 @@ Regex code        | Description
 
 Search for character with its hexadecimal code: `/\%x95`.
 
+Delete all lines matching a pattern:
 ```
-:g/<str>/<cmd>         Run <cmd> on all lines that contain <str>
-:g/<str1>/s/<str2>/<str3>/   Find line containing <str1>, replace <str2> with <str3>
-:v/<str>/<cmd>         Execute <cmd> on all lines that do not match <str>  
+g/print(/d
+```
+
+Delete all lines not matching a pattern:
+```
+g!/print(/d
+```
+or
+```
+v/print(/d
 ```
 
 Replace by uppercase or lowercase:

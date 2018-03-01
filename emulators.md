@@ -330,15 +330,26 @@ end
 ## VirtualBox
 
  * [VirtualBox](https://www.virtualbox.org) official site.
+ * [Oracle VM VirtualBox: Networking options and how-to manage them](https://blogs.oracle.com/scoter/networking-in-virtualbox-v2).
 
 Get VirtualBox version:
 ```bash
 VBoxManage --version
 ```
 
-List virtual machines:
+List VMs:
 ```bash
 VBoxManage list vms
+```
+
+List running VMs:
+```bash
+VBoxManage list runningvms
+```
+
+Start a VM without display:
+```bash
+VBoxManage startvm my_vm --type headless
 ```
 
 ## VMWare
@@ -470,20 +481,6 @@ Mounting a local dir to C:
 mount c: ~/mydir
 ```
 
-## Amstrad CPC computers
-
- * [CPC Game reviews](http://www.cpcgamereviews.com).
- * [Arnold emulator for MacOS-X](http://bannister.org/software/arnold.htm).
- * [Amstrad CPC user manuals](http://www.cpcwiki.eu/index.php/User_Manual).
- 
-### CPC 6128
-
-To run a game, most of the time use:
-run "disc"
-If it doesn't work, first list files:
-cat
-Then call the right file:
-run "myfile"
 
 ## Thomson computers
 

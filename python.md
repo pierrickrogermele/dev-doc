@@ -461,6 +461,24 @@ range(5, 10) # [5, 6, 7, 8, 9]
 range(0, 10, 3) # [0, 3, 6, 9]
 range(-10, -100, -30) # [-10, -40, -70]
 ```
+
+Iterate over indices of a list:
+```python
+for i in xrange(len(data)):
+	data[i] = ...
+```
+
+Iterate over indices and elements of a list:
+```python
+for i, x in enumerate(data):
+	data[i] = "something" if x > 24 else "something else"
+```
+
+Iterate over indices of a list with enumerate but forget about the elements:
+```python
+for i, _ in enumerate(data):
+	data[i] = "something"
+```
 	
 List comprehension is a concise way to transform a list:
 ```python
@@ -708,24 +726,6 @@ Split a string of key values into a dictionary:
 ```python
 s = 'a=3,b=9,c=10'
 mydict = dict(u.split("=") for u in s.split(","))
-```
-
-Iterate over indices of a list:
-```python
-for i in xrange(len(data)):
-	data[i] = ...
-```
-
-Iterate over indices and elements of a list:
-```python
-for i, x in enumerate(data):
-	data[i] = "something" if x > 24 else "something else"
-```
-
-Iterate over indices of a list with enumerate but forget about the elements:
-```python
-for i, _ in enumerate(data):
-	data[i] = "something"
 ```
 
 ### Structure
@@ -1074,7 +1074,14 @@ with open(myfilepath, 'rb') as csvfile:
 The expression between `with` and `as` must return a [context manager](https://docs.python.org/2/reference/datamodel.html#context-managers).
 
 ## OOP
+
+Public/private:
+All methods and attributes are public in Python.
+A common convention is to prefix by an underscore all methods and attributes that we want to be private.
+See [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
 	
+### Definition
+
 Class definition:
 ```python
 class MyClass:
@@ -1083,12 +1090,14 @@ class MyClass:
 	def f(self):
 		return ’hello world’
 ```
-	
+
+### Instantation
+
 Class instantiation:
 ```python
 obj = MyClass()
 ```
-	
+
 Initialization method:
 ```python
 class MyClass:
@@ -1100,24 +1109,37 @@ class MyComplex:
 		self.i = imagpart
 ```
 
+### Inheritance
+
 Calling mother class' constructor:
 ```python
-class MyDaughterClass(MyMotherClass):
+class B(A):
 	def __init__(self, arg1):
 		super(self.__class__, self).__init__(arg1)
+```
+Does not work in Python 2, but the following works:
+```python
+class B(A):
+	def __init__(self, arg1):
+        super(B, self).__init__(arg1)
+```
+or
+```python
+class B(A):
+	def __init__(self, arg1):
+        A._init__(arg1)
+```
+To pass all parameters to mother class without knowing them use `**kwd`:
+```python
+class B(A):
+	def __init__(self, **kwd):
+        super(B, self).__init__(**kwd)
 ```
 
 You can't define multiple constructors, `__init__()` method is unique.
 Solutions are:
  1. Accept different arguments, and test their type inside `__init__()` in order to decide what to do.
  2. Define a factory method using the `@classmethod` attribute.
-	
-Class method:
-```python
-@classmethod
-def make_from_file(cls, filename):
-	# ...
-```
 
 Reference to class object:
 ```python
@@ -1130,11 +1152,6 @@ def myfunc(self, x, y) # absolutely awful !
 	return x+y
 class MyClass:
 	myfunc_in_class = myfunc
-```
-
-Testing the class/type of an object:
-```python
-isinstance(obj, int) # is True if obj.__class__ is int.
 ```
 
 Inheritance:
@@ -1150,11 +1167,6 @@ issubclass(bool, int)	 # <-- True
 issubclass(unicode, str) # <-- False
 ```
 
-Calling a method of a base class:
-```python
-MyBaseClass.method_name(self, arg1, arg2)
-```
-
 Multiple inheritance:
 ```python
 class MyDerivedClass(Base1, Base2, Base3):
@@ -1162,18 +1174,29 @@ class MyDerivedClass(Base1, Base2, Base3):
 Old-style classes: rule for searching an attribute or method is depth-first, then left-to-right.
 New-style classes: the method resolution order changes dynamically to support cooperative calls to super(). --> TODO: search for more explanations.
 
-Virtual methods: all methods are virtual in Python.
+### Methods
 
-Public/private:
-All methods and attributes are public in Python.
-A common convention is to prefix by an underscore all methods and attributes that we want to be private.
-See [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
+Class method:
+```python
+@classmethod
+def make_from_file(cls, filename):
+	# ...
+```
+
+Calling a method of a base class:
+```python
+MyBaseClass.method_name(self, arg1, arg2)
+```
+
+Virtual methods: all methods are virtual in Python.
 
 Instance method objects have two attributes:
 ```python
 m.im_self	# The instance object
 m.im_func	# the function object
 ```
+
+### Attributes
 
 Adding a property dynamically to an instance:
 ```python
@@ -1185,6 +1208,13 @@ Testing if an attribute exists:
 hasattr(obj, 'name')
 ```
 
+Looping on all attributes of an object:
+```python
+for attr, value in myobj.__dict__.iteritems():
+	print(str(attr) + ': ' + str(value))
+```
+`__dict__` is of type `dict`.
+
 ### Introspection
 
 Getting class information:
@@ -1195,6 +1225,11 @@ type(myinstance)
 Getting the class name:
 ```python
 type(myinstance).__name__
+```
+
+Testing the class/type of an object:
+```python
+isinstance(obj, int) # is True if obj.__class__ is int.
 ```
 
 ### Iterators
@@ -1518,6 +1553,27 @@ result = compiled_re.match(string)
 For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On macos you can also use Homebrew:
 ```bash
 brew cask install miniconda
+```
+
+Installing anaconda:
+```bash
+brew cash install anaconda
+```
+
+Updating conda:
+```bash
+conda update conda
+```
+
+Using conda to install conda virtual env:
+```bash
+conda create -n myvenv python=3.6 anaconda
+source activate myvenv
+```
+
+Installing a precise version of R:
+```bash
+conda install -c r r=3.3.2
 ```
 
 ### Bioconda recipes
@@ -1994,3 +2050,9 @@ open -a Console
 
  * [Pandas](https://pandas.pydata.org/).
  * [Data frames](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
+
+Test if a data frame contains a column:
+```python
+if mydf.keys().contains('mycol'):
+	pass
+```
