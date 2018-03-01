@@ -305,6 +305,21 @@ To get an empty string when no file exists, the following option must be set:
 shopt -s nullglob # make glob pattern yelds empty string if no file exists.
 ```
 
+## [[ Test operator - Double bracket
+
+Bash defines a special double bracket `[[` operator for testing, similar to the `[` (or `test`) command line program.
+
+Quoting of variable is not required with bash `[[` operator:
+```bash
+[[ -z $MYVAR ]] || exit 1
+```
+
+The logical AND and OR binary operator are the same than in C language:
+```bash
+[[ -z $MYVAR1 && -n $MYVAR2 ]] || exit 1
+[[ -z $MYVAR1 || -n $MYVAR2 ]] || exit 1
+```
+
 ## Command line arguments
 
 Several variables allow to access command line arguments:
