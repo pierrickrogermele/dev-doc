@@ -320,6 +320,11 @@ s <- paste(s1, s2, s3, s4, sep="")
 ```
 Be careful, by default the separator ('sep' argument) is the space character.
 
+Getting a substring (the first 100 characters):
+```r
+s <- substr(s, 1, 100)
+```
+
 Putting to lower or upper case
 ```r
 s <- tolower(s)
@@ -453,6 +458,11 @@ str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form
 Ignoring case:
 ```r
 str_match(str_vect, ignore.case(pattern))
+```
+
+Matching also new lines and carriage return with `.`:
+```r
+match <- stringr::str_match(xml, stringr::regex('^(.*)(<metabolite>.*</metabolite>)(.*)$', dotall = TRUE))
 ```
 
 ### Array
@@ -934,6 +944,18 @@ Get file size:
 ```r
 sz <- file.info(myfile)$size
 sz <- file.size(myfile)  # Only available from R 3.3.
+```
+
+### Loading vector from a file
+
+```r
+scan(file = "myfile.txt", what = integer())
+```
+
+### Saving vector to a file
+
+```r
+write(v, 'myfile.txt', ncolumns = 1)
 ```
 
 ### Reading from a file
