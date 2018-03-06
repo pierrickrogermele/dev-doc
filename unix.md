@@ -893,7 +893,12 @@ sed -n 'p;n' filename
 
 Print only the lines inside a range of regex addresses:
 ```bash
-sed -n /GOOGLE/,/ssl/p <~/.offlineimaprc
+sed -n '/GOOGLE/,/ssl/p' ~/.offlineimaprc
+```
+
+To delete lines inside a range of regex addresses:
+```bash
+sed '/^---$/,/^---$/d' myfile
 ```
 
 To insert a carriage return, you need to actually type it:
