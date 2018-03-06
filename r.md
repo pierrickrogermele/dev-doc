@@ -506,6 +506,20 @@ Another example which counts the number of elements of an array which are <= 1:
 p <- sum(v <= 1) # where v is an array
 ```
 
+### Floating number
+
+By default a number is a floating number (called numeric in R):
+```r
+x <- 21
+```
+
+### Integer
+
+Define an integer value
+```r
+i <- 25L
+```
+
 ### Vector
 
 Elements of a vector can be of the following types: logical, integer, double, complex, character and raw.
