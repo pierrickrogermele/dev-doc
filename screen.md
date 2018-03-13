@@ -160,6 +160,8 @@ Command   | Description
 `:`       | Exit copy mode.
 `/`       | Search forward.
 `?`       | Search backward.
+`space`   | Start/end copy selection.
+`C-a ]`   | Paste.
 
 ## Errors
 
