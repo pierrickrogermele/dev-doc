@@ -919,6 +919,8 @@ floor(1.23)
 
 ## Operators
 
+ * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
+
 Arithmetic operators:
 
 Operator  | Description
