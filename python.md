@@ -327,6 +327,46 @@ Convert integer to string:
 s = str(10)
 ```
 
+#### Formatting
+
+Format:
+```python
+print '{0:2d}'.format(x)
+print '{0} {1}'.format(s1, s2)
+print '{tag} {0}'.format(v, tag='mystring')
+print '{0:.3f}'.format(x)
+print '{0:10} {1:8d}'.format(s, i)	# field 0 is 10 columns wide, and field 1 is 8 columns wide.
+```
+
+Giving a dictionary to format:
+```python
+table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table))
+```
+OR
+```python
+table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
+print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
+```
+
+`printf` style:
+```python
+print 'The value of PI is approximately %5.3f.' % math.pi
+```
+
+Padding a string:
+```python
+print s.rjust(6)	# right justify a string in a field of width 6
+print s.ljust(5)	# left justify a string
+print s.center(4)	# center a string
+```
+
+Padding a numeric string:
+```python
+print '12'.zfill(5)	# Pads 3 zeros before the number 12
+print '-3.14'.zfill(7)
+```
+
 ### Lists
 
  * [Data Structure](https://docs.python.org/3/tutorial/datastructures.html).
@@ -1454,31 +1494,6 @@ from __future__ import print_function
 print(mylist, sep=',', end="\n")
 ```
 
-Format:
-```python
-print '{0:2d}'.format(x)
-print '{0} {1}'.format(s1, s2)
-print '{tag} {0}'.format(v, tag='mystring')
-print '{0:.3f}'.format(x)
-print '{0:10} {1:8d}'.format(s, i)	# field 0 is 10 columns wide, and field 1 is 8 columns wide.
-```
-
-Giving a dictionary to format:
-```python
-table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table))
-```
-OR
-```python
-table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
-```
-
-`printf` style:
-```python
-print 'The value of PI is approximately %5.3f.' % math.pi
-```
-
 Space is inserted automatically between two comma separated items:
 ```python
 print 'The value of i is', i
@@ -1492,19 +1507,6 @@ while i < 2:
 	print "yesh",
 ```
 OUTPUT: yesh yesh
-
-Justification:
-```python
-print s.rjust(6)	# right justify a string in a field of width 6
-print s.ljust(5)	# left justify a string
-print s.center(4)	# center a string
-```
-
-Padding a numeric string:
-```python
-print '12'.zfill(5)	# Pads 3 zeros before the number 12
-print '-3.14'.zfill(7)
-```
 
 Prints an object with indentation and line breaks:
 ```python
