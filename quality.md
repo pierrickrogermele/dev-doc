@@ -7,6 +7,17 @@ Quality, testing and integration
 
 ### Travis-CI
 
+#### Using Docker
+
+ * [Using Docker in Builds](https://docs.travis-ci.com/user/docker/).
+
+```yaml
+sudo: required
+
+services:
+  - docker
+```
+
 #### Running locally
 
  * [travis-ci/travis-build](https://github.com/travis-ci/travis-build).
