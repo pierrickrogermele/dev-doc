@@ -520,6 +520,17 @@ Define an integer value
 i <- 25L
 ```
 
+Maximum of an integer value:
+```r
+.Machine$integer.max # 2147483647 (2^31-1).
+```
+For both negative and positive values.
+
+`numeric` type can store bigger integer values:
+```r
+2 ** .Machine$double.digits
+```
+
 ### Vector
 
 Elements of a vector can be of the following types: logical, integer, double, complex, character and raw.
