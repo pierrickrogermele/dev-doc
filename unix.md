@@ -681,6 +681,49 @@ unzip -q myfile.zip
 unzip -qq myfile.zip
 ```
 
+## File viewing, formating and editing
+
+### column
+
+Align the column of a file for viewing:
+```bash
+column -t myfile
+```
+By default the columns are considered separated by white spaces (space and tab).
+
+If you have a csv file:
+```bash
+column -t -s , myfile
+```
+
+### hexdump
+
+Tool for dumping a file content in hexadecimal format:
+```bash
+hexdump myfile
+```
+
+Display also ASCII characters:
+```bash
+hexdump -C myfile
+```
+
+### hexedit
+
+Hexademical editor.
+
+```bash
+hexedit myfile
+```
+
+### dhex
+
+Diff hexadecimal editor.
+
+```bash
+dhex myfileA myfileB
+```
+
 ## File filtering
 
 ### tr
@@ -899,6 +942,11 @@ sed -n '/GOOGLE/,/ssl/p' ~/.offlineimaprc
 To delete lines inside a range of regex addresses:
 ```bash
 sed '/^---$/,/^---$/d' myfile
+```
+
+Delete first line:
+```bash
+sed '1d' myfile
 ```
 
 To insert a carriage return, you need to actually type it:
@@ -1826,34 +1874,6 @@ Generate a sequence of numbers:
 ```bash
 seq 4 # --> 1 2 3 4
 seq 100 104 # --> 100 101 102 103 104
-```
-
-## hexdump
-
-Tool for dumping a file content in hexadecimal format:
-```bash
-hexdump myfile
-```
-
-Display also ASCII characters:
-```bash
-hexdump -C myfile
-```
-
-## hexedit
-
-Hexademical editor.
-
-```bash
-hexedit myfile
-```
-
-## dhex
-
-Diff hexadecimal editor.
-
-```bash
-dhex myfileA myfileB
 ```
 
 ## ps
