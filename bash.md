@@ -177,6 +177,15 @@ function myfct {
 }
 ```
 
+Default value:
+```bash
+myvar2=${myvar1:-default value}
+```
+or simply:
+```bash
+myvar2=${myvar1-default value}
+```
+
 Dereferencing a variable:
 ```bash
 toto=coucou
