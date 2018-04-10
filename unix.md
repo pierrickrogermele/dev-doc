@@ -5,6 +5,12 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
+### wakeonlan
+
+```bash
+wakeonlan hardware_addr
+```
+
 ### wget
 
 Download recursively:
@@ -227,6 +233,10 @@ On Debian, see <https://wiki.debian.org/WakeOnLan>.
 
 ## System
 
+### Booting
+
+Under macos, press `Cmd+R` for booting in recovery mode.
+
 ### OS info
 
 Get Ubuntu version:
@@ -238,6 +248,11 @@ Get system information on Ubuntu:
 ```bash
 sudo lshw
 sudo lshw -C network # Filter on network components
+```
+
+Get CPU exact description on macos:
+```bash
+sysctl -n machdep.cpu.brand_string
 ```
 
 ### Machine name
