@@ -177,13 +177,22 @@ function myfct {
 }
 ```
 
-Default value:
+Default value set if variable is unset or null:
 ```bash
 myvar2=${myvar1:-default value}
 ```
-or simply:
+If the colon is omitted, the default value is set only if the variable is unset:
 ```bash
 myvar2=${myvar1-default value}
+```
+
+Value replaced if variable is neither unset nor null:
+```bash
+myvar2=${myvar1:+value}
+```
+If the colon is omitted, the value is replaced also if the variable is null:
+```bash
+myvar2=${myvar1+value}
 ```
 
 Dereferencing a variable:
