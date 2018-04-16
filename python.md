@@ -1552,6 +1552,9 @@ result = compiled_re.match(string)
 
 ## Conda
 
+ * [Installation](https://conda.io/docs/user-guide/install/macos.html).
+ * [Installing and updating conda build](https://conda.io/docs/user-guide/tasks/build-packages/install-conda-build.html#install-conda-build).
+
 For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On macos you can also use Homebrew:
 ```bash
 brew cask install miniconda
@@ -1567,15 +1570,30 @@ Updating conda:
 conda update conda
 ```
 
-Using conda to install conda virtual env:
+Create a new environment, installing a pacakge
 ```bash
-conda create -n myvenv python=3.6 anaconda
-source activate myvenv
+conda create --name myenv mypkg
 ```
+
+Enter environment:
+```bash
+source activate myenv
+```
+
+Quit environment:
+```bash
+source deactivate
+```
+
 
 Installing a precise version of R:
 ```bash
 conda install -c r r=3.3.2
+```
+
+Generating a new recipe with the `skeleton` command (you first need to install *conda build*):
+```bash
+conda skeleton cran mypkg
 ```
 
 ### Bioconda recipes
