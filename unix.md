@@ -239,6 +239,17 @@ Under macos, press `Cmd+R` for booting in recovery mode.
 
 ### OS info
 
+Get OS type:
+```bash
+uname
+```
+Returns `"Darwin"`, `"Linux"`, etc.
+
+Get system info (OS type, machine name, etc):
+```bash
+uname -a
+```
+
 Get Ubuntu version:
 ```bash
 lsb_release -a
@@ -1480,20 +1491,28 @@ zypper info <package>
 ```
 
 adding a repository to package manager
+```bash
 sudo zypper addrepo <URL> <alias>
+```
 or
+```bash
 sudo zypper ar <URL> <alias>
+```
 
 refresh a repository
+```bash
 sudo zypper refresh --repo <alias>
+```
 
 upgrade packages inside a repository
+```bash
 sudo zypper dist-upgrade --repo <alias>
+```
 
 Packman repository.
 Contains that are not distributed with Linux distributions,
 like aMule.
-http://packman.jacobs-university.de/suse/11.2/
+<http://packman.jacobs-university.de/suse/11.2/>
 
 installing kernel sources
 kernel sources are in /usr/src
