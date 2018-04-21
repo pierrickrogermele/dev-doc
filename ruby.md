@@ -30,6 +30,14 @@ Help about one command:
 gem help the_command
 ```
 
+## Running
+
+Interactive session:
+
+```bash
+irb
+```
+
 ## Style conventions
 
  * [Ruby style guide](https://github.com/bbatsov/ruby-style-guide).
@@ -102,6 +110,13 @@ Push in an array:
 myarray.push('x', 'y')
 ```
 
+## Dictionnaries
+
+Access a key:
+```ruby
+mydict['mykey']
+```
+
 ## Operators
 
  * [Ruby Operators](https://www.tutorialspoint.com/ruby/ruby_operators.htm).
@@ -109,6 +124,24 @@ myarray.push('x', 'y')
 Ternary operator:
 ```ruby
 x = a == 1 ? a : a * 2  
+```
+
+And:
+```ruby
+myvar1 and myvar2
+myvar1 && myvar2
+```
+
+Or:
+```ruby
+myvar1 or myvar2
+myvar1 || myvar2
+```
+
+Not:
+```ruby
+not myvar
+! myvar
 ```
 
 ## Statements
@@ -154,9 +187,19 @@ enabled = ! a.nil? and a == 5
 
 ### Function
 
+Simple function:
 ```ruby
 def envvar_enabled(x)
   x + 5
+end
+```
+The returned value is the result of the last evaluated statement.
+
+Explicit returned value:
+```ruby
+def envvar_enabled(x)
+  x + 5
+  return x
 end
 ```
 
