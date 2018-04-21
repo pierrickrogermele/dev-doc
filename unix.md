@@ -647,6 +647,15 @@ Rank | Description
 10   | Directory writable to others, with sticky bit.
 11   | Directory writable to others, without sticky bit.
 
+### which
+
+The `which` command returns the path of a command. If the command cannot be found, an error is returned.
+
+On BSD/macOS `which` has a silent option:
+```bash
+which -s myprog
+```
+
 ## Compression and uncompression
 
 ### tar
