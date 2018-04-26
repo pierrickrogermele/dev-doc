@@ -48,6 +48,28 @@ To stop galaxy daemon:
 ./run.sh --stop-daemon
 ```
 
+## Running tests
+
+See:
+```bash
+sh run_tests.sh --help
+```
+
+Run API tests:
+```bash
+sh run_tests.sh -api
+```
+
+Testing the uploader tool:
+```bash
+sh run_tests.sh -api test/api/test_tools_upload.py:ToolsUploadTestCase
+```
+
+Running one specific test function of the uploader tool tests:
+```bash
+sh run_tests.sh -api test/api/test_tools_upload.py:ToolsUploadTestCase.test_composite_datatype
+```
+
 ## Job runners/schedulers
 
  * [Running Galaxy Tools on a Cluster](https://wiki.galaxyproject.org/Admin/Config/Performance/Cluster).
