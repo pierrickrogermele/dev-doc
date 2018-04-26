@@ -1,0 +1,31 @@
+\nonstopmode{}
+\documentclass[a4paper]{book}
+\usepackage[times,inconsolata,hyper]{Rd}
+\usepackage{makeidx}
+\usepackage[utf8]{inputenc} % @SET ENCODING@
+% \usepackage{graphicx} % @USE GRAPHICX@
+\makeindex{}
+\begin{document}
+\chapter*{}
+\begin{center}
+{\textbf{\huge Package `mypkg'}}
+\par\bigskip{\large \today}
+\end{center}
+\begin{description}
+\raggedright{}
+\inputencoding{utf8}
+\item[Title]\AsIs{What the Package Does (one line, title case)}
+\item[Version]\AsIs{0.0.0.9000}
+\item[Author]\AsIs{Pierrick Roger}
+\item[Maintainer]\AsIs{Pierrick Roger }\email{pk.roger@icloud.com}\AsIs{}
+\item[Description]\AsIs{What the package does (one paragraph).}
+\item[Depends]\AsIs{R (>= 3.3.2)}
+\item[Imports]\AsIs{methods}
+\item[License]\AsIs{What license is it under?}
+\item[Encoding]\AsIs{UTF-8}
+\item[LazyData]\AsIs{true}
+\item[RoxygenNote]\AsIs{6.0.1}
+\end{description}
+\Rdcontents{\R{} topics documented:}
+\printindex{}
+\end{document}

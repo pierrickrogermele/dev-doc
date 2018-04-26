@@ -1768,6 +1768,12 @@ rscript_current <- function() {
 ```
 ## Interesting packages
 
+### Rcpp
+
+ * [Main page](http://dirk.eddelbuettel.com/code/rcpp.html).
+ * [Extending R with C++: A Brief Introduction to Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-introduction.pdf).
+ * [Writing a package that uses Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-package.pdf).
+
 ### devtools
 
 Installing from a git repos:

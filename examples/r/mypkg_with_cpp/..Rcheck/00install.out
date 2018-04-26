@@ -1,0 +1,9 @@
+* installing *source* package ‘mypkg’ ...
+** R
+** preparing package for lazy loading
+** help
+No man pages found in package  ‘mypkg’ 
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (mypkg)

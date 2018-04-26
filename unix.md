@@ -5,6 +5,12 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
+### wakeonlan
+
+```bash
+wakeonlan hardware_addr
+```
+
 ### wget
 
 Download recursively:
@@ -227,7 +233,22 @@ On Debian, see <https://wiki.debian.org/WakeOnLan>.
 
 ## System
 
+### Booting
+
+Under macos, press `Cmd+R` for booting in recovery mode.
+
 ### OS info
+
+Get OS type:
+```bash
+uname
+```
+Returns `"Darwin"`, `"Linux"`, etc.
+
+Get system info (OS type, machine name, etc):
+```bash
+uname -a
+```
 
 Get Ubuntu version:
 ```bash
@@ -238,6 +259,11 @@ Get system information on Ubuntu:
 ```bash
 sudo lshw
 sudo lshw -C network # Filter on network components
+```
+
+Get CPU exact description on macos:
+```bash
+sysctl -n machdep.cpu.brand_string
 ```
 
 ### Machine name
@@ -620,6 +646,15 @@ Rank | Description
 9    | Executable with setgid bit set.
 10   | Directory writable to others, with sticky bit.
 11   | Directory writable to others, without sticky bit.
+
+### which
+
+The `which` command returns the path of a command. If the command cannot be found, an error is returned.
+
+On BSD/macOS `which` has a silent option:
+```bash
+which -s myprog
+```
 
 ## Compression and uncompression
 
@@ -1465,20 +1500,28 @@ zypper info <package>
 ```
 
 adding a repository to package manager
+```bash
 sudo zypper addrepo <URL> <alias>
+```
 or
+```bash
 sudo zypper ar <URL> <alias>
+```
 
 refresh a repository
+```bash
 sudo zypper refresh --repo <alias>
+```
 
 upgrade packages inside a repository
+```bash
 sudo zypper dist-upgrade --repo <alias>
+```
 
 Packman repository.
 Contains that are not distributed with Linux distributions,
 like aMule.
-http://packman.jacobs-university.de/suse/11.2/
+<http://packman.jacobs-university.de/suse/11.2/>
 
 installing kernel sources
 kernel sources are in /usr/src
