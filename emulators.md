@@ -109,6 +109,11 @@ To run the container
 docker run --name mycontainer myimage
 ```
 
+To run a container interactively:
+```bash
+docker run -it --entrypoint /bin/bash myimage
+```
+
 To mount a local folder onto the container file system, in read/write mode:
 ```bash
 docker run -v /Users/myname/somedir/blabla:/files/mydir myimage
