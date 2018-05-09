@@ -327,6 +327,12 @@ config.vm.provider "virtualbox" do |vb|
 end
 ```
 
+Naming provision directives:
+```bash
+  config.vm.provision "Run my bootstrap command.", type: "shell", path: "vagrant-bootstrap.sh"
+```
+Provision directives can be named. The name will be displayed during the construction of the VM as a message. Be careful, that since this is a name, if you name two provision directives with the exact same string, only one will be seen and run (XXX BUG ?).
+
 ## VirtualBox
 
  * [VirtualBox](https://www.virtualbox.org) official site.
@@ -351,6 +357,34 @@ Start a VM without display:
 ```bash
 VBoxManage startvm my_vm --type headless
 ```
+
+### Creating a macOS VM
+
+ * [How to Install macOS High Sierra in VirtualBox on Windows 10](https://www.howtogeek.com/289594/how-to-install-macos-sierra-in-virtualbox-on-windows-10/).
+ 
+1. Create the ISO
+```bash
+hdiutil create -o $HOME/tmp/HighSierra.cdr -size 7316m -layout SPUD -fs HFS+J
+hdiutil attach $HOME/tmp/HighSierra.cdr.dmg -noverify -nobrowse -mountpoint /Volumes/install_build
+asr restore -source /Applications/Install\ macOS\ High\ Sierra.app/Contents/SharedSupport/BaseSystem.dmg -target /Volumes/install_build -noprompt -noverify -erase
+hdiutil detach /Volumes/OS\ X\ Base\ System
+hdiutil convert $HOME/tmp/HighSierra.cdr.dmg -format UDTO -o $HOME/tmp/HighSierra.iso
+mv $HOME/tmp/HighSierra.iso.cdr $HOME/tmp/HighSierra.iso
+```
+
+2. Create the VM, named here crocodiles, in VirtualBoxr. In the settings set the ISO into the optical drive. Quit VirtualBox.
+
+3. VM post-configuration
+```bash
+VBoxManage modifyvm crocodiles --cpuidset 00000001 000306a9 04100800 7fbae3ff bfebfbff
+VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "MacBookPro11,3"
+VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-2BD1B31983FE1663"
+VBoxManage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+VBoxManage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+```
+
+4. Open VirtualBox and start the VM
 
 ## VMWare
 
