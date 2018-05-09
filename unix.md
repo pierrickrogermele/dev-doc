@@ -235,8 +235,14 @@ On Debian, see <https://wiki.debian.org/WakeOnLan>.
 
 ### Booting
 
-Under macos, press `Cmd+R` for booting in recovery mode.
+ * [Mac startup key combinations](https://support.apple.com/en-us/HT201255).
 
+Under macos, press `Cmd+R` for booting in recovery mode.
+See [How to reinstall macOS](https://support.apple.com/en-us/HT204904).
+Other commands: `Option-Command-R` or `Shift-Option-Command-R`, install latest macOS or macOS that came with the Mac, depending on current OS version.
+
+For booting on DVD on a Mac, hold down C key.
+ 
 ### OS info
 
 Get OS type:
