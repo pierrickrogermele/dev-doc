@@ -3,6 +3,10 @@ UNIX
 
 These notes refer to UNIX and Linux operating systems.
 
+ * [Debian](https://www.debian.org).
+ * [CentOS](https://www.centos.org).
+ * [Arch Linux](https://www.archlinux.org/).
+
 ## Network
 
 ### wakeonlan
