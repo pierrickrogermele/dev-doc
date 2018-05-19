@@ -9,10 +9,18 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
-### wakeonlan
+### List network devices
 
+`ifconfig` is deprecated. It has been replaced by `ip`.
+
+To get a list of network devices:
 ```bash
-wakeonlan hardware_addr
+ip link show
+```
+
+Get info on a card:
+```bash
+ethtool my_card_name
 ```
 
 ### wget
@@ -233,7 +241,17 @@ Local port used is 1993. Everything going to this local port will be forwarded t
 
 ### Wake On LAN
 
-On Debian, see <https://wiki.debian.org/WakeOnLan>.
+On Debian, see [Set up Wake On LAN (WOL) on a Debian Server](https://www.lisenet.com/2013/set-up-wake-on-lan-wol-on-a-debian-wheezy-server/) or <https://wiki.debian.org/WakeOnLan>.
+
+To see if a card has WOL enabled, run `ethtool`:
+```bash
+ethtool my_card_name
+```
+and look for the lines `Supports Wake-on: g` and `Wake-on: d`.
+
+```bash
+wakeonlan hardware_addr
+```
 
 ### dhclient
 
@@ -245,15 +263,26 @@ dhclient enp2s0    # Obtain a new lease
 
 ## System
 
+### Installing
+
+ * [How to reinstall macOS](https://support.apple.com/en-us/HT204904).
+ * [Create a bootable USB stick on macOS](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos?_ga=2.233519964.315784058.1525944550-1342623189.1521968110#0).
+ * [Radeon kernel modesetting for r600 or later requires firmware-amd-graphics](https://joshtronic.com/2017/11/06/fixed-radeon-kernel-modesetting-for-r600-or-later-requires-firmware-amd-graphics/).
+
 ### Booting
 
  * [Mac startup key combinations](https://support.apple.com/en-us/HT201255).
 
-Under macos, press `Cmd+R` for booting in recovery mode.
-See [How to reinstall macOS](https://support.apple.com/en-us/HT204904).
-Other commands: `Option-Command-R` or `Shift-Option-Command-R`, install latest macOS or macOS that came with the Mac, depending on current OS version.
+macOS boot key combinations:
 
-For booting on DVD on a Mac, hold down C key.
+Command         | Description
+--------------- | ------------------------------------------
+Cmd-R           | Recovery mode.
+Alt-Cmd-R       | Install latest macOS or macOS that came with the Mac, depending on current OS version.
+Shift-Alt-Cmd-R | Install latest macOS or macOS that came with the Mac, depending on current OS version.
+C               | Boot on DVD.
+D or Alt-D      | Run hardware tests.
+Alt             | Display possible boot devices.
  
 ### OS info
 
@@ -1956,14 +1985,6 @@ Patching a file:
 patch original_file patch_file
 ```
 
-## seq
-
-Generate a sequence of numbers:
-```bash
-seq 4 # --> 1 2 3 4
-seq 100 104 # --> 100 101 102 103 104
-```
-
 ## ps
 
 List every process (standard syntax):
@@ -1984,7 +2005,17 @@ Option          | Description
  -x             | display also processes which do not have a controlling terminal.
  -U username    | Display the processes owned by the specified user.
 
-## bc
+## Numbers (calculate and compute)
+
+### seq
+
+Generate a sequence of numbers:
+```bash
+seq 4 # --> 1 2 3 4
+seq 100 104 # --> 100 101 102 103 104
+```
+
+### bc
 
 Set the number of decimals to print for output:
 ```
@@ -1992,16 +2023,27 @@ scale=2
 ```
 By default only integer parts are printed (zero decimals).
 
-## calc
+### calc
 
 For printing a number in hexadecimal base:
 ```
 base(16),134525
 ```
 
-## expr
+### expr
 
 Measure length of a string:
 ```bash
 expr 'abcd' : '.*'
+```
+
+## X11
+
+### Install Xfce
+
+On Debian, see <https://wiki.debian.org/Xfce>:
+```bash
+apt-get install xfce4
+#apt-get install xfce4-goodies
+#apt-get install task-xfce-desktop
 ```
