@@ -235,6 +235,14 @@ Local port used is 1993. Everything going to this local port will be forwarded t
 
 On Debian, see <https://wiki.debian.org/WakeOnLan>.
 
+### dhclient
+
+Renew client lease on specific card:
+```bash
+dhclient -r enp2s0 # Revoke
+dhclient enp2s0    # Obtain a new lease
+```
+
 ## System
 
 ### Booting
@@ -348,6 +356,8 @@ Get list of USB devices in Debian:
 ```bash
 lsusb
 ```
+
+ * [Use Apple’s USB SuperDrive with Linux](https://christianmoser.me/use-apples-usb-superdrive-with-linux/).
 
 #### iPad/iPhone
 
@@ -1000,6 +1010,19 @@ echo "MY LINE OF TEXT" | sed 's/ /\
 /g'
 ```
 
+
+### uniq
+
+Filter out duplicated lines:
+```bash
+uniq myfile
+```
+
+Output only the duplicated lines:
+```bash
+uniq -d myfile
+```
+
 ### awk
 
 #### Running
@@ -1453,6 +1476,18 @@ sudo update-java-alternatives -s java-1.5.0-sun
 To uninstall a package:
 ```bash
 sudo apt-get remove mypkg
+```
+
+Install a `.deb` archive:
+```bash
+apt install mypkg.deb
+```
+
+### dpkg
+
+Install a package archive `.deb`:
+```bash
+dpkg -i mypkg.deb
 ```
 
 ### snap (Ubuntu, Debian)
