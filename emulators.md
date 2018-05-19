@@ -181,19 +181,13 @@ DEPRECATED:
 
 Normally you have to be part of the group `docker` to run Docker. However it may not work, in which case you will be forced to run Docker as root (`sudo docker ...`).
 
-### Container orchestrators
+## Minikube and Kubernetes
+
+Kubernetes is a container orchestrator.
 
  * [Running Kubernetes Locally via Minikube](http://kubernetes.io/docs/getting-started-guides/minikube/).
 
-#### minikube on macOS
-
-Using minikube with Docker for macOS (see [Minikube Setup: Docker for Mac / Sierra](https://gist.github.com/inadarei/7c4f4340d65b0cc90d42d6382fb63130)):
-```bash
-brew install xhyve docker-machine-driver-xhyve
-minikube start --vm-driver=xhyve
-```
-
-##### Install
+### Install
 
 See [minikube](https://github.com/kubernetes/minikube/releases).
 
@@ -214,7 +208,7 @@ chmod +x minikube
 mv minikube /usr/local/bin/
 ```
 
-##### Use
+### Use
 
 Start a minikube cluster:
 ```bash
@@ -232,20 +226,9 @@ To destroy a stopped cluster:
 minikube delete
 ```
 
-Switch to context and look at pods (you should see the "manager" and the "dashboard"):
-```bash
-kubectl config use-context minikube
-kubectl get pods --all-namespaces
-```
-
 Open the Kubernetes dashboard inside a browser (need first to switch to context):
 ```bash
 minikube dashboard
-```
-
-Get the nodes in the cluser:
-```bash
-kubectl get nodes
 ```
 
 Minikube contains a built-in Docker daemon for running containers. If you use another Docker daemon for building your containers, you will have to publish them to a registry before minikube can pull them. You can use minikube’s built in Docker daemon to avoid this extra step of pushing your images. Use the built-in Docker daemon with:
@@ -253,9 +236,27 @@ Minikube contains a built-in Docker daemon for running containers. If you use an
 eval $(minikube docker-env)
 ```
 
+### kubectl
+
+Switch to context and look at pods (you should see the "manager" and the "dashboard"):
+```bash
+kubectl config use-context minikube
+kubectl get pods --all-namespaces
+```
+
+Get logs of pods:
+```bash
+kubectl logs -f mypod
+```
+
+Get the nodes in the cluser:
+```bash
+kubectl get nodes
+```
+
 To log into a running pod:
 ```bash
-kubect exec -i -t my-pod bash
+kubectl exec -i -t my-pod bash
 ```
 
 ## Vagrant
@@ -524,6 +525,10 @@ mount c: ~/mydir
 ## Thomson computers
 
  * [DCMO5](http://dcmo5.free.fr/v11/dcmo5v11fr.html). THOMSON MO5/TO7. Multi-plateform, to compile.
+
+## Wine
+
+ * [iTunes12-Wine-Ubuntu.txt](https://gist.github.com/schorschii/a22c17e21ec48f4931e9a2b2ea5a01bb).
 
 ## TO CLEAN
 
