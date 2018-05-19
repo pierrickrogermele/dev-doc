@@ -16,7 +16,6 @@ executed/loaded when run as interactive login shell.
 `~/.bash_logout`:
 executed when exiting from login shell
 
-## `source`
 
 Use code from another file:
 ```bash
@@ -277,6 +276,14 @@ echo ${my_array[some_key]}
 keys=${!my_array[@]}
 ```
 
+Join elements of an array (see [Join elements of an array?](https://stackoverflow.com/questions/1527049/join-elements-of-an-array)):
+```bash
+function join_by { local IFS="$1"; shift; echo "$*"; }
+join_by , a "b c" d #a,b c,d
+join_by / var local tmp #var/local/tmp
+join_by , "${FOO[@]}" #a,b,c
+```
+
 ## Strings
 
 Remove a part of a string:
@@ -405,6 +412,7 @@ done
 
 ```bash
 scriptdir=$(cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd)
+SCRIPT_NAME=$(basename "${BASH_SOURCE[0]}")
 ```
 
 ## Arithmetic operator `((...))`
