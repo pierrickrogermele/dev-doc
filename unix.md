@@ -388,6 +388,16 @@ lsusb
 
  * [Use Apple’s USB SuperDrive with Linux](https://christianmoser.me/use-apples-usb-superdrive-with-linux/).
 
+#### Display
+
+ * Control the screen brightness on Linux: [Backlight](https://wiki.archlinux.org/index.php/backlight).
+
+After install Debian on an iMac 27'', I had to turn off ACPI backlight in the kernel in order to get control of the screen brightness:
+```
+acpi_backlight=none
+```
+See [Kernel parameters](https://wiki.archlinux.org/index.php/Kernel_parameters) for setting kernel parameters at boot time.
+
 #### iPad/iPhone
 
 ##### Charging
@@ -1795,9 +1805,16 @@ if [ -z "$var" ] ; then
 fi
 ```
 
-Compare integers
+Compare integers:
 ```bash
 if [ $v -eq 1 ] ; then
+	echo yesh
+fi
+```
+
+Grouping expressions:
+```bash
+if [ "$a" = 'x' -a '(' "$b" = 'y' -o "$c" = 'z' ')' ] ; then
 	echo yesh
 fi
 ```
@@ -2038,6 +2055,20 @@ expr 'abcd' : '.*'
 ```
 
 ## X11
+
+### Init scripts
+
+ * [Difference between .xinitrc, .xsession and .xsessionrc](https://unix.stackexchange.com/questions/281858/difference-between-xinitrc-xsession-and-xsessionrc).
+ * [Xsession](https://wiki.debian.org/Xsession), on Debian.
+
+`.xinitrc` is part of X11. It is used when starting GUI from the console (using `startx`, that calls `xinit`, which parse `.xinitrc`).
+
+`.xsession` is part of X11. It is read at GUI login, from a display manager. Beware that you must tell the display manager to invoke the "custom" session type.
+On Debian the `xsession` is not parsed but executed in order to run the window manager.
+
+`.xsessionrc` is specific to Debian and Ubuntu.
+
+`.xprofile` is specific to GDM (Gnome).
 
 ### Install Xfce
 
