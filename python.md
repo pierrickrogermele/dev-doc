@@ -88,9 +88,9 @@ Command | Description
 
 To set encoding of the source code in a Python script, put one of the following lines (compatible with popular editors like emacs and vim) at the first or second line of the file:
 ```python
-# -*- coding: <encoding> -*-
-# coding=<encoding>
-# vim: set fileencoding=<encoding> :
+ # -*- coding: <encoding> -*-
+ # coding=<encoding>
+ # vim: set fileencoding=<encoding> :
 ```
 Where `<encoding>` can be any valid encoding name (`iso-8859-15`, `utf8`, ...).
 The line must match the regular expression `^[ \t\v]*#.*?coding[:=][ \t]*([-_.a-zA-Z0-9]+)`.
@@ -217,11 +217,12 @@ Usage: thingy [OPTIONS]
 """
 ```
 
-Raw string:
+Raw string (no backslashes are interpeted):
 ```python
-# no backslashes are interpeted
 s = r"ABCD\n\EFG"
-# can be used in conjuncion with multi-lines string:
+```
+can be used in conjuncion with multi-lines string:
+```python
 s = r"""ABC\n
 EFG"""
 ```
@@ -289,8 +290,10 @@ t = Template('Return the $item to $owner.')
 d = dict(item='unladen swallow')
 s = t.substitute(d)	# Raises an KeyError exception because no value is provided for the key 'owner'.
 s = t.safe_substitute(d) # Raises no exception.
+```
 
-# Template subclasses can specify a custom delimiter.
+Template subclasses can specify a custom delimiter:
+```python
 class MyTemplateClass(Template):
 	delimiter='%'
 t = MyTemplateClass("Hello %name !")
@@ -329,6 +332,8 @@ s = str(10)
 
 #### Formatting
 
+ * [String Formatting Operations](https://docs.python.org/2.4/lib/typesseq-strings.html).
+
 Format:
 ```python
 print '{0:2d}'.format(x)
@@ -352,6 +357,26 @@ print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
 `printf` style:
 ```python
 print 'The value of PI is approximately %5.3f.' % math.pi
+```
+
+Print a Python object (convert it using `repr()`):
+```python
+print("My object %r" % obj)
+```
+
+Print a Python object (convert it using `str()`):
+```python
+print("My object %s" % obj)
+```
+
+Printing several objects:
+```python
+print("My obj1 %s and my obj2 %s" % (obj1, obj2))
+```
+
+Printing several objects, using keys:
+```python
+print("My obj1 %(a)s and my obj2 %(b)s" % {'a':obj1, 'b':obj2})
 ```
 
 Padding a string:
@@ -784,7 +809,7 @@ john.dept = 'compute lab'
 "<" means little-endian byte order.
 ```python
 import struct
-# ...
+ # ...
 fields = struct.unpack('<IIIHH', string_with_binary_data[offset:offset+16])
 ```
 
@@ -844,7 +869,7 @@ For returning several values, use a tuple:
 ```python
 def myfunc():
 	return a, b
-# ...
+#_ ...
 x, y = myfunc()
 ```
 
@@ -1870,8 +1895,8 @@ data = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
 heapify(data) # rearrange the list into heap order
 heappush(data, -5) # add a new entry
 [heappop(data) for i in range(3)] # fetch the three smallest entries
-# result is [-5, 0, 1]
 ```
+result is: `[-5, 0, 1]`.
 
 ### PIL (Python Image Library)
 	
@@ -1943,7 +1968,7 @@ class MyThread(threading.Thread):
 
 thread_instance = MyThread()
 thread_instance.start()
-# ...
+#_ ...
 thread_instance.join()
 ```
 
