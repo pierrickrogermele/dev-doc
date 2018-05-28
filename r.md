@@ -3,6 +3,9 @@ R
 
 ## Installing
 
+ * [UBUNTU PACKAGES FOR R](https://cran.r-project.org/bin/linux/ubuntu/).
+ * [How to install R on Ubuntu and Debian](https://www.linode.com/docs/development/r/how-to-install-r-on-ubuntu-and-debian/).
+
 Under macOS, run:
 ```bash
 brew tap homebrew/science
@@ -21,7 +24,6 @@ apt-get install r-base
 ```
 
 To get the latest R version under Ubuntu, setup the CRAN package repository.
-See [UBUNTU PACKAGES FOR R](https://cran.r-project.org/bin/linux/ubuntu/).
 Add the following line to `/etc/apt/sources.list` file:
 	deb http://cran.stat.unipd.it/bin/linux/ubuntu zesty/
 ```bash
@@ -202,22 +204,22 @@ isPackageLoaded('mypkg')
 Example of header for an Rmd vignette using knitr package and BiocStyle package:
 ```rmd
 ---
-title: "Configuring biodb"
-author: "Pierrick Roger"
-output:
-  BiocStyle::html_document:
-#    toc_float: true    # TOC implies enabling a theme.
-    theme: null         # A theme uses around 700KB.
-#    highlight: null     # Highlighting uses around 60KB.
-#    mathjax: null
-package: biodb
-abstract: |
-  How to configure biodb package.
-vignette: |
-  %\VignetteIndexEntry{Configuring biodb}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
+ title: "Configuring biodb"
+ author: "Pierrick Roger"
+ output:
+   BiocStyle::html_document:
+ #    toc_float: true    # TOC implies enabling a theme.
+     theme: null         # A theme uses around 700KB.
+ #    highlight: null     # Highlighting uses around 60KB.
+ #    mathjax: null
+ package: biodb
+ abstract: |
+   How to configure biodb package.
+ vignette: |
+   %\VignetteIndexEntry{Configuring biodb}
+   %\VignetteEngine{knitr::rmarkdown}
+   %\VignetteEncoding{UTF-8}
+ ---
 ```
 
 Here is the settings to put insisde the `DESCRIPTION` file:
