@@ -157,6 +157,18 @@ myprogram &>somefile		# redirect all outputs to a file
 myprogram &>/dev/null		# silence all outputs
 ```
 
+## Alias
+
+Creating an alias:
+```bash
+alias blabla='echo coucou'
+```
+
+Removing an alias:
+```bash
+unalias blabla
+```
+
 ## Variables
 
 Declaring a typed variable:
