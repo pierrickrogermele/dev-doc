@@ -1731,7 +1731,7 @@ pip install --upgrade setuptools
 pip install --upgrade pip
 ```
 
-See [Installing Python Modules](https://docs.python.org/2/install/) for installing packages in the user home directory. For installing in `/.local`, use `--user` option:
+See [Installing Python Modules](https://docs.python.org/2/install/) for installing packages in the user home directory. For installing in `~/.local`, use `--user` option:
 ```bash
 pip install --user mymodule
 ```
