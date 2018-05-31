@@ -70,6 +70,14 @@ Running one specific test function of the uploader tool tests:
 sh run_tests.sh -api test/api/test_tools_upload.py:ToolsUploadTestCase.test_composite_datatype
 ```
 
+## Tool dependencies
+
+To enable tool dependencies, set:
+```
+conda_auto_install = True
+```
+inside `galaxy.ini` configuration file.
+
 ## Job runners/schedulers
 
  * [Running Galaxy Tools on a Cluster](https://wiki.galaxyproject.org/Admin/Config/Performance/Cluster).
