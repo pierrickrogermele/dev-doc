@@ -261,6 +261,23 @@ dhclient -r enp2s0 # Revoke
 dhclient enp2s0    # Obtain a new lease
 ```
 
+### Wifi
+
+Get wifi status on Debian:
+```bash
+nmcli radio wifi
+```
+
+Turn off wifi on Debian:
+```bash
+nmcli radio wifi off
+```
+
+Get help:
+```bash
+nmcli radio wifi help
+```
+
 ## System
 
 ### Installing
