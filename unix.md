@@ -286,7 +286,7 @@ nmcli radio wifi help
  * [Create a bootable USB stick on macOS](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos?_ga=2.233519964.315784058.1525944550-1342623189.1521968110#0).
  * [Radeon kernel modesetting for r600 or later requires firmware-amd-graphics](https://joshtronic.com/2017/11/06/fixed-radeon-kernel-modesetting-for-r600-or-later-requires-firmware-amd-graphics/).
 
-### Booting
+### Booting, starting and stoping
 
  * [Mac startup key combinations](https://support.apple.com/en-us/HT201255).
 
@@ -301,6 +301,11 @@ C               | Boot on DVD.
 D or Alt-D      | Run hardware tests.
 Alt             | Display possible boot devices.
  
+Putting a machine to sleep in Debian:
+```bash
+systemctl suspend
+```
+
 ### OS info
 
 Get OS type:
@@ -442,6 +447,7 @@ ipad_charge -0
 #### Keyboard
 
  * [Configure Apple keyboard under Debian](https://wiki.debian.org/MacBook#Keyboard).
+ * [Compose key](https://en.wikipedia.org/wiki/Compose_key).
 
 To see current keyboard configuration under Ubuntu:
 ```bash
