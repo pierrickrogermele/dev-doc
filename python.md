@@ -1348,6 +1348,12 @@ batcmd="dir"
 result = subprocess.check_output(batcmd, shell=True)
 ```
 
+Exit from program:
+```python
+import sys
+sys.exit(1)
+```
+
 ## File system and I/O
 
 Open a file:
