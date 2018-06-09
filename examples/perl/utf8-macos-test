@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+$read_write_prog = "./utf8-macos-test-read-write";
+
+# call simply read-write prog
+system($read_write_prog);
+
+# call it differently
+$s = `$read_write_prog`;
+print $s;
+
+# test unicode strings in arguments
+
+system("./utf8-macos-test-args àèéá ûîôêâ ëüïö äœç");

@@ -1,0 +1,7 @@
+#!/opt/local/bin/perl
+
+use Text::PDF::File;
+use Data::Dumper;
+
+$p = Text::PDF::File->open("toto.pdf", 1);
+print Data::Dumper->Dump([$p]);

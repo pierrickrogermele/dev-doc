@@ -1631,6 +1631,13 @@ conda skeleton cran mypkg
 
  * [Contributing a recipe](https://bioconda.github.io/contribute-a-recipe.html).
 
+## Requirements file
+
+To specify a GitHub repos with a particular branch in `requirements.txt`:
+```
+-e git://github.com/myaccount/myrepos.git#egg=mybranch
+```
+
 ## Packages and modules
 
 A module is a file with `.py` and whose name is the module's name.

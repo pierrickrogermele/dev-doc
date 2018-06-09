@@ -1,0 +1,14 @@
+#!/usr/bin/perl
+
+binmode (STDOUT, ":utf8");
+
+# read file and write to stdout
+open(UTF8_FILE, "<:utf8", "utf8-macos-test.input");
+while(<UTF8_FILE>) {
+	push(@lines, $_);
+	print $_;
+}
+close(UTF8_FILE);
+
+use Data::Dumper;
+print Data::Dumper->Dump([\@lines]);

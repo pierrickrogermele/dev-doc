@@ -74,9 +74,9 @@ sh run_tests.sh -api test/api/test_tools_upload.py:ToolsUploadTestCase.test_comp
 
 To enable tool dependencies, set:
 ```
-conda_auto_install = True
+conda_auto_install: true
 ```
-inside `galaxy.ini` configuration file.
+inside `galaxy.yml` configuration file.
 
 ## Job runners/schedulers
 

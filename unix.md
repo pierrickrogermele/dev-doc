@@ -9,6 +9,11 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
+List processes that uses a port:
+```bash
+lsof -i:8080
+```
+
 ### List network devices
 
 `ifconfig` is deprecated. It has been replaced by `ip`.
@@ -278,6 +283,13 @@ Get help:
 nmcli radio wifi help
 ```
 
+### Samba
+
+To setup Samba under macOS, declare the workgroup:
+	System Preferences -> Network -> [your network device] -> Advanced -> WINS -> Workgroup
+The path from a Windows computer is:
+	\\<server name\<shared folder>
+
 ## System
 
 ### Installing
@@ -297,13 +309,24 @@ Command         | Description
 Cmd-R           | Recovery mode.
 Alt-Cmd-R       | Install latest macOS or macOS that came with the Mac, depending on current OS version.
 Shift-Alt-Cmd-R | Install latest macOS or macOS that came with the Mac, depending on current OS version.
-C               | Boot on DVD.
+C               | Boot on DVD or USB device.
 D or Alt-D      | Run hardware tests.
 Alt             | Display possible boot devices.
+Eject key       | Eject optical media.
+Cmd+V           | Boot in verbose mode.
  
 Putting a machine to sleep in Debian:
 ```bash
 systemctl suspend
+```
+
+Preventing system sleep on macOS:
+```bash
+caffeinate -i myprog
+```
+Or by using PID:
+```bash
+caffeinate -i -w 4521
 ```
 
 ### OS info
@@ -476,13 +499,46 @@ Under Ubuntu, to configure permanently from command line, and make it also avail
 
 ### Services
 
-#### Ubuntu
-
-List all services:
+List all services under Ubuntu:
 ```bash
 service --status-all
 ```
 
+List services under macOS:
+```bash
+launchctl list
+```
+
+Sart a service under macOS:
+```bash
+Launchctl start org.postfix.master
+```
+
+Stop a service under macOS:
+```bash
+Launchctl stop org.postfix.master
+```
+
+## Password managers
+
+ * [pwsafe](https://github.com/nsd20463/pwsafe). Works in command line.
+
+ * `keepass` password manager. Has an interactive command line interface: `kpcli`.
+ * [KeePassC](http://raymontag.github.io/keepassc/). A command line interface to keepass.
+
+`pass` password manager (too much complex, needs GPG setup):
+ * [Pass](https://www.passwordstore.org/).
+ * [Pass tutorial](http://www.tricksofthetrades.net/2015/07/04/notes-pass-unix-password-manager/).
+
+Setting a password inside the keychain in macOS:
+```bash
+sudo /usr/bin/security -v add-internet-password -a pierrick.rogermele@icloud.com -s mail.icloud.com -w 'mypassword' 
+```
+
+Getting a password stored in the keychain on macOS:
+```bash
+security find-internet-password -w -a pierrick.rogermele@icloud.com
+```
 ## File system
 
 ### mktemp
@@ -1383,7 +1439,7 @@ pmset -g batt
 
 ## Package management
 
-### brew
+### Homebrew / brew
 
  * <http://mxcl.github.com/homebrew/>.
  * <https://github.com/mxcl/homebrew/>.
@@ -1686,6 +1742,11 @@ To convert m4a into mp3:
 ffmpeg -i myfile.m4a -acodec libmp3lame -ab 96k myfile.mp3
 ```
 
+We can also use ffmpeg directly to encode the images files into a movie. If we start with files name 001.jpg, 002.jpg, ..., we can use:
+```bash
+ffmpeg -r 10 -b 1800 -i %03d.jpg test1800.mp4
+```
+
 ### pdfimages
 
 From package xpdf or poppler.
@@ -1718,6 +1779,78 @@ Convert to gray scale:
 ```bash
 magick convert -colorspace Gray input.jpg output.jpg
 ```
+
+```bash
+For f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done 
+```
+
+### dd
+
+To make an ISO from your CD/DVD, place the media in your drive but do not mount it. If it automounts, unmount it.
+```bash
+dd if=/dev/dvd of=dvd.iso # for dvd
+dd if=/dev/cdrom of=cd.iso # for cdrom
+dd if=/dev/scd0 of=cd.iso # if cdrom is scsi 
+```
+
+### mkisofs
+	
+Create an ISO from a directory:
+```bash
+Mkisofs -r -f -iso-level 4 -V <volume_label> <directory> > file.iso
+```
+	-f : follow links
+	-r : Rock Ridge protocol extension
+
+Pour des fichiers volumineux, utiliser le format udf:
+```perl6
+Mkisofs -iso-level 4 -r -f -udf -V <volume_label> <directory> > file.iso
+```
+
+### transcode
+
+Pour éliminer les bords noirs :
+```bash
+transcode -i 78\ Tours.avi -J detectclipping=limit=24 -y null,null
+transcode -i 78\ Tours.avi -j 0,8,0,8 - R 1 -y xvid4,null && transcode -i 78\ Tours.avi -j 0,8,0,8 - R 2 -y xvid4 -o 78tours_2.avi
+
+nice transcode -i grease.1800.avi -w 900 -R 1 -y divx4,null && nice transcode -i grease.1800.avi -w 900 -R 2 -y divx4,null -o grease.900.divx4.avi
+
+nice -19 transcode -i The\ Young\ Master.avi -j 0,8,0,8 -w 810 -R 1 -y xvid4,null && nice -19 transcode -i The\ Young\ Master.avi -j 0,8,0,8 -w 810 -R 2 -y xvid4 -o youngmaster.avi
+
+transcode -i easter.avi -w 240 -c 70-22071 -R 1 -y xvid4,null && transcode -i easter.avi -w 240 -c 70-22071 -R 2 -y xvid4 -o easter.2.avi
+```
+	
+Pour extraire une piste audio d'un avi et l'écrire dans un fichier ogg:
+```bash
+transcode -i movie.avi -y null,ogg -o movie.ogg
+```
+
+### mkvmerge
+
+Pour les .srt s'assurer que le fichier est bien encodé en UTF-8. Exemple :
+```bash
+cat Le\ Secret\ des\ Poignards\ Volants.fr.srt | perl -e 'binmode (STDOUT, ":utf8"); while(<STDIN>) { print $_; }' > poignards.fr.srt
+
+mkvmerge -o Le\ Secret\ des\ Poignards\ Volants.mkv Le\ Secret\ des\ Poignards\ Volants.avi --language 0:fre Le\ Secret\ des\ Poignards\ Volants.fr.srt
+
+mkvmerge -o Dial\ M\ For\ Murder.mkv dialm.avi --language 0:eng --language 1:fre dialm.idx
+
+mkvmerge -o Shrek\ 2.mkv Shrek\ 2.avi --language 0:eng --language 1:fre Shrek\ 2.idx
+
+mkvmerge -o Robin\ Hood.mkv -A Robin\ Hood.avi Robin\ Hood.ogg --language 0:eng --language 1:fre Robin\ Hood.idx
+
+mkvmerge -o "Breakfast at Tiffany's.mkv" --aspect-ratio 16/9 -A breakfast.avi breakfast.ogg --language 0:eng --language 1:fre breakfast.idx
+```
+
+### mencoder
+
+With mencoder, we can use the vbitrate option to set the degree of lossy compression. Note that the default mpeg4 option will add a "DivX" logo to the movie when playin in windows media player, so we prefer to use one of the other mpeg4 encoders, such as msmpeg4 or msmpeg4v2. The commmand line I've used is:
+
+```bash
+mencoder "mf://*.jpg" -mf fps=10 -o test.avi -ovc lavc -lavcopts vcodec=msmpeg4v2:vbitrate=800 
+```
+	
 
 ## tmux
 
@@ -1795,6 +1928,14 @@ bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
 ### Plugins
 
  * [Battery plugin](https://github.com/tmux-plugins/tmux-battery).
+
+## a2ps
+
+```bash
+A2ps -4 -A fill file1.txt file2.txt file3.txt -o output.ps
+```
+	-4 :		4 pages virtuelles par page
+	-A fill :	mettre les fichiers les uns à la suite des autres sur une même page
 
 ## `test` / `[`
 
@@ -2045,6 +2186,11 @@ Option          | Description
  -x             | display also processes which do not have a controlling terminal.
  -U username    | Display the processes owned by the specified user.
 
+For monitoring memory usage of processes:
+```bash
+while true ; do ps -o %mem,rss,sz,vsize,fname ; sleep 1 ; done
+```
+
 ## Numbers (calculate and compute)
 
 ### seq
@@ -2077,7 +2223,38 @@ Measure length of a string:
 expr 'abcd' : '.*'
 ```
 
-## X11
+
+## Installing another UNIX like system on a Mac
+
+ * [The rEFInd Boot Manager](http://www.rodsbooks.com/refind/).
+ * [Single boot Linux on an Intel Mac Mini](https://major.io/2011/01/26/single-boot-linux-on-an-intel-mac-mini/).
+ * [MacMiniIntel, Installing Debian on a Mac Mini](https://wiki.debian.org/MacMiniIntel)
+ * [Single boot Gentoo mac mini](https://forums.gentoo.org/viewtopic-p-7128354.html).
+
+Use CD install with non-free firmware included: <https://cdimage.debian.org/cdimage/unofficial/non-free/cd-including-firmware/current/amd64/iso-cd/>.
+
+Bootloader:
+ * Macs use EFI bootloader.
+ * Standard Grub and LILO don't do EFI.
+ * Grub2 may do EFI -> to check.
+ * See [rEFIt](http://refit.sourceforge.net/).
+ * See also [rEFInd](http://www.rodsbooks.com/refind/) that is based on rEFIt with Macs consideration.
+ * More precisely the MacMini 3,1 boots into EFI mode when booting from USB device, and into BIOS Compatibility mode when booting from CD/DVD.
+
+Gentoo:
+ * [Gentoo Linux in Mac Mini 2009, soundcard issue](https://forums.gentoo.org/viewtopic-t-749525-start-0.html).
+## X11 & other graphical display managers
+
+ * [256 Xterm 24bit RGB color chart](http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html).
+ * [X colors rgb.txt decoded](http://sedition.com/perl/rgb.html).
+
+### Window managers and desktop environements
+
+Installing Ubuntu graphical desktop:
+```bash
+sudo apt-get install ubuntu-desktop
+sudo shutdown -r now
+```
 
 ### Init scripts
 
@@ -2100,4 +2277,55 @@ On Debian, see <https://wiki.debian.org/Xfce>:
 apt-get install xfce4
 #apt-get install xfce4-goodies
 #apt-get install task-xfce-desktop
+```
+
+### Screen saver, locking and energy saving
+
+Under macOS:
+```bash
+/System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend
+```
+
+### Fonts
+	
+Getting list of fonts:
+```bash
+xlsfonts
+```
+
+Open a window with a list of fonts:
+```bash
+xfd -fn fontname
+```
+
+### xterm
+
+Nice font:
+```bash
+xterm -fa monaco
+```
+
+Enable 16 colors:
+```bash
+export TERM=xterm-color
+```
+
+Enable 256 colors:
+```bash
+export TERM=xterm-256color
+```
+
+To set background color:
+```bash
+xterm -bg black
+```
+
+Enable cursor blinking:
+```bash
+xterm -bc
+```
+
+Set cursor color:
+```bash
+xterm -cr white
 ```

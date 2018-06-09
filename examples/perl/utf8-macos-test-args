@@ -1,0 +1,11 @@
+#!/usr/bin/perl
+
+use Encode;
+
+binmode(STDOUT, ':utf8');
+
+foreach (@ARGV) {
+	$_ = Encode::decode_utf8($_);
+}
+
+print join(' ', @ARGV)."\n";
