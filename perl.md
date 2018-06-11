@@ -344,6 +344,16 @@ The `=>` operator is called the "fat comma" and has the effect to transform its 
 
 ### Arrays
 
+Define an array:
+```perl
+my @arr = (1, 2, 3);
+```
+
+Get a value from an array:
+```perl
+my $val = $arr[0];
+```
+
 Get size of an array:
 ```perl6
 my $size = @arr;
@@ -393,6 +403,7 @@ See `Array::Utils` and `List::Util` for packages providing functions on arrays.
 ### Hashes
 
  * [Perl - Hashes](http://www.tutorialspoint.com/perl/perl_hashes.htm).
+ * Deep hases, see Deep::Hash::Utils module.
 
 Define a hash:
 ```perl6
@@ -443,6 +454,17 @@ my $path = $ENV{PATH};
 
 ```perl6
 for my $v (@array) {
+}
+```
+
+`foreach` and `for` are synonyms.
+
+### While
+
+Loop on all key/value pairs of a hash:
+```perl
+while (my ($key, $value) = each(%hash)) {
+	print "$key -> $value\n";
 }
 ```
 
