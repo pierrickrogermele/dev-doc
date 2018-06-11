@@ -724,6 +724,24 @@ as in shell :
  * -l : symbolic link
 see -X function.
 
+Concatenate file paths:
+```perl
+use File::Spec::Functions 'catfile';
+my $fullpath = catfile("/some/path", 'another/path/to/my/file')
+```
+
+Get current working directory:
+```perl
+use Cwd;
+my $dir = getcwd;
+```
+
+Get absolute path:
+```perl
+use Cwd 'abs_path';
+my $abs_path = abs_path($file);
+```
+
 ### Listing files in a directory
 
 Opening diretory:
@@ -877,9 +895,11 @@ Program full path, it also contains the directory taken from `PATH` envvar:
 my $cmd = $0;
 ```
 
-Getting directory of program:
+Getting directory path and name of the running program:
 ```perl6
-(my $dir = $0) =~ s!/[^/]+$!!;
+use File::Basename;
+my $SCRIPTNAME = basename($0);
+my $SCRIPTPATH = dirname($0);
 ```
 	
 Arguments:
@@ -1232,6 +1252,13 @@ For printing output of tests:
 make test TEST_VERBOSE=1
 ```
 
+### File::Basename
+
+```perl6
+use File::Basename;
+```
+
+
 ### GD::Image
 	
 To create an image:
@@ -1572,4 +1599,3 @@ On XMLin and XMLout use option `KeepRoot => 1` to keep root element.
 ```perl6
 use XML::Simple;
 ```
-
