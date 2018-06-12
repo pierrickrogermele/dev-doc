@@ -794,6 +794,14 @@ On BSD/macOS `which` has a silent option:
 which -s myprog
 ```
 
+### Partition management
+
+Under Debian:
+```bash
+apt-get install system-config-lvm
+```
+Then go to `Applications -> System -> Logical Volume Management`.
+
 ## Compression and uncompression
 
 ### tar
@@ -1606,6 +1614,12 @@ apt install mypkg.deb
 Install a package archive `.deb`:
 ```bash
 dpkg -i mypkg.deb
+```
+
+Convert an RPM package into a DEB package:
+```bash
+apt-get install alien
+alien -d mypkg.rpm
 ```
 
 ### snap (Ubuntu, Debian)
