@@ -796,11 +796,17 @@ which -s myprog
 
 ### Partition management
 
-Under Debian:
+To shrink `/home` and expand another partition in LVM:
 ```bash
-apt-get install system-config-lvm
+umount /home
+e2fsck -f /dev/mapper/vg_oracle-lv_home
+resize2fs /dev/mapper/vg_oracle-lv_home 20G
+lvreduce -L 20G /dev/mapper/vg_oracle-lv_home
+lvextend -l +100%FREE /dev/mapper/vg_oracle-lv_root
+resize2fs /dev/mapper/vg_oracle-lv_root
+mount /home
 ```
-Then go to `Applications -> System -> Logical Volume Management`.
+See https://unix.stackexchange.com/questions/213245/increase-root-partition-by-reducing-home.
 
 ## Compression and uncompression
 
