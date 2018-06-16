@@ -287,6 +287,11 @@ Start a VM without display:
 VBoxManage startvm my_vm --type headless
 ```
 
+Forward a port in NAT mode, while the machine is running:
+```bash
+VBoxManage controlvm "minikube" natpf1 "glx,tcp,,30700,,30700"
+```
+
 ### Creating a macOS VM
 
  * [How to Install macOS High Sierra in VirtualBox on Windows 10](https://www.howtogeek.com/289594/how-to-install-macos-sierra-in-virtualbox-on-windows-10/).
