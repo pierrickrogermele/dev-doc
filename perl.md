@@ -774,7 +774,7 @@ my @html_files = grep(/\.html$/,readdir(DIR));
 closedir(DIR);
 ```
 	
-`<>` operator:
+Glob `<>` operator for listing files in a folder:
 ```perl6
 my @f = <*.jp*>;
 ```
