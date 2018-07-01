@@ -511,6 +511,9 @@ Example           | Description
 `:.,$s/OLD/NEW/g` | From current line to end of file.
 `:%s/OLD/NEW/g`   | Every occurrence in file.
 
+To replace new lines use `\n` in the match part. To replace carriage returns use `\r`.
+To insert a new line in the replace part, use `\r` (`\n` inserts a null character).
+
 To insert a new line character when replacing, type either `C-v C-m` or `C-v ENTER`.
 
 While grouping, the character `&` replaces the whole match.
