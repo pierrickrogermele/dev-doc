@@ -298,6 +298,8 @@ The path from a Windows computer is:
  * [Create a bootable USB stick on macOS](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos?_ga=2.233519964.315784058.1525944550-1342623189.1521968110#0).
  * [Radeon kernel modesetting for r600 or later requires firmware-amd-graphics](https://joshtronic.com/2017/11/06/fixed-radeon-kernel-modesetting-for-r600-or-later-requires-firmware-amd-graphics/).
 
+To upgrade to macOS High Sierra on a computer running with mac OS X Lion, one must first upgrade to OS X El Capitan. Use this [link](https://support.apple.com/en-us/HT206886) to download OS X El Capitan.
+
 ### Booting, starting and stoping
 
  * [Mac startup key combinations](https://support.apple.com/en-us/HT201255).
@@ -403,9 +405,16 @@ update-rc.d -f gdm defaults
 
 ### Users and groups
 
+Add a user to a group in Linux:
 ```bash
 usermod -a -G somegroup someuser
 ```
+
+Get user UID and all groups to which he belongs:
+```bash
+id
+```
+
 ### date
 
 Convert a date to Epoch time:
@@ -784,6 +793,18 @@ Rank | Description
 9    | Executable with setgid bit set.
 10   | Directory writable to others, with sticky bit.
 11   | Directory writable to others, without sticky bit.
+
+### lsof
+
+List applications that have open a certain file:
+```bash
+lsof | grep MYFILE
+```
+
+List applications using network:
+```bash
+lsof | grep TCP
+```
 
 ### which
 
@@ -1950,6 +1971,17 @@ bind-key j command-prompt -p "join pane from:"  "join-pane -s '%%'"
 ### Plugins
 
  * [Battery plugin](https://github.com/tmux-plugins/tmux-battery).
+
+## Terminal common key shortcuts
+
+	^ = CTRL
+	
+	^C      Terminate process
+	^A      Go to beginning of line
+	^E      Go to end of line
+	^K      Cut from current cursor position to end of line
+	^U      Cut from current cursor position to beginning of line
+	^W      Same as ^U ?
 
 ## a2ps
 
