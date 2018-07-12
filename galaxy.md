@@ -48,6 +48,48 @@ To stop galaxy daemon:
 ./run.sh --stop-daemon
 ```
 
+### Tool dependencies
+
+To enable tool dependencies, set:
+```
+conda_auto_install: true
+```
+inside `galaxy.yml` configuration file.
+
+### Error
+
+uWSGI error:
+```
+Activating virtualenv at .venv
+executing: .venv/bin/uwsgi --yaml config/galaxy.yml
+!!! uWSGI process 92909 got Segmentation Fault !!!
+*** backtrace of 92909 ***
+0   uwsgi.so                            0x000000010b1a41f0 uwsgi_backtrace + 48
+1   uwsgi.so                            0x000000010b1a4733 uwsgi_segfault + 51
+2   libsystem_platform.dylib            0x00007fff515b5f5a _sigtramp + 26
+3   libobjc.A.dylib                     0x00007fff506845a2 _objc_fetch_pthread_data + 34
+4   uwsgi.so                            0x000000010b157bf0 parse_sys_envs + 80
+5   uwsgi.so                            0x000000010b1a5f80 uwsgi_setup + 5776
+6   uwsgi.so                            0x000000010b1afe9b pyuwsgi_setup + 795
+7   uwsgi.so                            0x000000010b1afef3 pyuwsgi_run + 19
+8   Python                              0x000000010ae8efea PyEval_EvalFrameEx + 19864
+9   Python                              0x000000010ae8a03b PyEval_EvalCodeEx + 1575
+10  Python                              0x000000010ae89a0e PyEval_EvalCode + 32
+11  Python                              0x000000010aeab68a run_mod + 49
+12  Python                              0x000000010aeab731 PyRun_FileExFlags + 130
+13  Python                              0x000000010aeab2b3 PyRun_SimpleFileExFlags + 705
+14  Python                              0x000000010aebceec Py_Main + 3136
+15  libdyld.dylib                       0x00007fff512a7015 start + 1
+16  ???                                 0x0000000000000004 0x0 + 4
+*** end of backtrace ***
+```
+
+Solution inspired from [Galaxy 'uWSGI process got Segmentation Fault' on OS X.](https://github.com/galaxyproject/galaxy/issues/5687):
+```bash
+./.venv/bin/pip uninstall -y uwsgi
+```
+Edit `requirements.txt` and replace `uWSGI==2.0.15` by `uWSGI==2.0.17`.
+
 ## Running tests
 
 See:
@@ -69,14 +111,6 @@ Running one specific test function of the uploader tool tests:
 ```bash
 sh run_tests.sh -api test/api/test_tools_upload.py:ToolsUploadTestCase.test_composite_datatype
 ```
-
-## Tool dependencies
-
-To enable tool dependencies, set:
-```
-conda_auto_install: true
-```
-inside `galaxy.yml` configuration file.
 
 ## Job runners/schedulers
 
