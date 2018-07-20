@@ -58,7 +58,9 @@ inside `galaxy.yml` configuration file.
 
 ### Error
 
-uWSGI error:
+#### uWSGI error under macOS
+
+Error message:
 ```
 Activating virtualenv at .venv
 executing: .venv/bin/uwsgi --yaml config/galaxy.yml
@@ -89,6 +91,24 @@ Solution inspired from [Galaxy 'uWSGI process got Segmentation Fault' on OS X.](
 ./.venv/bin/pip uninstall -y uwsgi
 ```
 Edit `requirements.txt` and replace `uWSGI==2.0.15` by `uWSGI==2.0.17`.
+
+Then you could met the following error:
+```
+Requirement already satisfied: pycparser in ./.venv/lib/python2.7/site-packages (from cffi>=1.1->bcrypt>=3.1.3->paramiko==2.2.1->-r requirements.txt (line 88)) (2.18)
+Activating virtualenv at .venv
+executing: .venv/bin/uwsgi --yaml config/galaxy.yml 
+Traceback (most recent call last):
+	  File ".venv/bin/uwsgi", line 7, in <module>
+	      from uwsgi import run
+	  ImportError: dlopen(/Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so, 2): Library not loaded: /usr/local/opt/pcre/lib/libpcre.1.dylib
+Referenced from: /Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so
+Reason: image not found
+```
+
+Solution is to install pcre:
+```bash
+brew install pcre
+```
 
 ## Running tests
 
