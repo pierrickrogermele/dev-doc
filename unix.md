@@ -1773,6 +1773,15 @@ Configure sound on Debian with ALSA system:
 alsactl init
 ```
 
+### mplayer
+
+	-dvd-device /dev/hdd	: set dvd device
+	Dvd://1			: read track 1 of DVD
+	-ss 0:16:00		: start at position "16 minutes after the beginning"
+	-aid <ID>		: select audio channel by ID (0x80, 0x81, ...)
+	-alang code		: select audio channel by language code (fr, en, ...)
+	-fs			: fullscreen
+
 ### ffmpeg
 
 To convert from AIFF to Apple Lossless:
@@ -1864,9 +1873,109 @@ nice -19 transcode -i The\ Young\ Master.avi -j 0,8,0,8 -w 810 -R 1 -y xvid4,nul
 transcode -i easter.avi -w 240 -c 70-22071 -R 1 -y xvid4,null && transcode -i easter.avi -w 240 -c 70-22071 -R 2 -y xvid4 -o easter.2.avi
 ```
 	
+Convert mkv to avi:
+```bash
+mkvmerge -i movie.mkv # to obtain the list of tracks
+mkvextract tracks movie.mkv 1:movie.xvid
+mkvextract tracks movie.mkv 2:movie.ogg
+transcode -i movie.xvid -p movie.ogg -y xvid4 -o movie.avi
+```
+
 Pour extraire une piste audio d'un avi et l'écrire dans un fichier ogg:
 ```bash
 transcode -i movie.avi -y null,ogg -o movie.ogg
+```
+
+	-J : filter
+	-T : dvd title
+	-a : audio track
+	-j : select frame region by clipping border.
+	-o : output file
+	-y : output encoder
+	-R n : n=1 first pass, n=2 second pass
+	-Z wxh : resize
+	-w : bitrate
+		$video_bitrate = int($video_size/$runtime/1000*1024*1024*8);
+		  with $video_size in MB and $runtime in seconds
+	-c f1-f2	: frames range in frame numbers or time (HH:MM:SS)
+	-I 5 : deinterlace
+	-C 3 : anti-aliasing, full frame
+	--import_asr <number> : aspect ratio
+			1:	1:1
+			2:	4:3	= 1.33
+			3:	16:9	= 1.78
+			4:	2.21:1
+	
+```bash
+transcode -i Zorba\ The\ Greek.avi -x mplayer -w 800 --import_asr 3 -I 5 -C 3 -Z 720 -J detectclipping=limit=24 -y null,null
+nice -19 transcode -i Zorba\ The\ Greek.avi -x mplayer -y null,ogg -o zorba.ogg && nice -19 transcode -i Zorba\ The\ Greek.avi -x mplayer -w 800 --import_asr 3 -I 5 -C 3 -Z 720 -j 16,0,16,0 -R 1 -y xvid4,null && nice -19 transcode -i Zorba\ The\ Greek.avi -x mplayer -w 800 --import_asr 3 -I 5 -C 3 -Z 720 -j 16,0,16,0 -R 2 -y xvid4,null -o zorba.avi
+
+nice -19 transcode -i Why\,\ Charlie\ Brown\,\ Why.mpg --import_asr 2 -Z 768 -w 600 -I 5 -j 8,16,0,16 -R 1 -y xvid4,null && nice -19 transcode -i Why\,\ Charlie\ Brown\,\ Why.mpg --import_asr 2 -Z 768 -w 600 -I 5 -j 8,16,0,16 -R 2 -y xvid4 -o why.avi
+
+nice -19 transcode -i grease.1800.avi -x mplayer -w 900 -R 1 -y xvid4,null && nice -19 transcode -i grease.1800.avi -x mplayer -w 900 -R 2 -y xvid4,null -o grease.900.avi
+
+nice -19 transcode -i Fast\ Film.avi -j 8,0,8,0 -R 1 -y xvid4,null && nice -19 transcode -i Fast\ Film.avi -j 8,0,8,0 -R 2 -y xvid4 -o fast.avi
+
+nice -19 transcode -i Fast\ Film.avi -j 8,0,8,0 -w 10 -R 3 -y xvid4 -o fast.R3.10.avi
+
+transcode -i For\ the\ Birds.mpg --import_asr 3 -Z 640 -j 64,8,72,8 -w 5 -R 3 -y xvid4 -o birds.avi
+nice -19 transcode -i For\ the\ Birds.mpg --import_asr 3 -Z 640 -j 64,8,72,8 -w 300 -R 1 -y xvid4,null && nice -19 transcode -i For\ the\ Birds.mpg --import_asr 3 -Z 640 -j 64,8,72,8 -w 300 -R 2 -y xvid4 -o birds.avi
+
+nice -19 transcode -i Martinko.avi -j 0,8,0,8 -w 900 -R 1 -y xvid4,null && nice -19 transcode -i Martinko.avi -j 0,8,0,8 -w 900 -R 2 -y xvid4 -o matrinko.R12.900.avi
+nice -19 transcode -i Martinko.avi -x mplayer -j 0,8,0,8 -w 5 -R 3 -y xvid4 -o martinko.R3.5.avi
+
+nice -19 transcode -i glace.avi -x mplayer --import_asr 3 -I 5 -C 3 -Z 720 -j 16,0,16,0 -w 5 -R 3 -y xvid4,ogg -o glace.R3W5.avi
+
+transcode -i 05-At\ the\ ends\ of\ the\ earth\ -\ Konstantion\ Bronzit\ -annecy\ 1999.mpg -c 0:0:12-10000000 -j 56,8,56,0 -y xvid4 -o ends.trans.avi
+
+transcode -i Ce\ Qui\ Me\ Meut.avi -j 0,8,0,8 -w 5 -R 3 -y xvid4 -o meut.avi
+```	
+
+Pour calculer la zone de clipping :
+```bash
+transcode -i /dev/dvd -T 2,-1 -a 1 -J detectclipping=limit=24 -y null,null
+	
+nice -19 transcode -i /dev/dvd1 -T 1,-1 -j 16,32,16,32 -I 5 -C 3 --import_asr 3 -w 3 -R 3 -y xvid4 -o porco.avi
+```
+
+Normal encoding :
+```bash
+transcode -i /dev/dvd -T 2,-1 -a 1 -j 70,0,70,0 -Z 720x306 -o poignards.avi -y xvid4
+```
+	
+Multiple pass encoding :
+First pass :
+```bash
+transcode -i /dev/dvd -T 2,-1 -a 1 -j 70,0,70,0 -Z 720x306 -R 1 -y xvid4,null
+```
+Second pass :
+```bash
+transcode -i /dev/dvd -T 2,-1 -a 1 -j 70,0,70,0 -Z 720x306 -R 2 -o poignards.avi -y xvid4
+```
+
+	-R 3 : constant quantizer encoding
+	For -R 2 : -w bitrate
+	For -R 3 : -w quantizer (1..31) (1=perfect, 31=bad)
+	-C 3 : anti-aliasing
+
+### tcextract
+
+Extract sub-titles:
+```bash
+tccat -i /dev/dvd -T 2 -L | tcextract -x ps1 -t vob -a 0x21 > subs-fr
+```
+
+Pour un format vob :
+```bash
+Subtitle2vobsub
+```
+
+Pour un format srt :
+```bash
+subtitle2pgm -o french -c 255,255,0,255 < subs-fr
+pgm2txt -v -f fr french
+srttool -s -w < french.srtx > french.srt
+aspell --lang=french --encoding=iso8859-1 french.srt
 ```
 
 ### mkvmerge
@@ -1886,6 +1995,11 @@ mkvmerge -o Robin\ Hood.mkv -A Robin\ Hood.avi Robin\ Hood.ogg --language 0:eng 
 mkvmerge -o "Breakfast at Tiffany's.mkv" --aspect-ratio 16/9 -A breakfast.avi breakfast.ogg --language 0:eng --language 1:fre breakfast.idx
 ```
 
+Pour s'assurer qu'un fichier srt est en utf8:
+```bash
+Perl -e 'binmode (STDOUT, ":utf8"); while(<STDIN>) { print $_;}' <input.srt >output.srt
+```
+
 ### mencoder
 
 With mencoder, we can use the vbitrate option to set the degree of lossy compression. Note that the default mpeg4 option will add a "DivX" logo to the movie when playin in windows media player, so we prefer to use one of the other mpeg4 encoders, such as msmpeg4 or msmpeg4v2. The commmand line I've used is:
@@ -1894,6 +2008,25 @@ With mencoder, we can use the vbitrate option to set the degree of lossy compres
 mencoder "mf://*.jpg" -mf fps=10 -o test.avi -ovc lavc -lavcopts vcodec=msmpeg4v2:vbitrate=800 
 ```
 	
+
+## Programming
+
+### pkg-config
+
+List all supported packages:
+```bash
+pkg-config --list-all
+```
+
+Get include directory:
+```bash
+pkg-config --variable=includedir axis2c
+```
+
+Get library directory:
+```bash
+pkg-config --variable=libdir axis2c
+```
 
 ## tmux
 
@@ -2301,6 +2434,18 @@ Gentoo:
 
  * [256 Xterm 24bit RGB color chart](http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html).
  * [X colors rgb.txt decoded](http://sedition.com/perl/rgb.html).
+
+### Take screenshots
+
+ * [Take pictures of the screen on your Mac](https://support.apple.com/en-sa/KM204852?cid=acs::applesearch).
+
+macOS Command     | Description
+----------------- | -----------------
+Shift-Cmd-3       | Whole screen.
+Shift-Cmd-4       | Zone.
+Shift-Cmd-4-Space | Window.
+
+The PNG picture is written on the desktop.
 
 ### Window managers and desktop environements
 
