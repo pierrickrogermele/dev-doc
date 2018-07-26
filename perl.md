@@ -459,6 +459,27 @@ for my $v (@array) {
 
 `foreach` and `for` are synonyms.
 
+To leave a loop:
+```perl6
+for my $v (@array) {
+	if ($v->{value})  {
+		# ...
+		last;
+	}
+}
+```
+
+To process next element:
+```perl6
+for my $v (@array) {
+	if (...) {
+		# ...
+		next;
+	}
+	...
+}
+```
+
 ### While
 
 Loop on all key/value pairs of a hash:
