@@ -946,6 +946,18 @@ Removing all carriage returns:
 tr -d '\r'
 ```
 
+### dos2unix
+
+Convert a text file with Windows style (line ending CRLF) file into a unix style file:
+```bash
+dos2unix myfile.txt
+```
+
+To convert from UNIX style to Windows style:
+```bash
+unix2dos myfile.txt
+```
+
 ### cat
 
 For printing special characters (carriage returns, ...):
