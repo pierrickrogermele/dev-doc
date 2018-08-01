@@ -203,7 +203,7 @@ isPackageLoaded('mypkg')
 
 Example of header for an Rmd vignette using knitr package and BiocStyle package:
 ```rmd
----
+ ---
  title: "Configuring biodb"
  author: "Pierrick Roger"
  output:
