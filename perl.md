@@ -785,6 +785,11 @@ use Cwd 'abs_path';
 my $abs_path = abs_path($file);
 ```
 
+Rename a file:
+```perl
+rename $old_name => $new_name || die "Failed.";
+```
+
 ### Listing files in a directory
 
 Opening diretory:
