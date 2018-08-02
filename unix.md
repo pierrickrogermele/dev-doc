@@ -35,6 +35,11 @@ Download recursively:
 wget -r http://some.site.fr/
 ```
 
+Resume a download:
+```bash
+wget -c http://some.site.fr/myfile.zip
+```
+
 ```bash
 wget -i blabla -o zop http://fsgjkbnkfjg.bgjnfdgb/dfbkjgn.xml
 ```
