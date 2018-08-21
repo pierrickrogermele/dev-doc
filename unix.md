@@ -331,6 +331,17 @@ Or by using PID:
 caffeinate -i -w 4521
 ```
 
+Shutdown a macOS machine:
+```bash
+shutdown -h now
+```
+
+Shutdown an Alpine machine:
+```bash
+poweroff
+```
+Other commands: `reboot` and `halt`.
+
 ### OS info
 
 Get OS type:
