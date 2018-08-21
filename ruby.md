@@ -221,3 +221,15 @@ List files matching pattern:
 ```ruby
 Dir.glob('*.txt') { |file| do.something(file) }
 ```
+
+## Include a file
+
+Use `require` (as for library), to load a file only once even if `require` is called more than once:
+```ruby
+require 'my_file' # File `my_file.rb` will be loaded.
+```
+
+`load` includes a file each time it is called:
+```ruby
+load 'my_file.rb'
+```

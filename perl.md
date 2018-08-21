@@ -459,6 +459,27 @@ for my $v (@array) {
 
 `foreach` and `for` are synonyms.
 
+To leave a loop:
+```perl6
+for my $v (@array) {
+	if ($v->{value})  {
+		# ...
+		last;
+	}
+}
+```
+
+To process next element:
+```perl6
+for my $v (@array) {
+	if (...) {
+		# ...
+		next;
+	}
+	...
+}
+```
+
 ### While
 
 Loop on all key/value pairs of a hash:
@@ -762,6 +783,11 @@ Get absolute path:
 ```perl
 use Cwd 'abs_path';
 my $abs_path = abs_path($file);
+```
+
+Rename a file:
+```perl
+rename $old_name => $new_name || die "Failed.";
 ```
 
 ### Listing files in a directory

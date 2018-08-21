@@ -35,6 +35,11 @@ Download recursively:
 wget -r http://some.site.fr/
 ```
 
+Resume a download:
+```bash
+wget -c http://some.site.fr/myfile.zip
+```
+
 ```bash
 wget -i blabla -o zop http://fsgjkbnkfjg.bgjnfdgb/dfbkjgn.xml
 ```
@@ -955,6 +960,18 @@ tr '[:lower:]' '[:upper:]'
 Removing all carriage returns:
 ```bash
 tr -d '\r'
+```
+
+### dos2unix
+
+Convert a text file with Windows style (line ending CRLF) file into a unix style file:
+```bash
+dos2unix myfile.txt
+```
+
+To convert from UNIX style to Windows style:
+```bash
+unix2dos myfile.txt
 ```
 
 ### cat

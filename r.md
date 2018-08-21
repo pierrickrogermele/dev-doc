@@ -195,15 +195,18 @@ isPackageLoaded('mypkg')
  * `R CMD check`: [Automated checking](http://r-pkgs.had.co.nz/check.html).
  * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
  * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
+ * [Package Development Prerequisites](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
 
 #### Writing a vignette
 
  * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
  * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
 
+On macOS, for building vignettes with `R CMD build .`, install first the MacTeX LaTeX distribution.
+
 Example of header for an Rmd vignette using knitr package and BiocStyle package:
 ```rmd
----
+ ---
  title: "Configuring biodb"
  author: "Pierrick Roger"
  output:
