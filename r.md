@@ -202,7 +202,7 @@ isPackageLoaded('mypkg')
  * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
  * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
 
-On macOS, for building vignettes with `R CMD build .`, install first the MacTeX LaTeX distribution.
+On macOS, for building vignettes with `R CMD build .`, install first the [MacTeX LaTeX](http://www.tug.org/mactex/) distribution.
 
 Example of header for an Rmd vignette using knitr package and BiocStyle package:
 ```rmd
