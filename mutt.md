@@ -37,7 +37,7 @@ alias nickname Long Name address@example.com
 ```
 See [Mutt aliases](https://dev.mutt.org/trac/wiki/MuttGuide/Aliases).
 
-## Command
+## Commands
 
 Command | Description
 ------- | --------------------------
