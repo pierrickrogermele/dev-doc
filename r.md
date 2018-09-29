@@ -933,6 +933,12 @@ trunc(1.23)
 floor(1.23)
 ```
 
+Find roots of an equation:
+```r
+f <- function(x) x - 300 - x^0.8
+uniroot(f, c(300, 1200))
+```
+
 ## Operators
 
  * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
