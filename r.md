@@ -1083,9 +1083,12 @@ Print information about an object (field length, field mode, ...):
 summary(myobject)
 ```
 
-Print double values:
+Print double values (control number of printed decimals):
 ```r
 print(83.247837878523745) # will be truncated on output
+
+options(digits=22) # now will display all decimals of our number
+print(83.247837878523745)
 ```
 
 ## cbind / rbind
