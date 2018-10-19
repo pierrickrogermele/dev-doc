@@ -948,6 +948,19 @@ Diff hexadecimal editor.
 dhex myfileA myfileB
 ```
 
+### xxd
+
+Dump a file in hexadecimal.
+
+```bash
+xxd -p myfile
+```
+
+Searching for a sequence of bytes into a file using xxd and grep:
+```bash
+xxd -p myfile | tr -d '\n' | grep -c 'e280a8'
+```
+
 ## File filtering
 
 ### tr
