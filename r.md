@@ -1420,6 +1420,11 @@ Remove a directory and its content:
 unlink(mydir, recursive = TRUE)
 ```
 
+Get absolute path:
+```r
+normalizePath('tmp/..')
+```
+
 ## System call
 
 ```r
