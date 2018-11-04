@@ -1800,6 +1800,10 @@ from ..package import module3
 
 ## Some interesting libraries
 
+### Google Drive API
+
+ * [Google Drive API Python Quickstart](https://developers.google.com/drive/api/v3/quickstart/python).
+
 ### csv
 
 To read CSV file in both Python 2 and 3:
