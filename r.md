@@ -536,6 +536,16 @@ For both negative and positive values.
 2 ** .Machine$double.digits
 ```
 
+Integer division:
+```r
+5 %/% 2
+```
+
+Modulo:
+```r
+5 %% 2
+```
+
 ### Vector
 
 Elements of a vector can be of the following types: logical, integer, double, complex, character and raw.
