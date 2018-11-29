@@ -27,6 +27,36 @@ echo $HOME
 `MYVIMRC` is `$HOME/.vimrc` in UNIX and `$HOME/_vimrc` in Windows.
 Be careful that under Windows, *gVim* installs a global `_vimrc` inside its installation directory.
 
+## Display
+
+Command      | Description
+------------ | ----------------
+`:se nu`     | Turn on line numbering.
+`:se nonu`   | Turn off line numbering.
+`:se list`   | Turn on display of non-printable characters.
+`:se nolist` | Turn off display of non-printable characters.
+
+## Gui
+
+Set GUI off (menu, toolbars, ...):
+```
+:se go=
+```
+
+## Key bindings
+
+ * [Mapping keys in Vim - Tutorial (Part 1)](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial).
+
+List mappings in normal, visual and select and operator pending mode:
+```vim
+map
+```
+
+List mappings in insert and command-line mode:
+```vim
+map!
+```
+	
 ## Modeline
 
 Vim settings inside a file:
@@ -70,36 +100,6 @@ You can also use the whitespace highlighting syntax, that prints spaces in red a
 set syntax=whitespace
 ```
 
-## Gui
-
-Set GUI off (menu, toolbars, ...):
-```
-:se go=
-```
-
-## Display
-
-Command      | Description
------------- | ----------------
-`:se nu`     | Turn on line numbering.
-`:se nonu`   | Turn off line numbering.
-`:se list`   | Turn on display of non-printable characters.
-`:se nolist` | Turn off display of non-printable characters.
-
-## Key bindings
-
- * [Mapping keys in Vim - Tutorial (Part 1)](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial).
-
-List mappings in normal, visual and select and operator pending mode:
-```vim
-map
-```
-
-List mappings in insert and command-line mode:
-```vim
-map!
-```
-	
 ## Read
 
 To insert from a file, below cursor position:
