@@ -206,6 +206,10 @@ Ex: Project Voldemort, Cassandra Project, Dynomite, HBase, Hypertable, CouchDB e
 
 ## Triplestore
 
+Made to store RDF (Resource Description Framework) data.
+
  * [Triplestore](https://en.wikipedia.org/wiki/Triplestore).
+ * [Resource Description Framework](https://en.wikipedia.org/wiki/Resource_Description_Framework).
+   - [Notation3](https://en.wikipedia.org/wiki/Notation3).
 
 A Triplestore stores information like "Bob is 35".
