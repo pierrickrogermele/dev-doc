@@ -561,6 +561,11 @@ Command               | Description
 `:n1,n2w file`        | Write lines n1 to n2 to file.
 `:n1,n2w >> file`     | Append lines n1 to n2 to file.
 
+To execute a command in each buffer:
+```vim
+bufdo e
+```
+
 ## Quit
 
 Command      | Description
