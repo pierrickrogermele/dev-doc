@@ -313,6 +313,13 @@ if [[ $s1 == *$s2* ]] ; then
 fi
 ```
 
+Test if a list, whose elements are separated by spaces, contains an element:
+```bash
+if [[ $mylist =~ (^| )$myelem($| ) ]] ; then
+	# ...
+fi
+```
+
 String extraction with regexp:
 ```bash
 echo `expr match "$stringZ" '\(.[b-c]*[A-Z]..[0-9]\)'`
