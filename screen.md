@@ -30,6 +30,19 @@ Set hard status line content:
 hardstatus alwayslastline "%w%=%H - %D %d %M %0c"
 ```
 
+## Window caption
+
+The window caption is the bar at the bottom of the screen app.
+
+Always display the window caption, even if there's no split: 
+```screen
+caption always
+```
+
+Set the string template:
+```screen
+caption string "..."
+```
 
 ## Running
 
