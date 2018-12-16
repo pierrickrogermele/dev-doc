@@ -389,7 +389,7 @@ shift # shift by 1
 shift 3 # shift by 3
 ```
 
-Using getopts:
+Using `getopts` (`OPTARG` and `OPTIND` are two special variables linked with `getops`):
 ```bash
 function read_args {
 	while getopts "hm:o:" flag ; do
