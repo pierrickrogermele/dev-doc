@@ -1795,6 +1795,21 @@ rscript_current <- function() {
 	r
 }
 ```
+## Errors
+
+### could not find function "getGeneric"
+
+The exact error is:
+```
+Error in getGeneric("$") : could not find function "getGeneric"
+```
+
+When running script from `Rscript`, the `methods` library is not loaded by default.
+Add the following line at the start of your R script file:
+```r
+library(method)
+```
+
 ## Interesting packages
 
 ### Rcpp
