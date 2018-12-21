@@ -1622,8 +1622,9 @@ Installing a precise version of R:
 conda install -c r r=3.3.2
 ```
 
-Generating a new recipe with the `skeleton` command (you first need to install *conda build*):
+Generating a new recipe with the `skeleton` command:
 ```bash
+conda install conda-build # You first need to install *conda-build*.
 conda skeleton cran mypkg
 ```
 
