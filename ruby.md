@@ -46,6 +46,22 @@ For indentation, use 2 spaces, no tabs.
 
 ## Types & variables
 
+### Get or test type
+
+Test type
+```ruby
+if myvar.kind_of?(String)
+	do_something
+end
+```
+
+### Global variables
+
+Declare a global variable:
+```ruby
+$myglobalvar = 1
+```
+
 ### Nil
 
 Test if an object is nil:
@@ -112,9 +128,21 @@ myarray.push('x', 'y')
 
 ## Dictionnaries
 
+Define a dictionary:
+```ruby
+mydict = {
+	'mykey' => 23
+}
+```
+
 Access a key:
 ```ruby
 mydict['mykey']
+```
+
+Test if a key exists:
+```ruby
+mydict.key?('mykey')
 ```
 
 ## Operators
