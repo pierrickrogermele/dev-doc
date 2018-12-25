@@ -259,6 +259,12 @@ Defining documentation separated from any code:
 NULL 
 ```
 
+#### Submitting to CRAN
+
+ * [Getting your R package on CRAN](http://kbroman.org/pkg_primer/pages/cran.html).
+ * [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html).
+ * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+
 ## Compiling code
 
  * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
