@@ -133,6 +133,12 @@ Create a new database for the running user:
 createdb dbname
 ```
 
+#### Deleting a database
+
+```sql
+drop databases dbname
+```
+
 #### Running SQL commands
 
 For running SQL commands, you need to start the `psql` command:
@@ -149,9 +155,24 @@ psql -h hostname -p port -U username -W passwd -f file.sql database
 
 Command         Description
 ------------    --------------------
+\list           List databases.
+\du             List users.
 \dt             List all tables of a database.
 \q              Quit.
 \d+ mytable     Get information about a table.
+
+#### Create database
+
+```sql
+create database mydb;
+```
+
+#### Create user
+
+```sql
+create user myuser with encrypted password 'mypass';
+grant all privileges on database mydb to myuser;
+```
 
 #### Dumping and restoring
 
