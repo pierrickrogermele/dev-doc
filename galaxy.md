@@ -51,64 +51,34 @@ To stop galaxy daemon:
 ### Tool dependencies
 
 To enable tool dependencies, set:
-```
+```yaml
 conda_auto_install: true
 ```
 inside `galaxy.yml` configuration file.
 
-### Error
+### Configure a different database backend
 
-#### uWSGI error under macOS
+ * [Switching to a database server](https://docs.galaxyproject.org/en/latest/admin/production.html#switching-to-a-database-server).
 
-Error message:
-```
-Activating virtualenv at .venv
-executing: .venv/bin/uwsgi --yaml config/galaxy.yml
-!!! uWSGI process 92909 got Segmentation Fault !!!
-*** backtrace of 92909 ***
-0   uwsgi.so                            0x000000010b1a41f0 uwsgi_backtrace + 48
-1   uwsgi.so                            0x000000010b1a4733 uwsgi_segfault + 51
-2   libsystem_platform.dylib            0x00007fff515b5f5a _sigtramp + 26
-3   libobjc.A.dylib                     0x00007fff506845a2 _objc_fetch_pthread_data + 34
-4   uwsgi.so                            0x000000010b157bf0 parse_sys_envs + 80
-5   uwsgi.so                            0x000000010b1a5f80 uwsgi_setup + 5776
-6   uwsgi.so                            0x000000010b1afe9b pyuwsgi_setup + 795
-7   uwsgi.so                            0x000000010b1afef3 pyuwsgi_run + 19
-8   Python                              0x000000010ae8efea PyEval_EvalFrameEx + 19864
-9   Python                              0x000000010ae8a03b PyEval_EvalCodeEx + 1575
-10  Python                              0x000000010ae89a0e PyEval_EvalCode + 32
-11  Python                              0x000000010aeab68a run_mod + 49
-12  Python                              0x000000010aeab731 PyRun_FileExFlags + 130
-13  Python                              0x000000010aeab2b3 PyRun_SimpleFileExFlags + 705
-14  Python                              0x000000010aebceec Py_Main + 3136
-15  libdyld.dylib                       0x00007fff512a7015 start + 1
-16  ???                                 0x0000000000000004 0x0 + 4
-*** end of backtrace ***
+```yaml
+database_connection: 'postgresql://myglxdbuser:myusrpwd@localhost/mygalaxydb'
 ```
 
-Solution inspired from [Galaxy 'uWSGI process got Segmentation Fault' on OS X.](https://github.com/galaxyproject/galaxy/issues/5687):
+For that one must first create a database:
 ```bash
-./.venv/bin/pip uninstall -y uwsgi
+createdb mygalaxydb
 ```
-Edit `requirements.txt` and replace `uWSGI==2.0.15` by `uWSGI==2.0.17`.
-
-Then you could met the following error:
-```
-Requirement already satisfied: pycparser in ./.venv/lib/python2.7/site-packages (from cffi>=1.1->bcrypt>=3.1.3->paramiko==2.2.1->-r requirements.txt (line 88)) (2.18)
-Activating virtualenv at .venv
-executing: .venv/bin/uwsgi --yaml config/galaxy.yml 
-Traceback (most recent call last):
-	  File ".venv/bin/uwsgi", line 7, in <module>
-	      from uwsgi import run
-	  ImportError: dlopen(/Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so, 2): Library not loaded: /usr/local/opt/pcre/lib/libpcre.1.dylib
-Referenced from: /Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so
-Reason: image not found
+Then create a user and grant him privileges:
+```sql
+create user myglxdbuser with encrypted password 'myusrpwd';
+grant all privileges on database mygalaxydb to myglxdbuser;
 ```
 
-Solution is to install pcre:
-```bash
-brew install pcre
-```
+## Allow HTML rendering
+
+By default HTML output of tools is disabled. Only a sanitized output is printed.
+
+To allow HTML to be printed as is, the tool must be granted privileges. For this, add the tool id to the file `config/sanitize_whitelist.txt`.
 
 ## Running tests
 
@@ -565,7 +535,69 @@ You can create a tool that executes a docker container instead of a normal execu
  * [Integrating Docker-based tools within Galaxy](https://github.com/apetkau/galaxy-hackathon-2014).
  * [Integration of SMALT into Galaxy and Docker](https://github.com/apetkau/galaxy-hackathon-2014/tree/master/smalt).
 
-## Issues
+## Troubleshooting
+
+### NoSuchTableError
+
+The exact error is:
+```
+NoSuchTableError: migration_tmp
+```
+
+This is due to error in SQLite package.
+Switch to PostgreSQL.
+
+#### uWSGI error under macOS
+
+Error message:
+```
+Activating virtualenv at .venv
+executing: .venv/bin/uwsgi --yaml config/galaxy.yml
+!!! uWSGI process 92909 got Segmentation Fault !!!
+*** backtrace of 92909 ***
+0   uwsgi.so                            0x000000010b1a41f0 uwsgi_backtrace + 48
+1   uwsgi.so                            0x000000010b1a4733 uwsgi_segfault + 51
+2   libsystem_platform.dylib            0x00007fff515b5f5a _sigtramp + 26
+3   libobjc.A.dylib                     0x00007fff506845a2 _objc_fetch_pthread_data + 34
+4   uwsgi.so                            0x000000010b157bf0 parse_sys_envs + 80
+5   uwsgi.so                            0x000000010b1a5f80 uwsgi_setup + 5776
+6   uwsgi.so                            0x000000010b1afe9b pyuwsgi_setup + 795
+7   uwsgi.so                            0x000000010b1afef3 pyuwsgi_run + 19
+8   Python                              0x000000010ae8efea PyEval_EvalFrameEx + 19864
+9   Python                              0x000000010ae8a03b PyEval_EvalCodeEx + 1575
+10  Python                              0x000000010ae89a0e PyEval_EvalCode + 32
+11  Python                              0x000000010aeab68a run_mod + 49
+12  Python                              0x000000010aeab731 PyRun_FileExFlags + 130
+13  Python                              0x000000010aeab2b3 PyRun_SimpleFileExFlags + 705
+14  Python                              0x000000010aebceec Py_Main + 3136
+15  libdyld.dylib                       0x00007fff512a7015 start + 1
+16  ???                                 0x0000000000000004 0x0 + 4
+*** end of backtrace ***
+```
+
+Solution inspired from [Galaxy 'uWSGI process got Segmentation Fault' on OS X.](https://github.com/galaxyproject/galaxy/issues/5687):
+```bash
+./.venv/bin/pip uninstall -y uwsgi
+```
+Edit `requirements.txt` and replace `uWSGI==2.0.15` by `uWSGI==2.0.17`.
+
+Then you could met the following error:
+```
+Requirement already satisfied: pycparser in ./.venv/lib/python2.7/site-packages (from cffi>=1.1->bcrypt>=3.1.3->paramiko==2.2.1->-r requirements.txt (line 88)) (2.18)
+Activating virtualenv at .venv
+executing: .venv/bin/uwsgi --yaml config/galaxy.yml 
+Traceback (most recent call last):
+	  File ".venv/bin/uwsgi", line 7, in <module>
+	      from uwsgi import run
+	  ImportError: dlopen(/Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so, 2): Library not loaded: /usr/local/opt/pcre/lib/libpcre.1.dylib
+Referenced from: /Users/pierrick/dev/galaxy/.venv/lib/python2.7/site-packages/uwsgi.so
+Reason: image not found
+```
+
+Solution is to install pcre:
+```bash
+brew install pcre
+```
 
 ### `dynamic_options` issue
 
