@@ -10,12 +10,19 @@ Set UTF-8 character encoding for this HTML file:
 </head>
 ```
 
+## Special characters
+
+Non-breaking space:
+```html
+My text&nbsp;:
+```
+
 ## Form methods
 
 get: With the HTTP "get" method, the form data set is appended to the URI specified by the action attribute (with a question-mark ("?") as separator) and this new URI is sent to the processing agent.
 post: With the HTTP "post" method, the form data set is included in the body of the form and sent to the processing agent.
 
-Fiel upload:
+File upload:
 ```html
 <form enctype="multipart/form-data" action="uploader.php" method="post">
 <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
@@ -140,6 +147,3 @@ For a paragraph:
 <p style = "background-color: yellow">
 ```
 
-## Scripts
-
- * [Scripts](file:///Users/pierrick/Google%20Drive/doc-sciences/computer%20science/HTML/Scripts%20in%20HTML%20documents.webarchive).
