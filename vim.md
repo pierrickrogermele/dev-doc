@@ -61,7 +61,12 @@ map!
 
 Vim settings inside a file:
 ```java
-// vi: ts=4 et
+// vi: se ts=4 et
+```
+
+Or with a `/**/` comment style:
+```c
+/* vi: se fdm=marker: */
 ```
 
 ## Tabulation
