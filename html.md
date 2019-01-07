@@ -17,7 +17,7 @@ Non-breaking space:
 My text&nbsp;:
 ```
 
-## Form methods
+## Form
 
 get: With the HTTP "get" method, the form data set is appended to the URI specified by the action attribute (with a question-mark ("?") as separator) and this new URI is sent to the processing agent.
 post: With the HTTP "post" method, the form data set is included in the body of the form and sent to the processing agent.
