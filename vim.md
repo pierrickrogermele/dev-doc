@@ -57,6 +57,13 @@ List mappings in insert and command-line mode:
 map!
 ```
 	
+To know what commands where assigned to a key:
+```vim
+:verbose map <leader>c
+```
+
+The `Leader` key is mapped to `\` by default. To redefine it, set `mapleader` variable.
+
 ## Modeline
 
 Vim settings inside a file:
@@ -762,6 +769,8 @@ Repeat the replacement done by |z=| for all matches	with the replaced word in th
 
 
 ## Insert mode
+
+ * [Insert mode](http://vimdoc.sourceforge.net/htmldoc/insert.html). See this page for a list of key bindings in insert mode.
 
 Command     | Description
 ----------- | --------------------------------------------
