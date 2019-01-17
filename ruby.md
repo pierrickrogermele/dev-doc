@@ -64,7 +64,12 @@ $myglobalvar = 1
 
 ### Nil
 
-Test if an object is nil:
+Set a variable to nil:
+```ruby
+myvar = nil
+```
+
+Test if a variable is set to nil:
 ```ruby
 if myobj.nil?
   do_something
