@@ -116,7 +116,7 @@ Command     | Description
 `C-a h`     | Go to region at the left of the current region.
 `C-a l`     | Go to region at the right of the current region.
 
-### Resising a region
+### Resizing a region
 
 `C-a :resize [-l] [-h] [-v] <amount>`
 
