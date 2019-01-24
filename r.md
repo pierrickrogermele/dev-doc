@@ -274,7 +274,439 @@ To compile C source files into a shared library:
 R CMD SHLIB *.c
 ```
 
-## Types
+## Home
+
+Get R HOME directory:
+```r
+R.home()
+```
+
+## Environments and namespaces
+
+ * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
+ * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
+
+## Command line arguments
+
+```r
+args <- commandArgs(trailingOnly = TRUE)
+my_first_arg = args[1]
+```
+The option `trailingOnly` keeps only arguments after `--args` flag.
+
+Getting script path, script name and script directory:
+```r
+args <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=", "", args[grep("--file=", args)])
+script.name <- basename(script.path)
+script.dir <- dirname(script.path)
+```
+
+## Data
+
+The data() function loads specified data sets, or list the available data sets.
+
+Loading unknown data set into a separate environment in order to check what is inside:
+```r
+data(crude, verbose = TRUE, envir = e <- new.env())
+ls(e) # check what is in `e`
+class(e$crude)
+summary(e$crude)
+rm(e)
+```
+
+Load into workspace:
+```r
+data(crude)
+```
+
+## Load data
+
+Load data from a plain text file with lines like:
+1224.233 1228.12e12
+and put result in a list
+```r
+mylist <- scan(file="myfile.txt", what=list(t=0.0, f=0.0))
+```
+
+See also `read.table()` in DATA FRAMES.
+
+## Equality
+
+Testing elements of a vector:
+```r
+x < 8 # returns a vector of logical values
+all(x < 8) # returns true if all elements of x are < 8
+all(v == w) # returns true if v and w are equals.
+identical(v, w) # returns true if v and w are identical (same type, same values). A vector of integers won't be identical to a vector of floating points even if values are equal.
+any(x < 8) # returns true if at least one element of x is < 8
+```
+
+## Maths
+
+Logarithm:
+```r
+log10(x)
+```
+
+Power:
+```r
+10^3
+```
+
+Integer division:
+```r
+5 %/% 2
+```
+
+Truncating integer:
+```r
+trunc(1.23)
+floor(1.23)
+```
+
+Find roots of an equation:
+```r
+f <- function(x) x - 300 - x^0.8
+uniroot(f, c(300, 1200))
+```
+
+## Operators
+
+ * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
+
+Arithmetic operators:
+
+Operator  | Description
+--------- | ----------------------
+`+`       | Addition.
+`-`       | Subtraction.
+`*`       | Multiplication.
+`/`       | Division.
+`^`, `**` | Exponentiation.
+`%%`      | Modulus (x mod y) 5%%2 is 1.
+`%/%`     | Integer division 5%/%2 is 2.
+
+Logical operators:
+
+Operator    | Description
+----------- | --------------------------
+`<`	        | Less than.
+`<=`        | Less than or equal to.
+`>`	        | Greater than.
+`>=`        | Greater than or equal to.
+`==`        | Exactly equal to.
+`!=`        | Not equal to.
+`!`         | Not.
+`|`         | Or.
+`&`         | And.
+`isTRUE(x)` | Test if x is TRUE.
+
+## I/O
+
+### dput and dget
+
+`dput` and `dget` are used to serialize and deserialize an R object.
+
+### File information
+
+Get file size:
+```r
+sz <- file.info(myfile)$size
+sz <- file.size(myfile)  # Only available from R 3.3.
+```
+
+### Loading vector from a file
+
+```r
+scan(file = "myfile.txt", what = integer())
+```
+
+### Saving vector to a file
+
+```r
+write(v, 'myfile.txt', ncolumns = 1)
+```
+
+### Reading from a file
+
+Read all characters from a file and put them into a string:
+```r
+s <- readChar(filename, file.info(filename)$size)
+```
+
+Read lines:
+```r
+lines <- readLines(filename)
+```
+
+### Reading from stdin
+
+Reading strings from stdin:
+```r
+con <- file("stdin")
+strings <- readLines(con)
+close(con) # close stdin to avoid warning message "closing unused connection 3 (stdin)"
+```
+
+Reading floats from stdin:
+```r
+values <- as.numeric(readLines(file("stdin")))
+```
+
+Reading line by line stdin:
+```r
+con <- file("stdin")
+open(con)
+while (TRUE) {
+	line <- readLines(con, n = 1)
+	if (length(line) == 0)
+		break
+}
+close(con)
+```
+
+### Writing to a file
+
+```r
+cat(..., file = "myfile.txt")
+write(x, file = "myfile.txt")
+writeLines(content, file.path)
+```
+
+### Default output
+
+Redirect output to a file:
+```r
+sink("myfile")
+```
+
+Redirect to console again:
+```r
+sink()
+```
+
+### Printing
+
+Print a variable:
+```r
+print(myvar)
+```
+
+`str` (structure) prints an object in a compact mode:
+```r
+str(myobject)
+str(mylist)
+```
+
+`cat` print as is (without all the transformations print() makes):
+```r
+cat('Computed PI=',pi,'\n');
+```
+
+Print on standard error stream:
+```r
+write("prints to stderr", stderr())
+write("prints to stderr", file = stderr())
+```
+
+Print information about an object (field length, field mode, ...):
+```r
+summary(myobject)
+```
+
+Print double values (control number of printed decimals):
+```r
+print(83.247837878523745) # will be truncated on output
+
+options(digits=22) # now will display all decimals of our number
+print(83.247837878523745)
+```
+
+## Statements
+
+### Source
+
+Use source() command to include/load another R file:
+```r
+source('myfile.R')
+```
+
+Switch to sourced file directory while sourcing:
+```r
+source('../../blabla/myfile.R', chdir = TRUE)
+```
+Before sourcing the file, R will change to directory `../../blabla`.
+
+Get the path of the current sourced file:
+```r
+current.file.path <- parent.frame(2)$ofile
+```
+
+#### Loading module relativily to script path
+
+Solution 1:
+```r
+args <- commandArgs(trailingOnly = F)
+scriptPath <- dirname(sub("--file=","",args[grep("--file",args)]))
+source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
+```
+
+Solution 2:
+```r
+#- Get path of current R script to source using a relative directory:
+source(file.path(dirname(rscript_current()), '../myfile.R'))
+#- Where rscript_current is:
+rscript_current <- function() {
+	stack <- rscript_stack()
+	r <- as.character(stack[length(stack)])
+	first_char <- substring(r, 1, 1)
+	if (first_char != '~' && first_char != .Platform$file.sep) {
+		r <- file.path(getwd(), r)
+	}
+	r
+}
+```
+### For
+
+Loop on existing array:
+```r
+for (i in vect) {
+}
+```
+
+Loop on explicit range:
+```r
+for(i in 1:N) {
+	y <- i*i
+}
+```
+
+Best way to iterate on all indices of a vector:
+```r
+for (i in seq_along(v))
+	v[i] <- compute(v[i], i)
+```
+`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
+
+*Wrong* way to iterate on all indices of a vector:
+```r
+for (i in seq(v))
+	v[i] <- compute(v[i], i)
+```
+There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
+
+How to break / continue:
+```r
+break
+next
+```
+
+### If / else
+
+`if()` is a function in R.
+```r
+if (TRUE) x <- 2 else x <- 10
+```
+
+Logical negation:
+```r
+if ( ! condition) ...
+```
+
+Ternary operator using if/else:
+```r
+x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
+```
+
+The `else` clause must appear at the end and on the same line than the `then` clause:
+```r
+if (...) do_1() else do_2()
+```
+or
+```r
+if (...) {
+	do_1()
+} else {
+	do_2()
+}
+```
+
+### Switch
+
+Value must not be null, and must be a vector of length 1.
+The possible values (str1, str2) must be strings and not integer. If these are integers, they must be quoted in order to be strings.
+```r
+switch(value, # value to test
+       str1 = EXPR,
+       str2 = EXPR,
+       EXPR # default
+       )
+```
+
+## Base functions
+
+### cbind / rbind & Typeg
+
+Combine vector, matrix or data frame by row or columns.
+
+```r
+m <- rbind(c(1,4),c(2,2)) # rbind = row bind
+m <- cbind(c(1,4),c(2,2)) # cbind = column bind
+```
+
+If you encounter the warning message "row names were found from a short variable and have been discarded" with cbind, this means that one of the input has row names and that rows need to be duplicated. To avoid this warning, discard the row names by using the `row.names` option:
+```r
+z <- cbind(x, y, row.names = NULL)
+```
+
+Adding columns and rows to a matrix
+```r
+rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
+cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
+```
+
+### Merge
+
+Merging data frames (equivalent of SQL join):
+```r
+merge(d1, d2) # try to find a column C in common, and only keep rows whose values of C are in d1 and d2.
+merge(d1, d2, by.x="col1", by.y="col2") # specify explicitly the columns
+```
+
+By default merge will make an exclusive join, and thus will eliminate rows that are only in one of the data frames. To keep those rows:
+```r
+merge(d1, d2, all = TRUE) # keep single rows of both d1 and d2.
+merge(d1, d2, all.x = TRUE) # keep single rows from d1.
+merge(d1, d2, all.y = TRUE) # keep single rows from d2.
+```
+
+## Variables & Types
+
+### Assignment
+
+Local assignment:
+```r
+a <- 3
+```
+It creates a local object.
+
+Non-local assignment:
+```r
+n <<- 100
+```
+Used in OOP, to modify a field's value.
+
+Assigning dynamically:
+```r
+assign("varname", value, pos = .GlobalEnv) # create a new variable varname in global environment.
+```
+
+Getting dynamically the value of a variable:
+```r
+x <- get("myvar")
+```
+
 
 ### NA
 
@@ -825,406 +1257,6 @@ Compute an histogram: count occurences of each value.
 hist <- table(c(1,45,1,6,3,14,45,6,6))
 ```
 
-## Statements
-
-## Home
-
-Get R HOME directory:
-```r
-R.home()
-```
-
-## Environments and namespaces
-
- * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
- * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
-
-## Command line arguments
-
-```r
-args <- commandArgs(trailingOnly = TRUE)
-my_first_arg = args[1]
-```
-The option `trailingOnly` keeps only arguments after `--args` flag.
-
-Getting script path, script name and script directory:
-```r
-args <- commandArgs(trailingOnly = FALSE)
-script.path <- sub("--file=", "", args[grep("--file=", args)])
-script.name <- basename(script.path)
-script.dir <- dirname(script.path)
-```
-
-### Getopt package
-
-```r
-library(getopt)
-
-spec = matrix(c(
-#-  longname        shortname   arg_presence    arg_type        description
-	'db',           'd',        1,              'character',    'Database name.',
-	'help',         'h',        0,              'logical',      'Print this help.',
-	'input',        'i',        1,              'character',    'Input excel file.'
-#- arg_presence can be 0 (no arg), 1 (required), 2 (optional)
-	), byrow = TRUE, ncol = 5)
-
-opt <- getopt(spec)
-```
-
-## Merge
-
-Merging data frames (equivalent of SQL join):
-```r
-merge(d1, d2) # try to find a column C in common, and only keep rows whose values of C are in d1 and d2.
-merge(d1, d2, by.x="col1", by.y="col2") # specify explicitly the columns
-```
-
-By default merge will make an exclusive join, and thus will eliminate rows that are only in one of the data frames. To keep those rows:
-```r
-merge(d1, d2, all = TRUE) # keep single rows of both d1 and d2.
-merge(d1, d2, all.x = TRUE) # keep single rows from d1.
-merge(d1, d2, all.y = TRUE) # keep single rows from d2.
-```
-
-## Data
-
-The data() function loads specified data sets, or list the available data sets.
-
-Loading unknown data set into a separate environment in order to check what is inside:
-```r
-data(crude, verbose = TRUE, envir = e <- new.env())
-ls(e) # check what is in `e`
-class(e$crude)
-summary(e$crude)
-rm(e)
-```
-
-Load into workspace:
-```r
-data(crude)
-```
-
-## Load data
-
-Load data from a plain text file with lines like:
-1224.233 1228.12e12
-and put result in a list
-```r
-mylist <- scan(file="myfile.txt", what=list(t=0.0, f=0.0))
-```
-
-See also `read.table()` in DATA FRAMES.
-
-## Equality
-
-Testing elements of a vector:
-```r
-x < 8 # returns a vector of logical values
-all(x < 8) # returns true if all elements of x are < 8
-all(v == w) # returns true if v and w are equals.
-identical(v, w) # returns true if v and w are identical (same type, same values). A vector of integers won't be identical to a vector of floating points even if values are equal.
-any(x < 8) # returns true if at least one element of x is < 8
-```
-
-## Maths
-
-Logarithm:
-```r
-log10(x)
-```
-
-Power:
-```r
-10^3
-```
-
-Integer division:
-```r
-5 %/% 2
-```
-
-Truncating integer:
-```r
-trunc(1.23)
-floor(1.23)
-```
-
-Find roots of an equation:
-```r
-f <- function(x) x - 300 - x^0.8
-uniroot(f, c(300, 1200))
-```
-
-## Operators
-
- * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
-
-Arithmetic operators:
-
-Operator  | Description
---------- | ----------------------
-`+`       | Addition.
-`-`       | Subtraction.
-`*`       | Multiplication.
-`/`       | Division.
-`^`, `**` | Exponentiation.
-`%%`      | Modulus (x mod y) 5%%2 is 1.
-`%/%`     | Integer division 5%/%2 is 2.
-
-Logical operators:
-
-Operator    | Description
------------ | --------------------------
-`<`	        | Less than.
-`<=`        | Less than or equal to.
-`>`	        | Greater than.
-`>=`        | Greater than or equal to.
-`==`        | Exactly equal to.
-`!=`        | Not equal to.
-`!`         | Not.
-`|`         | Or.
-`&`         | And.
-`isTRUE(x)` | Test if x is TRUE.
-
-## I/O
-
-### dput and dget
-
-`dput` and `dget` are used to serialize and deserialize an R object.
-
-### File information
-
-Get file size:
-```r
-sz <- file.info(myfile)$size
-sz <- file.size(myfile)  # Only available from R 3.3.
-```
-
-### Loading vector from a file
-
-```r
-scan(file = "myfile.txt", what = integer())
-```
-
-### Saving vector to a file
-
-```r
-write(v, 'myfile.txt', ncolumns = 1)
-```
-
-### Reading from a file
-
-Read all characters from a file and put them into a string:
-```r
-s <- readChar(filename, file.info(filename)$size)
-```
-
-Read lines:
-```r
-lines <- readLines(filename)
-```
-
-### Reading from stdin
-
-Reading strings from stdin:
-```r
-con <- file("stdin")
-strings <- readLines(con)
-close(con) # close stdin to avoid warning message "closing unused connection 3 (stdin)"
-```
-
-Reading floats from stdin:
-```r
-values <- as.numeric(readLines(file("stdin")))
-```
-
-Reading line by line stdin:
-```r
-con <- file("stdin")
-open(con)
-while (TRUE) {
-	line <- readLines(con, n = 1)
-	if (length(line) == 0)
-		break
-}
-close(con)
-```
-
-### Writing to a file
-
-```r
-cat(..., file = "myfile.txt")
-write(x, file = "myfile.txt")
-writeLines(content, file.path)
-```
-
-### Default output
-
-Redirect output to a file:
-```r
-sink("myfile")
-```
-
-Redirect to console again:
-```r
-sink()
-```
-
-### Printing
-
-Print a variable:
-```r
-print(myvar)
-```
-
-`str` (structure) prints an object in a compact mode:
-```r
-str(myobject)
-str(mylist)
-```
-
-`cat` print as is (without all the transformations print() makes):
-```r
-cat('Computed PI=',pi,'\n');
-```
-
-Print on standard error stream:
-```r
-write("prints to stderr", stderr())
-write("prints to stderr", file = stderr())
-```
-
-Print information about an object (field length, field mode, ...):
-```r
-summary(myobject)
-```
-
-Print double values (control number of printed decimals):
-```r
-print(83.247837878523745) # will be truncated on output
-
-options(digits=22) # now will display all decimals of our number
-print(83.247837878523745)
-```
-
-## cbind / rbind
-
-Combine vector, matrix or data frame by row or columns.
-
-```r
-m <- rbind(c(1,4),c(2,2)) # rbind = row bind
-m <- cbind(c(1,4),c(2,2)) # cbind = column bind
-```
-
-If you encounter the warning message "row names were found from a short variable and have been discarded" with cbind, this means that one of the input has row names and that rows need to be duplicated. To avoid this warning, discard the row names by using the `row.names` option:
-```r
-z <- cbind(x, y, row.names = NULL)
-```
-
-Adding columns and rows to a matrix
-```r
-rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
-cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
-```
-
-## Statements
-
-### For
-
-Loop on existing array:
-```r
-for (i in vect) {
-}
-```
-
-Loop on explicit range:
-```r
-for(i in 1:N) {
-	y <- i*i
-}
-```
-
-Best way to iterate on all indices of a vector:
-```r
-for (i in seq_along(v))
-	v[i] <- compute(v[i], i)
-```
-`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
-
-*Wrong* way to iterate on all indices of a vector:
-```r
-for (i in seq(v))
-	v[i] <- compute(v[i], i)
-```
-There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
-
-How to break / continue:
-```r
-break
-next
-```
-
-### If / else
-
-`if()` is a function in R.
-```r
-if (TRUE) x <- 2 else x <- 10
-```
-
-Logical negation:
-```r
-if ( ! condition) ...
-```
-
-Ternary operator using if/else:
-```r
-x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
-```
-
-The `else` clause must appear at the end and on the same line than the `then` clause:
-```r
-if (...) do_1() else do_2()
-```
-or
-```r
-if (...) {
-	do_1()
-} else {
-	do_2()
-}
-```
-
-### Switch
-
-Value must not be null, and must be a vector of length 1.
-The possible values (str1, str2) must be strings and not integer. If these are integers, they must be quoted in order to be strings.
-```r
-switch(value, # value to test
-       str1 = EXPR,
-       str2 = EXPR,
-       EXPR # default
-       )
-```
-
-### Assignment
-
-Local assignment:
-```r
-a <- 3
-```
-It creates a local object.
-
-Non-local assignment:
-```r
-n <<- 100
-```
-Used in OOP, to modify a field's value.
-
-Assigning dynamically:
-```r
-assign("varname", value, pos = .GlobalEnv) # create a new variable varname in global environment.
-```
-
 ## Throwing error
 
 ```r
@@ -1759,49 +1791,15 @@ X11() # on UNIX platform (opens a Quartz window on MacOS-X)
 [Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
 [Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
 
-## Source
+## Some R error messages
 
-Use source() command to include/load another R file:
+### row names were found from a short variable and have been discarded
+
+Error message from cbind.
+Set `row.names = NULL` in cbind:
 ```r
-source('myfile.R')
+cbind(df.1, df.2m row.names = NULL)
 ```
-
-Switch to sourced file directory while sourcing:
-```r
-source('../../blabla/myfile.R', chdir = TRUE)
-```
-Before sourcing the file, R will change to directory `../../blabla`.
-
-Get the path of the current sourced file:
-```r
-current.file.path <- parent.frame(2)$ofile
-```
-
-### Loading module realtivily to script path
-
-Solution 1:
-```r
-args <- commandArgs(trailingOnly = F)
-scriptPath <- dirname(sub("--file=","",args[grep("--file",args)]))
-source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
-```
-
-Solution 2:
-```r
-#- Get path of current R script to source using a relative directory:
-source(file.path(dirname(rscript_current()), '../myfile.R'))
-#- Where rscript_current is:
-rscript_current <- function() {
-	stack <- rscript_stack()
-	r <- as.character(stack[length(stack)])
-	first_char <- substring(r, 1, 1)
-	if (first_char != '~' && first_char != .Platform$file.sep) {
-		r <- file.path(getwd(), r)
-	}
-	r
-}
-```
-## Errors
 
 ### could not find function "getGeneric"
 
@@ -1970,6 +1968,22 @@ evaluate(matlab, "[w,a]=dice(1000);")
 Close client and server (to verify: only if this is the last client ?):
 ```r
 close(matlab)
+```
+
+### Getopt package
+
+```r
+library(getopt)
+
+spec = matrix(c(
+#-  longname        shortname   arg_presence    arg_type        description
+	'db',           'd',        1,              'character',    'Database name.',
+	'help',         'h',        0,              'logical',      'Print this help.',
+	'input',        'i',        1,              'character',    'Input excel file.'
+#- arg_presence can be 0 (no arg), 1 (required), 2 (optional)
+	), byrow = TRUE, ncol = 5)
+
+opt <- getopt(spec)
 ```
 
 ### RCurl
