@@ -882,9 +882,13 @@ tar -xzf my.file.tar.gz -C my/dest/dir
 
 ### zip, unzip
 
-To compress a folder:
+To compress files:
 ```bash
 zip my_zip_file file1 file2 ...
+```
+
+To compress a folder:
+```bash
 zip -r my_dir my_dir # recursive
 zip -j foo foo/* # to leave off the path
 ```
