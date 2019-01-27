@@ -2323,12 +2323,22 @@ library(metfRag)
  * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
  * [Package ‘testthat’](https://cran.r-project.org/web/packages/testthat/testthat.pdf).
 
+Testthat propose different reporters.
+For instance, when called with devtools for a package, we can trigger a progress reporter (`ProgressReporter`) with a failure reporter (`FailReporter`, that will ensure that a fail message is sent):
+```r
+R -q -e "devtools::test('.', reporter = c('progress', 'fail'))"
+```
+Or use the Stop reporter (`StopReporter`) that will stop at the first error:
+```r
+R -q -e "devtools::test('.', reporter = c('stop', 'summary', 'fail'))"
+```
+
 ### RUnit
 
 ```r
 library(RUnit)
 ```
-	
+
 Assert true:
 ```r
 checkTrue(1 < 2, "check1.")
