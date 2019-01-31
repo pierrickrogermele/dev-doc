@@ -1108,6 +1108,11 @@ Getting unique elements (remove duplicates):
 x <- y[ ! duplicated(y)]
 ```
 
+Split a vector in smaller vectors (chunks) of equal size:
+```r
+chunks <- split(v, ceiling(seq_along(v) / 50))
+```
+
 ### Lists
 
 Remove values from a list:
