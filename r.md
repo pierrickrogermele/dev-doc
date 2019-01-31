@@ -1357,6 +1357,11 @@ By default `warn` is set to 0, which means that warnings are stored until the to
 warnings()
 ```
 
+Suppressing warnings like for instance "NAs introduced by coercion":
+```r
+suppressWarnings(as.integer('WRONG'))
+```
+
 Call a function and display all errors on stderr without failing:
 ```r
 try(my_function(a,b,c))
