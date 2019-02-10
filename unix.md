@@ -28,6 +28,13 @@ Get info on a card:
 ethtool my_card_name
 ```
 
+### curl
+
+Download a file with ftp:
+```bash
+curl -o myfile.txt "ftp://mysite.fr/my/file.txt"
+```
+
 ### wget
 
 Download recursively:
