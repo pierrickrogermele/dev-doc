@@ -85,6 +85,11 @@ Getting information about loaded packages (package version, ...) in a session:
 sessionInfo()
 ```
 
+Getting version of package:
+```r
+packageVersion('biodb')
+```
+
 ### Installing packages
 
 R packages can be found on [CRAN](http://cran.r-project.org/) web site.
@@ -2385,3 +2390,8 @@ No more in CRAN.
  * [Grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html).
 
 Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html) to export grid object to SVG file.
+
+### RSQLite
+
+ * [Package ‘RSQLite’](https://cran.r-project.org/web/packages/RSQLite/RSQLite.pdf).
+ * [R and SQLite: Part 1](https://www.r-bloggers.com/r-and-sqlite-part-1/).
