@@ -239,3 +239,91 @@ A Triplestore stores information like "Bob is 35".
 
  * [MongoDB Tutorial](https://www.tutorialspoint.com/mongodb/).
  * [MongoDB Tutorials](https://docs.mongodb.com/manual/tutorial/).
+
+RDMS        | MongoDB
+----------- | -------
+Database    | Database
+Table       | Collection
+Tuple/Row   | Document
+column      | Field
+Primary Key | Primary Key (Default key `_id` provided by mongodb itself)
+
+ * Documents are written in JSON.
+ * No concept of relationship between collections.
+
+### Interpreter
+
+To start interpreter:
+```bash
+mongo
+```
+
+To get help:
+```
+db.help()
+```
+
+The interpreter can also be run in script mode. Script are written in Javascript, so the syntax is different from the shell.
+See [Write Scripts for the mongo Shell](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/).
+Example of running a javascript:
+```bash
+mongo mylocaldb muyscript.js
+```
+
+#### Managing databases
+
+Getting statistics about a database:
+```
+db.stats()
+```
+
+Create a database, or switch to it:
+```
+use mydb
+```
+
+Print current database:
+```
+db
+```
+
+List all databases:
+```
+show dbs
+```
+Note: to exist, a database must at least contain one document.
+
+Drop a database:
+```
+db.dropDatabase()
+```
+
+#### Collections
+
+Collections are automatically created when inserting documents. However it is possible to create an empty collection, in order to define particular options, using the following command:
+```
+db.createCollection("mycol", { capped : true, autoIndexId : true, size : 6142800, max : 10000 } )
+```
+
+To insert a document into a collection:
+```
+db.mycol.insert({"name" : "tutorialspoint"})
+```
+
+To list all collections of a database:
+```
+show collections
+```
+
+To drop a collection:
+```
+db.mycol.drop()
+```
+
+#### Datatypes
+
+See  [MongoDB - Datatypes](https://www.tutorialspoint.com/mongodb/mongodb_datatype.htm).
+
+#### Documents
+
+
