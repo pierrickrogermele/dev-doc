@@ -1,28 +1,36 @@
 PHP
 ===
 
-## Execution
+ * [Language Reference](http://php.net/manual/en/langref.php).
 
-Given the following PHP script `myscript.php`:
-```php
-<?php
-$s = shell_exec('ls'); echo "$s";
-?>
-```
-You can execute it like this:
+## Installing and running
+
+### Installation
+
+On macos, if you want to use gettext functionalities in PHP, you must install it from Homebrew :
 ```bash
-php -f myscript.php
+brew install gettext php
 ```
 
-Using a shebang:
-```php
-#!/usr/bin/php
-<?php
-$s = shell_exec('ls'); echo "$s";
-?>
+See Apache for configuring the path toward PHP. The line to set should be something like:
+```apache
+LoadModule php7_module /usr/local/opt/php/lib/httpd/modules/libphp7.so
 ```
+See `brew info php` for exact details.
+Also you must add, the following lines:
+```apache
+<IfModule dir_module>
+	DirectoryIndex index.html index.php
+</IfModule>
+<FilesMatch \.php$>
+	SetHandler application/x-httpd-php
+</FilesMatch>
+```
+See [macOS 10.14 Mojave Apache Setup: Multiple PHP Versions](https://getgrav.org/blog/macos-mojave-apache-multiple-php-versions).
 
-Embeding PHP code inside an HTML page:
+### Execution
+
+Embedding PHP code inside an HTML page:
 ```html
 <html>
 	<head>
@@ -37,21 +45,115 @@ Embeding PHP code inside an HTML page:
 	</body>
 </html>
 ```
+Short open tag `<?` is also tolerated, if enabled using the `short_open_tag` in `php.ini`.
+```html
+<html>
+	<? printf('hello') ?>
+</html>
+```
+The `<?=` tag, on the contrary, is always available:
+```html
+<html>
+	<?= sprintf('hello') ?>
+</html>
+```
 
-## Configuration
+If a file contains only PHP code, then it is preferable to omit the closing tag `?>`, since it could introduce white space characters at the end of your output:
+```php
+<?php
+printf('Hello')
+```
+
+Given the following PHP script `myscript.php`:
+```php
+<?php
+$s = shell_exec('ls'); echo "$s";
+```
+You can execute it like this:
+```bash
+php -f myscript.php
+```
+
+Using a shebang, you can make the script executable:
+```php
+#!/usr/bin/php
+<?php
+$s = shell_exec('ls'); echo "$s";
+```
+
+### Configuration
 
 Configuration file `php.ini` is looked for in different directories.
-	
+
 Environment variables `PHPRC` and `PHP_INI_PATH` control where PHP looks first for `php.ini`.
-	
-## PHP version
+
+In a Homebrew installation, you will find it at `/usr/local/etc/php/7.3/php.ini`.
+
+### Modules installation
+
+Two systems exist in PHP: pear and pecl.
+
+Installation of packages is done through the PEAR system.
+
+Update PEAR system:
+```bash
+sudo pear upgrade PEAR
+```
+
+Re-install PEAR:
+```bash
+wget http://pear.php.net/go-pear.phar
+php -d detect_unicode=0 go-pear.phar
+```
+
+Search for a package:
+```bash
+pear search mypkg
+```
+
+Install a package:
+```bash
+pear install mypkg
+```
+
+Uninstall a package:
+```bash
+pear uninstall mypkg
+```
+
+Modules are installed inside `ext` folder. Example:
+```
+/usr/local/Cellar/php/7.3.2/include/php/ext
+```
+
+### Modules loading
+
+Including a php module:
+```php
+<?php
+require "a_module.php"; // stops if error
+include "a_module.php"; // goes on if error (prints <warning)
+```
+
+To include only once each module:
+```php
+<?php
+require_once
+include_once
+```
+
+The include path is defined inside `/etc/php.ini`:
+``
+include_path = .:/usr/local/lib/php:./include
+```
+
+### PHP version
 
 Version can be accessed through a constant or a method:	
 ```php
 <?php
 $version = PHP_VERSION;
 $version = phpversion();
-?>
 ```
 
 Running different code depending on version:
@@ -65,7 +167,6 @@ case (version_compare("5", phpversion(), ">")):
 	//do php4 code
 	break;
 }
-?>
 ```
 	
 On some website (like free.fr), PHP4 is used by default. In order to use PHP5, one needs to create a `.htaccess` file at site root and write inside:
@@ -73,117 +174,28 @@ On some website (like free.fr), PHP4 is used by default. In order to use PHP5, o
 php 5
 ```
 
-## Debugging and errors
+### Debugging and errors
 
 Report all errors, including variable use before declaration:
 ```php
-<?php
-error_reporting(E_ALL|E_STRICT);
-?>
+<? error_reporting(E_ALL|E_STRICT);
 ```
 Note: `E_STRICT` is included inside `E_ALL`, starting from PHP 5.4.
 See [error_reporting](http://php.net/manual/en/function.error-reporting.php) and its [Predefined Constants](http://php.net/manual/en/errorfunc.constants.php).
 
 Print system information:
 ```php
-<?php
-phpinfo();
-?>
+<? phpinfo();
 ```
 
-## Variables
+## Types
 
-Print a variable information (type and value):
+Get type:
 ```php
-<?php
-var_dump($var);
-?>
+<? $type = gettype($myvar) ?>
 ```
 
-Print variable value:
-```php
-<?php
-print($var);
-?>
-```
-
-Set a variable to null:
-```php
-<?php
-$myvar = NULL;
-?>
-```
-
-Test if a variable is null:
-```php
-<?php
-if (is_null($myvar)) {
-}
-?>
-```
-
-Testing if a variable is defined:
-```php
-<?php
-if (isset($my_var)) {
-	//...
-}
-?>
-```
-	
-Accessing a global variable from inside a function:
-```php
-<?php
-global $toto;
-?>
-```
-
-Getting a variable value by dynamic variable name:
-```php
-<?php
-$val = $$name; // get value of variable named $name
-?>
-```
-	
-Static variable:
-```php
-<?php
-function foo() {
-	static $myvar = 1;
-}
-?>
-```
-	
-Variable reference inside a loop:
-```php
-<?php
-foreach ($text_array as &$t)
-	$t = ...;
-?>
-```
-Only available starting from PHP version 5.
-
-### Built-in variables
-
-`$_SERVER` contains many context variables:
-```php
-<?php
-$_SERVER['_']; // name of the PHP program
-$_SERVER['DOCUMENT_ROOT'];
-?>
-```
-
-`$_SERVER['DOCUMENT_ROOT']` empty issue:
-`$_SERVER['DOCUMENT_ROOT']` is null in CGI version of IIS PHP, use ISAPI version: `php5isapi.dll`.
-
-Global variables:
-```php
-<?php
-$GLOBALS;
-?>
-```
-
-## Constants
+### Constants
 	
 Define a constant:
 ```php
@@ -210,7 +222,7 @@ if (defined('TEST'))
 ?>
 ```
 
-## Booleans
+### Booleans
 
 ```php
 <?php
@@ -219,7 +231,7 @@ $flag = False;
 ?>
 ```
 
-## Strings
+### Strings
 	
 Accessing the character at index 4:
 ```php
@@ -370,8 +382,8 @@ $texte = str_replace(
 ?>
 ```
 
-## Date
-	
+### Date
+
 Convert a English/US date string into a UNIX timestamp date:
 ```php
 <?php
@@ -379,76 +391,13 @@ $mydate_in_seconds_from_1970 = strtotime("11/29/2010");
 ?>
 ```
 
-## Operators
-	
-Testing equality after transtypage (both side of the equality are converted to the same type):
-```php
-<?php
-$a == $b
-"1001" == 1001 // true
-"1001asjdh" == 1001 // true
-"00001001" == 1001 // true
-"100" == 1e2 // true
-"1002" == 1001 // false
-"1002" != 1001 // true
-"1002" <> 1001 // true
-?>
-```
-
-Testing equality without transtypage. Test first the equality of types, then test values:
-```php
-<?php
-"1001" === 1001 // false
-"1001" !== 1001 // true
-?>
-```
-
-Inequality:
-```php
-<?php
-"1001" < 1002
-"1001" > 1002
-"1001" <= 1002
-"1001" >= 1002
-?>
-```
-
-Ternary operator is available:
-```php
-<?php
-$a = $b == $c ? 10 : 20;
-?>
-
-## Environment variables
-
-Array of environment variables:
-```php
-<?php
-$_ENV;
-?>
-```
-	
-Get an env var:
-```php
-<?php
-$home = getenv('HOME');
-?>
-```
-
-Set an env var:
-```php
-<?php
-putenv("UNIQID=$uniqid");
-?>
-```
-
-## Array
+### Array
 	
 Declaring an array:
 ```php
 <?php
 $my_array = array();
-// depuis PHP 5.4
+// since PHP 5.4
 $array = [
 	"foo" => "bar",
 	"bar" => "foo",
@@ -477,10 +426,10 @@ empty($my_array);
 ?>
 ```
 
-Tests if element 'toto' exists:
+Tests if element 'foo' exists:
 ```php
 <?php
-isset($my_array['toto']);
+isset($my_array['foo']);
 ?>
 ```
 
@@ -530,7 +479,7 @@ $sz = count($array);
 ```
 
 Join & split: see strings.
-	
+
 Max & min values:
 ```php
 <?php
@@ -576,11 +525,14 @@ array_unshift($queue, "apple", "raspberry"); // put first
 ?>
 ```
 
-Merge, append, concat:
+Merge:
 ```php
-<?php
-$a = array_merge($b, $c);
-?>
+<? $a = array_merge($b, $c); ?>
+```
+
+Append:
+```php
+<? $a[] = 12; ?>
 ```
 
 Sort:
@@ -594,6 +546,193 @@ Compare:
 ```php
 <?php
 $diff_array = array_diff($array1, $array2);
+?>
+```
+
+### Object
+
+Access an object property:
+```php
+<?php $x = $myobj->myfield ?>
+```
+
+A variable can be used to access a property:
+```php
+<?php
+	$f = 'myfield';
+	$x = $myobj->$f;
+?>
+```
+
+Test if an object has a property:
+```php
+<?php
+	if (property_exists($myobj, 'myfield'))
+		$x = $myobj->myfieldProtocoles;
+?>
+```
+
+## Variables
+
+Print a variable information (type and value):
+```php
+<?php
+var_dump($var);
+?>
+```
+
+Print variable value:
+```php
+<?php
+print($var);
+?>
+```
+
+Set a variable to null:
+```php
+<?php
+$myvar = NULL;
+?>
+```
+
+Test if a variable is null:
+```php
+<?php
+if (is_null($myvar)) {
+}
+?>
+```
+
+Testing if a variable is defined:
+```php
+<?php
+if (isset($my_var)) {
+	//...
+}
+?>
+```
+	
+Accessing a global variable from inside a function:
+```php
+<?php
+global $toto;
+?>
+```
+
+Getting a variable value by dynamic variable name:
+```php
+<?php
+$val = $$name; // get value of variable named $name
+?>
+```
+	
+Static variable:
+```php
+<?php
+function foo() {
+	static $myvar = 1;
+}
+?>
+```
+	
+Variable reference inside a loop:
+```php
+<?php
+foreach ($text_array as &$t)
+	$t = ...;
+?>
+```
+Only available starting from PHP version 5.
+
+## Built-in variables
+
+`$_SERVER` contains many context variables:
+```php
+<?php
+$_SERVER['_']; // name of the PHP program
+$_SERVER['DOCUMENT_ROOT'];
+?>
+```
+
+`$_SERVER['DOCUMENT_ROOT']` empty issue:
+`$_SERVER['DOCUMENT_ROOT']` is null in CGI version of IIS PHP, use ISAPI version: `php5isapi.dll`.
+
+Global variables:
+```php
+<?php
+$GLOBALS;
+?>
+```
+
+## Environment variables
+
+Array of environment variables:
+```php
+<?php
+$_ENV;
+?>
+```
+	
+Get an env var:
+```php
+<?php
+$home = getenv('HOME');
+?>
+```
+
+Set an env var:
+```php
+<?php
+putenv("UNIQID=$uniqid");
+?>
+```
+
+## Operators
+	
+Testing equality after transtypage (both side of the equality are converted to the same type):
+```php
+<?php
+$a == $b
+"1001" == 1001 // true
+"1001asjdh" == 1001 // true
+"00001001" == 1001 // true
+"100" == 1e2 // true
+"1002" == 1001 // false
+"1002" != 1001 // true
+"1002" <> 1001 // true
+?>
+```
+
+Testing equality without transtypage. Test first the equality of types, then test values:
+```php
+<?php
+"1001" === 1001 // false
+"1001" !== 1001 // true
+?>
+```
+
+Inequality:
+```php
+<?php
+"1001" < 1002
+"1001" > 1002
+"1001" <= 1002
+"1001" >= 1002
+?>
+```
+
+Ternary operator is available:
+```php
+<?php
+$a = $b == $c ? 10 : 20;
+?>
+```
+
+Assignment:
+```php
+<?php
+$s .= $t + 'a';
+$i += 12;
 ?>
 ```
 
@@ -637,11 +776,186 @@ Filter & replace:
 $ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
 ?>
 ```
-## Evaluate string as code
+## Statements and control structures
+
+### If / elseif / else
 
 ```php
 <?php
+if ($myvar == 2)
+	do_something();
+elseif ($myvar > 2)
+	do_something();
+else
+	do_something_even_different();
+?>
+```
+
+### eval
+
+Evaluate string as code:
+```php
+<?php
 eval('$my_array = ["a" => "blabla", "b" => "tagazou"];');
+?>
+```
+
+### `for` & `foreach` loops
+
+For loop:
+```php
+<?php
+for ($i = 1; $i <= 10; $i++)
+	echo $i;
+?>
+```
+
+Foreach loop:
+```php
+<?php
+foreach($myarray as $val)
+	do_something($val);
+?>
+```
+
+Foreach with key/values:
+```php
+<?php
+foreach($myarray as $key => $value)
+	do_something($key, $value);
+?>
+```
+
+Foreach with modification of elements:
+```php
+<?php
+foreach ($arr as &$value)
+	$value = $value * 2;
+?>
+```
+
+Break and continue:
+```php
+<?php
+foreach($myarray as $val)
+	if ($val == $v)
+		break;
+?>
+```
+	
+### Math
+
+Ceil:
+```php
+<?php
+echo ceil(4.3);    // 5
+echo ceil(9.999);  // 10
+echo ceil(-3.14);  // -3
+?>
+```
+
+Floor:
+```php
+<?php
+echo floor(4.3);   // 4
+echo floor(9.999); // 9
+echo floor(-3.14); // -4
+?>
+```
+
+Round:
+```php
+<?php
+echo round(3.4);         // 3
+echo round(3.5);         // 4
+echo round(3.6);         // 4
+echo round(3.6, 0);      // 4
+echo round(1.95583, 2);  // 1.96
+echo round(1241757, -3); // 1242000
+echo round(5.045, 2);    // 5.05
+echo round(5.055, 2);    // 5.06
+?>
+```
+
+### Alternate syntax with `:`
+
+ * [Alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php)
+
+Instead of using curly brackets for grouping code in control structures, one can use the syntax `:` / `end*` that exists for `if`, `while`, `for`, `foreach` and `switch`.
+
+Example:
+```php
+<?php
+if ($myvar == 2):
+	do_something();
+endif;
+?>
+```
+
+This construct is particularly useful for enabling or disabling HTML code:
+```php
+<?php if ($myvar == 2): ?>
+	<p>Some text.</p>
+<?php elseif: ?>
+	<p>Some other text.</p>
+<?php else: ?>
+	<p>Some different text.</p>
+<?php endif; ?>
+```
+
+## Functions
+
+Defining a function:
+```php
+<?php
+function my_func($param1, $param2) {
+	// ...
+	return $ret_val;
+}
+?>
+```
+
+Passing a parameter by reference:
+```php
+<?php
+function my_func(&$param_by_ref) {
+}
+?>
+```
+
+Default values:
+```php
+<?php
+function my_func($param1, $param2, $param3 = array('toto', 'titi'), $param4 = 1) {
+}
+?>
+```
+
+Static function:
+```php
+<?php
+static function my_func() {}
+?>
+```
+Be careful to not use static keyword for functions with some versions of PHP. It's not supported by old version of PHP, they will issue a "Parse error".
+
+`create_function`:
+```php
+<?php
+$newfunc = create_function('$a,$b', 'return "ln($a) + ln($b) = " . log($a * $b);');
+?>
+```
+
+Inline function (PHP 5.3):
+```php
+<?php
+$map = function ($text) use ($search, $replacement) {
+	if (strpos ($text, $search) > 50) {
+	  return str_replace ($search, $replacement, $text);
+	} else {
+	  return $text;
+	}
+  };
 ?>
 ```
 
@@ -721,105 +1035,6 @@ mkdir("/path/to/my/dir", 0700);
 ?>
 ```
 
-## `for` & `foreach` loops
-
-For loop:
-```php
-<?php
-for ($i = 1; $i <= 10; $i++)
-	echo $i;
-?>
-```
-
-Foreach loop:
-```php
-<?php
-foreach($myarray as $val)
-	do_something($val);
-?>
-```
-
-Foreach with key/values:
-```php
-<?php
-foreach($myarray as $key => $value)
-	do_something($key, $value);
-?>
-```
-
-Foreach with modification of elements:
-```php
-<?php
-foreach ($arr as &$value)
-	$value = $value * 2;
-?>
-```
-
-Break and continue:
-```php
-<?php
-foreach($myarray as $val)
-	if ($val == $v)
-		break;
-?>
-```
-	
-## Function
-	
-Defining a function:
-```php
-<?php
-function my_func($param1, $param2) {
-	// ...
-	return $ret_val;
-}
-?>
-```
-
-Passing a parameter by reference:
-```php
-<?php
-function my_func(&$param_by_ref) {
-}
-?>
-```
-
-Default values:
-```php
-<?php
-function my_func($param1, $param2, $param3 = array('toto', 'titi'), $param4 = 1) {
-}
-?>
-```
-
-Static function:
-```php
-<?php
-static function my_func() {}
-?>
-```
-Be careful to not use static keyword for functions with some versions of PHP. It's not supported by old version of PHP, they will issue a "Parse error".
-
-`create_function`:
-```php
-<?php
-$newfunc = create_function('$a,$b', 'return "ln($a) + ln($b) = " . log($a * $b);');
-?>
-```
-
-Inline function (PHP 5.3):
-```php
-<?php
-$map = function ($text) use ($search, $replacement) {
-	if (strpos ($text, $search) > 50) {
-	  return str_replace ($search, $replacement, $text);
-	} else {
-	  return $text;
-	}
-  };
-?>
-```
-
 ## Images
 	
 Get image size:
@@ -844,44 +1059,12 @@ $im = @imagecreate($width, $height) or Process::die_with_error("Unable to create
 
 Set background color, the first allocated color is considered as the background color:
 ```php
-<?php
-$bg = imagecolorallocate($im, 0xff, 0xff, 0xff);
-?>
+<? $bg = imagecolorallocate($im, 0xff, 0xff, 0xff);
 ```
 
-## Math.txt
-	
-Ceil:
-```php
-<?php
-echo ceil(4.3);    // 5
-echo ceil(9.999);  // 10
-echo ceil(-3.14);  // -3
-?>
-```
+## Multilingual web site
 
-Floor:
-```php
-<?php
-echo floor(4.3);   // 4
-echo floor(9.999); // 9
-echo floor(-3.14); // -4
-?>
-```
-
-Round:
-```php
-<?php
-echo round(3.4);         // 3
-echo round(3.5);         // 4
-echo round(3.6);         // 4
-echo round(3.6, 0);      // 4
-echo round(1.95583, 2);  // 1.96
-echo round(1241757, -3); // 1242000
-echo round(5.045, 2);    // 5.05
-echo round(5.055, 2);    // 5.06
-?>
-```
+ * [How to Build a Multilingual App: A Demo With PHP and Gettext](https://www.toptal.com/php/build-multilingual-app-with-gettext).
 
 ## Namespace
 
@@ -905,8 +1088,6 @@ Be careful to not use static keyword for functions. It's not supported by old ve
 
 ## OOP
 
- * [class keyword](http://php.net/manual/en/keyword.class.php).
- * [OOP, The Basics](http://php.net/manual/en/language.oop5.basic.php).
  * [Classes and Objects](http://php.net/manual/en/language.oop5.php).
 
 Inheritance:
@@ -968,7 +1149,117 @@ $xml = file_get_contents("http://www.example.com/file.xml");
 ```
 See [file_get_contents](http://php.net/manual/en/function.file-get-contents.php).
 
-## MySQL
+## Generating HTML
+
+### Set encoding
+
+```php
+<?php
+header('Content-type: text/html; charset=utf-8');
+?>
+```
+
+### Generate file download
+
+For downloading a file instead of displaying an HTML page:
+	
+First, set the content type.
+For a CSV file:
+```php
+<?php
+header("Content-Type: text/csv");
+?>
+```
+For an Excel file:
+```php
+<?php
+header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+?>
+```
+
+Then:
+```php
+<?php
+header("Content-Disposition: attachment; filename=$filename");
+header("Content-Length: ".filesize($tmp_file));
+$fp = fopen("$tmp_file","r");
+fpassthru($fp); // fpassthru returns the number of characters written.
+fclose($fp);
+?>
+```
+
+## Networking
+
+ * [WOL (Wake-on-LAN) example](http://www.hackernotcracker.com/2006-04/wol-wake-on-lan-tutorial-with-bonus-php-script.html).
+
+## Interesting modules
+### PHPUnit
+
+[PHPUnit](https://phpunit.de) is testing framework.
+
+Install PHPUnit with PEAR system:
+```bash
+pear config-set auto_discover 1
+pear install pear.phpunit.de/PHPUnit
+```
+
+### cURL
+
+The [Client URL Library](http://us3.php.net/curl).
+
+### Artichow
+
+[Artichow](http://www.artichow.org/) is a librairy using GD2 for drawing graphics: curves, histograms, anti-spam images, ...
+
+To change background color of a graph, don't forget to put the grid transparent:
+```php
+<?php
+$graph->setBackgroundColor($bkg_color);
+$group->grid->setBackgroundColor(New Color(0, 0, 0, 100)); // make grid transparent
+?>
+```
+
+Make background transparent using color replancement in GD:
+```php
+<?php
+$color_gd = imagecolorallocate($graph->getDriver()->resource, 0xff, 0xff, 0xff);
+imagecolortransparent($graph->getDriver()->resource, $color_gd);
+?>
+```
+
+### MongoDB
+
+ * [MongoDB](http://php.net/manual/en/book.mongo.php).
+ * [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
+
+Installation:
+```bash
+pecl install mongodb
+```
+
+### Gettext
+
+How to install gettext module for PHP on macos?
+
+Do we need to enable the following line inside `php.ini`?:
+```
+;extension=gettext
+```
+### SOAP
+
+ * [Massbank PHP example](http://www.massbank.jp/manuals/api-doc_en/getRecordInfo.php).
+
+Getting message sent:
+```php
+<?php
+	$soap = new SoapClient(my_wsdl_url, array('trace' => 1));
+	$res = $soap->SomeFunction($params);
+	echo "REQUEST:\n" . $soap->__getLastRequest() . "\n";
+	echo "REQUEST HEADERS:\n" . $soap->__getLastRequestHeaders() . "\n";
+?>
+```
+
+### MySQL
 
 Connecting:
 ```php
@@ -1051,7 +1342,7 @@ mysql_drop_db("database_name", $link_id);
 ?>
 ```
 
-## ODBC
+### ODBC
 
 Open & close connection:
 ```php
@@ -1079,147 +1370,3 @@ while(odbc_fetch_row($result)) {
 ?>
 ```
 
-## Generating HTML
-
-### Set encoding
-
-```php
-<?php
-header('Content-type: text/html; charset=utf-8');
-?>
-```
-
-### Generate file download
-
-For downloading a file instead of displaying an HTML page:
-	
-First, set the content type.
-For a CSV file:
-```php
-<?php
-header("Content-Type: text/csv");
-?>
-```
-For an Excel file:
-```php
-<?php
-header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-?>
-```
-
-Then:
-```php
-<?php
-header("Content-Disposition: attachment; filename=$filename");
-header("Content-Length: ".filesize($tmp_file));
-$fp = fopen("$tmp_file","r");
-fpassthru($fp); // fpassthru returns the number of characters written.
-fclose($fp);
-?>
-```
-
-## Libraries / Packages
-
-### Installation	
-
-Installation of packages is done through the PEAR system.
-	
-Update PEAR system:
-```bash
-sudo pear upgrade PEAR
-```
-
-Re-install PEAR:
-```bash
-wget http://pear.php.net/go-pear.phar
-php -d detect_unicode=0 go-pear.phar
-```
-
-Search for a package:
-```bash
-pear search mypkg
-```
-
-Install a package:
-```bash
-pear install mypkg
-```
-
-Uninstall a package:
-```bash
-pear uninstall mypkg
-```
-
-### Loading
-
-Including a php module:
-```php
-<?php
-require "a_module.php"; // stops if error
-include "a_module.php"; // goes on if error (prints <warning)
-?>
-```
-
-To include only once each module:
-```php
-<?php
-require_once
-include_once
-?>
-```
-
-The include path is defined inside `/etc/php.ini`:
-``
-include_path = .:/usr/local/lib/php:./include
-```
-
-### PHPUnit
-
-[PHPUnit](https://phpunit.de) is testing framework.
-
-Install PHPUnit with PEAR system:
-```bash
-pear config-set auto_discover 1
-pear install pear.phpunit.de/PHPUnit
-```
-
-### cURL
-
-The [Client URL Library](http://us3.php.net/curl).
-
-### Artichow
-
-[Artichow](http://www.artichow.org/) is a librairy using GD2 for drawing graphics: curves, histograms, anti-spam images, ...
-
-To change background color of a graph, don't forget to put the grid transparent:
-```php
-<?php
-$graph->setBackgroundColor($bkg_color);
-$group->grid->setBackgroundColor(New Color(0, 0, 0, 100)); // make grid transparent
-?>
-```
-
-Make background transparent using color replancement in GD:
-```php
-<?php
-$color_gd = imagecolorallocate($graph->getDriver()->resource, 0xff, 0xff, 0xff);
-imagecolortransparent($graph->getDriver()->resource, $color_gd);
-?>
-```
-
-## Networking
-
- * [WOL (Wake-on-LAN) example](http://www.hackernotcracker.com/2006-04/wol-wake-on-lan-tutorial-with-bonus-php-script.html).
-
-### SOAP
-
- * [Massbank PHP example](http://www.massbank.jp/manuals/api-doc_en/getRecordInfo.php).
-
-Getting message sent:
-```php
-<?php
-	$soap = new SoapClient(my_wsdl_url, array('trace' => 1));
-	$res = $soap->SomeFunction($params);
-	echo "REQUEST:\n" . $soap->__getLastRequest() . "\n";
-	echo "REQUEST HEADERS:\n" . $soap->__getLastRequestHeaders() . "\n";
-?>
