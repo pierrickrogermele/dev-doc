@@ -1616,10 +1616,14 @@ Quit environment:
 source deactivate
 ```
 
-
 Installing a precise version of R:
 ```bash
 conda install -c r r=3.3.2
+```
+
+Searching for packages:
+```bash
+conda search -c bioconda r-biodb
 ```
 
 Generating a new recipe with the `skeleton` command:
