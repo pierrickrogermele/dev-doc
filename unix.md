@@ -755,6 +755,16 @@ chmod -R g+X mypath
 BSD ls and GNU ls are different.
 GNU ls command is part of the coreutils package.
 
+Sorting by size:
+```bash
+ls -S *
+```
+
+Reverse sort order:
+```bash
+ls -r *
+```
+
 Quoting names and escaping characters:
 ```bash
 ls -Q
@@ -1579,7 +1589,7 @@ List all files of a package:
 brew list mypkg
 ```
 
-Install Xcode command line tools:
+Install Xcode command line tools (needed):
 ```bash
 xcode-select --install
 ```
