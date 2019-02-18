@@ -1,6 +1,21 @@
 HTML
 ====
 
+## XHTML
+
+XHTML is an XML version of HTML. Tags must always be closed, tag names must be written in lowercase, etc.
+
+See [HTML and XHTML](https://www.w3schools.com/html/html_xhtml.asp).
+
+Required settings for an XHTML page:
+```xml
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+...
+</html>
+```
+
 ## Encoding
 
 Set UTF-8 character encoding for this HTML file:
