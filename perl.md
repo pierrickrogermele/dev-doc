@@ -56,7 +56,11 @@ perl -MCPAN -e shell
 ```
 or
 ```bash
-cpan
+cpanm
+```
+`cpanm` seems better (more up-to-date about dependencies) than `cpan`. To install it on macos, run:
+```bash
+brew install cpanminus
 ```
 
 CPAN commands:
@@ -1118,6 +1122,42 @@ $s = unac_string('utf8', $s);
 ```
 
 ## Errors
+
+### On macos, Symbol _Perl_xs_handshake not found
+
+Error message is:
+```
+dyld: lazy symbol binding failed: Symbol not found: _Perl_xs_handshake
+```
+
+Remove multithreaded version of modules in personal Perl library:
+```
+rm -rf $HOME/perl5/lib/perl5/darwin-thread-multi-2level
+```
+
+### On macos, impossible to install HTTP::Date
+
+Error message is:
+```
+Can't locate HTTP/Date.pm in @INC ...
+```
+This error comes after installing `LW::Simple` for which `HTTP::Date` is needed.
+
+`cpan HTTP::Date` returns:
+```
+Reading '/Users/.../.cpan/Metadata'
+  Database was generated on Sat, 16 Feb 2019 23:29:03 GMT
+  HTTP::Date is up to date (6.02).
+```
+
+Use `cpanm` instead:
+```bash
+brew install cpanminus
+```
+Remove you `~/.cpan` folder, and remove all installed modules `~/.perl5`, and try:
+```bash
+cpanm LW::Simple
+```
 
 ### Mismatched between library and binaries
 
