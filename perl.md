@@ -1123,7 +1123,7 @@ $s = unac_string('utf8', $s);
 
 ## Errors
 
-### On macos, Symbol _Perl_xs_handshake not found
+### On macos, Symbol `_Perl_xs_handshake` not found
 
 Error message is:
 ```

@@ -2395,3 +2395,9 @@ Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-ma
 
  * [Package ‘RSQLite’](https://cran.r-project.org/web/packages/RSQLite/RSQLite.pdf).
  * [R and SQLite: Part 1](https://www.r-bloggers.com/r-and-sqlite-part-1/).
+
+### Shiny
+
+ * [Shiny](https://shiny.rstudio.com).
+
+Shiny is a package for building interactive web apps.
