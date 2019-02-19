@@ -225,7 +225,7 @@ Ex: Project Voldemort, Cassandra Project, Dynomite, HBase, Hypertable, CouchDB e
 
  * [NoSQL for Games and Gaming](http://info.couchbase.com/rs/302-GJY-034/images/NoSQL_for_Games_and_Gaming.pdf?mkt_tok=eyJpIjoiWldJNVlqZGtPV1JpTVdaaSIsInQiOiJ2T0RjblQ3SkJha0g4Q3VXWHNOejRVWUZiZ1JTUVl3a0Z4VFRDZlcxeUJISisyVUFiWTNlNDVTQzJkWStRY1V1M3dYUlVsUUlPNk90eUg3XC9aNTVFNThHSDYwXC9DY0hqdDFSV0NLc1lZcjVrPSJ9), by Couchbase.
 
-## Triplestore
+### Triplestore
 
 Made to store RDF (Resource Description Framework) data.
 
@@ -235,7 +235,7 @@ Made to store RDF (Resource Description Framework) data.
 
 A Triplestore stores information like "Bob is 35".
 
-## MongoDB
+### MongoDB
 
  * [MongoDB Tutorial](https://www.tutorialspoint.com/mongodb/).
  * [MongoDB Tutorials](https://docs.mongodb.com/manual/tutorial/).
@@ -251,7 +251,7 @@ Primary Key | Primary Key (Default key `_id` provided by mongodb itself)
  * Documents are written in JSON.
  * No concept of relationship between collections.
 
-### Interpreter
+#### Interpreter
 
 To start interpreter:
 ```bash
@@ -270,7 +270,7 @@ Example of running a javascript:
 mongo mylocaldb muyscript.js
 ```
 
-#### Managing databases
+##### Managing databases
 
 Getting statistics about a database:
 ```
@@ -298,7 +298,7 @@ Drop a database:
 db.dropDatabase()
 ```
 
-#### Collections
+##### Collections
 
 Collections are automatically created when inserting documents. However it is possible to create an empty collection, in order to define particular options, using the following command:
 ```
@@ -320,10 +320,10 @@ To drop a collection:
 db.mycol.drop()
 ```
 
-#### Datatypes
+##### Datatypes
 
 See  [MongoDB - Datatypes](https://www.tutorialspoint.com/mongodb/mongodb_datatype.htm).
 
-#### Documents
+##### Documents
 
 
