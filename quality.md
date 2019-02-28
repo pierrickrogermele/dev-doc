@@ -18,6 +18,12 @@ services:
   - docker
 ```
 
+#### CRON jobs
+
+ * [Cron Jobs](https://docs.travis-ci.com/user/cron-jobs/).
+
+When a build is triggered by `cron`, the environment variable `TRAVIS_EVENT_TYPE` is set to `"cron"`.
+
 #### Running locally
 
  * [travis-ci/travis-build](https://github.com/travis-ci/travis-build).
