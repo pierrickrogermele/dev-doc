@@ -1861,6 +1861,11 @@ We can also use ffmpeg directly to encode the images files into a movie. If we s
 ffmpeg -r 10 -b 1800 -i %03d.jpg test1800.mp4
 ```
 
+Concat two audio files, one after the other:
+```bash
+ffmpeg -i file1.mp3 -i file2.mp3 -filter_complex '[0:0][1:0]concat=n=2:v=0:a=1[out]' -map '[out]' output.mp3
+```
+
 ### pdfimages
 
 From package xpdf or poppler.
