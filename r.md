@@ -1132,6 +1132,11 @@ mylist <- list(4, 6, 3, 1, 3, 0)
 mylist[1,3] <- list(NULL)
 ```
 
+Created a list of repeated values:
+```r
+mylist = rep(list(NULL), 4)
+```
+
 ### Data frames
 
 A data frame is a list of vectors, factors or matrices of equal lengths.
@@ -1678,13 +1683,13 @@ library(methods)
 
 Check inheritance for an object:
 ```r
-if (is(o, "MyClass"))
+if (methods::is(o, "MyClass"))
 	doSomething()
 ```
 
 Check inheritance between classes:
 ```r
-if (extends("SubClass", "SuperClass"))
+if (methods::extends("SubClass", "SuperClass"))
 	doSomething()
 ```
 
