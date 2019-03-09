@@ -574,16 +574,9 @@ rscript_current <- function() {
 ```
 ### For
 
-Loop on existing array:
+Loop on a list of vector:
 ```r
-for (i in vect) {
-}
-```
-
-Loop on explicit range:
-```r
-for(i in 1:N) {
-	y <- i*i
+for (x in list.or.vector) {
 }
 ```
 
@@ -650,6 +643,20 @@ switch(value, # value to test
 ```
 
 ## Base functions
+
+### vapply
+
+Apply a function on a list or vector, and returns a vector of a defined type:
+```r
+myvector = vapply(mylist_or_vector, function(x) paste(x, 'some text'), FUN.VALUE = '')
+```
+
+### Filter
+
+Filter values of a list or vector:
+```r
+mynewlist = Filter(function(x) ! is.null(x), mylist)
+```
 
 ### cbind / rbind & Typeg
 
@@ -917,16 +924,6 @@ match <- stringr::str_match(xml, stringr::regex('^(.*)(<metabolite>.*</metabolit
 
 Arrays are objects that can have more than 2 dimensions. Matrix is a special case of arrays.
 
-Create a vector with integers from 1 to 10:
-```r
-x <- c(1:10)
-```
-
-Length of a vector:
-```r
-length(x)
-```
-
 Create an array 4x5, initialized with integer values from 1 to 20:
 ```r
 A<-array(1:20,dim=c(4,5))
@@ -994,6 +991,16 @@ Modulo:
 Elements of a vector can be of the following types: logical, integer, double, complex, character and raw.
 
 Vectors are also called "atomic vectors", to distinguish them from list (called "generic vectors" or "recursive vectors")
+
+Create a vector with integers from 1 to 10:
+```r
+x <- c(1:10)
+```
+
+Length of a vector:
+```r
+length(x)
+```
 
 Create a vector x:
 ```r
