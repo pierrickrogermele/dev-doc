@@ -1924,6 +1924,11 @@ dd if=/dev/cdrom of=cd.iso # for cdrom
 dd if=/dev/scd0 of=cd.iso # if cdrom is scsi 
 ```
 
+To write an ISO on a device (and make it bootable):
+```bash
+dd if=myiso.iso of=/dev/sdb # Do not use the index, /dev/sdb1 or /dev/sdb2, ...
+```
+
 ### mkisofs
 	
 Create an ISO from a directory:
