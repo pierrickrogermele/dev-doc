@@ -862,6 +862,18 @@ mount /home
 ```
 See https://unix.stackexchange.com/questions/213245/increase-root-partition-by-reducing-home.
 
+### convmv
+
+Convert the encoding of a filename:
+```
+convmv -f iso8859-1 -t utf-8 --notest myfile.ext
+```
+
+Installation on Debian:
+```
+apt install convmv
+```
+
 ## Compression and uncompression
 
 ### tar
