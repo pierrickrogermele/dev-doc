@@ -114,9 +114,18 @@ To uninstall a CPAN module:
 rm -r /path/to/My/Module
 ```
 
-To update installed modules easily, install first `cpanm` and `cpan-outdated`:
+CPAN minus is another way to manage CPAN modules. To install it:
+```bash
+apt install cpanminus
+```
+or
 ```bash
 curl -L http://cpanmin.us | perl - App::cpanminus
+```
+
+To update installed modules easily, use `cpan-outdated` with `cpanm`:
+First install `cpan-outdated`:
+```bash
 cpanm App::cpanoutdated
 ```
 then run:
