@@ -837,7 +837,9 @@ substr(text, start, stop) <- s
 
 Spliting:
 ```r
-v <- strsplit(s, ";") # Split all strings in vector s, and returns a list of vectors of strings.
+v = strsplit(s, " *;") # Split all strings in vector s, and returns a list of vectors of strings.
+v = strsplit(s, " +", perl = TRUE) # Use PERL style
+v = strsplit(s, " ", fixed = TRUE) # Do not use regex
 ```
 
 Joining:
