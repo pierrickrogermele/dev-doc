@@ -574,7 +574,7 @@ rscript_current <- function() {
 ```
 ### For
 
-Loop on a list of vector:
+Loop on a list or vector:
 ```r
 for (x in list.or.vector) {
 }
