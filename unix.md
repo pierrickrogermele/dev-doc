@@ -551,6 +551,10 @@ Stop a service under macOS:
 Launchctl stop org.postfix.master
 ```
 
+### CUPS
+
+ * [Connecting Ubuntu client to Cups server](http://blog.delgurth.com/2009/01/06/connecting-ubuntu-client-to-cups-server/).
+
 ## Password managers
 
  * [pwsafe](https://github.com/nsd20463/pwsafe). Works in command line.
