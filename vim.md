@@ -964,6 +964,11 @@ set myopt
 echo &myopt
 ```
 
+Writing an option to the current buffer:
+```vim
+put=&myopt
+```
+
 ## Printing
 	
 Printing from vi:
