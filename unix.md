@@ -254,7 +254,16 @@ Local port used is 1993. Everything going to this local port will be forwarded t
 ### NTP, Network Time Protocol
 
  * [NTP configuration on Debian](https://wiki.debian.org/NTP).
- python3=$python36
+
+On Ubuntu, timesyncd is used by default. To configure it, see `/etc/systemd/timesyncd.conf`.
+To check if timesyncd is on, run:
+```bash
+timedatectl
+```
+To set it on:
+```bash
+sudo timedatectl set-ntp on
+```
 
 ### Wake On LAN
 
