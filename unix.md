@@ -311,6 +311,12 @@ To setup Samba under macOS, declare the workgroup:
 The path from a Windows computer is:
 	\\<server name\<shared folder>
 
+### NFS
+
+On macos:
+See dscl tool for setting NFS server.
+Use Disk Utility to mount an NFS directory on a client.
+
 ## System
 
 ### Installing
@@ -322,6 +328,19 @@ The path from a Windows computer is:
 To upgrade to macOS High Sierra on a computer running with mac OS X Lion, one must first upgrade to OS X El Capitan. Use this [link](https://support.apple.com/en-us/HT206886) to download OS X El Capitan.
 
 ### Booting, starting and stoping
+
+Putting a machine to sleep in Debian:
+```bash
+systemctl suspend
+```
+
+Shutdown an Alpine machine:
+```bash
+poweroff
+```
+Other commands: `reboot` and `halt`.
+
+#### macos
 
  * [Mac startup key combinations](https://support.apple.com/en-us/HT201255).
 
@@ -338,9 +357,15 @@ Alt             | Display possible boot devices.
 Eject key       | Eject optical media.
 Cmd+V           | Boot in verbose mode.
  
-Putting a machine to sleep in Debian:
+To always boot in verbose mode on macos:
 ```bash
-systemctl suspend
+sudo /usr/sbin/nvram boot-args="-v"
+```
+
+To boot in console mode on macos, edit file /etc/ttys and find the lines:
+```
+#console        "/usr/libexec/getty std.9600"   vt100   on secure
+Console "/System/Library/CoreServices/loginwindow.app/Contents/MacOS/loginwindow"
 ```
 
 Preventing system sleep on macOS:
@@ -357,11 +382,39 @@ Shutdown a macOS machine:
 shutdown -h now
 ```
 
-Shutdown an Alpine machine:
+To boot in 32 bit mode:
 ```bash
-poweroff
+sudo systemsetup -setkernelbootarchitecture i386
 ```
-Other commands: `reboot` and `halt`.
+To get back to 64 bits, replace `i386` by `x86_64`.
+Or press keys 3 and 2 during startup for 32-bit or keys 6 and 4 for 64-bit.
+
+To get boot architecture setting:
+```bash
+sudo systemsetup -getkernelbootarchitecturesetting
+```
+
+#### macos login window
+
+Set login window message:
+```bash
+sudo defaults write /Library/Preferences/com.apple.loginwindow LoginwindowText "Hello There"
+```
+
+Hide accounts:
+```bash
+sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add shortname1 shortname2 shortname3
+```
+
+Show all accounts:
+```bash
+sudo defaults write /Library/Preferences/com.apple.loginwindow HiddenUsersList -array-add
+```
+
+Changing Apple logo. Be careful to back up the original file before. The tiff image must be 90x90:
+```
+/System/Library/CoreServices/SecurityAgent.app/Contents/Resources/applelogo.tif
+```
 
 ### OS info
 
@@ -437,6 +490,16 @@ update-rc.d -f gdm defaults
 
 ### Users and groups
 
+Create new user with specific UID:
+```bash
+sudo adduser -u 1200 myuser
+```
+
+Add a user to sudoers group:
+```bash
+sudo adduser myuser sudo
+```
+
 Add a user to a group in Linux:
 ```bash
 usermod -a -G somegroup someuser
@@ -446,6 +509,79 @@ Get user UID and all groups to which he belongs:
 ```bash
 id
 ```
+
+### macos dscl
+
+Command line tool to manage directory services (including NFS).
+It replaces nicl command.
+
+List users:
+```bash
+dscl . -list /Users
+```
+
+Read information about a user:
+```bash
+dscl . -read /Users/pierrick
+```
+
+Search for user with uid <uid>:
+```bash
+dscl . -search /Users uid <uid>
+```
+
+Create a new user:
+```bash
+sudo mkdir /Users/toto
+sudo dscl . -create /Users/toto
+sudo dscl . -append /Users/toto RealName "Mr. Toto"
+sudo dscl . -append /Users/toto PrimaryGroupID 103
+sudo dscl . -append /Users/toto UniqueID 512
+sudo dscl . -append /Users/toto NFSHomeDirectory /Users/toto
+sudo dscl . -append /Users/toto UserShell /bin/bash
+sudo dscl . -passwd /Users/toto "tata"
+sudo chown -R toto:titi
+```
+taken from a shell script:
+```bash
+sudo $dscl . -create "/Users/$new_user"
+sudo $dscl . -append "/Users/$new_user" RealName "$firstname $lastname"
+sudo $dscl . -append "/Users/$new_user" NFSHomeDirectory "/Users/$new_user"
+##$sudo $dscl . -append "/Users/$new_user" NFSHomeDirectory "/Local/Users/$new_user"
+sudo $dscl . -append "/Users/$new_user" UserShell /bin/bash   
+sudo $dscl . -append "/Users/$new_user" PrimaryGroupID $new_gid
+sudo $dscl . -append "/Users/$new_user" UniqueID $new_uid
+sudo $dscl . -append "/Users/$new_user" hint ""
+sudo $dscl . -append "/Users/$new_user" comment "user account \"$firstname $lastname\" created: $(/bin/date)"
+sudo $dscl . -append "/Users/$new_user" picture "/Library/User Pictures/Animals/Butterfly.tif"
+sudo $dscl . -append "/Users/$new_user" sharedDir Public
+sudo $dscl . -passwd "/Users/$new_user" "$passwd1"
+```
+
+### macos dseditgroup
+	
+Edit groups in the Directory Service:
+```bash
+dseditgroup -o edit -p -a <username> -t user <group_name> 
+```
+-u : specify admin-user login
+-p : prompt for admin-user password
+
+Create a group:
+```bash
+dseditgroup -p -o create Dev
+```
+
+Add a user to a group:
+```bash
+dseditgroup -p -o edit -a pierrick -t user Dev
+```
+
+### macos environment variables
+
+`~/.MacOSX/environment.plist` file is for defining ENV VARS for the session.
+A MacOS-X application won't see ENV VARS defined from the terminal if run from the Windows Manager.
+See <Https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html>.
 
 ### date
 
@@ -473,6 +609,33 @@ lsusb
 ```
 
  * [Use Apple’s USB SuperDrive with Linux](https://christianmoser.me/use-apples-usb-superdrive-with-linux/).
+
+#### macos optical disk handling
+
+To make a disk image from an optical disk:
+	Open "Applications->Utilities->Disk Utility"
+	Then select the disk and click on "New Image".
+	Select "DVD/CD master" in order to create an ISO/CDR file, or "read-only" or "compressed" to create a dmg file.
+
+To convert a dmg to an iso:
+```bash
+hdiutil convert /path/to/filename.dmg -format UDTO -o /path/to/savefile.iso
+```
+
+To convert a cdr (CD/DVD Master) to an iso:
+```bash
+hdiutil makehybrid -iso -joliet -o CLIMB_APP.iso CLIMB_APP.cdr
+```
+
+To unmount a disk:
+```bash
+diskutil umount <disk name>
+```
+
+To eject optical disk:
+```bash
+drutil eject
+```
 
 #### Display
 
@@ -563,6 +726,25 @@ Launchctl stop org.postfix.master
 ### CUPS
 
  * [Connecting Ubuntu client to Cups server](http://blog.delgurth.com/2009/01/06/connecting-ubuntu-client-to-cups-server/).
+
+### macos Finder
+
+Show all files and directories:
+```bash
+Defaults write com.apple.Finder AppleShowAllFiles YES
+```
+
+To change a folder icon:
+Edit an icon with gimp, making its background transparent.
+Maximum size must be 255x255 or the icon will not be clickable (only the folder title will be clickable).
+Copy the image from gimp.
+Open information panel of the folder (cmd-i), click once on the icon in top/left corner of the information window. Paste (cmd-v) the image.
+
+Set hidden attribute:
+```bash
+sudo SetFile -a "v" /private # Show '/private' in the Finder.app
+sudo SetFile -a "V" /private # Hide '/private' from the Finder.app
+```
 
 ## Password managers
 
@@ -885,6 +1067,27 @@ convmv -f iso8859-1 -t utf-8 --notest myfile.ext
 Installation on Debian:
 ```
 apt install convmv
+```
+
+### macos file attributes
+
+To see special file attributes:
+```bash
+ls -@
+```
+or
+```bash
+xattr <filename>
+```
+
+To remove attributes:
+```bash
+xattr -d <attribute_name> <filename>
+```
+
+To remove attributes for a whole directory:
+```bash
+xattr -dr <attribute_name> <dirname>
 ```
 
 ## Compression and uncompression
@@ -2318,6 +2521,17 @@ To place the arguments at a specified place instead of appending them, use the `
 ```bash
 /bin/ls -1d [A-Z]* | xargs -I % cp -rp % destdir
 ```
+
+## redshift
+
+Control color temperature of display.
+
+```bash
+redshift -l geoclue2 -t 5700:3600 -g 0.8 -m randr -o
+```
+Use `-p` instead of `-o` to just print what the temperature will be set to.
+
+Use `~/.config/redshift.conf` file to set configuration. See man page.
 
 ## su & sudo
 
