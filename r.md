@@ -26,6 +26,7 @@ apt-get install r-base
 To get the latest R version under Ubuntu, setup the CRAN package repository.
 Add the following line to `/etc/apt/sources.list` file:
 	deb http://cran.stat.unipd.it/bin/linux/ubuntu zesty/
+And run:
 ```bash
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt-get update
@@ -305,6 +306,18 @@ args <- commandArgs(trailingOnly = FALSE)
 script.path <- sub("--file=", "", args[grep("--file=", args)])
 script.name <- basename(script.path)
 script.dir <- dirname(script.path)
+```
+
+## Environment variables
+
+Get all env vars:
+```r
+ENV = Sys.getenv()
+```
+
+Set env var:
+```r
+Sys.setenv(MY_VAR = "value", MY_VAR2 = "value2")
 ```
 
 ## Data
