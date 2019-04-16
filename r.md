@@ -2428,3 +2428,8 @@ Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-ma
  * [Shiny](https://shiny.rstudio.com).
 
 Shiny is a package for building interactive web apps.
+
+## DiagrammeR
+
+Use DiagrammeR for drawing GrapheVIZ style diagrams.
+See <http://rich-iannone.github.io/DiagrammeR/graphs.html>.
