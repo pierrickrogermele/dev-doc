@@ -1372,6 +1372,31 @@ Ignore binary files:
 grep -I ...
 ```
 
+Match whole lines:
+```bash
+grep -x ...
+```
+
+Exclude from one file lines listed in another:
+```bash
+grep -v -x -f toexclude.txt myfile.txt
+```
+
+No regex:
+```bash
+fgrep ...
+```
+
+Extended regex:
+```bash
+egrep ...
+```
+
+Recursive:
+```bash
+rgrep ...
+```
+
 ### paste
 
 Paste two or more files side by side:
