@@ -6,6 +6,9 @@ EMULATORS
  * [Ansible](http://www.ansible.com/).
  * [Ansible as a provisioner for Vagrant](https://docs.vagrantup.com/v2/provisioning/ansible.html).
  * [Multi-Machine Vagrant Ansible Gotcha](http://blog.wjlr.org.uk/2014/12/30/multi-machine-vagrant-ansible-gotcha.html).
+ * [How to unify package installation tasks in ansible?](https://serverfault.com/questions/587727/how-to-unify-package-installation-tasks-in-ansible).
+ * [Directory Layout](https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#directory-layout).
+ * [Jinja operators (used in when statement)](http://jinja.pocoo.org/docs/dev/templates/#comparisons).
 
 To install:
 ```bash
@@ -29,6 +32,14 @@ ansible all -u myuser -b ... # For running as super user (-b => sudo)
 To run a command:
 ```bash
 ansible all -a "/my/command/to/run"
+```
+
+To get a list of system variables:
+```yaml
+- hosts: all
+  become: yes
+  tasks:
+      - debug: var=ansible_facts
 ```
 
 ## Docker
@@ -186,6 +197,7 @@ Normally you have to be part of the group `docker` to run Docker. However it may
 
  * [Vagrant](https://www.vagrantup.com) official site.
  * [HashiCorp boxes](https://atlas.hashicorp.com/boxes/search).
+ * [Multi-Machine](https://www.vagrantup.com/docs/multi-machine/).
 
 Create a default `Vagrantfile` file:
 ```bash
