@@ -188,6 +188,19 @@ Print system information:
 <? phpinfo();
 ```
 
+## Declare directive
+
+Setting encoding:
+```php
+<? declare(encoding='ISO-8859-1');
+```
+
+Enable strict mode for types:
+```php
+<? declare(strict_types = 1);
+```
+With this option, PHP will not try to convert basic types (`int`, `float`, `string` and `bool`) silently.
+
 ## Types
 
 Get type:
@@ -1192,10 +1205,18 @@ fclose($fp);
 
  * [WOL (Wake-on-LAN) example](http://www.hackernotcracker.com/2006-04/wol-wake-on-lan-tutorial-with-bonus-php-script.html).
 
+## Composer
+
+ * [Composer](https://getcomposer.org/).
+
+Composer is a dependency manager.
+
 ## Interesting modules
 ### PHPUnit
 
-[PHPUnit](https://phpunit.de) is testing framework.
+[PHPUnit](https://phpunit.de) is a testing framework.
+
+ * [Getting Started with PHPUnit 8](https://phpunit.de/getting-started/phpunit-8.html).
 
 Install PHPUnit with PEAR system:
 ```bash
