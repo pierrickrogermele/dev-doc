@@ -2078,7 +2078,12 @@ Installing:
 sudo emerge mypkg
 ```
 
+### pkg (FreeBSD)
 
+Search for a package:
+```bash
+pkg search mypkg
+```
 
 ## Media
 
