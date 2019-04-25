@@ -151,6 +151,13 @@ Command      | Description
 `CTRL+O`     | Jump to older location.
 `CTRL+I`     | Jump to newer location.
 
+## Diff
+
+On command line:
+```bash
+vimdiff file1 file2 [file3] ...
+```
+
 ## Editing
 
 Command | Description
