@@ -321,6 +321,47 @@ Use Disk Utility to mount an NFS directory on a client.
 
 ### Installing
 
+#### ArchLinux
+
+ * [How to install Arch Linux on VirtualBox](https://www.howtoforge.com/tutorial/install-arch-linux-on-virtualbox/).
+ * [How to Install Arch Linux (also on VirtualBox)](https://medium.com/@gevorggalstyan/how-to-install-arch-linux-on-virtualbox-93bc83ded692).
+ * [Installation guide](https://wiki.archlinux.org/index.php/Installation_guide).
+ * [Install Arch Linux in Virtualbox with UEFI Firmware](https://www.linuxbabe.com/virtualbox/install-arch-linux-uefi-hardware-virtualbox).
+
+In VirtualBox with EFI:
+
+ * Enable EFI in VirtualBox VM: Settings -> System -> Enable EFI.
+ * Boot on ArchLinux ISO CD install.
+```bash
+fdisk -l # Look for the device name of the harddrive (should be `/dev/sda`).
+fdisk /dev/sda # Make 3 partitions:
+  # /dev/sda1: EFI System, 512MB
+  # /dev/sda2: Linux filesystem
+  # /dev/sda3: Linux swap
+mkfs.fat -F32 /dev/sda1
+mkfs.ext4 /dev/sda2
+mkswap /dev/sda3
+mount /dev/sda2 /mnt
+mkdir /mnt/boot
+mount /dev/sda1 /mnt/boot
+vi /etc/pacman.d/mirrorlist
+pacstrap /mnt base
+genfstab -U -p /mnt >> /mnt/etc/fstab
+arch-chroot /mnt
+vi /etc/locale.gen
+echo LANG=en_IE.UTF-8 > /etc/locale.conf
+ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
+hwclock --systohc --utc
+echo "archlinux.host.local" > /etc/hostname
+passwd # Define root password
+pacman -S grub efibootmgr
+grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
+grub-mkconfig -o /boot/grub/grub.cfg
+systemctl enable dhcpcd
+```
+
+#### OS X
+
  * [How to reinstall macOS](https://support.apple.com/en-us/HT204904).
  * [Create a bootable USB stick on macOS](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos?_ga=2.233519964.315784058.1525944550-1342623189.1521968110#0).
  * [Radeon kernel modesetting for r600 or later requires firmware-amd-graphics](https://joshtronic.com/2017/11/06/fixed-radeon-kernel-modesetting-for-r600-or-later-requires-firmware-amd-graphics/).
