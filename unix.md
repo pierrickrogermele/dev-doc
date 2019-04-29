@@ -335,15 +335,18 @@ In VirtualBox with EFI:
 ```bash
 fdisk -l # Look for the device name of the harddrive (should be `/dev/sda`).
 fdisk /dev/sda # Make 3 partitions:
-  # /dev/sda1: EFI System, 512MB
-  # /dev/sda2: Linux filesystem
-  # /dev/sda3: Linux swap
+  # Press `g` for creating a GPT partition
+  # /dev/sda1: EFI System (type 1), 512MB
+  # /dev/sda2: Linux filesystem (type 20)
+  # /dev/sda3: Linux swap (type 19)
+  # Press `w` to write partition table.
 mkfs.fat -F32 /dev/sda1
 mkfs.ext4 /dev/sda2
 mkswap /dev/sda3
 mount /dev/sda2 /mnt
 mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
+swapon /dev/sda3
 vi /etc/pacman.d/mirrorlist
 pacstrap /mnt base
 genfstab -U -p /mnt >> /mnt/etc/fstab
@@ -351,13 +354,19 @@ arch-chroot /mnt
 vi /etc/locale.gen
 echo LANG=en_IE.UTF-8 > /etc/locale.conf
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
-hwclock --systohc --utc
+hwclock --systohc
 echo "archlinux.host.local" > /etc/hostname
 passwd # Define root password
-pacman -S grub efibootmgr
-grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
-grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable dhcpcd
+pacman -S efibootmgr
+
+# EFI boot, see https://wiki.archlinux.org/index.php/EFISTUB
+
+#pacman -S grub
+#grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
+#grub-mkconfig -o /boot/grub/grub.cfg
+exit
+reboot
 ```
 
 #### OS X
