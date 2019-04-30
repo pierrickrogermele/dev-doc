@@ -353,18 +353,20 @@ genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 vi /etc/locale.gen
 echo LANG=en_IE.UTF-8 > /etc/locale.conf
+locale-gen
 ln -sf /usr/share/zoneinfo/Europe/Paris /etc/localtime
 hwclock --systohc
 echo "archlinux.host.local" > /etc/hostname
 passwd # Define root password
 systemctl enable dhcpcd
-pacman -S efibootmgr
+UUID=$(blkid /dev/sda2 | sed 's/^.*PARTUUID="\(.*\)"$/\1/') # Get Linux disk UUID
 
-# EFI boot, see https://wiki.archlinux.org/index.php/EFISTUB
+ # EFI boot, see https://wiki.archlinux.org/index.php/EFISTUB
+echo "\\vmlinuz-linux root=PARTUUID=$UUID rw initrd=\\initramfs-linux.img" >/boot/archlinux.nsh # Write script for booting from EFI shell.
+cp /boot/archlinux.nsh /boot/startup.nsh
 
-#pacman -S grub
-#grub-install /dev/sda --target=x86_64-efi --efi-directory=/boot
-#grub-mkconfig -o /boot/grub/grub.cfg
+# For booting on LVM ? Is bootloader like GRUB necessary ?
+
 exit
 reboot
 ```
