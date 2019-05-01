@@ -365,7 +365,7 @@ UUID=$(blkid /dev/sda2 | sed 's/^.*PARTUUID="\(.*\)"$/\1/') # Get Linux disk UUI
 echo "\\vmlinuz-linux root=PARTUUID=$UUID rw initrd=\\initramfs-linux.img" >/boot/archlinux.nsh # Write script for booting from EFI shell.
 cp /boot/archlinux.nsh /boot/startup.nsh
 
-# For booting on LVM ? Is bootloader like GRUB necessary ?
+ # For booting on LVM ? Is bootloader like GRUB necessary ?
 
 exit
 reboot
