@@ -864,8 +864,12 @@ To measure disk usage of a folder:
 du -shc <folder>
 ```
 
-See also:
+### ncdu
+
+Analyze disk usage:
 ```bash
+ncdu
+# or
 ncdu <folder> # NCurses version of du
 ```
 
