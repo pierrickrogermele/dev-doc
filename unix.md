@@ -810,7 +810,7 @@ sudo SetFile -a "V" /private # Hide '/private' from the Finder.app
  * [Pass](https://www.passwordstore.org/).
  * [Pass tutorial](http://www.tricksofthetrades.net/2015/07/04/notes-pass-unix-password-manager/).
 
-Setting a password inside the keychain in macOS:
+Settitg a password inside the orkeychain in macOS:
 ```bash
 sudo /usr/bin/security -v add-internet-password -a pierrick.rogermele@icloud.com -s mail.icloud.com -w 'mypassword' 
 ```
@@ -869,7 +869,9 @@ du -shc <folder>
 Analyze disk usage:
 ```bash
 ncdu
-# or
+```
+or
+```bash
 ncdu <folder> # NCurses version of du
 ```
 
@@ -2867,14 +2869,35 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
 `.xprofile` is specific to GDM (Gnome).
 
-### Install Xfce
+### Xfce
 
-On Debian, see <https://wiki.debian.org/Xfce>:
+Installing on Debian, see <https://wiki.debian.org/Xfce>:
 ```bash
 apt-get install xfce4
 #apt-get install xfce4-goodies
 #apt-get install task-xfce-desktop
 ```
+
+Installing on ArchLinux:
+```bash
+pacman -S xorg
+pacman -S extra/xfce4
+```
+
+Packages/plugins:
+```bash
+extra/thunar # Thunar file manager.
+extra/xfce4-battery-plugin # Battery plugin
+extra/xfce4-pulseaudio-plugin # Audio
+extra/xfce4-power-manager # Power management
+extra/xfce4-screenshooter # Screen shots
+```
+
+How to modify key shortcuts for file manager Thunar:
+ * Edit file `~/.config/Thunar/accels.scm`.
+ * For changing rename key from F2 to Return, find line with F2 key, and replace it with `"<>Return"`.
+ * Quit Thunar: `thunar -q`.
+ * Re-open Thunar.
 
 ### Screen saver, locking and energy saving
 
