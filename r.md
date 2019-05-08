@@ -1827,6 +1827,7 @@ X11() # on UNIX platform (opens a Quartz window on MacOS-X)
 ## HPC
 
  * [High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
+ * [(A Very) Experimental Threading in R – Random Remarks](https://random-remarks.net/2016/12/11/a-very-experimental-threading-in-r/).
 
 [GPU computing](http://www.r-tutor.com/gpu-computing).
 
@@ -2429,7 +2430,7 @@ Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-ma
 
 Shiny is a package for building interactive web apps.
 
-## DiagrammeR
+### DiagrammeR
 
 Use DiagrammeR for drawing GrapheVIZ style diagrams.
 See <http://rich-iannone.github.io/DiagrammeR/graphs.html>.
