@@ -1,6 +1,8 @@
 MUTT
 ====
 
+ * [Mutt cheat sheet](http://sheet.shiar.nl/mutt).
+ 
 ## macOS configuration
 
  * [Getting started with Mutt on OSX](http://www.lucianofiandesio.com/getting-started-with-mutt-on-osx).
