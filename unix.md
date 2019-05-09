@@ -9,10 +9,14 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
+ * ArchLinux network: [systemd-networkd](https://wiki.archlinux.org/index.php/Systemd-networkd).
+ * ArchLinux [iPhone tethering](https://wiki.archlinux.org/index.php/IPhone_tethering).
+ 
+### lsof
+
 List processes that uses a port:
 ```bash
 lsof -i:8080
-```
 
 ### List network devices
 
@@ -289,6 +293,13 @@ dhclient enp2s0    # Obtain a new lease
 
 ### Wifi
 
+ * ArchLinux wifi: [WPA supplicant](https://wiki.archlinux.org/index.php/WPA_supplicant).
+
+On ArchLinux with WPA supplicant:
+```bash
+wpa_cli -i wlp2s0
+```
+
 Get wifi status on Debian:
 ```bash
 nmcli radio wifi
@@ -299,7 +310,7 @@ Turn off wifi on Debian:
 nmcli radio wifi off
 ```
 
-Get help:
+Get help on Debian:
 ```bash
 nmcli radio wifi help
 ```
@@ -316,6 +327,7 @@ The path from a Windows computer is:
 On macos:
 See dscl tool for setting NFS server.
 Use Disk Utility to mount an NFS directory on a client.
+
 
 ## System
 
