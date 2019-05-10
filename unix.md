@@ -297,7 +297,8 @@ dhclient enp2s0    # Obtain a new lease
 
 On ArchLinux with WPA supplicant:
 ```bash
-wpa_cli -i wlp2s0
+sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
+sudo wpa_cli -i wlp2s0
 ```
 
 Get wifi status on Debian:
