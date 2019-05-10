@@ -1860,6 +1860,24 @@ pmset -g batt
 
 ## Package management
 
+### pacman (ArchLinux)
+
+Install a package:
+```bash
+pacman -S mypkg
+```
+
+Search for packages:
+```bash
+pacman -Ss mypkg
+```
+
+Install AUR (ArchLinux User Repository) packages:
+```bash
+yay -S mypkg
+```
+Run `yay` as normal user, not as root.
+
 ### Homebrew / brew
 
  * <http://mxcl.github.com/homebrew/>.
@@ -2022,14 +2040,14 @@ Install a `.deb` archive:
 apt install mypkg.deb
 ```
 
-### dpkg
+### dpkg (Debian)
 
 Install a package archive `.deb`:
 ```bash
 dpkg -i mypkg.deb
 ```
 
-### alien
+### alien (RPM / Debian)
 
 Convert an RPM package into a DEB package:
 ```bash
