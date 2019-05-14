@@ -299,6 +299,14 @@ On ArchLinux with WPA supplicant:
 ```bash
 sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 sudo wpa_cli -i wlp2s0
+scan
+scan_results
+add_network # Add a new network
+set_network 1 ssid "mynetwork"
+set_network 1 psk "mypassword"
+list_networks
+enable_network 1
+save_config
 ```
 
 Get wifi status on Debian:
@@ -2447,6 +2455,22 @@ Get library directory:
 ```bash
 pkg-config --variable=libdir axis2c
 ```
+
+## Terminals and consoles
+
+### Enabling 256 colors in Linux kernel console
+
+Install `kmscon`.
+On ArchLinux:
+```bash
+sudo pacman -S kmscon
+```
+
+The in console:
+```bash
+sudo kmscon
+```
+Which will start `login` process and once logged in, `TERM` will be defined as `xterm-256colors` even if not in X.
 
 ## tmux
 
