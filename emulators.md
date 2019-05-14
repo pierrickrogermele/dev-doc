@@ -294,6 +294,11 @@ List running VMs:
 VBoxManage list runningvms
 ```
 
+Get info on a VM:
+```bash
+VBoxManage showvminfo myvm
+```
+
 Start a VM without display:
 ```bash
 VBoxManage startvm my_vm --type headless
