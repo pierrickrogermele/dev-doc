@@ -1871,7 +1871,7 @@ pmset -g batt
 
 ### pacman (ArchLinux)
 
-Install a package:
+Install or upgrade a package:
 ```bash
 pacman -S mypkg
 ```
@@ -1879,6 +1879,16 @@ pacman -S mypkg
 Search for packages:
 ```bash
 pacman -Ss mypkg
+```
+
+Update databases:
+```bash
+pacman -Syy # The second `y` force refresh of all databases even if it appears up-to-date.
+```
+
+Upgrade/update all packages:
+```bash
+pacman -Syu
 ```
 
 Install AUR (ArchLinux User Repository) packages:
@@ -2471,6 +2481,10 @@ The in console:
 sudo kmscon
 ```
 Which will start `login` process and once logged in, `TERM` will be defined as `xterm-256colors` even if not in X.
+
+Starting X from kmscon:
+	`startx` won't work.
+	See <https://github.com/dvdhrm/kmscon/issues/103>. Maybe something like `startx -- vt8`.
 
 ## tmux
 
