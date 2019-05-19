@@ -1667,8 +1667,10 @@ x[order(x)[order(y)]]
  * [Reference classes](http://adv-r.had.co.nz/R5.html).
  * [Objects With Fields Treated by Reference (OOP-style)](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/refClass.html).
  * [S4 Classes in 15 pages, more or less](https://www.stat.auckland.ac.nz/S-Workshop/Gentleman/S4Objects.pdf).
+ * [The S4 object system](http://adv-r.had.co.nz/S4.html).
  * [R Inheritance](https://www.programiz.com/r-programming/inheritance).
- * [Introduction to R6 classes](https://cran.r-project.org/web/packages/R6/vignettes/Introduction.html).
+ * [R6](https://adv-r.hadley.nz/r6.html).
+ * [R6: Encapsulated object-oriented programming for R](https://r6.r-lib.org/).
 
 Workspace = collection of objects.
 
@@ -1715,7 +1717,60 @@ if (methods::extends("SubClass", "SuperClass"))
 	doSomething()
 ```
 
-### R5 (Reference classes)
+Declare a class:
+```r
+MyClass <- setClass('MyClass', slots = c(a = 'integer', b = 'numeric'))
+```
+
+Inheriting:
+```r
+MySubClass <- setClass('MySubClass', contains = 'MyClass', slots = c(c = 'character'))
+```
+
+Instantiate a class:
+```r
+x <- new('MyClass', a = 1L, b = 45.32)
+# or
+x <- MyClass(a = 1L, b = 45.32)
+```
+
+Accessing an object's slot:
+```r
+x@a
+# or
+slot(x, 'a')
+```
+
+Modifying an object's slot:
+```r
+x@a <- 10L
+# or
+slot(x, 'a') <- 10L
+```
+
+Get a list of all S4 generic functions:
+```r
+showMethods()
+```
+
+Test if a function is a generic function:
+```r
+isS4(print) # FALSE, `print` is S3.
+isS4(show)  # TRUE.
+```
+
+Define a method:
+```r
+setGeneric("myMethod", function(o) { standardGeneric("myMethod") })
+setMethod('myMethod', 'MyClass', function(o) {})
+```
+
+Call a method:
+```r
+myMethod(my_object)
+```
+
+### RC (Reference Classes, aka R5)
 
 ```r
 library(methods)
