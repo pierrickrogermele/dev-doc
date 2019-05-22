@@ -250,18 +250,18 @@ Note that constructors of subclasses are ignored by roxygen2. You cannot documen
 
 Defining documentation separated from any code:
 ```r
-#' Title 
-#' 
-#' Other stuff 
-#' 
-#' @name MyClass_fooey 
-#' @param foo_value numeric blah blah blah 
-#' @return numeric 
-#' @examples{ 
-#'	\dontrun{ 
-#'	blah blah blah 
-#'      } 
-#' } 
+ #' Title 
+ #' 
+ #' Other stuff 
+ #' 
+ #' @name MyClass_fooey 
+ #' @param foo_value numeric blah blah blah 
+ #' @return numeric 
+ #' @examples{ 
+ #'	\dontrun{ 
+ #'	blah blah blah 
+ #'      } 
+ #' } 
 NULL 
 ```
 
@@ -271,6 +271,14 @@ NULL
  * [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html).
  * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
 
+#### Submittin to Bioconductor
+
+ * [Coding Style](https://bioconductor.org/developers/how-to/coding-style/).
+
+#### The `inst/` folder
+
+ * [Installed files](http://r-pkgs.had.co.nz/inst.html).
+ 
 ## Compiling code
 
  * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
@@ -1730,21 +1738,27 @@ MySubClass <- setClass('MySubClass', contains = 'MyClass', slots = c(c = 'charac
 Instantiate a class:
 ```r
 x <- new('MyClass', a = 1L, b = 45.32)
-# or
+```
+or
+```r
 x <- MyClass(a = 1L, b = 45.32)
 ```
 
 Accessing an object's slot:
 ```r
 x@a
-# or
+```
+or
+```r
 slot(x, 'a')
 ```
 
 Modifying an object's slot:
 ```r
 x@a <- 10L
-# or
+```
+or
+```r
 slot(x, 'a') <- 10L
 ```
 
