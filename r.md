@@ -295,10 +295,61 @@ Get R HOME directory:
 R.home()
 ```
 
-## Environments and namespaces
+## R environments and namespaces
 
+ * [Environments](http://adv-r.had.co.nz/Environments.html).
  * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
  * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
+
+Global environment (i.e.: working environment):
+```r
+globalenv()
+```
+
+Base environment (i.e.: the environment of the base package):
+```r
+baseenv()
+```
+
+Empty environment (the parent of the base environment):
+```r
+emptyenv()
+```
+
+Current environment:
+```r
+environment()
+```
+
+List all parents of the global environment:
+```r
+search()
+```
+
+Getting an environment from its name/string:
+```r
+as.environment('package:stats')
+```
+
+Get parent environment:
+```r
+parent.env(e)
+```
+
+Accessing a variable in an environment:
+```r
+e$myvar
+```
+
+Modifying a variable inside an environment:
+```r
+e$myvar <- 'myval'
+```
+
+Find the environment where a name is defined:
+```r
+pryr::where('myname')
+```
 
 ## Command line arguments
 
@@ -563,6 +614,15 @@ Switch to sourced file directory while sourcing:
 source('../../blabla/myfile.R', chdir = TRUE)
 ```
 Before sourcing the file, R will change to directory `../../blabla`.
+
+By default the names parsed and loaded in the sourced file are put inside the global environment. If you want them to reside inside the current environment use:
+```r
+source('myfile.R', local = TRUE)
+```
+or if you want to load them into another environment:
+```r
+source('myfile.R', local = myenv)
+```
 
 Get the path of the current sourced file:
 ```r
@@ -899,6 +959,7 @@ result <- gsub('\\.in$', '.out', variable)   # replace all occurences
 ```r
 grep("blabla", df) # returns a list of indices
 length(grep("blabla", df)) > 0
+grep("blabla", df, value = TRUE) # returns a the matched elements of the vector 
 ```
 
 `grepl` searches for regexp in vector, and returns a vector of booleans:
@@ -1354,6 +1415,11 @@ Calling a function from its name as a string:
 do.call("my_func", list(arg1, arg2, arg3))
 ```
 
+Test if a function exists:
+```r
+exists('my_func', mode = 'function')
+```
+
 Construct a call as a string that can be evaluated with `eval`:
 ```r
 my_str_call <- call("my_func", arg1, arg2, arg3)
@@ -1432,15 +1498,15 @@ address(x) # reference
 refs(x) # reference ocunt
 ```
 
-## Environment variables
+## System environment variables
 
-Getting all environment variables, into a hash map:
+Getting all system environment variables, into a hash map:
 ```r
 env <- Sys.getenv()
 home <- env[["HOME"]]
 ```
 
-Getting a selected list of environment variables, into a regular vector:
+Getting a selected list of system environment variables, into a regular vector:
 ```r
 env <- Sys.getenv(c("HOME", "USER", "PATH"))
 home <- env[[1]]
