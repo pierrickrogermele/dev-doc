@@ -1414,6 +1414,11 @@ Calling a function from its name as a string:
 ```r
 do.call("my_func", list(arg1, arg2, arg3))
 ```
+or calling it from its name/variable:
+```r
+myfunc <- function(x,y) x+y
+do.call(myfunc, list(x=1, y=2))
+```
 
 Test if a function exists:
 ```r
