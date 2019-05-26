@@ -1371,7 +1371,7 @@ stopifnot(cond1, cond2, ...)
 
 ## Eval
 
-Evaluation an expression contained in a string:
+Evaluate an expression contained in a string:
 ```r
 a <- 1
 x <- eval(parse(text="1+4+a"))
@@ -1743,8 +1743,6 @@ x[order(x)[order(y)]]
  * [OO in R](http://www.r-bloggers.com/oo-in-r/).
  * [OO field guide](http://adv-r.had.co.nz/OO-essentials.html).
  * [Package ‘R.oo’](https://cran.r-project.org/web/packages/R.oo/R.oo.pdf).
- * [Reference classes](http://adv-r.had.co.nz/R5.html).
- * [Objects With Fields Treated by Reference (OOP-style)](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/refClass.html).
  * [S4 Classes in 15 pages, more or less](https://www.stat.auckland.ac.nz/S-Workshop/Gentleman/S4Objects.pdf).
  * [The S4 object system](http://adv-r.had.co.nz/S4.html).
  * [R Inheritance](https://www.programiz.com/r-programming/inheritance).
@@ -1856,6 +1854,10 @@ myMethod(my_object)
 ```
 
 ### RC (Reference Classes, aka R5)
+
+ * [Reference classes](http://adv-r.had.co.nz/R5.html).
+ * [Objects With Fields Treated by Reference (OOP-style)](https://stat.ethz.ch/R-manual/R-devel/library/methods/html/refClass.html).
+ * [ReferenceClasses](https://www.rdocumentation.org/packages/methods/versions/3.6.0/topics/ReferenceClasses).
 
 ```r
 library(methods)
