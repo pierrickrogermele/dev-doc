@@ -158,11 +158,13 @@ is equivalent to
 "hello, world";
 ```
 
-## Variables
-	
+## Variables & types
+
+### Initialization
+
 An automatic variable is one that is automticaly created and destroyed.
 Function parameters and other local variables are automatic variables.
-	
+
 Automatic variables are never initialized (Except in debug mode of some compilers ; be careful !).
 Extern and static variables are initialized to zero by default.
 Extern and static variables are only initialized once, and before program starts executing.
@@ -172,6 +174,36 @@ Extern and static variables are only initialized once, and before program starts
 A *volatile* specified is a hint to a compiler that an object may change its value in ways _NOT_ SPECIFIED BY THE LANGUAGE so that aggressive optimizations must be avoided. For example a real time clock might be declared:
 ```c
 extern const volatile clock;
+```
+
+### Enum
+
+Defining an enumeration:
+```c
+enum days {mon, tues, wed, thu, fri, sat, sun};
+```
+
+Declaring a variable:
+```c
+enum day a_day;
+```
+
+### Struct
+
+Define a structure:
+```c
+struct my_struct {
+	int a;
+	float x;
+};
+```
+
+Define a structure and name it with typedef:
+```c
+typedef struct my_struct {
+	int a;
+	float x;
+} tMyStruct;
 ```
 
 ## Statements
@@ -201,18 +233,6 @@ Unary ops:`!`, `~`, `++`, `--`, `+`, `-`, `*`, `&`, `(type)`, `sizeof()` | Right
 
 Unary `+`, `-`, and `*` have higher precedence than the binary forms.
 
-
-### Enum
-
-Defining an enumeration:
-```c
-enum days {mon, tues, wed, thu, fri, sat, sun};
-```
-
-Declaring a variable:
-```c
-enum day a_day;
-```
 
 ### Extern
 
