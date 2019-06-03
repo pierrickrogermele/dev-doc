@@ -404,6 +404,11 @@ argdo %s/MY\.CONSTANT/NEW.NAME/ge | update
 The 'e' option will disable error messages.
 The `update` writes files that have been modified.
 
+To avoid the listing of all the processed files, use `silent`:
+```vim
+silent argdo %s/sometext/somereplacement/ge | update
+```
+
 ## Modeline (embedded commands)
 
 Set your commands inside a comment line, after a tag, and end with a colon (:) in case of a closing comment token like in C.
