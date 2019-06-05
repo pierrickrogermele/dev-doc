@@ -1,4 +1,4 @@
-#!/usr/bin/env R --slave -f
+#!/usr/bin/env Rscript
 
 # !!! For inheritance to work, all arguments of a parent's constructor must have default values (i.e.: an empty constructor must be provided). This is a S4 requirements.
 
@@ -43,5 +43,12 @@ r2 <- Rectangle(a=2, b=4)
 r1$foo()
 # then now, it's in the names of r1:
 'foo' %in% names(r1)
+
+cat("\nUsing `usingMethods()` does not work:\n");
+'foo2' %in% names(r1)
+r1$usingMethods('foo2')
+'foo2' %in% names(r1)
+
 # So to call dynamically a method, we must evaluate the expression as a string:
+cat("\nUsing `eval()` works:\n");
 eval(parse(text = 'r1$foo2()'))
