@@ -351,6 +351,18 @@ Find the environment where a name is defined:
 pryr::where('myname')
 ```
 
+List objects in an environment:
+```r
+ls()
+objects()
+```
+
+Remove objects in an environment:
+```r
+rm(myvar)
+remove(myvar)
+```
+
 ## Command line arguments
 
 ```r
