@@ -1700,6 +1700,10 @@ if __name__ == "__main__":
 	myfunc(int(sys.argv[1]))
 ```
 
+### Testing code
+
+ * [Testing Your Code](https://docs.python-guide.org/writing/tests/).
+
 ### Search path
 
 When importing a module the directories contained in `sys.path` are searched.
@@ -1776,7 +1780,7 @@ pkg.subpkg.mymodule.myfunc()	# myfunc must be fully referenced
 ```
 or
 ```python
-from pkg.subpkg import mymoduyle
+from pkg.subpkg import mymodule
 mymodule.myfunc()
 ```
 or
@@ -1896,7 +1900,7 @@ or
 easy_install tox
 ```
 
-To launch tests, you need to `tox.ini` file and run:
+To launch tests, you need a `tox.ini` file and run:
 ```bash
 tox
 ```
