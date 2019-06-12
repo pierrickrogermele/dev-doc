@@ -1375,10 +1375,15 @@ Compute an histogram: count occurences of each value.
 hist <- table(c(1,45,1,6,3,14,45,6,6))
 ```
 
-## Throwing error
+## Throwing an error and catching
 
 ```r
 stopifnot(cond1, cond2, ...)
+```
+
+Try / catch:
+```r
+tryCatch(expr = stop('Error'), finally = print('Hello!'))
 ```
 
 ## Eval
