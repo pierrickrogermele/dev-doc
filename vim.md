@@ -1185,6 +1185,8 @@ Special meaning inside the path:
 
 ## Packages
 
+ * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
+
 ### Pathogen
 
 Pathogen is a package for easying package installation.
@@ -1223,3 +1225,7 @@ Command     | Description
 `>`         | Indent selection.
 `<`         | Unindent selection.
 
+## Vim & languages
+
+ * [VIM and Python – A Match Made in Heaven](https://realpython.com/vim-and-python-a-match-made-in-heaven/).
+ * [For R: nvim-R](https://hpcc.ucr.edu/manuals_linux-cluster_terminalIDE.html#for-r-nvim-r).
