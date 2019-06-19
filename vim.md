@@ -331,14 +331,16 @@ set nowrap
 
 Textwrap:
 ```vim
-set textwrap=79
+set textwidth=79
 set tw=40
 ```
 
-Unset textwrap:
+Unset textwidth:
 ```vim
 set tw=0
 ```
+
+To force physical wraping of text on selected lines, use `gq` key commands.
 
 ## Folding
 
