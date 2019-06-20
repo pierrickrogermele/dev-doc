@@ -331,6 +331,16 @@ To setup Samba under macOS, declare the workgroup:
 The path from a Windows computer is:
 	\\<server name\<shared folder>
 
+Access folders on samba share:
+```bash
+smbclient -L 123.456.789.012 -U INTRA\\PR228844
+```
+
+Get the netbiosname from a computer:
+```bash
+nbtscan 123.456.789.012
+```
+
 ### NFS
 
 On macos:
@@ -1009,6 +1019,11 @@ Print output with \0 separator for results instead of \n:
 find ... -print0
 ```
 
+Quote filenames in output, one filename per line:
+```bash
+find ... -printf '"%p"\n'
+```
+
 ### chmod
 
 When the sgid bit is set on a directory, all files & dirs created in this directory will automatically have the same group as the directory:
@@ -1112,6 +1127,14 @@ lsof | grep MYFILE
 List applications using network:
 ```bash
 lsof | grep TCP
+```
+
+### mount
+
+* [Auto-mount network shares (cifs, sshfs, nfs) on-demand using autofs](https://pjs-web.de/post/autofs/).
+
+```bash
+mount -t cifs //123.456.78.90/MyFolder my/local/dir -o username=...,password=...
 ```
 
 ### which
@@ -1896,6 +1919,12 @@ Install AUR (ArchLinux User Repository) packages:
 yay -S mypkg
 ```
 Run `yay` as normal user, not as root.
+
+Search for packages containing a file:
+```bash
+sudo pacman -Fy # Update file database
+pacman -Fs myfile
+```
 
 ### Homebrew / brew
 
