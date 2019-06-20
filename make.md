@@ -24,7 +24,7 @@ Run make in a directory:
 make -C my_dir
 ```
 
-## IFEQ, IFDEF, ELSE
+## ifeq, ifdef, else
 
 Testing value:
 ```make
@@ -35,6 +35,12 @@ else
 endif
 ```
 Be careful that no spaces are put around values, before/after the parenthesis and around the comma.
+
+Testing if a file exists:
+```make
+ifneq (,$(wildcard /my/file))
+endif
+```
 
 Testing variable definition:
 ```make
@@ -60,7 +66,7 @@ $(if $(var),$(my_then_var),$(my_else_var))
 $(if $(or $a, $b, $c, $(and $d, $e)),$(my_then_var),$(my_else_var))
 ```
 
-##Built-in variables
+## Built-in variables
 
 Current directory of makefile:
 ```make
