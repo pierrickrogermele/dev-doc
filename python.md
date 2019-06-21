@@ -1399,7 +1399,7 @@ mylist = f.readlines()	# Returns a list of all lines
 Read lines one by one:
 ```python
 for line in f:
-	print line,
+	print(line)
 ```
 
 Write:
