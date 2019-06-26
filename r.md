@@ -1963,6 +1963,13 @@ To read Rprof.out:
 summaryRprof()
 ```
 
+## Calling C/C++ code
+
+ * [Using R — .Call(“hello”)](https://www.r-bloggers.com/using-r-callhello/).
+ * [Rcpp for Seamless R and C++ Integration](http://rcpp.org/).
+ * [Calling C++ from R using Rcpp](https://www.r-bloggers.com/calling-c-from-r-using-rcpp/).
+ * [Working with Rcpp::StringVector](http://gallery.rcpp.org/articles/working-with-Rcpp-StringVector/).
+
 ## Graphical output
 
 ```r
