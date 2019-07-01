@@ -807,6 +807,20 @@ Stop a service under macOS:
 Launchctl stop org.postfix.master
 ```
 
+#### systemctl
+
+ * [systemd](https://wiki.archlinux.org/index.php/Systemd).
+
+Enable a service with systemd (ArchLinux, ...) for starting on bootup:
+```bash
+systemctl enable myunit
+```
+
+Enable and start now:
+```bash
+systemctl enable --now myunit
+```
+
 ### CUPS
 
  * [Connecting Ubuntu client to Cups server](http://blog.delgurth.com/2009/01/06/connecting-ubuntu-client-to-cups-server/).
