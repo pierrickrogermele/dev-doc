@@ -9,6 +9,7 @@ These notes refer to UNIX and Linux operating systems.
 
 ## Network
 
+ * ArchLinux [Network configuration](https://wiki.archlinux.org/index.php/Network_configuration).
  * ArchLinux network: [systemd-networkd](https://wiki.archlinux.org/index.php/Systemd-networkd).
  * ArchLinux [iPhone tethering](https://wiki.archlinux.org/index.php/IPhone_tethering).
  
