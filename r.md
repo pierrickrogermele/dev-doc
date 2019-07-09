@@ -1970,6 +1970,9 @@ summaryRprof()
  * [Calling C++ from R using Rcpp](https://www.r-bloggers.com/calling-c-from-r-using-rcpp/).
  * [Working with Rcpp::StringVector](http://gallery.rcpp.org/articles/working-with-Rcpp-StringVector/).
  * [Rcpp Attributes](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf).
+ * [Frequently Asked Questions aboutRcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-FAQ.pdf).
+ * [Rcpp for everyone](https://teuder.github.io/rcpp4everyone_en/).
+ * [RcppQuick Reference Guide](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf).
 
 ## Graphical output
 
