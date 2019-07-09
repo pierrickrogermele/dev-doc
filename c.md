@@ -162,12 +162,18 @@ is equivalent to
 
 ### Initialization
 
-An automatic variable is one that is automticaly created and destroyed.
+An automatic variable is one that is automaticaly created and destroyed.
 Function parameters and other local variables are automatic variables.
 
 Automatic variables are never initialized (Except in debug mode of some compilers ; be careful !).
 Extern and static variables are initialized to zero by default.
 Extern and static variables are only initialized once, and before program starts executing.
+
+Array initialization:
+```c
+int arr[10]; /* not initialized */
+int arr[10] = {0}; /* first and all following values are initialized to 0 */
+```
 
 ### Volatile
 	
@@ -391,6 +397,7 @@ char* p = index(s, 'a');    /* index() is not standard anymore, and isn't recogn
  #include <string.h>
 char* p = strchr(s, 'a');    /* strchr() is the current standard, and is recognized by MSVC. */
 ```
+
 
 ### I/O
 
