@@ -1974,6 +1974,9 @@ summaryRprof()
  * [Rcpp for everyone](https://teuder.github.io/rcpp4everyone_en/).
  * [RcppQuick Reference Guide](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf).
 
+ * [Exposing a C++ Student Class With Rcpp](https://www.gormanalysis.com/blog/exposing-a-cpp-student-class-with-rcpp/).
+ * [ExposingC++functions and classeswith Rcpp modules](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-modules.pdf).
+
 ## Graphical output
 
 ```r
