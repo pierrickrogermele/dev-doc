@@ -1601,9 +1601,10 @@ Updating conda:
 conda update conda
 ```
 
-Create a new environment, installing a pacakge
+Create a new environment, installing a package
 ```bash
-conda create --name myenv mypkg
+conda create -n <myenv> <mypkg>
+conda create -n test_r3.4 r=3.4
 ```
 
 Enter environment:
