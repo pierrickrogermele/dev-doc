@@ -1598,7 +1598,7 @@ brew cash install anaconda
 
 Updating conda:
 ```bash
-conda update conda
+conda update -n base -c defaults conda
 ```
 
 Create a new environment, installing a package
