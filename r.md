@@ -1975,6 +1975,7 @@ summaryRprof()
  * [RcppQuick Reference Guide](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf).
 
  * [Exposing a C++ Student Class With Rcpp](https://www.gormanalysis.com/blog/exposing-a-cpp-student-class-with-rcpp/).
+ * [Exposing C++ Classes into R Through Rcpp Modules](https://github.com/r-pkg-examples/rcpp-modules-student).
  * [ExposingC++functions and classeswith Rcpp modules](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-modules.pdf).
 
 ## Graphical output
