@@ -1755,6 +1755,10 @@ y <- c(9,5,3,10)
 x[order(x)[order(y)]]
 ```
 
+## Map, Reduce, Filter and Lambda
+
+ * [R Programming Tutorial – Map, Reduce, Filter and Lambda Examples](https://helloacm.com/r-programming-tutorial-map-reduce-filter-and-lambda-examples/).
+
 ## Objects (OOP)
 
  * [OO in R](http://www.r-bloggers.com/oo-in-r/).
@@ -1963,21 +1967,6 @@ To read Rprof.out:
 summaryRprof()
 ```
 
-## Calling C/C++ code
-
- * [Using R — .Call(“hello”)](https://www.r-bloggers.com/using-r-callhello/).
- * [Rcpp for Seamless R and C++ Integration](http://rcpp.org/).
- * [Calling C++ from R using Rcpp](https://www.r-bloggers.com/calling-c-from-r-using-rcpp/).
- * [Working with Rcpp::StringVector](http://gallery.rcpp.org/articles/working-with-Rcpp-StringVector/).
- * [Rcpp Attributes](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf).
- * [Frequently Asked Questions aboutRcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-FAQ.pdf).
- * [Rcpp for everyone](https://teuder.github.io/rcpp4everyone_en/).
- * [RcppQuick Reference Guide](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf).
-
- * [Exposing a C++ Student Class With Rcpp](https://www.gormanalysis.com/blog/exposing-a-cpp-student-class-with-rcpp/).
- * [Exposing C++ Classes into R Through Rcpp Modules](https://github.com/r-pkg-examples/rcpp-modules-student).
- * [ExposingC++functions and classeswith Rcpp modules](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-modules.pdf).
-
 ## Graphical output
 
 ```r
@@ -2000,13 +1989,13 @@ X11() # on UNIX platform (opens a Quartz window on MacOS-X)
 
 ## HPC
 
+TODO see CRAN packages doMC and DoSnow.
+
  * [High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
  * [(A Very) Experimental Threading in R – Random Remarks](https://random-remarks.net/2016/12/11/a-very-experimental-threading-in-r/).
-
-[GPU computing](http://www.r-tutor.com/gpu-computing).
-
-[Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
-[Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
+ * [GPU computing](http://www.r-tutor.com/gpu-computing).
+ * [Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
+ * [Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
 
 ## Some R error messages
 
@@ -2033,11 +2022,37 @@ library(method)
 
 ## Interesting packages
 
+### colorout
+
+ * [colorout](https://github.com/jalvesaq/colorout).
+
+It colorizes R output.
+
+Not on CRAN because " it used non-API entry points not allowed by the CRAN policies.".
+
+Install from github:
+```r
+devtools::install_github("jalvesaq/colorout", dependencies = TRUE)
+```
+
 ### Rcpp
 
  * [Main page](http://dirk.eddelbuettel.com/code/rcpp.html).
  * [Extending R with C++: A Brief Introduction to Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-introduction.pdf).
  * [Writing a package that uses Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-package.pdf).
+
+ * [Using R — .Call(“hello”)](https://www.r-bloggers.com/using-r-callhello/).
+ * [Rcpp for Seamless R and C++ Integration](http://rcpp.org/).
+ * [Calling C++ from R using Rcpp](https://www.r-bloggers.com/calling-c-from-r-using-rcpp/).
+ * [Working with Rcpp::StringVector](http://gallery.rcpp.org/articles/working-with-Rcpp-StringVector/).
+ * [Rcpp Attributes](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-attributes.pdf).
+ * [Frequently Asked Questions aboutRcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-FAQ.pdf).
+ * [Rcpp for everyone](https://teuder.github.io/rcpp4everyone_en/).
+ * [RcppQuick Reference Guide](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-quickref.pdf).
+
+ * [Exposing a C++ Student Class With Rcpp](https://www.gormanalysis.com/blog/exposing-a-cpp-student-class-with-rcpp/).
+ * [Exposing C++ Classes into R Through Rcpp Modules](https://github.com/r-pkg-examples/rcpp-modules-student).
+ * [ExposingC++functions and classeswith Rcpp modules](https://cran.r-project.org/web/packages/Rcpp/vignettes/Rcpp-modules.pdf).
 
 ### devtools
 
