@@ -1908,6 +1908,18 @@ Sorting an array (the array must be numerically indexed):
 { n = asorti(array) } # case insensitive
 ```
 
+## env
+
+Running command from shebang:
+```R
+ #!/usr/bin/env -S Rscript --vanilla
+```
+If `-S` is not set:
+```
+/usr/bin/env: ‘Rscript -S "--vanilla"’: No such file or directory
+/usr/bin/env: use -[v]S to pass options in shebang lines
+```
+
 ## Power management
 
 ### pmset
