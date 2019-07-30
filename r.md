@@ -1018,7 +1018,7 @@ match <- stringr::str_match(xml, stringr::regex('^(.*)(<metabolite>.*</metabolit
 
 ### Array
 
-Arrays are objects that can have more than 2 dimensions. Matrix is a special case of arrays.
+Arrays are objects that have 1 or more dimensions. Matrix is a special case of arrays.
 
 Create an array 4x5, initialized with integer values from 1 to 20:
 ```r
