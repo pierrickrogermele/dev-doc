@@ -259,6 +259,8 @@ Command                 | Description
 `:sp myfile`            | Open file into a new window split, horizontally.
 `Ctrl-ws`               | Split horizontally.
 `:vsplit`               | Split vertically.
+`:vs`                   | Split vertically.
+`:vs myfile`            | Open file into a new window split, vertically.
 `Ctrl-wv`               | Split vertically.
 ----------------------- | ---------------------
 `Ctrl-w Ctrl-w`         | Circle through windows.
@@ -983,6 +985,15 @@ Writing an option to the current buffer:
 put=&myopt
 ```
 
+### Testing
+
+Test if a shell command exists:
+```vim
+if executable("my-command")
+	dosomething()
+endif
+```
+
 ## Printing
 	
 Printing from vi:
@@ -1185,24 +1196,6 @@ Special meaning inside the path:
 `/usr/share/doc;` First search in `/usr/share/doc`, then `/usr/share/`, then `/usr/`, then `/`.
 `/home/kate/*` Search all of `/home/kate` and its subfolders, recursively.
 
-## Packages
-
- * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
- * [Nvim-R](https://github.com/jalvesaq/Nvim-R).
-
-### Pathogen
-
-Pathogen is a package for easying package installation.
-
- * [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332).
- * [The Modern Vim Config with Pathogen](http://tammersaleh.com/posts/the-modern-vim-config-with-pathogen/).
-
-With Pathogen, packages are now installed inside ~/.vim/bundle folder in a dedicated folders, and are automatically configured.
-
-### Syntax highlightling packages
-
- * [Tmux conf file](https://github.com/tmux-plugins/vim-tmux).
-
 
 ## Quickfix window
 
@@ -1214,7 +1207,7 @@ Command         | Description
 `cp`, `cprev`   | Jump to previous match
 `colder`        | Navigate between multiple Quickfix windows
 `cnewer`        |
- 
+
 ## Select mode
 
 Command     | Description
@@ -1228,8 +1221,42 @@ Command     | Description
 `>`         | Indent selection.
 `<`         | Unindent selection.
 
-## Vim & languages
+## Packages
+
+ * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
+ * [Nvim-R](https://github.com/jalvesaq/Nvim-R).
+
+### YouCompleteMe
+
+Code completion for Python, C, C++, C#, Java, ...
+
+ * [YouCompleteMe: a code-completion engine for Vim](https://github.com/ycm-core/YouCompleteMe).
+
+### Powerline
+
+ * [powerline](https://github.com/powerline/powerline). Enhanced status line.
+
+### Pathogen
+
+DEPRECATED because of native package loading.
+
+Pathogen is a package for easying package installation.
+
+ * [Pathogen](http://www.vim.org/scripts/script.php?script_id=2332).
+ * [The Modern Vim Config with Pathogen](http://tammersaleh.com/posts/the-modern-vim-config-with-pathogen/).
+
+With Pathogen, packages are now installed inside ~/.vim/bundle folder in a dedicated folders, and are automatically configured.
+
+### Python
 
  * [VIM and Python – A Match Made in Heaven](https://realpython.com/vim-and-python-a-match-made-in-heaven/).
+ * [SimpylFold](https://github.com/tmhedberg/SimpylFold). Plugin for correct Python indent folding.
+
+### R
+
  * [For R: nvim-R](https://hpcc.ucr.edu/manuals_linux-cluster_terminalIDE.html#for-r-nvim-r).
  * [nvim-R](https://github.com/jalvesaq/Nvim-R).
+
+### Tmux
+
+ * [Tmux conf file](https://github.com/tmux-plugins/vim-tmux).
