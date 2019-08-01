@@ -1181,12 +1181,17 @@ Calling mother class' constructor:
 class B(A):
 	def __init__(self, arg1):
 		super(self.__class__, self).__init__(arg1)
-```
-Does not work in Python 2, but the following works:
+````
+Does not work in Python 2, nor in Python 3 with chained calls of constructors, but the following works:
 ```python
 class B(A):
-	def __init__(self, arg1):
+	def __init__(self, arg1, arg2):
         super(B, self).__init__(arg1)
+        self.myarg = arg2
+
+class C(B):
+	def __init__(self, arg1, arg2):
+        super(C, self).__init__(arg1, arg2)
 ```
 or
 ```python
@@ -1259,6 +1264,49 @@ Instance method objects have two attributes:
 ```python
 m.im_self	# The instance object
 m.im_func	# the function object
+```
+
+Static method:
+```python
+class MyClass:
+
+	@staticmethod
+	def my_static_method(a, b):
+		return a * b
+```
+
+Class method:
+```python
+class MyClass:
+	x = 1.0
+
+	@classmethod
+	def my_class_method(cls):
+		return cls.x
+```
+
+Abstract method:
+```python
+class MyClass(metaclass=ABCMeta):
+
+	@abstractmethod
+	def my_abstract_method(self):
+		raise NotImplementedError
+```
+Abstract class and method with `abc` module:
+```python
+from abc import ABCMeta, abstractmethod
+
+class MyClass(metaclass=ABCMeta):
+
+	@abstractmethod
+	def my_abstract_method(self):
+		return 1 # Implement some default behaviour that is callable by subclasses with `super()`.
+
+class MySubClass(MyClass):
+
+	def my_abstract_method(self):
+		return 2 + super(self.__class__, self).my_abstract_method()
 ```
 
 ### Attributes
@@ -2132,4 +2180,10 @@ Test if a data frame contains a column:
 ```python
 if mydf.keys().contains('mycol'):
 	pass
+```
+
+Modify an element of a data frame:
+```python
+df.loc[i, j] = 1.0
+df.loc[i, 'mycolname'] = 1.0
 ```
