@@ -110,6 +110,11 @@ Testing the type:
 if isinstance(myvar, str):
 	do_something()
 ```
+or
+```python
+if type(myvar) is str:
+	pass
+```
 
 ### Constants
 
@@ -192,22 +197,6 @@ hello = "This is a rather long string containing\n\
 	 Note that whitespace at the beginning of the line is\ significant."
 ```
 
-Convert a value/object into a human readable string:
-```python
-str(v)
-```
-
-Convert a value/object into a interpreter-compatible string:
-```python
-repr(v)
-```
-For instance, for a string repr() adds quotes and backslashes.
-There exists another version of repr which abbreviates the display in case of large container:
-```python
-import repr
-repr.repr(set(’supercalifragilisticexpialidocious’))
-```
-
 Multi-lines string:
 ```python
 s = """
@@ -225,6 +214,22 @@ can be used in conjuncion with multi-lines string:
 ```python
 s = r"""ABC\n
 EFG"""
+```
+
+Convert a value/object into a human readable string:
+```python
+str(v)
+```
+
+Convert a value/object into a interpreter-compatible string:
+```python
+repr(v)
+```
+For instance, for a string repr() adds quotes and backslashes.
+There exists another version of repr which abbreviates the display in case of large container:
+```python
+import repr
+repr.repr(set(’supercalifragilisticexpialidocious’))
 ```
 
 Concatenation:
@@ -459,7 +464,7 @@ del a[3:7]	# removes range
 del a[:]	# clear list
 del a		# deletes variable
 ```
-	
+
 Append:
 ```python
 a[len(a):] = [x]
@@ -467,24 +472,24 @@ a.append(a_single_item)
 a.extend(another_list)
 a[len(a):] = another_list
 ```
-	
+
 Insert:
 ```python
 a[1:1] = ['ABC', 14]
 a.insert(1, x)
 ```
-	
+
 Clear:
 ```python
 a[:] = []
 ```
-	
+
 Search:
 ```python
 a.index(x)	# returns the index of the first item whose value is x
 a.count(x)	# returns the number of times x appears in the list
 ```
-	
+
 Length:
 ```python
 len(a)
@@ -495,7 +500,7 @@ Modifyng functions:
 a.sort()	# sort, in place
 a.reverse()	# reverse list, in place
 ```
-	
+
 Filter:
 ```python
 filter(myfunc, mylist)	# returns elements for which myfunc evaluates to true
@@ -504,20 +509,20 @@ reduce(myfunc, mylist, starting_value)	# returns the result of applying myfunc o
 def add(x,y): return x+y
 reduce(add, range(1,11)) # returns 1+2+3+...+11
 ```
-	
+
 Stack & queue:
 ```python
 a.pop() a.append(x)	# functions to use for a stack
 a.pop(0) a.append(x)	# functions to use for a queue
 ```
-	
+
 Nested lists:
 ```python
 q = [2, 3]
 p = [1, q, 4]
 ```
 `p[1]` and `q` point to the same object.
-	
+
 Create a list of numbers:
 ```python
 range(stop)
@@ -544,7 +549,7 @@ Iterate over indices of a list with enumerate but forget about the elements:
 for i, _ in enumerate(data):
 	data[i] = "something"
 ```
-	
+
 List comprehension is a concise way to transform a list:
 ```python
 [3*x for x in vec]
@@ -558,6 +563,11 @@ mat = [
 	[7, 8, 9],
 	  ]
 [[row[i] for row in mat] for i in [0, 1, 2]] [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+```
+
+Filtering out elements using list comprehension:
+```python
+[e for e in mylist if e > 2]
 ```
 
 #### Yield
@@ -593,7 +603,7 @@ list(mystring[i] for i in range(len(,mystring)-1,-1,-1)) # make a list of charac
 ```
 
 ### Sets
-	
+
 Construct a set from a list, eliminating all duplicates:
 ```python
 myset = set(mylist)
@@ -609,17 +619,34 @@ Test presence of an element in a set:
 myelem in myset
 ```
 
-Operations of set:
-```python
-a - b		# elements in a but not in b
-a | b		# elements in either a or b
-a & b		# elements in both a and b
-a ^ b		# elements in a or b but not both
-```
-
 Add an element:
 ```python
 myset.add(elem)
+```
+
+Add a set to another set:
+```python
+myset |= otherset
+```
+
+Add all elements of a list to a set:
+```python
+myset.update(mylist)
+```
+
+Operations of set:
+```python
+a - b # elements in a but not in b
+a | b # elements in either a or b
+a & b # elements in both a and b
+a ^ b # elements in a or b but not both
+a.difference(b) # Same as `a - b`
+```
+
+Difference between two sets (gives all elements that are either in a or in b but
+not in both):
+```python
+a.symmetric_difference(b)
 ```
 
 ### Deque
@@ -1486,6 +1513,11 @@ Test if file exists:
 ```python
 import os.path
 os.path.exists("/my/path/to/file")
+```
+
+Test if it is a directory:
+```python
+os.path.isdir("/my/path")
 ```
 
 Glob:
