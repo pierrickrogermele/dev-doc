@@ -1967,6 +1967,12 @@ sudo pacman -Fy # Update file database
 pacman -Fs myfile
 ```
 
+Remove a package and all its dependencies that are not used by any other package
+and has not been installed explictly:
+```bash
+sudo pacman -Rs mypkg
+```
+
 ### Homebrew / brew
 
  * <http://mxcl.github.com/homebrew/>.
