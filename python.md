@@ -1010,7 +1010,7 @@ obj1 is not obj2
 ```
 
 ### If then else
-	
+
 ```python
 if x < 0:
 	z = -1
@@ -1018,6 +1018,11 @@ elif x == 0:
 	z = 0
 else:
 	z = 1
+```
+
+Ternary operator:
+```python
+x if y > 1 else -x;
 ```
 
 ### For loop
@@ -1100,7 +1105,6 @@ Try block:
 ```python
 try:
 	# ...
-	break
 except ValueError:	# catch exception whose type is ValueError
 	print "Some error occured !"
 except (RuntimeError, TypeError, NameError):
@@ -1110,6 +1114,14 @@ except:			# catch all exceptions
 	raise		# throw the exception again
 else:
 	# put here some code that will be executed only if the try clause doesn't raise an exception
+```
+
+Rethrowing and adding additional information in the message:
+```python
+try:
+	# ...
+except SomeError as e:
+	raise SomeOtherError(str(e) + "Some more information.")
 ```
 
 The finally clause (clean-up) is always executed, if exceptions occurred in the try clause and aren't caught by the except clauses, if no exceptions occurred, or if an exception occurred inside an except clause or the else clause.
@@ -1143,15 +1155,8 @@ User-defined exceptions:
 class MyError(Exception):
 	def __init__(self, value):
 		self.value = value
-	def __str__(self):
+	def __str__(self): # Conversion to string
 		return repr(self.value)
-```
-Usage:
-```python
-try:
-	raise MyError(2*2)
-except MyError as e:
-	print 'My exception occurred, value:', e.value
 ```
 
 ### With
@@ -2212,10 +2217,19 @@ Test if a data frame contains a column:
 ```python
 if mydf.keys().contains('mycol'):
 	pass
+# or
+if 'mycol' in mydf:
+	pass
 ```
 
 Modify an element of a data frame:
 ```python
 df.loc[i, j] = 1.0
 df.loc[i, 'mycolname'] = 1.0
+```
+
+Iterate over rows:
+```python
+for index, row in df.iterrows():
+    x = row['a'] + row['b']
 ```
