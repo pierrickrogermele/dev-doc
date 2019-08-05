@@ -158,6 +158,25 @@ On command line:
 vimdiff file1 file2 [file3] ...
 ```
 
+From inside vim, to open a diff between current file and another file:
+```vim
+diffsplit my_other_file
+```
+To do the same in a vertical split:
+```vim
+vert diffsplit my_other_file
+```
+
+Re-run diff after a manual modification:
+```vim
+diffupdate
+```
+
+To import diff in current file, press `do` or:
+```vim
+diffget
+```
+
 ## Editing
 
 Command | Description
