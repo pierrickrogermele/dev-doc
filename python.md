@@ -1128,7 +1128,7 @@ The finally clause (clean-up) is always executed, if exceptions occurred in the 
 ```python
 try:
 	raise KeyboardInterrupt
-finally:				
+finally:
 	print 'Goodbye, world!'
 ```
 
@@ -1893,7 +1893,7 @@ from .. import module2
 from ..package import module3
 ```
 
-## Some interesting libraries
+## Some interesting modules
 
 ### Google Drive API
 
@@ -2122,7 +2122,7 @@ Float:
 x = random.random() # in [0.0, 1.0)
 ```
 
-### `weakref` (weak references)
+### weakref (weak references)
 
 ```python
 import weakref, gc
@@ -2144,11 +2144,11 @@ Creating a single weak reference:
 my_weak_ref = weakref.ref(myobj)
 ```
 
-### `bundleBuilder`
+### bundleBuilder
 
 [bundleBuilder](https://wiki.python.org/moin/MacPython/BundleBuilder) is a package for building a macOS application.
 
-### `py2app`
+### py2app
 
 Program that builds a macOS application bundle.
 See [py2app](https://pythonhosted.org/py2app/).
@@ -2217,7 +2217,9 @@ Test if a data frame contains a column:
 ```python
 if mydf.keys().contains('mycol'):
 	pass
-# or
+```
+or
+```python
 if 'mycol' in mydf:
 	pass
 ```
