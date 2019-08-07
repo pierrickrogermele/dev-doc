@@ -76,6 +76,11 @@ Or with a `/**/` comment style:
 /* vi: se fdm=marker: */
 ```
 
+## Man pages
+
+Press `K` when cursor is on the desired word, and vim will open the
+corresponding manpage.
+
 ## Tabulation
 
 Tabstop (width of columns for tab mode):
@@ -463,7 +468,8 @@ Set filetype:
 
 Command           | Description
 ----------------- | --------------------------------------
-`*`               | Search for current word (the one under the cursor).
+`*`               | Search forwards for current word (the one under the cursor).
+`#`               | Search backwards for current word (the one under the cursor).
 `/`               | Search pattern forward.
 `?`               | Search pattern backward.
 `n`               | Scan for next search match in the same direction.
