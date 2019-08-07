@@ -1106,6 +1106,11 @@ Entering the following command will show these additional permissions for files 
 ls -le
 ```
 
+#### Coloring ls output
+
+ * [dircolors: modify color settings globaly](https://unix.stackexchange.com/questions/94299/dircolors-modify-color-settings-globaly). Tips on how to set 256 colors.
+ * [Customize file extension colors for ls output in Cshell](https://stackoverflow.com/questions/27290258/customize-file-extension-colors-for-ls-output-in-cshell).
+
 `LSCOLORS` (see man ls), is an environment variable that defines the colors to be used by `ls` command. The default is "exfxcxdxbxegedabagacad", i.e. blue foreground and default background for regular directories, black foreground and red background for setuid executables, etc.
 
 Color code | Descrption
@@ -1164,6 +1169,15 @@ lsof | grep TCP
 
 ```bash
 mount -t cifs //123.456.78.90/MyFolder my/local/dir -o username=...,password=...
+```
+
+### command
+
+POSIX command.
+
+Test if a command exists:
+```bash
+command -v mycmd >/dev/null 2>&1
 ```
 
 ### which
