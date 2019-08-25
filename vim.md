@@ -879,39 +879,65 @@ However if you must use a variable this isn't possible, because in a vim command
 exec "mkspell " . myfile
 ```
 
-### For
+### Statements
+
+#### If
+
+ * [Conditionals](http://learnvimscriptthehardway.stevelosh.com/chapters/21.html).
+ * [Comparisons](http://learnvimscriptthehardway.stevelosh.com/chapters/22.html).
+
+```vim
+if cond1
+	...
+elseif cond2
+	...
+else
+	...
+endif
+```
+
+Test if a shell command exists:
+```vim
+if executable("my-command")
+	dosomething()
+endif
+```
+
+#### For
 
 ```vim
 for i in [1 2 5 70]
 endfor
 ```
 
-### Strings
+### Types & variables
+
+#### Strings
+
+ * [Strings](http://learnvimscriptthehardway.stevelosh.com/chapters/26.html).
+ * [String Functions](http://learnvimscriptthehardway.stevelosh.com/chapters/27.html).
 
 To concatenate strings:
 ```vim
 let myvar = "somestring" . somevar . "some other string"
 ```
 
-### File system
-
-Testing if a file exists:
+Search for a substring:
 ```vim
-if filereadable(myfile)
-endif
+match('mystringtosearch', '[a-i]')
+```
+Returns the index of the substring or `-1`.
+
+Get the found substring:
+```vim
+matchstr('mystringtosearch', '[a-i]')
 ```
 
-Getting the modification time of a file:
-```vim
-let modiftime = getftime(myfile)
-```
+#### Lists
 
-To get a correct path to a file/dir using `~`, use the `expand` keyword:
-```vim
-let wordsfile = expand("~/.vim/spell/en.utf-8.add")
-```
+ * [Lists](http://learnvimscriptthehardway.stevelosh.com/chapters/35.html).
 
-### Variables
+#### Variables
 
 See <http://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables>.
 
@@ -985,13 +1011,22 @@ Writing an option to the current buffer:
 put=&myopt
 ```
 
-### Testing
+### File system
 
-Test if a shell command exists:
+Testing if a file exists:
 ```vim
-if executable("my-command")
-	dosomething()
+if filereadable(myfile)
 endif
+```
+
+Getting the modification time of a file:
+```vim
+let modiftime = getftime(myfile)
+```
+
+To get a correct path to a file/dir using `~`, use the `expand` keyword:
+```vim
+let wordsfile = expand("~/.vim/spell/en.utf-8.add")
 ```
 
 ## Printing
@@ -1232,8 +1267,9 @@ Code completion for Python, C, C++, C#, Java, ...
 
  * [YouCompleteMe: a code-completion engine for Vim](https://github.com/ycm-core/YouCompleteMe).
 
-### Powerline
+### Status line plugins
 
+ * [lightline](https://github.com/itchyny/lightline.vim).
  * [powerline](https://github.com/powerline/powerline). Enhanced status line.
 
 ### Pathogen
