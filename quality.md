@@ -7,6 +7,20 @@ Quality, testing and integration
 
 ### Travis-CI
 
+#### R language
+
+Caching R packages:
+```yaml
+language: r
+cache: packages
+```
+
+Setting R version:
+```yaml
+language: r
+r: release
+```
+
 #### Using Docker
 
  * [Using Docker in Builds](https://docs.travis-ci.com/user/docker/).
