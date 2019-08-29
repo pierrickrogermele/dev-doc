@@ -316,6 +316,7 @@ sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 sudo wpa_cli -i wlp2s0
 scan
 scan_results
+list_networks # List networks already defined
 add_network # Add a new network
 set_network 1 ssid "mynetwork"
 set_network 1 psk "mypassword"
@@ -437,6 +438,10 @@ Shutdown an Alpine machine:
 poweroff
 ```
 Other commands: `reboot` and `halt`.
+
+### dmesg
+
+Display kernel ring buffer.
 
 #### macos
 
@@ -657,7 +662,7 @@ sudo $dscl . -passwd "/Users/$new_user" "$passwd1"
 ```
 
 ### macos dseditgroup
-	
+
 Edit groups in the Directory Service:
 ```bash
 dseditgroup -o edit -p -a <username> -t user <group_name> 
