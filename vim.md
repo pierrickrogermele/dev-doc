@@ -705,22 +705,21 @@ Command                          | Description
 
  * [How to paste yanked text into Vim command line?](http://stackoverflow.com/questions/3997078/how-to-paste-yanked-text-into-vim-command-line).
 
-Command     | Description
------------ | -------------------
-`Y`         | Copy current line.
-`yy`        | Copy current line.
-`2Y`        | Copy current line and next one.
-`10Y`       | Copy 10 lines, starting from current one.
-`yG`        | Copy all lines from current line to the end of the file.
-`P`         | Paste above current line or before cursor.
-`p`         | Paste below current line or after cursor.
-`yw`        | Copy from current position to beginning of next word.
-`yW`        | Copy from current position to beginning of next word (including punctuations).
-`ye`        | Copy from current position to end of current word.
-`yE`        | Copy from current position to end of current word (including punctuations).
-`y$`        | Copy from current position to end of the line.
-`C-R "`     | Paste in command mode.
-`C-R C-O "` | Paste in command mode. Handles control characters, if there are, inside the default register.
+Normal mode:
+keys  | Description
+----- | -------------------
+`Y`   | Copy current line.
+`yy`  | Copy current line.
+`2Y`  | Copy current line and next one.
+`10Y` | Copy 10 lines, starting from current one.
+`yG`  | Copy all lines from current line to the end of the file.
+`P`   | Paste above current line or before cursor.
+`p`   | Paste below current line or after cursor.
+`yw`  | Copy from current position to beginning of next word.
+`yW`  | Copy from current position to beginning of next word (including punctuations).
+`ye`  | Copy from current position to end of current word.
+`yE`  | Copy from current position to end of current word (including punctuations).
+`y$`  | Copy from current position to end of the line.
 
 ### Registers
 
@@ -729,6 +728,10 @@ Command      | Description
 `"k`         | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
 `"K`         | Append to register k.
 `:reg`       | Get list of all actual registers.
+
+In command or insert mode:
+`C-R "`     | Paste.
+`C-R C-O "` | Pastes and handles control characters, if there are, inside the default register.
 
 Registers:
 
