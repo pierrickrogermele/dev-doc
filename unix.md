@@ -310,10 +310,17 @@ dhclient enp2s0    # Obtain a new lease
 
  * ArchLinux wifi: [WPA supplicant](https://wiki.archlinux.org/index.php/WPA_supplicant).
 
+Start daemon:
+```bash
+sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant-wlps2s0.conf
+```
+
 On ArchLinux with WPA supplicant:
 ```bash
-sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant.conf
 sudo wpa_cli -i wlp2s0
+```
+Then:
+```
 scan
 scan_results
 list_networks # List networks already defined
@@ -323,6 +330,15 @@ set_network 1 psk "mypassword"
 list_networks
 enable_network 1
 save_config
+```
+
+Stop daemon:
+```bash
+sudo wpa_cli -i wlp2s0
+```
+Then:
+```
+terminate
 ```
 
 Get wifi status on Debian:
