@@ -1525,6 +1525,11 @@ Test if it is a directory:
 os.path.isdir("/my/path")
 ```
 
+Make directory:
+```python
+os.mkdir('mydir')
+```
+
 Glob:
 ```python
 import glob
@@ -1658,6 +1663,11 @@ Grouping:
 m = re.search('(?<=abc)def', 'abcdef')
 m.group(1)	# first group
 m.group(0)	# whole matched string
+```
+
+Replaceing:
+```python
+line = re.sub(r"a", "b", s)
 ```
 
 Compile --> compile a regexp into an object, so evaluation is faster:
