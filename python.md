@@ -1865,7 +1865,7 @@ pip install --user git+https://github.com/ISA-tools/isa-api@develop
 ```
 
 ### Packages
-	
+
 A package is a directory containing module files or other package directories.
 It also contains a `__init__.py` file, which in its simplest form is an empty file.
 
@@ -2066,6 +2066,7 @@ Possible outputs: file, stderr, email, datagrams, sockets, HTTP Server.
 
 ### math
 
+Import module:
 ```python
 import math
 ```
@@ -2084,6 +2085,31 @@ Maximum value of a float:
 ```python
 sys.float_info.max
 ```
+
+Test for NaN value:
+```python
+math.isnan(x)
+```
+
+### datetime
+
+ * [datetime — Basic date and time types](https://docs.python.org/3/library/datetime.html).
+
+Import module:
+```python
+import datetime
+```
+
+Parse from string:
+```python
+d = datetime.datetime.strptime(s, "%d/%m/%Y %H:%M:%S.%f")
+```
+
+Convert to timestamp:
+```python
+d.timestamp()
+```
+
 ### Threading
 
 ```python
@@ -2218,6 +2244,18 @@ To see stdout and stderr, open the console:
 open -a Console
 ```
 
+### Numpy
+
+Import module:
+```python
+import numpy
+```
+
+NaN value:
+```python
+x = numpy.nan
+```
+
 ### Pandas
 
  * [Pandas](https://pandas.pydata.org/).
@@ -2234,14 +2272,42 @@ if 'mycol' in mydf:
 	pass
 ```
 
+Get number of rows of data frame:
+```python
+n = len(df.index)
+```
+
 Modify an element of a data frame:
 ```python
 df.loc[i, j] = 1.0
 df.loc[i, 'mycolname'] = 1.0
 ```
 
+Add new column:
+```python
+df['mynewcol'] = 1
+```
+
 Iterate over rows:
 ```python
 for index, row in df.iterrows():
     x = row['a'] + row['b']
+```
+
+Print data frame column types:
+```python
+df.dtypes
+```
+
+Test for NaT (Not a Type):
+```python
+for index, row in df.iterrows():
+	if pandas.isnull(row['a']):
+		# ...
+```
+
+Sort a data frame:
+```python
+df = df.sort_values('mycol', ascending=True)
+df = df.sort_values(['mycol1', 'mycol2'], ascending=[True, False])
 ```
