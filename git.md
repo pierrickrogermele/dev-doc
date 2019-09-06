@@ -30,6 +30,18 @@ git init --bare --shared=group .
 `all` (or `world` or `everybody`): same as group, plus everybody can read.
 `0xxx`: overrides umask modes.
 
+## status
+
+Get status:
+```bash
+git status
+```
+
+List ignored files:
+```bash
+git status --ignored
+```
+
 ## clone
 
 Clone a remote repository:
@@ -699,11 +711,6 @@ git submodule sync
  * [Announcing Git LFS Support in GitLab](https://about.gitlab.com/2015/11/23/announcing-git-lfs-support-in-gitlab/).
 
 ## Staging area (status, add, remove, reset)
-
-The staging area is the area where files are placed before commiting. You can see it with the command `status`:
-```bash
-git status
-```
 
 To add files to the staging area, use the command `add`:
 ```bash
