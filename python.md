@@ -2110,7 +2110,7 @@ Convert to timestamp:
 d.timestamp()
 ```
 
-### Threading
+### threading
 
 ```python
 import threading
@@ -2275,6 +2275,11 @@ if 'mycol' in mydf:
 Get number of rows of data frame:
 ```python
 n = len(df.index)
+```
+
+Get number of columns of data frame:
+```python
+n = len(df.columns)
 ```
 
 Modify an element of a data frame:
