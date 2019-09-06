@@ -1434,6 +1434,42 @@ import sys
 sys.exit(1)
 ```
 
+### Envrionment variables
+
+Import module:
+```python
+import os
+```
+
+Get all env vars:
+```python
+os.environ
+```
+
+Get one env var:
+```python
+os.environ['HOME']
+os.environ.get('HOME')
+```
+
+Get one env var, using default value instead of `None`:
+```python
+os.getenv('MYVAR', 'My default value')
+```
+
+Set an env var:
+```python
+os.environ['MYVAR'] = 'My value'
+```
+
+### Locale
+
+Set locale using value of `LANG` env var:
+```python
+import locale
+locale.setlocale(locale.LC_ALL, '')
+```
+
 ## File system and I/O
 
 Open a file:
@@ -2311,8 +2347,18 @@ for index, row in df.iterrows():
 		# ...
 ```
 
-Sort a data frame:
+Sort the rows of a data frame:
 ```python
 df = df.sort_values('mycol', ascending=True)
 df = df.sort_values(['mycol1', 'mycol2'], ascending=[True, False])
+```
+
+Sort on all columns:
+```python
+df = df.sort_values(list(df.columns))
+```
+
+Sort columns order:
+```python
+df = df.reindex(sorted(df.columns), axis=1)
 ```
