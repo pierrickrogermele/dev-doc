@@ -1775,6 +1775,42 @@ To specify a GitHub repos with a particular branch in `requirements.txt`:
 -e git://github.com/myaccount/myrepos.git#egg=mybranch
 ```
 
+## Profiling
+
+ * [The Python Profilers](https://docs.python.org/3/library/profile.html).
+ * [How can you profile a Python script?](https://stackoverflow.com/questions/582336/how-can-you-profile-a-python-script).
+ * [RunSnakeRun](http://www.vrplumber.com/programming/runsnakerun/), a cProfile
+   dump file visualizer. Not working neither in Python2, nor in Python3.
+ * [How to visualize Python profile data with SnakeViz](https://codeyarns.com/2015/02/23/how-to-visualize-python-profile-data-with-snakeviz/).
+ * [yappi](https://github.com/sumerc/yappi) for multi-threaded environment.
+ * [line_profiler](https://github.com/rkern/line_profiler).
+
+Profiling inside code:
+```python
+import cProfile
+cProfile.run('foo()')
+```
+
+Profiling a script from command line:
+```python
+python -m cProfile -o myapp.pstat myscript.py
+```
+
+Running snakeviz to analyse a .pstat file:
+```bash
+snakeviz myapp.pstat
+```
+
+Installing yappi:
+```bash
+pip install yappi
+```
+
+Profiling with yappi:
+```bash
+yappi -o myapp.pstat myscript.py
+```
+
 ## Packages and modules
 
 A module is a file with `.py` and whose name is the module's name.

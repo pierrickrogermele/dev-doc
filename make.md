@@ -56,7 +56,7 @@ ifndef MY_VAR
 endif
 ```
 
-## Condition
+## if
 
 True if the condition results in a non-empty string.
 
@@ -64,6 +64,34 @@ True if the condition results in a non-empty string.
 $(if $(var),$(my_then_var))
 $(if $(var),$(my_then_var),$(my_else_var))
 $(if $(or $a, $b, $c, $(and $d, $e)),$(my_then_var),$(my_else_var))
+```
+
+## foreach
+
+```make
+dirs := a b c d
+files := $(foreach dir,$(dirs),$(wildcard $(dir)/*))
+```
+
+## sort
+
+Sorting:
+```make
+sorted_list = $(sort $(files))
+```
+
+## lastword
+
+Take last:
+```make
+last_file = $(lastword $(files))
+```
+
+## firstword
+
+Take first:
+```make
+first_file = $(firstword $(files))
 ```
 
 ## Built-in variables
@@ -344,23 +372,6 @@ Such intermediate files are removed by make when the final target has been produ
 To keep intermediate files, they can listed as prerequisites of the special target `.SECONDARY`, or of the special target `.PRECIOUS`.
 
 On the contrary, if an explicitly produced file is not wanted, it can be marked as intermediate by setting it as prerequisite of the special target `.INTERMEDIATE`.
-
-## Lists
-
-Sorting:
-```make
-sorted_list = $(sort $(files))
-```
-
-Take last:
-```make
-last_file = $(lastword $(files))
-```
-
-Take first:
-```make
-first_file = $(firstword $(files))
-```
 
 ## Generic rules
 
