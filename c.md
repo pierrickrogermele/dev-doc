@@ -822,3 +822,63 @@ ERROR: a signed resource has been added, modified or deleted
 ```
 	Build -> Clean All Targets
 	Build and Go
+
+## Debugging
+
+### LLDB
+
+The debugger for the LLVM (clang) compiler.
+
+ * [LLDB](http://lldb.llvm.org) official site.
+
+Run:
+```bash
+lldb -f my_prog -- arg1 arg2 arg3 ...
+```
+
+Command     | Description
+----------- | -------------------------------------
+`h`         | Help.
+`h b`       | Help on breakpoint command.
+`b main`    | Set a breakpoint on main() function.
+`br del 2`  | Delete breakpoint 2.
+`r`         | Run.
+`n`         | Step.
+`s`         | Step in.
+
+## Profiling
+
+### Valgrind
+
+`valgrind` is an emulator. So it doesn't need to instrument code, but is very very slow.
+`helgrind` is used for detection of synchronization errors between threads in the POSIX pthreads.
+
+Memory checking:
+```bash
+valgrind --tool=memcheck <program>
+valgrind <program>  # memcheck is the default tool
+valgrind  --leak-check=full <program> # to get a detailed list of leak errors
+```
+
+Profiling:
+```bash
+valgrind --tool=callgrind <program>
+valgrind --tool=callgrind --cache-sim=yes <myprog> # Simulate cache
+```
+
+For visualizing an output file from Valgrind, use `kcachegrind` or
+`qcachegrind`:
+```bash
+kcachegrind callgrind.out.<pid>
+qcachegrind callgrind.out.<pid>
+```
+If you want a text output, use `callgrind_annotate`:
+```bash
+callgrind_annotate  # Text output
+```
+
+For profiling the cache:
+```bash
+valgrind --tool=cachegrind <myprog>
+cg-annotate cachegrind.out.<PID>
+```
