@@ -420,6 +420,12 @@ range(1, 0)         # --> []
 ```
 In Python 2 `range()` returns a list. However in Python 3 it returns an iterator (same as function `xrange()` in Python 2). See [Python’s range() Function Explained](http://pythoncentral.io/pythons-range-function-explained/).
 
+Create list with random numbers:
+```python
+import random
+my_randoms = random.sample(range(100), 10)
+```
+
 Access:
 ```python
 a[0]
@@ -1474,7 +1480,7 @@ locale.setlocale(locale.LC_ALL, '')
 
 Open a file:
 ```python
-f = open(’/tmp/workfile’, ’w’)
+f = open('/tmp/workfile', 'w')
 ```
 Modes are r, w, a and r+ (both reading and writing)
 Under Windows OS, there's also the b modifier for binary files: rb, wb, r+b
@@ -1502,7 +1508,7 @@ Returns an empty string if EOF is reached.
 Read a single line:
 ```python
 s = f.readline()
-s1 = s.strip()	# string new line char
+s1 = s.strip()	# strip new line char
 ```
 It doesn't eat the newline character.
 Return an empty string when EOF is reached.
