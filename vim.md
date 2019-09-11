@@ -56,7 +56,7 @@ List mappings in insert and command-line mode:
 ```vim
 map!
 ```
-	
+
 To know what commands where assigned to a key:
 ```vim
 :verbose map <leader>c
