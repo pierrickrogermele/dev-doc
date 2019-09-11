@@ -79,713 +79,6 @@ quit()
 quit(status = 1)
 ```
 
-## Packages
-
-Getting information about loaded packages (package version, ...) in a session:
-```r
-sessionInfo()
-```
-
-Getting version of package:
-```r
-packageVersion('biodb')
-```
-
-### Installing packages
-
-R packages can be found on [CRAN](http://cran.r-project.org/) web site.
-
-Select CRAN mirror:
-```r
-chooseCRANmirror()
-chooseCRANmirror(graphics = FALSE) # Avoid opening of X11 window when selecting mirror site:
-```
-CRAN mirror can be set permanently inside `.Rprofile` configuration file. See <https://stackoverflow.com/questions/8475102/set-default-cran-mirror-permanent-in-r>.
-
-Installing a CRAN package:
-```r
-install.packages("pkgname")
-```
-
-Install with all dependencies:
-```r
-install.packages("pkgname", dependencies = TRUE)
-```
-
-For installing a particular place (like some system path, for system wide installation), first look at the list of available destination directories:
-```r
-.libPaths()
-```
-then choose the destination you want by using the `lib` option:
-```r
-install.packages("pkgname", lib = .libPaths()[2])
-```
-
-For installing in user home directory, see `.libPaths()` documentation. On Ubuntu with R 3.4, the following directory needs to be created:
-```bash
-mkdir -p $HOME/R/x86_64-pc-linux-gnu-library/3.4
-```
-This is the default value of the `R_LIBS_USER` environement variable for R under Linux.
-For macOS:
-```bash
-mkdir -p $HOME/Library/R/3.4/library
-```
-
-Installing a package from source:
-```r
-install.packages('RMySQL', type='source')
-```
-
-Installing a package from local source bundle:
-```r
-install.packages('C:/RMySQL.tar.gz', repos = NULL, type='source')
-```
-
-Installing using the command line:
-```bash
-R -e "install.packages('getopt', dependencies = TRUE, repos='https://cloud.r-project.org/')"
-```
-
-Getting a list of installed packages:
-```r
-rownames(installed.packages())
-```
-
-See also devtools package.
-
-### Removing packages
-
-```r
-remove.packages("rJava")
-```
-
-### Loading packages
-
-List available packages:
-```r
-library()
-```
-
-Load package:
-```r
-library(mypackage)
-```
-`library()` gives an error if the package can not be loaded.
-
-```r
-if (require(mypackage)) {
-	# stuff to do
-}
-```
-`requires()` returns `FALSE` and gives a warning if the package can not be loaded. It is designed to be used inside a function.
-
-Non-verbose loading:
-```r
-library(RMySQL, quietly = TRUE)
-```
-
-Test if a package is loaded:
-```r
-library(R.utils)
-isPackageLoaded('mypkg')
-```
-
-### Creating packages
-
- * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
- * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
- * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
-
- * [How to Install R Packages using devtools on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-r-packages-using-devtools-on-ubuntu-16-04).
-
- * `R CMD check`: [Automated checking](http://r-pkgs.had.co.nz/check.html).
- * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
- * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
- * [Package Development Prerequisites](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
-
-#### Writing a vignette
-
- * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
- * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
-
-On macOS, for building vignettes with `R CMD build .`, install first the [MacTeX LaTeX](http://www.tug.org/mactex/) distribution.
-
-Example of header for an Rmd vignette using knitr package and BiocStyle package:
-```rmd
- ---
- title: "Configuring biodb"
- author: "Pierrick Roger"
- output:
-   BiocStyle::html_document:
- #    toc_float: true    # TOC implies enabling a theme.
-     theme: null         # A theme uses around 700KB.
- #    highlight: null     # Highlighting uses around 60KB.
- #    mathjax: null
- package: biodb
- abstract: |
-   How to configure biodb package.
- vignette: |
-   %\VignetteIndexEntry{Configuring biodb}
-   %\VignetteEngine{knitr::rmarkdown}
-   %\VignetteEncoding{UTF-8}
- ---
-```
-
-Here is the settings to put insisde the `DESCRIPTION` file:
-```
-VignetteBuilder: knitr
-Suggests:
-	BiocStyle,
-	knitr,
-	rmarkdown
-```
-
-#### Writing documentation with roxygen2
-
- * [Generating Rd files](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html).
- * [Object documentation](http://r-pkgs.had.co.nz/man.html).
- * [How to properly document S4 class slots using Roxygen2?](http://stackoverflow.com/questions/7368262/how-to-properly-document-s4-class-slots-using-roxygen2).
-
-Note that constructors of subclasses are ignored by roxygen2. You cannot document them.
-
-Defining documentation separated from any code:
-```r
- #' Title 
- #' 
- #' Other stuff 
- #' 
- #' @name MyClass_fooey 
- #' @param foo_value numeric blah blah blah 
- #' @return numeric 
- #' @examples{ 
- #'	\dontrun{ 
- #'	blah blah blah 
- #'      } 
- #' } 
-NULL 
-```
-
-#### Submitting to CRAN
-
- * [Getting your R package on CRAN](http://kbroman.org/pkg_primer/pages/cran.html).
- * [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html).
- * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
-
-#### Submittin to Bioconductor
-
- * [Coding Style](https://bioconductor.org/developers/how-to/coding-style/).
-
-#### The `inst/` folder
-
- * [Installed files](http://r-pkgs.had.co.nz/inst.html).
- 
-## Compiling code
-
- * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
-
-To compile C source files into a shared library:
-```bash
-R CMD SHLIB *.c
-```
-
-## Home
-
-Get R HOME directory:
-```r
-R.home()
-```
-
-## R environments and namespaces
-
- * [Environments](http://adv-r.had.co.nz/Environments.html).
- * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
- * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
-
-Global environment (i.e.: working environment):
-```r
-globalenv()
-```
-
-Base environment (i.e.: the environment of the base package):
-```r
-baseenv()
-```
-
-Empty environment (the parent of the base environment):
-```r
-emptyenv()
-```
-
-Current environment:
-```r
-environment()
-```
-
-List all parents of the global environment:
-```r
-search()
-```
-
-Getting an environment from its name/string:
-```r
-as.environment('package:stats')
-```
-
-Get parent environment:
-```r
-parent.env(e)
-```
-
-Accessing a variable in an environment:
-```r
-e$myvar
-```
-
-Modifying a variable inside an environment:
-```r
-e$myvar <- 'myval'
-```
-
-Find the environment where a name is defined:
-```r
-pryr::where('myname')
-```
-
-List objects in an environment:
-```r
-ls()
-objects()
-```
-
-Remove objects in an environment:
-```r
-rm(myvar)
-remove(myvar)
-```
-
-## Command line arguments
-
-```r
-args <- commandArgs(trailingOnly = TRUE)
-my_first_arg = args[1]
-```
-The option `trailingOnly` keeps only arguments after `--args` flag.
-
-Getting script path, script name and script directory:
-```r
-args <- commandArgs(trailingOnly = FALSE)
-script.path <- sub("--file=", "", args[grep("--file=", args)])
-script.name <- basename(script.path)
-script.dir <- dirname(script.path)
-```
-
-## Environment variables
-
-Get all env vars:
-```r
-ENV = Sys.getenv()
-```
-
-Set env var:
-```r
-Sys.setenv(MY_VAR = "value", MY_VAR2 = "value2")
-```
-
-## Data
-
-The data() function loads specified data sets, or list the available data sets.
-
-Loading unknown data set into a separate environment in order to check what is inside:
-```r
-data(crude, verbose = TRUE, envir = e <- new.env())
-ls(e) # check what is in `e`
-class(e$crude)
-summary(e$crude)
-rm(e)
-```
-
-Load into workspace:
-```r
-data(crude)
-```
-
-## Load data
-
-Load data from a plain text file with lines like:
-1224.233 1228.12e12
-and put result in a list
-```r
-mylist <- scan(file="myfile.txt", what=list(t=0.0, f=0.0))
-```
-
-See also `read.table()` in DATA FRAMES.
-
-## Equality
-
-Testing elements of a vector:
-```r
-x < 8 # returns a vector of logical values
-all(x < 8) # returns true if all elements of x are < 8
-all(v == w) # returns true if v and w are equals.
-identical(v, w) # returns true if v and w are identical (same type, same values). A vector of integers won't be identical to a vector of floating points even if values are equal.
-any(x < 8) # returns true if at least one element of x is < 8
-```
-
-## Maths
-
-Logarithm:
-```r
-log10(x)
-```
-
-Power:
-```r
-10^3
-```
-
-Integer division:
-```r
-5 %/% 2
-```
-
-Truncating integer:
-```r
-trunc(1.23)
-floor(1.23)
-```
-
-Find roots of an equation:
-```r
-f <- function(x) x - 300 - x^0.8
-uniroot(f, c(300, 1200))
-```
-
-## Operators
-
- * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
-
-Arithmetic operators:
-
-Operator  | Description
---------- | ----------------------
-`+`       | Addition.
-`-`       | Subtraction.
-`*`       | Multiplication.
-`/`       | Division.
-`^`, `**` | Exponentiation.
-`%%`      | Modulus (x mod y) 5%%2 is 1.
-`%/%`     | Integer division 5%/%2 is 2.
-
-Logical operators:
-
-Operator    | Description
------------ | --------------------------
-`<`	        | Less than.
-`<=`        | Less than or equal to.
-`>`	        | Greater than.
-`>=`        | Greater than or equal to.
-`==`        | Exactly equal to.
-`!=`        | Not equal to.
-`!`         | Not.
-`|`         | Or.
-`&`         | And.
-`isTRUE(x)` | Test if x is TRUE.
-
-## I/O
-
-### dput and dget
-
-`dput` and `dget` are used to serialize and deserialize an R object.
-
-### File information
-
-Get file size:
-```r
-sz <- file.info(myfile)$size
-sz <- file.size(myfile)  # Only available from R 3.3.
-```
-
-### Loading vector from a file
-
-```r
-scan(file = "myfile.txt", what = integer())
-```
-
-### Saving vector to a file
-
-```r
-write(v, 'myfile.txt', ncolumns = 1)
-```
-
-### Reading from a file
-
-Read all characters from a file and put them into a string:
-```r
-s <- readChar(filename, file.info(filename)$size)
-```
-
-Read lines:
-```r
-lines <- readLines(filename)
-```
-
-### Reading from stdin
-
-Reading strings from stdin:
-```r
-con <- file("stdin")
-strings <- readLines(con)
-close(con) # close stdin to avoid warning message "closing unused connection 3 (stdin)"
-```
-
-Reading floats from stdin:
-```r
-values <- as.numeric(readLines(file("stdin")))
-```
-
-Reading line by line stdin:
-```r
-con <- file("stdin")
-open(con)
-while (TRUE) {
-	line <- readLines(con, n = 1)
-	if (length(line) == 0)
-		break
-}
-close(con)
-```
-
-### Writing to a file
-
-```r
-cat(..., file = "myfile.txt")
-write(x, file = "myfile.txt")
-writeLines(content, file.path)
-```
-
-### Default output
-
-Redirect output to a file:
-```r
-sink("myfile")
-```
-
-Redirect to console again:
-```r
-sink()
-```
-
-### Printing
-
-Print a variable:
-```r
-print(myvar)
-```
-
-`str` (structure) prints an object in a compact mode:
-```r
-str(myobject)
-str(mylist)
-```
-
-`cat` print as is (without all the transformations print() makes):
-```r
-cat('Computed PI=',pi,'\n');
-```
-
-Print on standard error stream:
-```r
-write("prints to stderr", stderr())
-write("prints to stderr", file = stderr())
-```
-
-Print information about an object (field length, field mode, ...):
-```r
-summary(myobject)
-```
-
-Print double values (control number of printed decimals):
-```r
-print(83.247837878523745) # will be truncated on output
-
-options(digits=22) # now will display all decimals of our number
-print(83.247837878523745)
-```
-
-## Statements
-
-### Source
-
-Use source() command to include/load another R file:
-```r
-source('myfile.R')
-```
-
-Switch to sourced file directory while sourcing:
-```r
-source('../../blabla/myfile.R', chdir = TRUE)
-```
-Before sourcing the file, R will change to directory `../../blabla`.
-
-By default the names parsed and loaded in the sourced file are put inside the global environment. If you want them to reside inside the current environment use:
-```r
-source('myfile.R', local = TRUE)
-```
-or if you want to load them into another environment:
-```r
-source('myfile.R', local = myenv)
-```
-
-Get the path of the current sourced file:
-```r
-current.file.path <- parent.frame(2)$ofile
-```
-
-#### Loading module relativily to script path
-
-Solution 1:
-```r
-args <- commandArgs(trailingOnly = F)
-scriptPath <- dirname(sub("--file=","",args[grep("--file",args)]))
-source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
-```
-
-Solution 2:
-```r
-#- Get path of current R script to source using a relative directory:
-source(file.path(dirname(rscript_current()), '../myfile.R'))
-#- Where rscript_current is:
-rscript_current <- function() {
-	stack <- rscript_stack()
-	r <- as.character(stack[length(stack)])
-	first_char <- substring(r, 1, 1)
-	if (first_char != '~' && first_char != .Platform$file.sep) {
-		r <- file.path(getwd(), r)
-	}
-	r
-}
-```
-### For
-
-Loop on a list or vector:
-```r
-for (x in list.or.vector) {
-}
-```
-
-Best way to iterate on all indices of a vector:
-```r
-for (i in seq_along(v))
-	v[i] <- compute(v[i], i)
-```
-`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
-
-*Wrong* way to iterate on all indices of a vector:
-```r
-for (i in seq(v))
-	v[i] <- compute(v[i], i)
-```
-There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
-
-How to break / continue:
-```r
-break
-next
-```
-
-### If / else
-
-`if()` is a function in R.
-```r
-if (TRUE) x <- 2 else x <- 10
-```
-
-Logical negation:
-```r
-if ( ! condition) ...
-```
-
-Ternary operator using if/else:
-```r
-x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
-```
-
-The `else` clause must appear at the end and on the same line than the `then` clause:
-```r
-if (...) do_1() else do_2()
-```
-or
-```r
-if (...) {
-	do_1()
-} else {
-	do_2()
-}
-```
-
-### Switch
-
-Value must not be null, and must be a vector of length 1.
-The possible values (str1, str2) must be strings and not integer. If these are integers, they must be quoted in order to be strings.
-```r
-switch(value, # value to test
-       str1 = EXPR,
-       str2 = EXPR,
-       EXPR # default
-       )
-```
-
-## Base functions
-
-### vapply
-
-Apply a function on a list or vector, and returns a vector of a defined type:
-```r
-myvector = vapply(mylist_or_vector, function(x) paste(x, 'some text'), FUN.VALUE = '')
-```
-
-### Filter
-
-Filter values of a list or vector:
-```r
-mynewlist = Filter(function(x) ! is.null(x), mylist)
-```
-
-### cbind / rbind & Typeg
-
-Combine vector, matrix or data frame by row or columns.
-
-```r
-m <- rbind(c(1,4),c(2,2)) # rbind = row bind
-m <- cbind(c(1,4),c(2,2)) # cbind = column bind
-```
-
-If you encounter the warning message "row names were found from a short variable and have been discarded" with cbind, this means that one of the input has row names and that rows need to be duplicated. To avoid this warning, discard the row names by using the `row.names` option:
-```r
-z <- cbind(x, y, row.names = NULL)
-```
-
-Adding columns and rows to a matrix
-```r
-rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
-cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
-```
-
-### Merge
-
-Merging data frames (equivalent of SQL join):
-```r
-merge(d1, d2) # try to find a column C in common, and only keep rows whose values of C are in d1 and d2.
-merge(d1, d2, by.x="col1", by.y="col2") # specify explicitly the columns
-```
-
-By default merge will make an exclusive join, and thus will eliminate rows that are only in one of the data frames. To keep those rows:
-```r
-merge(d1, d2, all = TRUE) # keep single rows of both d1 and d2.
-merge(d1, d2, all.x = TRUE) # keep single rows from d1.
-merge(d1, d2, all.y = TRUE) # keep single rows from d2.
-```
-
 ## Variables & Types
 
 ### Assignment
@@ -1373,6 +666,713 @@ Compute an histogram: count occurences of each value.
 
 ```r
 hist <- table(c(1,45,1,6,3,14,45,6,6))
+```
+
+## Statements
+
+### Source
+
+Use source() command to include/load another R file:
+```r
+source('myfile.R')
+```
+
+Switch to sourced file directory while sourcing:
+```r
+source('../../blabla/myfile.R', chdir = TRUE)
+```
+Before sourcing the file, R will change to directory `../../blabla`.
+
+By default the names parsed and loaded in the sourced file are put inside the global environment. If you want them to reside inside the current environment use:
+```r
+source('myfile.R', local = TRUE)
+```
+or if you want to load them into another environment:
+```r
+source('myfile.R', local = myenv)
+```
+
+Get the path of the current sourced file:
+```r
+current.file.path <- parent.frame(2)$ofile
+```
+
+#### Loading module relativily to script path
+
+Solution 1:
+```r
+args <- commandArgs(trailingOnly = F)
+scriptPath <- dirname(sub("--file=","",args[grep("--file",args)]))
+source(file.path(scriptPath, '../input-parser/InputExcelFile.R'), chdir = TRUE)
+```
+
+Solution 2:
+```r
+#- Get path of current R script to source using a relative directory:
+source(file.path(dirname(rscript_current()), '../myfile.R'))
+#- Where rscript_current is:
+rscript_current <- function() {
+	stack <- rscript_stack()
+	r <- as.character(stack[length(stack)])
+	first_char <- substring(r, 1, 1)
+	if (first_char != '~' && first_char != .Platform$file.sep) {
+		r <- file.path(getwd(), r)
+	}
+	r
+}
+```
+### For
+
+Loop on a list or vector:
+```r
+for (x in list.or.vector) {
+}
+```
+
+Best way to iterate on all indices of a vector:
+```r
+for (i in seq_along(v))
+	v[i] <- compute(v[i], i)
+```
+`seq_along` is the same as `seq(along.with = v)`, which means it will use the length of the argument (i.e.: length of vector `v`).
+
+*Wrong* way to iterate on all indices of a vector:
+```r
+for (i in seq(v))
+	v[i] <- compute(v[i], i)
+```
+There will be no iteration if `length(v) == 0`. Also if v is a single integer, it will be interpreted as the number of integers to generate.
+
+How to break / continue:
+```r
+break
+next
+```
+
+### If / else
+
+`if()` is a function in R.
+```r
+if (TRUE) x <- 2 else x <- 10
+```
+
+Logical negation:
+```r
+if ( ! condition) ...
+```
+
+Ternary operator using if/else:
+```r
+x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
+```
+
+The `else` clause must appear at the end and on the same line than the `then` clause:
+```r
+if (...) do_1() else do_2()
+```
+or
+```r
+if (...) {
+	do_1()
+} else {
+	do_2()
+}
+```
+
+### Switch
+
+Value must not be null, and must be a vector of length 1.
+The possible values (str1, str2) must be strings and not integer. If these are integers, they must be quoted in order to be strings.
+```r
+switch(value, # value to test
+       str1 = EXPR,
+       str2 = EXPR,
+       EXPR # default
+       )
+```
+
+## Operators
+
+ * [Operator Syntax and Precedence](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Syntax.html).
+
+Arithmetic operators:
+
+Operator  | Description
+--------- | ----------------------
+`+`       | Addition.
+`-`       | Subtraction.
+`*`       | Multiplication.
+`/`       | Division.
+`^`, `**` | Exponentiation.
+`%%`      | Modulus (x mod y) 5%%2 is 1.
+`%/%`     | Integer division 5%/%2 is 2.
+
+Logical operators:
+
+Operator    | Description
+----------- | --------------------------
+`<`	        | Less than.
+`<=`        | Less than or equal to.
+`>`	        | Greater than.
+`>=`        | Greater than or equal to.
+`==`        | Exactly equal to.
+`!=`        | Not equal to.
+`!`         | Not.
+`|`         | Or.
+`&`         | And.
+`isTRUE(x)` | Test if x is TRUE.
+
+## Maths
+
+Logarithm:
+```r
+log10(x)
+```
+
+Power:
+```r
+10^3
+```
+
+Integer division:
+```r
+5 %/% 2
+```
+
+Truncating integer:
+```r
+trunc(1.23)
+floor(1.23)
+```
+
+Find roots of an equation:
+```r
+f <- function(x) x - 300 - x^0.8
+uniroot(f, c(300, 1200))
+```
+
+## Packages
+
+Getting information about loaded packages (package version, ...) in a session:
+```r
+sessionInfo()
+```
+
+Getting version of package:
+```r
+packageVersion('biodb')
+```
+
+### Installing packages
+
+R packages can be found on [CRAN](http://cran.r-project.org/) web site.
+
+Select CRAN mirror:
+```r
+chooseCRANmirror()
+chooseCRANmirror(graphics = FALSE) # Avoid opening of X11 window when selecting mirror site:
+```
+CRAN mirror can be set permanently inside `.Rprofile` configuration file. See <https://stackoverflow.com/questions/8475102/set-default-cran-mirror-permanent-in-r>.
+
+Installing a CRAN package:
+```r
+install.packages("pkgname")
+```
+
+Install with all dependencies:
+```r
+install.packages("pkgname", dependencies = TRUE)
+```
+
+For installing a particular place (like some system path, for system wide installation), first look at the list of available destination directories:
+```r
+.libPaths()
+```
+then choose the destination you want by using the `lib` option:
+```r
+install.packages("pkgname", lib = .libPaths()[2])
+```
+
+For installing in user home directory, see `.libPaths()` documentation. On Ubuntu with R 3.4, the following directory needs to be created:
+```bash
+mkdir -p $HOME/R/x86_64-pc-linux-gnu-library/3.4
+```
+This is the default value of the `R_LIBS_USER` environement variable for R under Linux.
+For macOS:
+```bash
+mkdir -p $HOME/Library/R/3.4/library
+```
+
+Installing a package from source:
+```r
+install.packages('RMySQL', type='source')
+```
+
+Installing a package from local source bundle:
+```r
+install.packages('C:/RMySQL.tar.gz', repos = NULL, type='source')
+```
+
+Installing using the command line:
+```bash
+R -e "install.packages('getopt', dependencies = TRUE, repos='https://cloud.r-project.org/')"
+```
+
+Getting a list of installed packages:
+```r
+rownames(installed.packages())
+```
+
+See also devtools package.
+
+### Removing packages
+
+```r
+remove.packages("rJava")
+```
+
+### Loading packages
+
+List available packages:
+```r
+library()
+```
+
+Load package:
+```r
+library(mypackage)
+```
+`library()` gives an error if the package can not be loaded.
+
+```r
+if (require(mypackage)) {
+	# stuff to do
+}
+```
+`requires()` returns `FALSE` and gives a warning if the package can not be loaded. It is designed to be used inside a function.
+
+Non-verbose loading:
+```r
+library(RMySQL, quietly = TRUE)
+```
+
+Test if a package is loaded:
+```r
+library(R.utils)
+isPackageLoaded('mypkg')
+```
+
+### Creating packages
+
+ * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
+ * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
+ * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+
+ * [How to Install R Packages using devtools on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-r-packages-using-devtools-on-ubuntu-16-04).
+
+ * `R CMD check`: [Automated checking](http://r-pkgs.had.co.nz/check.html).
+ * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
+ * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
+ * [Package Development Prerequisites](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
+
+#### Writing a vignette
+
+ * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
+ * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
+
+On macOS, for building vignettes with `R CMD build .`, install first the [MacTeX LaTeX](http://www.tug.org/mactex/) distribution.
+
+Example of header for an Rmd vignette using knitr package and BiocStyle package:
+```rmd
+ ---
+ title: "Configuring biodb"
+ author: "Pierrick Roger"
+ output:
+   BiocStyle::html_document:
+ #    toc_float: true    # TOC implies enabling a theme.
+     theme: null         # A theme uses around 700KB.
+ #    highlight: null     # Highlighting uses around 60KB.
+ #    mathjax: null
+ package: biodb
+ abstract: |
+   How to configure biodb package.
+ vignette: |
+   %\VignetteIndexEntry{Configuring biodb}
+   %\VignetteEngine{knitr::rmarkdown}
+   %\VignetteEncoding{UTF-8}
+ ---
+```
+
+Here is the settings to put insisde the `DESCRIPTION` file:
+```
+VignetteBuilder: knitr
+Suggests:
+	BiocStyle,
+	knitr,
+	rmarkdown
+```
+
+#### Writing documentation with roxygen2
+
+ * [Generating Rd files](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html).
+ * [Object documentation](http://r-pkgs.had.co.nz/man.html).
+ * [How to properly document S4 class slots using Roxygen2?](http://stackoverflow.com/questions/7368262/how-to-properly-document-s4-class-slots-using-roxygen2).
+
+Note that constructors of subclasses are ignored by roxygen2. You cannot document them.
+
+Defining documentation separated from any code:
+```r
+ #' Title 
+ #' 
+ #' Other stuff 
+ #' 
+ #' @name MyClass_fooey 
+ #' @param foo_value numeric blah blah blah 
+ #' @return numeric 
+ #' @examples{ 
+ #'	\dontrun{ 
+ #'	blah blah blah 
+ #'      } 
+ #' } 
+NULL 
+```
+
+#### Submitting to CRAN
+
+ * [Getting your R package on CRAN](http://kbroman.org/pkg_primer/pages/cran.html).
+ * [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html).
+ * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+
+#### Submittin to Bioconductor
+
+ * [Coding Style](https://bioconductor.org/developers/how-to/coding-style/).
+
+#### The `inst/` folder
+
+ * [Installed files](http://r-pkgs.had.co.nz/inst.html).
+ 
+## Compiling code
+
+ * [Compile Files for Use with R](https://stat.ethz.ch/R-manual/R-devel/library/utils/html/COMPILE.html).
+
+To compile C source files into a shared library:
+```bash
+R CMD SHLIB *.c
+```
+
+## Home
+
+Get R HOME directory:
+```r
+R.home()
+```
+
+## R environments and namespaces
+
+ * [Environments](http://adv-r.had.co.nz/Environments.html).
+ * [Environments in R](https://www.r-bloggers.com/environments-in-r/).
+ * [How R Searches and Finds Stuff](http://blog.obeautifulcode.com/R/How-R-Searches-And-Finds-Stuff/).
+
+Global environment (i.e.: working environment):
+```r
+globalenv()
+```
+
+Base environment (i.e.: the environment of the base package):
+```r
+baseenv()
+```
+
+Empty environment (the parent of the base environment):
+```r
+emptyenv()
+```
+
+Current environment:
+```r
+environment()
+```
+
+List all parents of the global environment:
+```r
+search()
+```
+
+Getting an environment from its name/string:
+```r
+as.environment('package:stats')
+```
+
+Get parent environment:
+```r
+parent.env(e)
+```
+
+Accessing a variable in an environment:
+```r
+e$myvar
+```
+
+Modifying a variable inside an environment:
+```r
+e$myvar <- 'myval'
+```
+
+Find the environment where a name is defined:
+```r
+pryr::where('myname')
+```
+
+List objects in an environment:
+```r
+ls()
+objects()
+```
+
+Remove objects in an environment:
+```r
+rm(myvar)
+remove(myvar)
+```
+
+## Command line arguments
+
+```r
+args <- commandArgs(trailingOnly = TRUE)
+my_first_arg = args[1]
+```
+The option `trailingOnly` keeps only arguments after `--args` flag.
+
+Getting script path, script name and script directory:
+```r
+args <- commandArgs(trailingOnly = FALSE)
+script.path <- sub("--file=", "", args[grep("--file=", args)])
+script.name <- basename(script.path)
+script.dir <- dirname(script.path)
+```
+
+## Environment variables
+
+Get all env vars:
+```r
+ENV = Sys.getenv()
+```
+
+Set env var:
+```r
+Sys.setenv(MY_VAR = "value", MY_VAR2 = "value2")
+```
+
+## Data
+
+The data() function loads specified data sets, or list the available data sets.
+
+Loading unknown data set into a separate environment in order to check what is inside:
+```r
+data(crude, verbose = TRUE, envir = e <- new.env())
+ls(e) # check what is in `e`
+class(e$crude)
+summary(e$crude)
+rm(e)
+```
+
+Load into workspace:
+```r
+data(crude)
+```
+
+## Load data
+
+Load data from a plain text file with lines like:
+1224.233 1228.12e12
+and put result in a list
+```r
+mylist <- scan(file="myfile.txt", what=list(t=0.0, f=0.0))
+```
+
+See also `read.table()` in DATA FRAMES.
+
+## Equality
+
+Testing elements of a vector:
+```r
+x < 8 # returns a vector of logical values
+all(x < 8) # returns true if all elements of x are < 8
+all(v == w) # returns true if v and w are equals.
+identical(v, w) # returns true if v and w are identical (same type, same values). A vector of integers won't be identical to a vector of floating points even if values are equal.
+any(x < 8) # returns true if at least one element of x is < 8
+```
+
+## I/O
+
+### dput and dget
+
+`dput` and `dget` are used to serialize and deserialize an R object.
+
+### File information
+
+Get file size:
+```r
+sz <- file.info(myfile)$size
+sz <- file.size(myfile)  # Only available from R 3.3.
+```
+
+### Loading vector from a file
+
+```r
+scan(file = "myfile.txt", what = integer())
+```
+
+### Saving vector to a file
+
+```r
+write(v, 'myfile.txt', ncolumns = 1)
+```
+
+### Reading from a file
+
+Read all characters from a file and put them into a string:
+```r
+s <- readChar(filename, file.info(filename)$size)
+```
+
+Read lines:
+```r
+lines <- readLines(filename)
+```
+
+### Reading from stdin
+
+Reading strings from stdin:
+```r
+con <- file("stdin")
+strings <- readLines(con)
+close(con) # close stdin to avoid warning message "closing unused connection 3 (stdin)"
+```
+
+Reading floats from stdin:
+```r
+values <- as.numeric(readLines(file("stdin")))
+```
+
+Reading line by line stdin:
+```r
+con <- file("stdin")
+open(con)
+while (TRUE) {
+	line <- readLines(con, n = 1)
+	if (length(line) == 0)
+		break
+}
+close(con)
+```
+
+### Writing to a file
+
+```r
+cat(..., file = "myfile.txt")
+write(x, file = "myfile.txt")
+writeLines(content, file.path)
+```
+
+### Default output
+
+Redirect output to a file:
+```r
+sink("myfile")
+```
+
+Redirect to console again:
+```r
+sink()
+```
+
+### Printing
+
+Print a variable:
+```r
+print(myvar)
+```
+
+`str` (structure) prints an object in a compact mode:
+```r
+str(myobject)
+str(mylist)
+```
+
+`cat` print as is (without all the transformations print() makes):
+```r
+cat('Computed PI=',pi,'\n');
+```
+
+Print on standard error stream:
+```r
+write("prints to stderr", stderr())
+write("prints to stderr", file = stderr())
+```
+
+Print information about an object (field length, field mode, ...):
+```r
+summary(myobject)
+```
+
+Print double values (control number of printed decimals):
+```r
+print(83.247837878523745) # will be truncated on output
+
+options(digits=22) # now will display all decimals of our number
+print(83.247837878523745)
+```
+
+## Base functions
+
+### vapply
+
+Apply a function on a list or vector, and returns a vector of a defined type:
+```r
+myvector = vapply(mylist_or_vector, function(x) paste(x, 'some text'), FUN.VALUE = '')
+```
+
+### Filter
+
+Filter values of a list or vector:
+```r
+mynewlist = Filter(function(x) ! is.null(x), mylist)
+```
+
+### cbind / rbind & Typeg
+
+Combine vector, matrix or data frame by row or columns.
+
+```r
+m <- rbind(c(1,4),c(2,2)) # rbind = row bind
+m <- cbind(c(1,4),c(2,2)) # cbind = column bind
+```
+
+If you encounter the warning message "row names were found from a short variable and have been discarded" with cbind, this means that one of the input has row names and that rows need to be duplicated. To avoid this warning, discard the row names by using the `row.names` option:
+```r
+z <- cbind(x, y, row.names = NULL)
+```
+
+Adding columns and rows to a matrix
+```r
+rbind(rep(1, dim(m)[1]), m) # insert a row of 1s at top.
+cbind(rep(1, dim(m)[2]), m) # insert a column of 1s at left.
+```
+
+### Merge
+
+Merging data frames (equivalent of SQL join):
+```r
+merge(d1, d2) # try to find a column C in common, and only keep rows whose values of C are in d1 and d2.
+merge(d1, d2, by.x="col1", by.y="col2") # specify explicitly the columns
+```
+
+By default merge will make an exclusive join, and thus will eliminate rows that are only in one of the data frames. To keep those rows:
+```r
+merge(d1, d2, all = TRUE) # keep single rows of both d1 and d2.
+merge(d1, d2, all.x = TRUE) # keep single rows from d1.
+merge(d1, d2, all.y = TRUE) # keep single rows from d2.
 ```
 
 ## Throwing an error and catching
