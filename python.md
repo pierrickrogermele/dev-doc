@@ -1894,7 +1894,7 @@ It is possible to distribute `.pyc` instead of `.py`, in order to avoid easy rea
 The module `compileall` can create `.pyc` files for all modules in a directory.
 
 ### Modules installation
-	
+
 Getting list of modules from inside python:
 ```bash
 python -c "help('modules')"
