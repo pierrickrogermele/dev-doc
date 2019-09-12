@@ -521,11 +521,18 @@ Running mysql:
 mysql.server start
 ```
 
+Installing MariaDB on Archlinux:
+```bash
+sudo pacman -S mariadb
+sudo mysql_install_db --user=mysql --basedir=/usr --datadir=/var/lib/mysql
+sudo systemctl enable --now mariadb
+```
+
 ### Command line
 
 Enter a root session:
 ```bash
-mysql -uroot
+mysql -u root
 ```
 
 Change root password:
@@ -584,51 +591,60 @@ quit
 
 To get a list of users:
 ```mysql
-select user, host, password from mysql.user
+select user, host, password from mysql.user;
 ```
 
 Add a user account:
 ```mysql
-create user pierrick identified by 'teddy'
+create user myuser identified by 'mypassword';
 ```
 
 Remove user account:
 ```mysql
-drop user pierrick
+drop user myuser
 ```
 
 Grant access:
 ```mysql
-grant all on mydb to someuser
-grant all privileges on training.* to 'user1'@'localhost' identified by 'tr@in1ng';
+grant all privileges on mydb.* to 'myuser'@'localhost' identified by 'mypassword';
 ```
 
 Set password:
 ```mysql
-set password for 'pierrick'@'localhost' = password(''); -- no password
-set password for 'pierrick'@'localhost' = password('my new password');
+set password for 'myuser'@'localhost' = password(''); -- no password
+set password for 'myuser'@'localhost' = password('mypassword');
 ```
 
 ### Creating and using a database
 
 Create a database:
 ```mysql
-create database menagerie;
+create database mydb;
+```
+
+Print list of databases:
+```mysql
+show databases;
 ```
 
 Use a database:
 ```mysql
-use menagerie;
+use mydb;
 ```
 
 Recreate a database and use it:
 ```mysql
-drop database if exists training;
-create database training character set utf8;
-use training;
+drop database if exists mydb;
+create database mydb character set utf8;
+use mydb;
 ```
 
 ### Tables
+
+List table:
+```mysql
+show tables;
+```
 
 Show columns of a table:
 ```mysql
