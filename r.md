@@ -967,6 +967,7 @@ isPackageLoaded('mypkg')
  * [Programmation en R : incorporation de code C et création de packages, Sophie Baillargeon, Université Laval](http://www.math.univ-montp2.fr/~pudlo/documents/ProgR_AppelC_Package_210607.pdf).
  * [Creating R Packages: A Tutorial, Friedrich Leisch](https://cran.r-project.org/doc/contrib/Leisch-CreatingPackages.pdf).
  * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+ * [Who Did What? The Roles of R PackageAuthors and How to Refer to Them](https://journal.r-project.org/archive/2012-1/RJournal_2012-1_Hornik~et~al.pdf).
 
  * [How to Install R Packages using devtools on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-r-packages-using-devtools-on-ubuntu-16-04).
 
