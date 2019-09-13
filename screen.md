@@ -56,6 +56,14 @@ Command               | Description
 `screen -ls`          | List sessions.
 `screen -list`        | List sessions.
 
+## hardcopy
+
+Copy the entire current buffer into a file. Hit `Ctrl-A :`, and then:
+```screen
+hardcopy -h myfile.txt
+```
+The file will be saved in $HOME.
+
 General commands
 ----------------
 
