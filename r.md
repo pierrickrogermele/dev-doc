@@ -1338,7 +1338,7 @@ myvector = vapply(mylist_or_vector, function(x) paste(x, 'some text'), FUN.VALUE
 
 Filter values of a list or vector:
 ```r
-mynewlist = Filter(function(x) ! is.null(x), mylist)
+mynewlist <- Filter(function(x) ! is.null(x), mylist)
 ```
 
 ### cbind / rbind & Typeg
