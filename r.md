@@ -863,6 +863,11 @@ Getting version of package:
 packageVersion('biodb')
 ```
 
+Getting the path of package data file:
+```r
+mypath <- system.file("extdata", "myfile.ext", package="mypkg")
+```
+
 ### Installing packages
 
 R packages can be found on [CRAN](http://cran.r-project.org/) web site.
