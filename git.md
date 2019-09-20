@@ -155,6 +155,11 @@ git remote set-url remote_name new_url
 
 ## reset
 
+Remove a file from the stage area:
+```bash
+git reset HEAD -- myfile
+```
+
 Remove all local modifications and reset to last commit of current branch:
 ```bash
 git reset --hard
