@@ -761,9 +761,13 @@ Logical negation:
 if ( ! condition) ...
 ```
 
-Ternary operator using if/else:
+Ternary operator using `if` and `else`:
 ```r
-x <- if(a==1) 1 else 2 # <=> x = a == 1 ? 1 : 2
+x <- if (a == 1) 1 else 2 # <=> x = a == 1 ? 1 : 2
+```
+The same using `ifelse`:
+```r
+x <- ifelse(a == 1, 1, 2)
 ```
 
 The `else` clause must appear at the end and on the same line than the `then` clause:
@@ -980,6 +984,18 @@ isPackageLoaded('mypkg')
  * How to write tests for a package: [Writing tests](http://kbroman.org/pkg_primer/pages/tests.html)
  * [The DESCRIPTION file](http://www.hep.by/gnu/r-patched/r-exts/R-exts_4.html).
  * [Package Development Prerequisites](https://support.rstudio.com/hc/en-us/articles/200486498-Package-Development-Prerequisites).
+
+Authors:
+```r
+Authors@R: c(person("Jacques-henri", "Sublemontier", email = "jacques-henri.sublemontier@cea.fr", role = c("aut")),
+             person("Pierrick", "Roger", email = "pierrick.roger@cea.fr", role = c("aut", "cre")))
+```
+Roles are:
+ * `aut` First author, and other people that did main contributions like
+   building the package, translating the code, etc.
+ * `cre` Maintainers.
+ * `ctb` Minor contributors.
+ * `trl` Translators of code into R language.
 
 #### Writing a vignette
 
@@ -1590,6 +1606,11 @@ script_path <- dirname(sub("--file=","",args[grep("--file",args)]))
 Test that a file or directory exists:
 ```r
 file.exists(path)
+```
+
+Test that a directory exists:
+```r
+dir.exists(path)
 ```
 
 Concatenate two paths:
