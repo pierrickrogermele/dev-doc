@@ -55,7 +55,7 @@ Uses VirtualBox.
 
  * [Installing docker on Debian](https://docs.docker.com/engine/installation/linux/debian/#install-using-the-repository).
  * [Get Docker for Ubuntu](https://docs.docker.com/engine/installation/linux/ubuntu/).
-  
+
 Official Docker installation does not work for Ubuntu zesty. For zesty, use open source version:
 ```bash
 curl -fsSL https://apt.dockerproject.org/gpg | sudo apt-key add -
