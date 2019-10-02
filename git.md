@@ -179,6 +179,19 @@ git revert my_commit_id
 
 ## rebase
 
+ * [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
+
+Rebase a branch A onto a branch B when a direct forward path is available:
+```bash
+git rebase B A
+```
+`A` can be omitted if it is the current checked out branch.
+
+Rebase a branch A previously forked from a branch B onto a branch C for which there exists no direct forward path:
+```bash
+git rebase --onto C B A
+```
+
 Change an old commit:
 ```bash
 git rebase -i HEAD~4 # If the commit is the 4th starting from HEAD.
@@ -390,21 +403,6 @@ This is a way to find the commit that deleted a file.
 Get current commit number:
 ```bash
 git rev-parse HEAD
-```
-
-## rebase
-
- * [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
-
-Rebase a branch A onto a branch B when a direct forward path is available:
-```bash
-git rebase B A
-```
-`A` can be omitted if it is the current checked out branch.
-
-Rebase a branch A previously forked from a branch B onto a branch C for which there exists no direct forward path:
-```bash
-git rebase --onto C B A
 ```
 
 ## revisions
