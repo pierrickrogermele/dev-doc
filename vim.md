@@ -701,45 +701,40 @@ Command                          | Description
 `:clast`                         | Last error.
 `:clist`                         | List errors.
 
-## Copy & paste
+## Copy, paste & registers
 
  * [How to paste yanked text into Vim command line?](http://stackoverflow.com/questions/3997078/how-to-paste-yanked-text-into-vim-command-line).
 
 Normal mode:
-keys  | Description
------ | -------------------
-`Y`   | Copy current line.
-`yy`  | Copy current line.
-`2Y`  | Copy current line and next one.
-`10Y` | Copy 10 lines, starting from current one.
-`yG`  | Copy all lines from current line to the end of the file.
-`P`   | Paste above current line or before cursor.
-`p`   | Paste below current line or after cursor.
-`yw`  | Copy from current position to beginning of next word.
-`yW`  | Copy from current position to beginning of next word (including punctuations).
-`ye`  | Copy from current position to end of current word.
-`yE`  | Copy from current position to end of current word (including punctuations).
-`y$`  | Copy from current position to end of the line.
-
-### Registers
-
-Command      | Description
------------- | -----------------------------------------------
-`"k`         | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
-`"K`         | Append to register k.
-`:reg`       | Get list of all actual registers.
+keys   | Description
+------ | -------------------
+`Y`    | Copy current line.
+`yy`   | Copy current line.
+`2Y`   | Copy current line and next one.
+`10Y`  | Copy 10 lines, starting from current one.
+`yG`   | Copy all lines from current line to the end of the file.
+`P`    | Paste above current line or before cursor.
+`p`    | Paste below current line or after cursor.
+`yw`   | Copy from current position to beginning of next word.
+`yW`   | Copy from current position to beginning of next word (including punctuations).
+`ye`   | Copy from current position to end of current word.
+`yE`   | Copy from current position to end of current word (including punctuations).
+`y$`   | Copy from current position to end of the line.
+`"k`   | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
+`"K`   | Append to register k.
+`:reg` | Get list of all actual registers.
 
 In command or insert mode:
-`C-R "`     | Paste.
-`C-R C-O "` | Pastes and handles control characters, if there are, inside the default register.
-
-Registers:
+keys        | Description
+----------- | -------------------
+`C-R ?`     | Paste from register ?.
+`C-R C-O ?` | Pastes and handles control characters, if there are, from register ?.
 
 Register | Description
 -------- | --------------------------------------------
 `0`      | Yank register. The one used when pressing `y`.
 `1`..`9` | Shifting delete registers. Used when pressing `c` or `d`.
-`"`      | Default register.
+`"`      | Default register (same as `0` ?).
 `a`..`z` | User registers.
 `+`, `*` | System clipboard registers.
 
@@ -891,6 +886,11 @@ runtime! syntax/xml.vim
 unlet b:current_syntax
 syntax include @Python syntax/python.vim
 syntax region pythonCode  start=+<Python>+ keepend end=+</Python>+  contains=@Python
+```
+
+To override a group link:
+```vim
+hi! def link rNumber Float
 ```
 
 ## Vimscript
