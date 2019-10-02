@@ -766,8 +766,12 @@ Sleep n micro-seconds sleep:
 ```c
  #include <unistd.h>
 if (usleep(300))
-	/* some error occured */;  
+	/* some error occured */;
 ```
+
+### zfp & fpzip
+
+ * [zfp & fpzip: Floating Point Compression](https://computing.llnl.gov/projects/floating-point-compression).
 
 ## IDEs
 
