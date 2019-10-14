@@ -609,10 +609,24 @@ Grant access:
 grant all privileges on mydb.* to 'myuser'@'localhost' identified by 'mypassword';
 ```
 
+Grant a user the right to create databases matching a pattern:
+```mysql
+grant all privileges on `mydbprefix\_%` . * to 'myuser'@'localhost';
+```
+
 Set password:
 ```mysql
 set password for 'myuser'@'localhost' = password(''); -- no password
 set password for 'myuser'@'localhost' = password('mypassword');
+```
+
+To check privileges, first login:
+```bash
+mysql -y myuser
+```
+Then run:
+```mysql
+show grants;
 ```
 
 ### Creating and using a database
