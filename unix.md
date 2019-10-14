@@ -857,6 +857,16 @@ Enable and start now:
 systemctl enable --now myunit
 ```
 
+List services:
+```bash
+systemctl list-units
+```
+
+Deactivate a service (stop it):
+```bash
+systemctl stop myunit
+```
+
 ### CUPS
 
  * [Connecting Ubuntu client to Cups server](http://blog.delgurth.com/2009/01/06/connecting-ubuntu-client-to-cups-server/).
