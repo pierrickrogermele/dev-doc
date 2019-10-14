@@ -268,6 +268,13 @@ for e in ${my_array[@]} ; do
 done
 ```
 
+If elements contain spaces, use quotes:
+```bash
+for e in "${my_array[@]}" ; do
+	# ...
+done
+```
+
 Read an array from a file:
 ```bash
 myarr=($(cat myfile))
@@ -320,10 +327,20 @@ if [[ $mylist =~ (^| )$myelem($| ) ]] ; then
 fi
 ```
 
+String matching with regexp:
+```bash
+echo $(expr match "My text to search." '^.* [txe]\+ ')
+```
+Returns the numbers of matched characters.
+The start of line character is implicit. Thus the following line will return 0:
+```bash
+echo $(expr match "My text to search." ' [txe]\+ ')
+```
+
 String extraction with regexp:
 ```bash
-echo `expr match "$stringZ" '\(.[b-c]*[A-Z]..[0-9]\)'`
-echo `expr "$stringZ" : '\(.[b-c]*[A-Z]..[0-9]\)'`
+echo $(expr match "My text to search." '^.* \([txe]\+\) ')
+echo $(expr "My text to search." : '^.* \([txe]\+\) ')
 ```
 
 Convert a string to lowercase:
