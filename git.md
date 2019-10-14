@@ -155,6 +155,11 @@ git remote set-url remote_name new_url
 
 ## reset
 
+Delete last local commit:
+```bash
+git reset --hard HEAD~1
+```
+
 Remove a file from the stage area:
 ```bash
 git reset HEAD -- myfile
@@ -388,6 +393,17 @@ git merge my_other_branch
 Ignore end of line characters:
 ```bash
 git merge -Xignore-space-at-eol ...
+```
+
+Merging a repository into another one. We suppose repository A and repository B
+are two completely different repositories, and they have no files in common. We
+want to merge A into B. From inside repository B we run:
+```bash
+git remote add repos_A /my/URL/to/repos/A
+git fetch repos_A
+git checkout your_branch_in_which_to_merge
+git merge repos_A/master --allow-unrelated-histories
+git remote rm repos_A
 ```
 
 ## rev-list
