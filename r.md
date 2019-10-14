@@ -340,7 +340,7 @@ Another example which counts the number of elements of an array which are <= 1:
 p <- sum(v <= 1) # where v is an array
 ```
 
-### Floating number
+### Numeric (float)
 
 By default a number is a floating number (called numeric in R):
 ```r
@@ -810,21 +810,33 @@ Operator  | Description
 `^`, `**` | Exponentiation.
 `%%`      | Modulus (x mod y) 5%%2 is 1.
 `%/%`     | Integer division 5%/%2 is 2.
+`%*%`     | Matrix multiplication.
+
+Assignment operatos:
+Operator    | Description
+----------- | --------------------------
+`<-`, `=`
+`<<-`
+`->`
+`->>`
 
 Logical operators:
 
 Operator    | Description
 ----------- | --------------------------
-`<`	        | Less than.
+`<`         | Less than.
 `<=`        | Less than or equal to.
-`>`	        | Greater than.
+`>`         | Greater than.
 `>=`        | Greater than or equal to.
 `==`        | Exactly equal to.
 `!=`        | Not equal to.
 `!`         | Not.
-`|`         | Or.
-`&`         | And.
+`|`         | Or on all elements of vectors.
+`&`         | And on all elements of vectors.
+`||`        | Or on first elements of vectors.
+`&&`        | And on first elements of vectors.
 `isTRUE(x)` | Test if x is TRUE.
+`%in%`      | Test if some values are found in another list of values.
 
 ## Maths
 
