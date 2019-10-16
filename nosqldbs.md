@@ -47,6 +47,11 @@ Example of running a Javascript:
 mongo mylocaldb muyscript.js
 ```
 
+Exit:
+```
+exit
+```
+
 #### Managing databases
 
 Getting statistics about a database:
@@ -91,6 +96,16 @@ To list all collections of a database:
 ```
 show collections
 ```
+
+To list the content of a collection:
+```
+db.mycol.find()
+```
+or
+```
+db.mycol.find().pretty()
+```
+to have JSON printed with new lines.
 
 To drop a collection:
 ```
