@@ -455,3 +455,7 @@ See file tomcat-users.xml in <Tomcat>/conf directory, and add the role manager-g
 #### Embedded tomcat
 Tomcat can be embedded.
 http://stackoverflow.com/questions/640022/howto-embed-tomcat-6
+
+## .htaccess file
+
+ * [How can I redirect and rewrite my URLs with an .htaccess file?](https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-).
