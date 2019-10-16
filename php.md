@@ -93,8 +93,6 @@ In a Homebrew installation, you will find it at `/usr/local/etc/php/7.3/php.ini`
 
 Two systems exist in PHP: pear and pecl.
 
-Installation of packages is done through the PEAR system.
-
 Update PEAR system:
 ```bash
 sudo pear upgrade PEAR
@@ -1253,9 +1251,14 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
  * [MongoDB](http://php.net/manual/en/book.mongo.php).
  * [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
 
-Installation:
+Installation with pecl:
 ```bash
 pecl install mongodb
+```
+
+Installation on ArchLinux with pacman:
+```bash
+pacman -S php-mongodb
 ```
 
 ### Gettext
