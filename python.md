@@ -501,6 +501,12 @@ Length:
 len(a)
 ```
 
+Test if a list is empty:
+```python
+if a:
+	doSomething()
+```
+
 Modifyng functions:
 ```python
 a.sort()	# sort, in place
