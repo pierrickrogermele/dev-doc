@@ -1209,6 +1209,14 @@ fclose($fp);
 
 Composer is a dependency manager.
 
+## Writing a web service
+
+ * [Creating a RESTful API with PHP](http://coreymaynard.com/blog/creating-a-restful-api-with-php/).
+
+BOF:
+ * [Build your first web service with PHP, JSON and MySql](https://trinitytuts.com/build-first-web-service-php/).
+ * [Creating a simple REST API in PHP](https://www.leaseweb.com/labs/2015/10/creating-a-simple-rest-api-in-php/).
+
 ## Interesting modules
 ### PHPUnit
 
