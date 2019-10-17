@@ -3,6 +3,8 @@ EMULATORS
 
 ## Ansible
 
+ * [Ansible Documentation](https://docs.ansible.com/ansible/latest/index.html).
+ * [Module Index](https://docs.ansible.com/ansible/latest/modules/modules_by_category.html).
  * [Ansible](http://www.ansible.com/).
  * [Ansible as a provisioner for Vagrant](https://docs.vagrantup.com/v2/provisioning/ansible.html).
  * [Multi-Machine Vagrant Ansible Gotcha](http://blog.wjlr.org.uk/2014/12/30/multi-machine-vagrant-ansible-gotcha.html).
