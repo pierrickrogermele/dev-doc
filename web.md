@@ -105,6 +105,13 @@ Key      | Description
 
 ### Apache
 
+#### Modules
+
+To list enabled modules:
+```bash
+apache2ctl -M
+```
+
 #### MacOS-X
 
 To start:
