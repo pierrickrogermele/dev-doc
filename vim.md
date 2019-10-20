@@ -585,6 +585,8 @@ Command      | Description
 
 ## Buffers & files
 
+ * [Get the name of the current file](https://vim.fandom.com/wiki/Get_the_name_of_the_current_file).
+
 Command               | Description
 --------------------- | ---------------
 `:e myfile`           | Open file.
@@ -592,6 +594,8 @@ Command               | Description
 `:e!`                 | Revert file.
 `:e .`                | Open current directory in navigator.
 `:E`                  | Open directory of current file in navigator.
+`Ctrl-G`              | Print file name of the current buffer.
+`1 Ctrl-G`            | Print full path of the current buffer.
 `:ls`                 | List open files.
 `:buffers`            | List open files.
 `:b#`                 | Switch to alternate buffer.
