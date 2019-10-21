@@ -1989,6 +1989,14 @@ from ..package import module3
 
 ## Some interesting modules
 
+### SciKit-learn
+
+Module for machine learning.
+
+ * [scikit-learn](https://scikit-learn.org/stable/).
+ * [5.1. Pipelines and composite estimators](https://scikit-learn.org/stable/modules/compose.html).
+ * [Choosing the right estimator](https://scikit-learn.org/stable/tutorial/machine_learning_map/index.html).
+
 ### Google Drive API
 
  * [Google Drive API Python Quickstart](https://developers.google.com/drive/api/v3/quickstart/python).
