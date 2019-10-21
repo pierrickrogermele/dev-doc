@@ -270,6 +270,11 @@ config.vm.provider "virtualbox" do |vb|
 end
 ```
 
+Install the vagrant-alpine plugin:
+```bash
+vagrant plugin install vagrant-alpine
+```
+
 Naming provision directives:
 ```bash
   config.vm.provision "Run my bootstrap command.", type: "shell", path: "vagrant-bootstrap.sh"
