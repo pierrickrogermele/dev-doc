@@ -80,6 +80,19 @@ By default HTML output of tools is disabled. Only a sanitized output is printed.
 
 To allow HTML to be printed as is, the tool must be granted privileges. For this, add the tool id to the file `config/sanitize_whitelist.txt`.
 
+## Allow accessibility from outside host
+
+Set in `galaxy.yml`:
+```
+uwsgi:
+  http: 0.0.0.0:8080
+```
+or
+```
+uwsgi:
+  http: :8080
+```
+
 ## Running tests
 
 See:
