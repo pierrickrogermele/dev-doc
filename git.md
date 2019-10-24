@@ -155,11 +155,6 @@ git remote set-url remote_name new_url
 
 ## reset
 
-Delete last local commit:
-```bash
-git reset --hard HEAD~1
-```
-
 Remove a file from the stage area:
 ```bash
 git reset HEAD -- myfile
@@ -168,6 +163,11 @@ git reset HEAD -- myfile
 Remove all local modifications and reset to last commit of current branch:
 ```bash
 git reset --hard
+```
+
+Delete last local commit:
+```bash
+git reset --hard HEAD~1
 ```
 
 Remove all last local commits on current branch:
@@ -406,6 +406,13 @@ git merge repos_A/master --allow-unrelated-histories
 git remote rm repos_A
 ```
 
+## rm
+
+Removing a submodule:
+```bash
+git rm my/sub/module
+```
+
 ## rev-list
 
 Find the last commit that affected a file:
@@ -594,11 +601,6 @@ The submodules are listed inside `.gitmodules` file, which is the only thing com
 Moving a submodule folder:
 ```bash
 git mv old/submod new/submod
-```
-
-Removing a submodule:
-```bash
-git rm my/sub/module
 ```
 
 ### Basic operations
