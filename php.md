@@ -126,22 +126,22 @@ Modules are installed inside `ext` folder. Example:
 
 ### Modules loading
 
-Including a php module:
+Including a PHP module:
 ```php
 <?php
-require "a_module.php"; // stops if error
-include "a_module.php"; // goes on if error (prints <warning)
+require_once "a_module.php"; // stops if error
+include_once "a_module.php"; // goes on if error (prints warning)
 ```
 
-To include only once each module:
+To include a web page part:
 ```php
 <?php
-require_once
-include_once
+require "my_web_page_part.inc";
+include "my_web_page_part.inc";
 ```
 
 The include path is defined inside `/etc/php.ini`:
-``
+```
 include_path = .:/usr/local/lib/php:./include
 ```
 
@@ -204,6 +204,11 @@ With this option, PHP will not try to convert basic types (`int`, `float`, `stri
 Get type:
 ```php
 <? $type = gettype($myvar) ?>
+```
+
+Get the class of an object:
+```php
+<? $type = get_class($myvar) ?>
 ```
 
 ### Constants
@@ -1217,6 +1222,11 @@ BOF:
  * [Build your first web service with PHP, JSON and MySql](https://trinitytuts.com/build-first-web-service-php/).
  * [Creating a simple REST API in PHP](https://www.leaseweb.com/labs/2015/10/creating-a-simple-rest-api-in-php/).
 
+## PhpDoc
+
+ * [Introduction to PhpDoc](https://www.sitepoint.com/introduction-to-phpdoc/).
+ * [Documenting code in phpDoc for Laravel 4](https://stackoverflow.com/questions/28292447/documenting-code-in-phpdoc-for-laravel-4).
+
 ## Interesting modules
 ### PHPUnit
 
@@ -1271,12 +1281,17 @@ pacman -S php-mongodb
 
 ### Gettext
 
+Internationalization of applications.
+
+ * [Gettext](https://www.php.net/manual/en/book.gettext.php).
+
 How to install gettext module for PHP on macos?
 
 Do we need to enable the following line inside `php.ini`?:
 ```
 ;extension=gettext
 ```
+
 ### SOAP
 
  * [Massbank PHP example](http://www.massbank.jp/manuals/api-doc_en/getRecordInfo.php).
