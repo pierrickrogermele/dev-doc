@@ -1482,14 +1482,16 @@ import locale
 locale.setlocale(locale.LC_ALL, '')
 ```
 
-## File system and I/O
+## I/O
 
 Open a file:
 ```python
 f = open('/tmp/workfile', 'w')
 ```
-Modes are r, w, a and r+ (both reading and writing)
-Under Windows OS, there's also the b modifier for binary files: rb, wb, r+b
+See [open](https://docs.python.org/3/library/functions.html#open).
+Modes are `r`, `w`, `a` and `r+` (both reading and writing)
+By default files are opened in text mode, but there is also a binary mode specfied with the `b` modifier (`rb`, `wb`, `r+b`) in which content is read/write into/from bytes objects without any decoding/encoding.
+In text mode, a `newline` option is available to control the reading and writing of end of line (EOL) characters. By default all EOL characters are replaced by a single `"\n"` when reading, and `"\n"` characters are replaced by `os.linesep` when writing.
 
 Close a file:
 ```python
@@ -1552,6 +1554,8 @@ Standard streams:
 ```python
 sys.stdin
 ```
+
+## File system
 
 Path manipulation:
 ```python
