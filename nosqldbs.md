@@ -52,6 +52,13 @@ Exit:
 exit
 ```
 
+#### Security
+
+List users:
+```
+db.getUsers()
+```
+
 #### Managing databases
 
 Getting statistics about a database:
