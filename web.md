@@ -186,6 +186,13 @@ In Apache 2.4:
 
 Make sure that the path `/Users/someuser/dev/my/project/site` is allowed for access by everyone, as well as the files contained in the folder.
 
+#### Enable .htaccess
+
+Set the following line inside Apache config file to allow .htaccess in a directory and all its sub-folders:
+```
+AllowOverride All
+```
+
 #### Adding a user to httpd user file
 
 ```bash
