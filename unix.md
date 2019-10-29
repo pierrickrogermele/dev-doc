@@ -2609,9 +2609,9 @@ Starting X from kmscon:
 
 ## tmux
 
-Reload config file from within tmux:
-```tmux
-source-file ~/.tmux.conf
+For reloading the config file inside current tmux session, run the following command in shell:
+```bash
+tmux source-file ~/.tmux.conf
 ```
 
 ### Prefix
