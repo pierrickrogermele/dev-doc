@@ -1827,7 +1827,17 @@ Get a list of attributes and their values (object fields):
 attributes(x)
 ```
 
-### S3
+### S3 (Generics)
+
+ * [R S3 Classes](https://www.datamentor.io).
+
+Objects are lists with an attribute `class` set to the class name.
+
+Methods are handled through generics. A generic function defines a method callable on objects with `mygeneric(myobj)`. A default implementation, `mygeneric.default()` may be defined for all objects, and specific methods for defined classes like `mygeneric.myclass()`.
+
+4 special groups (genericGroup object) exist for defining methods on group levels rather than on individual level. These 4 groups are: Math, Ops, Complex and Summary.
+
+"internal generics" are built-in generic functions that can be specialized by the developer.
 
 Check inheritance:
 ```r
@@ -1836,7 +1846,15 @@ if (inherits(o, "MyClass"))
 ```
 `inherits` has been extended to work for S4, but is not reliable. I've experienced malfunctioning from inside a package, when testing if an object inherits from a base class.
 
-### S4
+### S4 (Formal Classes)
+
+ * [A (Not So) Short Introduction to S4 - cran.r-project.org](https://cran.r-project.org/doc/contrib/Genolini-S4tutorialV0-5en.pdf).
+
+The S4 object system adds the following features:
+ * Slots for typed members.
+ * Generator function (constructor) returned by `setClass()`.
+
+As in S3 special groups (S4groupGeneric objects) exist: Arith, Compare, Ops, Logic, Math, Math2, Summary and Complex.
 
 ```r
 library(methods)
