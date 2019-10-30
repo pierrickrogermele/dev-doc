@@ -1489,7 +1489,17 @@ foo <- function(x, ...) {
 }
 ```
 
-## Error handling & debugging
+Modifying a parameter:
+```r
+foo <- function(x) {
+	nameX <- deparse(substitute(x))
+	x <- 4
+	assign(nameX, x, envir=parent.frame())
+	invisible()
+}
+```
+
+## Error & warning handling
 
 Throwing an error:
 ```r
@@ -1534,11 +1544,27 @@ Call a function and display all errors on stderr without failing:
 try(my_function(a,b,c))
 ```
 
-### Error during wrapup
-
+Error during wrapup:
 `Error during wrapup: one of "yes", "no", "ask" or "default" expected.`
 An `Error during wrapup` happens when inside the error callback function defined with `options(error = ...)` (see upon).
 The message `one of "yes", "no", "ask" or "default" expected.` is due to the fact that a bad value is passed to the save parameter if the `quit()` method.
+
+## Debugging
+
+Set a breakpoint for a class:
+```r
+MyClass$trace(myFct, browse)
+```
+
+Set a breakpoint for an object:
+```r
+obj$trace(myFct, browse)
+```
+
+Cancel a break point:
+```r
+MyClass$untrace(myFct)
+```
 
 ## Memory
 
@@ -1827,6 +1853,11 @@ Get a list of attributes and their values (object fields):
 attributes(x)
 ```
 
+Class union (define a new class that is an union of several classes):
+```r
+setClassUnion("newClass", c("C1", "C2"))
+```
+
 ### S3 (Generics)
 
  * [R S3 Classes](https://www.datamentor.io).
@@ -1854,7 +1885,7 @@ The S4 object system adds the following features:
  * Slots for typed members.
  * Generator function (constructor) returned by `setClass()`.
 
-As in S3 special groups (S4groupGeneric objects) exist: Arith, Compare, Ops, Logic, Math, Math2, Summary and Complex.
+As in S3, special groups (S4groupGeneric objects) exist: Arith, Compare, Ops, Logic, Math, Math2, Summary and Complex.
 
 ```r
 library(methods)
@@ -1874,13 +1905,15 @@ if (methods::extends("SubClass", "SuperClass"))
 
 Declare a class:
 ```r
-MyClass <- setClass('MyClass', slots = c(a = 'integer', b = 'numeric'))
+MyClass <- setClass('MyClass', representation=representation(a='integer', b='numeric'))
 ```
 
 Inheriting:
 ```r
-MySubClass <- setClass('MySubClass', contains = 'MyClass', slots = c(c = 'character'))
+MySubClass <- setClass('MySubClass', contains='MyClass', representation=representation(c='character'))
 ```
+
+`ANY` is the root class of all classes. If `contains` is not set, the class inherits from `ANY`.
 
 Instantiate a class:
 ```r
@@ -1889,6 +1922,60 @@ x <- new('MyClass', a = 1L, b = 45.32)
 or
 ```r
 x <- MyClass(a = 1L, b = 45.32)
+```
+
+Initialize method:
+```r
+setMethod("initialize", "MyClass", function(.Object, a, b) {
+
+	if ( ! missing(a) && ! missing(b)) {
+		.Object@a <- a
+		.Object@b <- b
+		validObject(.Object)
+	}
+
+	return(.Object)
+})
+```
+
+Since there is only one initializer, a more common way of constructing an S4 object is to use contructor functions instead of the class constructor:
+```r
+createMyClass <- function(a, b) {
+	# ...
+}
+
+createMyClassFromList <- function(x) {
+	# ...
+}
+```
+
+Calling super class' method:
+```r
+MyClass <- setClass('MyClass', contains='MySuperClass', representation=representation(a='integer'))
+setMethod("initialize", "MyClass", function(.Object, a) {
+	callNextMethod() # Call to super class initializer, can take arguments. If no arguments are provided, it will use the arguments available in the current function.
+	# ...
+})
+```
+Another way is to use `as` to cast the instance:
+```r
+myMethod(as(myobj, "MySuperClass"))
+```
+
+Modify slots inherited from super class:
+```r
+as(myobj, "MySuperClass") <- mySuperClassObj
+```
+
+Redefine the `is()` method:
+```r
+setIs('MyClass1', 'MyClass2', coerce=function(from, to) {
+})
+```
+
+Virtual class:
+```r
+setClass('A', representation=representation(x='numeric', 'VIRTUAL'))
 ```
 
 Accessing an object's slot:
@@ -1923,13 +2010,129 @@ isS4(show)  # TRUE.
 Define a method:
 ```r
 setGeneric("myMethod", function(o) { standardGeneric("myMethod") })
-setMethod('myMethod', 'MyClass', function(o) {})
+setMethod('myMethod', 'MyClass', function(o) { cat("Do something with o\n") })
+```
+
+Define a method with two arguments:
+```r
+setGeneric("myMethodWith2Args", function(a, b) { standardGeneric("myMethodWith2Args") })
+setMethod('myMethodWith2Args', 'integer', function(a, b) { a * b }) # ANY is used for second argument.
+setMethod('myMethodWith2Args', 'numeric', function(a, b) { a + b }) # ANY is used for second argument.
+setMethod('myMethodWith2Args', c(a='integer', b='numeric'), function(a, b) { a / b })
+```
+We can also explictly use "ANY" or "missing" for an argument:
+```r
+setMethod('myMethodWith2Args', c(a='integer', b='missing'), function(a, b) { cat("b is missing.\n") })
+setMethod('myMethodWith2Args', c(a='integer', b='ANY'), function(a, b) { cat("b is whatever.\n") })
+```
+
+Define a getter:
+```r
+setGeneric("getMyField", function(o) { standardGeneric("getMyField") })
+setMethod('getMyField', 'MyClass', function(o) { return(o@myField) })
+```
+
+Define a setter:
+```r
+setGeneric("setMyField<-", function(object, value) { standardGeneric("setMyField<-") })
+setReplaceMethod('setMyField', 'MyClass', function(object, value) {
+	object@myField <- value
+	validObject(object)
+	return(object)
+})
+```
+
+Redefining the `[` operator:
+```r
+setMethod('[', 'MyClass', function(x, i, j, drop) {
+	return(x@m[i, j, drop=drop])
+})
+```
+
+Redefining the `[<-` operator:
+```r
+setReplaceMethod('[', 'MyClass', function(x, i, j, value) {
+	x@m[i, j] <- value
+	validObject(x)
+	return(x)
+})
+```
+
+Avoid redefinition of a generic:
+```r
+lockBinding("myMethod", .GlobalEnv)
+```
+
+Get a list of all methods of a class:
+```r
+showMethods(class="MyClass")
+```
+
+Get the implementation of a method in a class:
+```r
+getMethod("myMethod", "MyClass")
+```
+
+Get the implementation of a method in a class or in the first superclass where it exists:
+```r
+selectMethod("myMethod", "MyClass")
+```
+
+Test if a method exists for a class:
+```r
+existsMethod("myMethod", "MyClass")
+```
+
+Test if a class or one of its superclasses has a method:
+```r
+hasMethod('myMethod', 'MyClass')
+```
+
+Getting the names of the slots:
+```r
+slotNames("MyClass")
+```
+
+Getting the names and the types of the slots:
+```r
+getSlots("MyClass")
+```
+
+Getting also inheritance information:
+```r
+getClass("MyClass")
 ```
 
 Call a method:
 ```r
 myMethod(my_object)
 ```
+
+Validity checking
+```r
+setValidity("MyClass", function(object) {
+    if (object@n == 0)
+        return("WRONG")
+    return(TRUE)
+})
+```
+or when defining the class:
+```r
+MyClass <- setClass("MyClass", representation=representation(n='integer'),
+                    validity=function(object) { if (object@n > 0) TRUE else "WRONG" })
+```
+
+Default values in initializer:
+```r
+setClass("MyClass", representation=representation(a='integer'), prototype=prototype(a=4L))
+```
+
+Empty object: a class should ensure that when calling `new()` without arguments, the length of the returned object is zero:
+```r
+cl <- setClass("MyClass", representation=representation(a='integer'))
+setMethod("length", "MyClass", function(x) { return(length(x@a)) })
+```
+
 
 ### RC (Reference Classes, aka R5)
 
@@ -1996,14 +2199,17 @@ Apparently, only the first class will provide field members, subsequent classes 
 
 #### Field validity
 
+The S4 `validObject()` method can be implemented for R5 classes since they are S4 classes.
+
 ```r
 A <- setRefClass("A", fields=list(x="numeric"))
 
 setValidity("A", function(object) {
-                if (length(object$x) != 1L || !all(object$x < 11))
-                        "'x' must be length 1 and < 11"
-                            else NULL
-                            })
+	if (length(object$x) != 1L || !all(object$x < 11))
+		"'x' must be length 1 and < 11"
+	else
+		NULL
+})
 a = A(x=11)
 validObject(a)
 ```
