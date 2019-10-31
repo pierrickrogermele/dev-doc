@@ -401,6 +401,10 @@ y <- vector(mode = 'integer', length = 0)
 a <- numeric()
 y <- 5:8
 y <- 5:1
+seq(5) # 1 2 3 4 5
+seq(0) # 1 0 !!!!
+seq_along(5) # 1
+seq_along(c(3,1,3,8)) # 1 2 3 4
 y <- seq(from = 12, to = 30, by = 3) # 12 15 18 21 24 27 30
 y <- seq(from = 1.1, to = 2, length = 10)
 y <- rep(8,4) # 8 8 8 8
