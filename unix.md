@@ -1573,6 +1573,11 @@ Recursive:
 rgrep ...
 ```
 
+Search for files containing non-ASCII characters and control characters:
+```bash
+LC_ALL=C grep -l '[^[:print:]]'
+```
+
 ### paste
 
 Paste two or more files side by side:
@@ -2644,11 +2649,24 @@ Command                   | Description
 `prefix "`                | Split pane horizontally.
 `prefix %`                | Split pane vertically.
 `prefix arrow key`        | Switch pane.
-`prefix {`                | Move pane to previous position.
-`prefix }`                | Move pane to next position.
+`prefix {`                | Swap current pane with previous pane.
+`prefix }`                | Swap current pane with next pane.
 `prefix c`                | Create a new window.
 `prefix n`                | Move to the next window.
 `prefix p`                | Move to the previous window.
+`prefix Ctrl-o`           | Rotate panes in increasing order.
+`prefix Alt-o`            | Rotate panes in decreasing order.
+`prefix q`                | Show pane number.
+`prefix &`                | Kill window.
+`prefix x`                | Kill pane.
+`prefix <space>`          | Toggle between layout.
+`prefix Esc-1`            | Select layout 1 even-horizontal
+`prefix Esc-2`            | Select layout 2 even-vertical
+`prefix Esc-3`            | Select layout 3 main-horizontal
+`prefix Esc-4`            | Select layout 4 main-vertical
+`prefix Esc-5`            | Select layout 5 tiled
+`prefix +`                | Break pane into window
+`prefix -`                | Restore pane from window
 
 Resize the current pane down:
 ```
