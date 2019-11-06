@@ -1613,10 +1613,16 @@ To run multiple expressions in the same sed:
 sed -re '...' -e '...' -e '...' ...
 ```
 
-To edit in-place:
+To edit in-place (BSD sed):
 ```bash
 sed -e mycommand -i .bkp myfile # save backup with .bkp extension
 sed -e mycommand -i '' myfile # no backup
+```
+For GNU sed:
+```bash
+sed -e mycommand -i.bkp myfile # save backup with .bkp extension
+sed -e mycommand --in-place=.bkp myfile # save backup with .bkp extension
+sed -e mycommand -i myfile # no backup
 ```
 
 To edit the first line only:
