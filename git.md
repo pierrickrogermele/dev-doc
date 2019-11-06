@@ -175,62 +175,6 @@ Remove all last local commits on current branch:
 git reset --hard @{u}
 ```
 
-## revert
-
-Revert a commit:
-```bash
-git revert my_commit_id
-```
-
-## rebase
-
- * [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
-
-Rebase a branch A onto a branch B when a direct forward path is available:
-```bash
-git rebase B A
-```
-`A` can be omitted if it is the current checked out branch.
-
-Rebase a branch A previously forked from a branch B onto a branch C for which there exists no direct forward path:
-```bash
-git rebase --onto C B A
-```
-
-Change an old commit:
-```bash
-git rebase -i HEAD~4 # If the commit is the 4th starting from HEAD.
-```
-This will open a list of the commits inside the default editor.
-Change `pick` to `edit` on the commit line you want to modify the message.
-Save and quit the editor.
-Now modify your commit message by running:
-```bash
-git commit --amend
-```
-And finish rebasing:
-```bash
-git rebase --continue
-```
-If the commit was already pushed to the server, run:
-```bash
-git push --force
-```
-
-## fetch
-
-Remove locally all remote-tracking that point to remote branches that no longer
-exist:
-```bash
-git fetch --prune
-git fetch -p
-```
-
-Fetch tags:
-```bash
-git fetch --tags
-```
-
 ## branch
 
 List local branches:
@@ -305,39 +249,18 @@ git config core.sharedRepository umask
 `group` (or `true`) will use group permissions.
 `umask` (or `false`) will use umask permissions.
 
-## push
+## fetch
 
-Deleting a branch on a remote:
+Remove locally all remote-tracking that point to remote branches that no longer
+exist:
 ```bash
-git push -d origin my_branch # Delete remotely
-git push origin :my_branch   # Delete branch my_branch on remote
+git fetch --prune
+git fetch -p
 ```
 
-Mirroring local repository onto a remote:
+Fetch tags:
 ```bash
-git push --mirror /my/remote/repos
-```
-
-Push tags:
-```bash
-git push --tags ...
-```
-
-## stash
-
-Create a stash where all current modifications are put:
-```bash
-git stash push
-```
-
-List all stashes:
-```bash
-git stash list
-```
-
-Apply most recent stash and drop it:
-```bash
-git stash pop
+git fetch --tags
 ```
 
 ## log
@@ -406,11 +329,63 @@ git merge repos_A/master --allow-unrelated-histories
 git remote rm repos_A
 ```
 
-## rm
+## mv
 
-Removing a submodule:
+Moving a submodule folder:
 ```bash
-git rm my/sub/module
+git mv old/submod new/submod
+```
+## push
+
+Deleting a branch on a remote:
+```bash
+git push -d origin my_branch # Delete remotely
+git push origin :my_branch   # Delete branch my_branch on remote
+```
+
+Mirroring local repository onto a remote:
+```bash
+git push --mirror /my/remote/repos
+```
+
+Push tags:
+```bash
+git push --tags ...
+```
+
+## rebase
+
+ * [Git Branching - Rebasing](https://git-scm.com/book/en/v2/Git-Branching-Rebasing).
+
+Rebase a branch A onto a branch B when a direct forward path is available:
+```bash
+git rebase B A
+```
+`A` can be omitted if it is the current checked out branch.
+
+Rebase a branch A previously forked from a branch B onto a branch C for which there exists no direct forward path:
+```bash
+git rebase --onto C B A
+```
+
+Change an old commit:
+```bash
+git rebase -i HEAD~4 # If the commit is the 4th starting from HEAD.
+```
+This will open a list of the commits inside the default editor.
+Change `pick` to `edit` on the commit line you want to modify the message.
+Save and quit the editor.
+Now modify your commit message by running:
+```bash
+git commit --amend
+```
+And finish rebasing:
+```bash
+git rebase --continue
+```
+If the commit was already pushed to the server, run:
+```bash
+git push --force
 ```
 
 ## rev-list
@@ -428,26 +403,36 @@ Get current commit number:
 git rev-parse HEAD
 ```
 
-## revisions
+## revert
 
-See `man gitrevisions`.
+Revert a commit:
+```bash
+git revert my_commit_id
+```
 
-`@{u}` or `@{upstream}`: remote branch tracked by current local branch.
-`mybranch@{u}`: remote branch tracked by mybranch.
+## rm
 
-`mybranch~`: first parent of mybranch. `~` only follows the first parent,
-always.
-`mybranch~~~~~` or `mybranch~5` means the 5th parent, always following the first
-parent.
+Removing a submodule:
+```bash
+git rm my/sub/module
+```
 
-`mybranch^` is equivalent to `mybranch~`.
-By default `^` follow also the first parent, but a number after it has a
-different meaning: it means to follow the nth parent.
-So `mybranch^1` is the same as `mybranch^`, and `mybranch^1^1^1^1` is the same
-as `mybranch~4`.
-To follow the first parent, then the third, and finally the second:
-`mybranch^^3^2`.
-See `man gitrevisions`, for an example with a tree.
+## stash
+
+Create a stash where all current modifications are put:
+```bash
+git stash push
+```
+
+List all stashes:
+```bash
+git stash list
+```
+
+Apply most recent stash and drop it:
+```bash
+git stash pop
+```
 
 ## tag
 
@@ -484,6 +469,27 @@ Move tag to current commit:
 ```bash
 git tag -f mytag
 ```
+
+## revisions
+
+See `man gitrevisions`.
+
+`@{u}` or `@{upstream}`: remote branch tracked by current local branch.
+`mybranch@{u}`: remote branch tracked by mybranch.
+
+`mybranch~`: first parent of mybranch. `~` only follows the first parent,
+always.
+`mybranch~~~~~` or `mybranch~5` means the 5th parent, always following the first
+parent.
+
+`mybranch^` is equivalent to `mybranch~`.
+By default `^` follow also the first parent, but a number after it has a
+different meaning: it means to follow the nth parent.
+So `mybranch^1` is the same as `mybranch^`, and `mybranch^1^1^1^1` is the same
+as `mybranch~4`.
+To follow the first parent, then the third, and finally the second:
+`mybranch^^3^2`.
+See `man gitrevisions`, for an example with a tree.
 
 ## gitk
 
@@ -597,11 +603,6 @@ The `git pull` command changes which commit their submodule directory points to.
 The `git submodule update` command actually merges in the new code.
 
 The submodules are listed inside `.gitmodules` file, which is the only thing commited inside repository.
-
-Moving a submodule folder:
-```bash
-git mv old/submod new/submod
-```
 
 ### Basic operations
 
