@@ -1333,6 +1333,15 @@ unzip -qq myfile.zip
 
 ## File viewing, formating and editing
 
+### sc
+
+sc is a spreadsheet program. It has its own file format.
+
+Edit a CSV file:
+```bash
+cat myfile.csv | psc -k -d, | sc
+```
+
 ### column
 
 Align the column of a file for viewing:
@@ -1341,9 +1350,14 @@ column -t myfile
 ```
 By default the columns are considered separated by white spaces (space and tab).
 
-If you have a csv file:
+If you have a CSV file:
 ```bash
-column -t -s , myfile
+column -t -s , myfile.csv
+```
+
+With a TSV file:
+```bash
+column -t -s $'\t' myfile.tsv
 ```
 
 ### hexdump
