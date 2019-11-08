@@ -569,6 +569,11 @@ d[,1] # get first column
 d$kids # get column "kids"
 ```
 
+Remove rows:
+```r
+d[-c(1,5,10),]
+```
+
 A data frame can have a names attribute (for naming columns):
 ```r
 names(my_data_frame)
@@ -751,6 +756,16 @@ How to break / continue:
 ```r
 break
 next
+```
+
+### While
+
+```r
+i <- 0
+while (i < 100) {
+	i <- i + 1
+	# Do something
+}
 ```
 
 ### If / else
