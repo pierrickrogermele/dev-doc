@@ -1319,6 +1319,7 @@ With Pathogen, packages are now installed inside ~/.vim/bundle folder in a dedic
 
  * [VIM and Python – A Match Made in Heaven](https://realpython.com/vim-and-python-a-match-made-in-heaven/).
  * [SimpylFold](https://github.com/tmhedberg/SimpylFold). Plugin for correct Python indent folding.
+ * https://github.com/ivanov/vim-ipython
 
 ### nvim-R
 
@@ -1328,6 +1329,11 @@ With Pathogen, packages are now installed inside ~/.vim/bundle folder in a dedic
 Nvim-R commands:
  * Intialize a connected R session with `\rf` (Once an .R file has been opened).
  * `\l`: send current line to R session.
+ * `\bb`: send current block.
+ * `\cc`: send current chunk.
+ * `\ff`: send current function.
+ * `\ss`: send selection.
+ * `\ro`: open Object Browser.
 
 ### Tmux
 
