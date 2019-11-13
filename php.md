@@ -408,7 +408,7 @@ $mydate_in_seconds_from_1970 = strtotime("11/29/2010");
 ```
 
 ### Array
-	
+
 Declaring an array:
 ```php
 <?php
@@ -420,7 +420,7 @@ $array = [
 ];
 ?>
 ```
-	
+
 Printing an array:
 ```php
 <?php
@@ -442,20 +442,20 @@ empty($my_array);
 ?>
 ```
 
-Tests if element 'foo' exists:
+Tests if element exists:
 ```php
 <?php
 isset($my_array['foo']);
 ?>
 ```
 
-Removes element 'toto':
+Removes an element:
 ```php
 <?php
-unset($my_array['toto']);
+unset($my_array['foo']);
 ?>
 ```
-	
+
 Looping on all elements of an array:
 ```php
 <?php
@@ -479,14 +479,14 @@ foreach ($a as $k => $v)
 	echo "\$a[$k] => $v.\n";
 ?>
 ```
-	
+
 Get keys:
 ```php
 <?php
 $keys = array_keys($array);
 ?>
 ```
-	
+
 Get array size:
 ```php
 <?php
@@ -1105,11 +1105,31 @@ Be careful to not use static keyword for functions. It's not supported by old ve
 ## OOP
 
  * [Classes and Objects](http://php.net/manual/en/language.oop5.php).
+ * [Class iterator](https://www.php.net/manual/en/class.iterator.php).
 
 Inheritance:
 ```php
 <?php
 class A extends B {
+}
+?>
+```
+
+Constructor:
+```php
+<?php
+class A extends B {
+	public function __construct() {
+		parent::__construct();
+	}
+}
+?>
+```
+
+Interface implementation:
+```php
+<?php
+class A implements I {
 }
 ?>
 ```
