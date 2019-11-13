@@ -473,3 +473,4 @@ http://stackoverflow.com/questions/640022/howto-embed-tomcat-6
 ## .htaccess file
 
  * [How can I redirect and rewrite my URLs with an .htaccess file?](https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-).
+ * [How to deny access to a file in .htaccess](https://stackoverflow.com/questions/11728976/how-to-deny-access-to-a-file-in-htaccess).
