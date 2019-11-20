@@ -852,6 +852,11 @@ Enable a service with systemd (ArchLinux, ...) for starting on bootup:
 systemctl enable myunit
 ```
 
+For user services:
+```bash
+systemctl --user enable myunit
+```
+
 Enable and start now:
 ```bash
 systemctl enable --now myunit
@@ -2010,9 +2015,25 @@ Install or upgrade a package:
 pacman -S mypkg
 ```
 
+Query installed packages:
+```bash
+pacman -Q mypkg
+```
+
+Query the files database:
+```bash
+pacman -Fl mypkg
+```
+
 Search for packages:
 ```bash
 pacman -Ss mypkg
+```
+
+Get info on a package:
+```bash
+pacman -Si mypkg
+pacman -Qi mypkg
 ```
 
 Update databases:
@@ -2666,6 +2687,7 @@ Command    | Description
 Command                   | Description
 ------------------------- | ----------------------
 `prefix d`                | Detach.
+`prefix ,`                | Rename current window.
 `prefix "`                | Split pane horizontally.
 `prefix %`                | Split pane vertically.
 `prefix arrow key`        | Switch pane.
@@ -3132,6 +3154,11 @@ How to modify key shortcuts for file manager Thunar:
 Under macOS:
 ```bash
 /System/Library/CoreServices/"Menu Extras"/User.menu/Contents/Resources/CGSession -suspend
+```
+
+Under Linux Xfce4:
+```bash
+xflock4
 ```
 
 ### Fonts

@@ -153,28 +153,6 @@ Change the URL of a remote:
 git remote set-url remote_name new_url
 ```
 
-## reset
-
-Remove a file from the stage area:
-```bash
-git reset HEAD -- myfile
-```
-
-Remove all local modifications and reset to last commit of current branch:
-```bash
-git reset --hard
-```
-
-Delete last local commit:
-```bash
-git reset --hard HEAD~1
-```
-
-Remove all last local commits on current branch:
-```bash
-git reset --hard @{u}
-```
-
 ## branch
 
 List local branches:
@@ -386,6 +364,28 @@ git rebase --continue
 If the commit was already pushed to the server, run:
 ```bash
 git push --force
+```
+
+## reset
+
+Remove a file from the stage area:
+```bash
+git reset HEAD -- myfile
+```
+
+Remove all local modifications and reset to last commit of current branch:
+```bash
+git reset --hard
+```
+
+Delete last local commit:
+```bash
+git reset --hard HEAD~1
+```
+
+Remove all last local commits on current branch:
+```bash
+git reset --hard @{u}
 ```
 
 ## rev-list

@@ -1518,6 +1518,13 @@ foo <- function(x) {
 }
 ```
 
+Using enumerated values for a parameter:
+```r
+myfct <- function(myparam=c('a', 'b', 'c')) {
+	myparam <- match.arg(myparam) # Default will 'a' (first value).
+}
+```
+
 ## Error & warning handling
 
 Throwing an error:
@@ -1817,6 +1824,7 @@ Sort data frame:
 ```r
 df <- df[order(df[[1]]), ] # sort on first column.
 df <- df[order(df[[1]], df[[3]]), ] # sort on columns 1 and 3 in that order.
+df <- df[do.call(order, as.list(df)),] # sort on all columns.
 ```
 
 Sorting a list/vector of objects:

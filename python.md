@@ -57,7 +57,7 @@ It is possible to write a python file that can be either imported as a module or
 if __name__ == '__main__':
     # Running as a script
 ```
-	
+
 On Windows OS:
  1. `.py` files are associated with `python.exe`.
  2. `.pyw` extension specifies that this is a Python GUI app, so the console is hidden.
@@ -235,6 +235,7 @@ repr.repr(set(’supercalifragilisticexpialidocious’))
 Concatenation:
 ```python
 s = 'AB' + 'CD'
+s += 'EF'
 ```
 
 Append characters to the end of a string:
@@ -265,6 +266,11 @@ s[:-3]
 Strings are read-only:
 ```python
 s[2] = 'z' # ILLEGAL !
+```
+
+Get the size of a string:
+```python
+len(s)
 ```
 
 Split a string into a list:
@@ -802,27 +808,33 @@ mydic['b']
 
 Modify:
 ```python
-mydic['c'] = 455
+mydict['c'] = 455
 ```
 
 Remove:
 ```python
-del mydic['a']
+del mydict['a']
 ```
 
 Get a list of the keys:
 ```python
-mydic.keys()
+mydict.keys()
 ```
 
 Search a key:
 ```python
-'e' in mydic
+'e' in mydict
 ```
 
-Looping:
+Looping on keys:
 ```python
-for k, v in mydic.iteritems():
+for k in mydict:
+	# ...
+```
+
+Looping on keys and values:
+```python
+for k, v in mydict.items():
 	print k, v
 ```
 
@@ -1590,8 +1602,12 @@ glob.glob('./[0-9].*')
 
 Current working directory:
 ```python
-import os
 os.getcwd()
+```
+
+Change directory:
+```python
+os.chdir(mypath)
 ```
 
 ## Tail call recursion
@@ -2148,14 +2164,33 @@ locale.format("%s%.*f",
 ```
 
 ### logging
-	
+
+	* [logging — Logging facility for Python](https://docs.python.org/3/library/logging.html?highlight=logging#module-logging).
+
 ```python
 import logging
-logging.debug(’Debugging information’)
-logging.info(’Informational message’)
-logging.warning(’Warning:config file %s not found’, ’server.conf’)
-logging.error(’Error occurred’)
-logging.critical(’Critical error -- shutting down’)
+```
+
+Set level of root logger (all other loggers will inherit from this setting):
+```python
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+```
+
+Set a handler for the root logger:
+```python
+handler = logging.StreamHandler(sys.stderr)
+root.addHandler(handler)
+```
+
+Log a message from some part of code:
+```python
+logger = logging.getLogger(__name__) # A good practice is to use __name__ (the name of the module) for definning a logger
+logger.debug('Debugging information')
+logger.info('Informational message')
+logger.warning('Warning:config file %s not found' % 'server.conf')
+logger.error('Error occurred')
+logger.critical('Critical error -- shutting down')
 ```
 
 Possible outputs: file, stderr, email, datagrams, sockets, HTTP Server.
@@ -2208,6 +2243,10 @@ d.timestamp()
 
 ### threading
 
+ Threads run with this module are slowed down by the [GIL](https://docs.python.org/2/glossary.html#term-global-interpreter-lock), which authorize only one thread at a time to run for accessing OS API or Python objects. Prefer the multiprocessing module, which is as simple to use and is not submitted by the GIL since it runs processes and not threads.
+
+ * [threading — Thread-based parallelism](https://docs.python.org/3/library/threading.html).
+
 ```python
 import threading
 
@@ -2223,7 +2262,21 @@ thread_instance.join()
 
 The `threading` module provides: locks, events, condition variables and semaphores.
 
-An easy way to synchronize threads on data is to use the Queue module.
+An easy way to synchronize threads on data is to use the queue module.
+
+### queue
+
+ * [queue — A synchronized queue class](https://docs.python.org/3/library/queue.html).
+
+### multiprocessing
+
+ * [multiprocessing — Process-based “threading” interface](https://docs.python.org/2/library/multiprocessing.html).
+
+### joblib
+
+Easy simple parallel computing.
+
+ * [joblib](https://pypi.org/project/joblib/).
 
 ### Pygments
 
@@ -2356,6 +2409,16 @@ x = numpy.nan
 
  * [Pandas](https://pandas.pydata.org/).
  * [Data frames](https://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.html).
+
+Read from CSV:
+```python
+df = pandas.read_csv(myfile, sep='\t', index_col=False)
+```
+
+Write to CSV:
+```python
+df.to_csv(myfile, sep='\t', index=False)
+```
 
 Test if a data frame contains a column:
 ```python
