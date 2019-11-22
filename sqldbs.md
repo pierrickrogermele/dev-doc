@@ -162,8 +162,11 @@ float64     | 8 bytes float.
 numeric     | 16 bytes float.
 text        |
 int64       |
+bool        |
+string      | variable length unicode character string
+date        |
 
-### Tables
+### create table
 
 Create a table with an auto-incremented column:
 ```sql
@@ -186,7 +189,9 @@ create table mytable (
 	   foreign key(other_id) references other_table(id));
 ```
 
-Drop a table:
+### drop table
+
+rop a table:
 ```sql
 drop table if exists mytable;
 ```
@@ -195,6 +200,10 @@ Show tables of current database:
 ```sql
 show tables;
 ```
+
+### alter table
+
+### insert into
 
 Insert into a table:
 ```sql
@@ -680,6 +689,10 @@ Analyze a table:
 analyze table mytable;
 ```
 
+### Import/export CSV file
+
+ * [Import CSV File Into MySQL Table](http://www.mysqltutorial.org/import-csv-file-mysql-table/).
+
 ### Strings
 
 By default MySQL is installed with latin1 encoding.
@@ -740,6 +753,11 @@ Create a new database for the running user:
 createdb dbname
 ```
 
+From SQL:
+```sql
+create database mydb;
+```
+
 ### Deleting a database
 
 ```sql
@@ -768,12 +786,6 @@ Command         Description
 \q              Quit.
 \d+ mytable     Get information about a table.
 
-### Create database
-
-```sql
-create database mydb;
-```
-
 ### Create user
 
 ```sql
@@ -798,6 +810,13 @@ To restore a database from a binary file dumped by `pg_dump`.
 pg_restore -d dbname filename
 ```
 
+### Table
+
+Show table info:
+```
+\d mytable
+```
+
 ### Copy
 
  * [COPY](https://www.postgresql.org/docs/9.5/static/sql-copy.html).
@@ -810,6 +829,16 @@ Output a CSV file with a header:
 ```sql
 \copy (select * from mytab) To myfile.csv With csv header
 ```
+
+### Data types
+
+ * [Chapter 8. Data Types](https://www.postgresql.org/docs/9.5/datatype.html).
+
+Type                     | Description
+------------------------ | ------------------
+timestamp                | 
+timestamp with time zone | 
+text                     | variable unlimited length
 
 ## MS SQL Server
 
