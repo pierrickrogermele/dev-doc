@@ -1610,6 +1610,12 @@ Change directory:
 os.chdir(mypath)
 ```
 
+Remove a file:
+```python
+os.unlink(myfile)
+os.remove(myfile)
+```
+
 ## Tail call recursion
 
 If the recursion call is well written, a jump can be used instead of a call. This way there's no stack growth.
@@ -2305,6 +2311,11 @@ i = random.randint(1,1000)
 Float:
 ```python
 x = random.random() # in [0.0, 1.0)
+```
+
+Shuffle a list:
+```python
+random.shuffle(mylist)
 ```
 
 ### weakref (weak references)
