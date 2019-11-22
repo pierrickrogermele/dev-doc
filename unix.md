@@ -188,7 +188,7 @@ Which means it could be used inside a cron task.
 msmtp exists in brew, but it doesn't install queueing scripts. However they are present in '/usr/local/Cellar/msmtp/<version>/share/msmtp/scripts/msmtpq/'.
 
 ### rsync
-	
+
 Use verbose flag to print processed files:
 ```bash
 rsync -v ...
@@ -236,12 +236,12 @@ To synchronize two directories:
 rsync --delete /.../folder1/ /.../folder2
 ```
 The slash at the end of the source path tells to synchronize all files, it makes --delete works for folder1.
-	
+
 Print the progress of transfer:
 ```bash
-rsync --progress		
+rsync --progress
 ```
-	
+
 Regular sync (revursive, links, times), doesn't synchronize the permissions:
 ```bash
 rsync -rlt ...
