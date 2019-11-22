@@ -76,10 +76,13 @@ Or with a `/**/` comment style:
 /* vi: se fdm=marker: */
 ```
 
-## Man pages
+## Normal mode
 
-Press `K` when cursor is on the desired word, and vim will open the
-corresponding manpage.
+Key    | Effect
+------ | --------------------
+K      | Open manpage corresponding to word under cursor.
+Ctrl-x | Decrement number under cursor.
+Ctrl-a | Increment number under cursor.
 
 ## Tabulation
 
