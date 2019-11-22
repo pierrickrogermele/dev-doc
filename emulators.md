@@ -194,6 +194,9 @@ DEPRECATED:
 
 Normally you have to be part of the group `docker` to run Docker. However it may not work, in which case you will be forced to run Docker as root (`sudo docker ...`).
 
+### Interesting images
+
+ * [rocker/rstudio-stable](https://hub.docker.com/r/rocker/rstudio-stable/dockerfile)
 
 ## Vagrant
 
