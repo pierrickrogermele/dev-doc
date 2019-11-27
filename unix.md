@@ -794,7 +794,8 @@ ipad_charge -0
 
  * [Configure Apple keyboard under Debian](https://wiki.debian.org/MacBook#Keyboard).
  * [Compose key](https://en.wikipedia.org/wiki/Compose_key).
- * [How to setup the compose key and define combinations](http://alec.mooo.com/xcompose.html).
+
+The ~/.XCompose file list user configuration for key combination. See `man compose`.
 
 To see current keyboard configuration under Ubuntu:
 ```bash

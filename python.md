@@ -2247,7 +2247,7 @@ Convert to timestamp:
 d.timestamp()
 ```
 
-### threading
+### threading (HPC)
 
  Threads run with this module are slowed down by the [GIL](https://docs.python.org/2/glossary.html#term-global-interpreter-lock), which authorize only one thread at a time to run for accessing OS API or Python objects. Prefer the multiprocessing module, which is as simple to use and is not submitted by the GIL since it runs processes and not threads.
 
@@ -2270,13 +2270,19 @@ The `threading` module provides: locks, events, condition variables and semaphor
 
 An easy way to synchronize threads on data is to use the queue module.
 
-### queue
+### queue (HPC)
 
  * [queue — A synchronized queue class](https://docs.python.org/3/library/queue.html).
 
-### multiprocessing
+### multiprocessing (HPC)
+
+HPC module.
 
  * [multiprocessing — Process-based “threading” interface](https://docs.python.org/2/library/multiprocessing.html).
+
+### Dask (HPC)
+
+ * [Dask](https://dask.org/).
 
 ### joblib
 

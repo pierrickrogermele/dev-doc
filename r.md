@@ -2284,8 +2284,8 @@ TODO see CRAN packages doMC and DoSnow.
  * [High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
  * [(A Very) Experimental Threading in R – Random Remarks](https://random-remarks.net/2016/12/11/a-very-experimental-threading-in-r/).
  * [GPU computing](http://www.r-tutor.com/gpu-computing).
- * [Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
- * [Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
+
+See packages Rmpi, foreach, doParallel.
 
 ## Some R error messages
 
@@ -2310,7 +2310,72 @@ Add the following line at the start of your R script file:
 library(method)
 ```
 
+## Bioconductor
+
+ * [Bioconductor](http://www.bioconductor.org).
+ * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
+ * [Bioc-devel -- Bioconductor Developers' List](https://stat.ethz.ch/mailman/listinfo/bioc-devel).
+ 
+Install all Bioconductor packages:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite()
+```
+
+Install a package of Bioconductor:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite(c("GenomicFeatures", "AnnotationDbi"))
+```
+
+### Creating a bioconductor package
+
+Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
+
+#### Risa (Bioconductor)
+
+Load ISA-Tab:
+```r
+isa <- readISAtab('some_isatab_dir')
+```
+
+Get assay file names:
+```r
+assay.fiel.names <- getMSAssayFilenames(isa)
+```
+
 ## Interesting packages
+
+### Rmpi
+
+HPC package.
+
+ * [Rmpi homepage](http://www.stats.uwo.ca/faculty/yu/Rmpi/).
+ * [Rmpi tutorial](http://math.acadiau.ca/ACMMaC/Rmpi/).
+
+### foreach
+
+HPC package.
+
+Define the `foreach` statement for looping on a list and apply a function on each element like lapply.
+The main interest of the package is its capacity to execute in parallel with the doParallel package.
+
+### doParallel
+
+HPC package.
+
+ * [R - parallel computing in 5 minutes (with foreach and doParallel)](http://blog.aicry.com/r-parallel-computing-in-5-minutes/index.html).
+ * [Getting Started with doParallel and foreach](https://cran.r-project.org/web/packages/doParallel/vignettes/gettingstartedParallel.pdf).
+
+### BiocParallel (Bioconductor)
+
+HPC package.
+
+Parallelize `lapply()`.
+
+```r
+BiocParallel::bplapply(mylist, function(x) { ... })
+```
 
 ### colorout
 
@@ -2415,6 +2480,43 @@ install.packages('RMySQL', type='source')
 Be careful of choosing compatible binary versions (32 or 64 bits) for the 3 software: R, Rtools (and the extension to install: "Extras to build 32 bit R: TCL/TK, bitmap code, internationalization") and MySQL.
 Eventually look at <http://www.r-bloggers.com/installing-the-rmysql-package-on-windows-7/>.
 You'll have to define `MYSQL_HOME` env var to be `C:\Program Files\MySQL\MySQL Server 5.6`, and also to copy `libmysql.dll` from the lib folder of `C:\Program Files\MySQL\MySQL Server 5.6` to its bin folder.
+
+### Rdisop (Bioconductor)
+
+Annotation of mass spectra (Steffen Neumann). Part of BioConductor.
+
+### Rmassbank (Bioconductor)
+
+[RMassBank](https://bioconductor.org/packages/release/bioc/html/RMassBank.html) is a Bioconductor package. It is a workflow designed to process MS data and build MassBank records.
+
+### XCMS (Bioconductor)
+
+Framework for processing and visualization of chromatographically separated and single-spectra mass spectral data.
+
+ * [XCMS official page](http://www.bioconductor.org/packages/release/bioc/html/xcms.html).
+ * [XCMS^plus^](http://sciex.com/about-us/news-room/xcmssupplus/sup), commercial version which is a personal cloud version of *XCMS Online*.
+
+To install XCMS library, run the following lines in R:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("xcms")
+```
+
+### metfRag (Bioconductor)
+
+[MetFragR](https://github.com/c-ruttkies/MetFragR).
+
+Installing:
+```r
+source("http://bioconductor.org/biocLite.R")
+biocLite("KEGGREST")
+library(devtools)
+install_github("c-ruttkies/MetFragR/metfRag")
+```
+
+```r
+library(metfRag)
+```
 
 ### R.matlab
 
@@ -2767,77 +2869,6 @@ The condition to detect that the matrix is singular is that a variable has withi
 "tol" can be set in the parameters
 ```r
 lda(....., tol = 0.0000001, ....)
-```
-
-### Bioconductor
-
- * [Bioconductor](http://www.bioconductor.org).
- * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
- * [Bioc-devel -- Bioconductor Developers' List](https://stat.ethz.ch/mailman/listinfo/bioc-devel).
- 
-Install all Bioconductor packages:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite()
-```
-
-Install a package of Bioconductor:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite(c("GenomicFeatures", "AnnotationDbi"))
-```
-
-#### Creating a bioconductor package
-
-Le fichier 'NEWS' dans les packages (i.e. change log) suit un format spécifique (il est parsé par bioc). La core team recommande le fichier NEWS <http://www.bioconductor.org/packages/devel/bioc/news/Rsamtools/NEWS> comme exemple.
-
-#### Risa
-
-Load ISA-Tab:
-```r
-isa <- readISAtab('some_isatab_dir')
-```
-
-Get assay file names:
-```r
-assay.fiel.names <- getMSAssayFilenames(isa)
-```
-
-#### Rdisop
-
-Annotation of mass spectra (Steffen Neumann). Part of BioConductor.
-
-#### Rmassbank
-
-[RMassBank](https://bioconductor.org/packages/release/bioc/html/RMassBank.html) is a Bioconductor package. It is a workflow designed to process MS data and build MassBank records.
-
-#### XCMS
-
-Framework for processing and visualization of chromatographically separated and single-spectra mass spectral data.
-
- * [XCMS official page](http://www.bioconductor.org/packages/release/bioc/html/xcms.html).
- * [XCMS^plus^](http://sciex.com/about-us/news-room/xcmssupplus/sup), commercial version which is a personal cloud version of *XCMS Online*.
-
-To install XCMS library, run the following lines in R:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite("xcms")
-```
-
-#### metfRag
-
-[MetFragR](https://github.com/c-ruttkies/MetFragR).
-
-Installing:
-```r
-source("http://bioconductor.org/biocLite.R")
-biocLite("KEGGREST")
-library(devtools)
-install_github("c-ruttkies/MetFragR/metfRag")
-```
-
-```r
-library(metfRag)
 ```
 
 ### Testthat

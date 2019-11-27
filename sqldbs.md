@@ -735,11 +735,25 @@ In Oracle, there is an equivalent of case statement: `decode()`.
 
 ## PostgreSQL
 
+### Installation
+
+ * [PostgreSQL](https://wiki.archlinux.org/index.php/PostgreSQL#Installation).
+
+Before running commands with postgresql, one must first become the postgres user:
+```bash
+sudo -iu postgres
+```
+
 ### Starting server
 
 Start server from shell manually:
 ```bash
 postgres -D /usr/local/var/postgres
+```
+
+or enable service with systemd:
+```bash
+systemctl start postgresql
 ```
 
 ### Initializing a repository

@@ -145,6 +145,11 @@ The include path is defined inside `/etc/php.ini`:
 include_path = .:/usr/local/lib/php:./include
 ```
 
+To get a list of all included files:
+```php
+get_included_files();
+```
+
 ### PHP version
 
 Version can be accessed through a constant or a method:	
@@ -186,9 +191,9 @@ Print system information:
 <? phpinfo();
 ```
 
-## Declare directive
+## Declare directives
 
-Setting encoding:
+Set encoding:
 ```php
 <? declare(encoding='ISO-8859-1');
 ```
@@ -248,7 +253,7 @@ $flag = False;
 ```
 
 ### Strings
-	
+
 Accessing the character at index 4:
 ```php
 <?php
@@ -277,8 +282,14 @@ $l = strlen($string);
 Concatenate strings:
 ```php
 <?php
-$s = 'a' . 'b';
+$s = 'a' . 'b' . $t;
+$s .= $u;
 ?>
+```
+
+Using a variable inside a string:
+```php
+<?php $s="My phrase with a $var inside it."
 ```
 
 Uppercase & lowercase:
@@ -413,12 +424,14 @@ Declaring an array:
 ```php
 <?php
 $my_array = array();
-// since PHP 5.4
-$array = [
-	"foo" => "bar",
-	"bar" => "foo",
-];
+$my_array = [];
+array_fill(0, 10, 'NaN');
 ?>
+```
+
+Get array size:
+```php
+<?php count($array);
 ```
 
 Printing an array:
@@ -442,20 +455,6 @@ empty($my_array);
 ?>
 ```
 
-Tests if element exists:
-```php
-<?php
-isset($my_array['foo']);
-?>
-```
-
-Removes an element:
-```php
-<?php
-unset($my_array['foo']);
-?>
-```
-
 Looping on all elements of an array:
 ```php
 <?php
@@ -472,28 +471,6 @@ foreach ($my_array as &$elem)
 ?>
 ```
 
-Looping on an associative array:
-```php
-<?php
-foreach ($a as $k => $v)
-	echo "\$a[$k] => $v.\n";
-?>
-```
-
-Get keys:
-```php
-<?php
-$keys = array_keys($array);
-?>
-```
-
-Get array size:
-```php
-<?php
-$sz = count($array);
-?>
-```
-
 Join & split: see strings.
 
 Max & min values:
@@ -507,7 +484,6 @@ $min = min($array);
 Search:
 ```php
 <?php
-$bool = array_key_exists($key, $array);
 $bool = in_array($val, $array);
 $index = array_search($val, $array);
 ?>
@@ -562,6 +538,52 @@ Compare:
 ```php
 <?php
 $diff_array = array_diff($array1, $array2);
+?>
+```
+
+### Associative array
+
+```php
+<?php
+$array = [
+	"foo" => "bar",
+	"bar" => "foo",
+];
+```
+
+Build an associative array from a list of keys and a list of values:
+```php
+<?php array+combine($keys, $values);
+```
+
+Test if a key exists:
+```php
+<?php array_key_exists($key, $array);
+```
+
+Get keys:
+```php
+<?php $keys = array_keys($array);
+```
+
+Looping:
+```php
+<?php
+foreach ($a as $k => $v)
+	echo "\$a[$k] => $v.\n";
+```
+
+Tests if element exists:
+```php
+<?php
+isset($my_array['foo']);
+?>
+```
+
+Removes an element:
+```php
+<?php
+unset($my_array['foo']);
 ?>
 ```
 
@@ -660,7 +682,12 @@ foreach ($text_array as &$t)
 ```
 Only available starting from PHP version 5.
 
-## Built-in variables
+## Built-in constants & variables
+
+Current directory of execution:
+```php
+<?php __DIR__ ?>
+```
 
 `$_SERVER` contains many context variables:
 ```php
@@ -704,7 +731,9 @@ putenv("UNIQID=$uniqid");
 ```
 
 ## Operators
-	
+
+ * [Operators](https://www.php.net/manual/en/language.operators.php).
+
 Testing equality after transtypage (both side of the equality are converted to the same type):
 ```php
 <?php
@@ -752,46 +781,6 @@ $i += 12;
 ?>
 ```
 
-## Regex
-
-Test if it matches:
-```php
-<?php
-if (preg_match('/abc/', $text)) {
-}
-?>
-```
-
-Case insensitive search:
-```php
-<?php
-if (preg_match('/abc/i', $text)) {
-}
-?>
-```
-
-Look for a match:
-```php
-<?php
-if (preg_match('/^\s*\[(.+)\]\s*$/', $line, $matches)) {
-	// ...
-}
-?>
-```
-
-Replace:
-```php
-<?php
-$new_string = preg_replace("/([to]+) ([0-9]+)/i", "${2} --- ${1}", $string);
-?>
-```
-
-Filter & replace:
-```php
-<?php
-$ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
-?>
-```
 ## Statements and control structures
 
 ### If / elseif / else
@@ -816,7 +805,7 @@ eval('$my_array = ["a" => "blabla", "b" => "tagazou"];');
 ?>
 ```
 
-### `for` & `foreach` loops
+### for & foreach loops
 
 For loop:
 ```php
@@ -859,40 +848,6 @@ foreach($myarray as $val)
 ?>
 ```
 	
-### Math
-
-Ceil:
-```php
-<?php
-echo ceil(4.3);    // 5
-echo ceil(9.999);  // 10
-echo ceil(-3.14);  // -3
-?>
-```
-
-Floor:
-```php
-<?php
-echo floor(4.3);   // 4
-echo floor(9.999); // 9
-echo floor(-3.14); // -4
-?>
-```
-
-Round:
-```php
-<?php
-echo round(3.4);         // 3
-echo round(3.5);         // 4
-echo round(3.6);         // 4
-echo round(3.6, 0);      // 4
-echo round(1.95583, 2);  // 1.96
-echo round(1241757, -3); // 1242000
-echo round(5.045, 2);    // 5.05
-echo round(5.055, 2);    // 5.06
-?>
-```
-
 ### Alternate syntax with `:`
 
  * [Alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php)
@@ -904,6 +859,10 @@ Example:
 <?php
 if ($myvar == 2):
 	do_something();
+elseif ($myvar == 3):
+	do_something_else();
+else:
+	do_another_thing();
 endif;
 ?>
 ```
@@ -912,7 +871,7 @@ This construct is particularly useful for enabling or disabling HTML code:
 ```php
 <?php if ($myvar == 2): ?>
 	<p>Some text.</p>
-<?php elseif: ?>
+<?php elseif ($myvar == 3): ?>
 	<p>Some other text.</p>
 <?php else: ?>
 	<p>Some different text.</p>
@@ -928,15 +887,31 @@ function my_func($param1, $param2) {
 	// ...
 	return $ret_val;
 }
-?>
 ```
+
+Using parameter types:
+```php
+<?php
+function my_func(int $param1, string $param2) {
+}
+```
+Possible types:
+ * `array`.
+ * `callable`.
+ * `bool`.
+ * `float`.
+ * `int`.
+ * `string`.
+ * `iterable` (array or instance of Traversable).
+ * `object`.
+ * `self` (same class as this class).
+ * The name of a valid class.
 
 Passing a parameter by reference:
 ```php
 <?php
 function my_func(&$param_by_ref) {
 }
-?>
 ```
 
 Default values:
@@ -975,7 +950,98 @@ $map = function ($text) use ($search, $replacement) {
 ?>
 ```
 
-## Filesystem
+## Regex
+
+Test if it matches:
+```php
+<?php
+if (preg_match('/abc/', $text)) {
+}
+?>
+```
+
+Case insensitive search:
+```php
+<?php
+if (preg_match('/abc/i', $text)) {
+}
+?>
+```
+
+Look for a match:
+```php
+<?php
+if (preg_match('/^\s*\[(.+)\]\s*$/', $line, $matches)) {
+	// ...
+}
+?>
+```
+
+Replace:
+```php
+<?php
+$new_string = preg_replace("/([to]+) ([0-9]+)/i", "${2} --- ${1}", $string);
+?>
+```
+
+Filter & replace:
+```php
+<?php
+$ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
+?>
+```
+## Math
+
+Ceil:
+```php
+<?php
+echo ceil(4.3);    // 5
+echo ceil(9.999);  // 10
+echo ceil(-3.14);  // -3
+?>
+```
+
+Floor:
+```php
+<?php
+echo floor(4.3);   // 4
+echo floor(9.999); // 9
+echo floor(-3.14); // -4
+?>
+```
+
+Round:
+```php
+<?php
+echo round(3.4);         // 3
+echo round(3.5);         // 4
+echo round(3.6);         // 4
+echo round(3.6, 0);      // 4
+echo round(1.95583, 2);  // 1.96
+echo round(1241757, -3); // 1242000
+echo round(5.045, 2);    // 5.05
+echo round(5.055, 2);    // 5.06
+?>
+```
+
+## I/O
+
+Print a string with `echo`:
+```php
+<?php
+echo 'Blabla';
+echo('Blabla');
+echo 'Blabla', 'blibli', $myvar;
+```
+`echo` returns nothing.
+
+`print` takes only one argument and always returns `1`:
+```php
+<?php
+print($mystring);
+```
+
+## File system
 
 Open a file:
 ```php
@@ -1010,6 +1076,11 @@ $dir = dirname($path);
 ?>
 ```
 
+Get file extension:
+````php
+<?php pathinfo($path, PATHINFO_EXTENSION);
+```
+
 Getting dir name:
 ```php
 <?php
@@ -1034,6 +1105,11 @@ if (file_exists($filename)) {
 ?>
 ```
 
+Concatenate file path:
+```php
+<?php $mypath = '/some/path/' . 'myfile';
+```
+
 File type:
 ```php
 <?php
@@ -1049,6 +1125,29 @@ Create a directory:
 mkdir("/path/to/my/dir");
 mkdir("/path/to/my/dir", 0700);
 ?>
+```
+
+## Exceptions
+
+ * [Exceptions](https://www.php.net/manual/en/language.exceptions.php).
+
+Throw an exception:
+```php
+<?php throw new Exception("Error !");?>
+```
+
+Define a new exception:
+```php
+<?php
+class MyException extends Exception {
+
+	// Constructor {{{1
+	////////////////////////////////////////////////////////////////
+
+	public function __construct($message, $code=0, Exception $previous=null) {
+		parent::__construct($message, $code, $previous);
+	}
+}
 ```
 
 ## Images
@@ -1132,6 +1231,47 @@ Interface implementation:
 class A implements I {
 }
 ?>
+```
+
+### Properties (aka member variables)
+
+ * [Properties](https://www.php.net/manual/en/language.oop5.properties.php).
+
+Member variables are declared with visibility level:
+```php
+<?php
+public $myvar = 1;
+protected $myvar2 = 1;
+private $myvar3 = 1;
+```
+
+A member variable is accessed using the `->` operator:
+```php
+<?php $myobj->myvar; ?>
+```
+
+Static member variables can be defined:
+```php
+<?php
+class MyClass {
+	public static $myvar = 1;
+}
+
+MyClass::$myvar;
+$myclass='MyClass';
+$myclass::$myvar;
+```
+
+*Attention !* Using a **constructor** call to set a variable inside the variable member declaration is not allowed.
+
+It is possible to write a multilines string when declaring a member:
+```php
+<?php
+public $myvar2 = <<<EOD
+My text
+on multiple
+lines
+EOD;
 ```
 
 ## Command line arguments
@@ -1253,11 +1393,24 @@ BOF:
 [PHPUnit](https://phpunit.de) is a testing framework.
 
  * [Getting Started with PHPUnit 8](https://phpunit.de/getting-started/phpunit-8.html).
+ * [Assertions](https://phpunit.readthedocs.io/en/8.4/assertions.html).
 
 Install PHPUnit with PEAR system:
 ```bash
 pear config-set auto_discover 1
 pear install pear.phpunit.de/PHPUnit
+```
+
+Writing a test class:
+```php
+<?php
+use PHPUnit\Framework\TestCase;
+
+final class MyTest extends TestCase {
+
+	public function testSomething(): void {
+	}
+}
 ```
 
 ### cURL
