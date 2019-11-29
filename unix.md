@@ -1337,34 +1337,19 @@ unzip -q myfile.zip
 unzip -qq myfile.zip
 ```
 
-## File viewing, formating and editing
+## Binary file processing, editing & viewing
 
-### sc
+### split
 
-sc is a spreadsheet program. It has its own file format.
-
-Edit a CSV file:
+Split a big file into several one giga bytes files:
 ```bash
-cat myfile.csv | psc -k -d, | sc
+split -b 1G myfile.bin myfile
 ```
 
-### column
 
-Align the column of a file for viewing:
-```bash
-column -t myfile
-```
-By default the columns are considered separated by white spaces (space and tab).
+### strings
 
-If you have a CSV file:
-```bash
-column -t -s , myfile.csv
-```
-
-With a TSV file:
-```bash
-column -t -s $'\t' myfile.tsv
-```
+Extract strings from binary file.
 
 ### hexdump
 
@@ -1407,7 +1392,34 @@ Searching for a sequence of bytes into a file using xxd and grep:
 xxd -p myfile | tr -d '\n' | grep -c 'e280a8'
 ```
 
-## File filtering
+## Text file processing, editing & viewing
+
+### column
+
+Align the column of a file for viewing:
+```bash
+column -t myfile
+```
+By default the columns are considered separated by white spaces (space and tab).
+
+If you have a CSV file:
+```bash
+column -t -s , myfile.csv
+```
+
+With a TSV file:
+```bash
+column -t -s $'\t' myfile.tsv
+```
+
+### sc
+
+sc is a spreadsheet program. It has its own file format.
+
+Edit a CSV file:
+```bash
+cat myfile.csv | psc -k -d, | sc
+```
 
 ### tr
 
@@ -1441,25 +1453,37 @@ cat -vte
 ```
 Display ^M for the carriage return, and $ for the newline.
 
-### sort
+### comm
 
-Sorting inplace:
+Compares two sorted files line by line.
+
+### csplit
+
+Split file horizontally, on line numbers or line matching a pattern.
+
+### diff
+
+To make a patch:
 ```bash
-sort myfile -o myfile
+diff -ru <old sources> <new sources> >myfile.patch
+diff -ruwNB old_v3 new_v3 > v3.patch
 ```
 
-In MacOS-X, sort will not recognize unicide in UTF-8 files.
-One must use iconv first to convert file into UTF8-MAC format:
-```bash
-iconv -t UTF8-MAC myfile.txt | sort
-```
+Flag | Description
+---- | --------------------------------
+`-w` | Ignore all white spaces.
+`-B` | Ignore blank lines.
+`-N` | Make patch also for new files.
 
-### split
-
-Split a big file into several one giga bytes files:
+Exclude files:
 ```bash
-split -b 1G myfile.bin myfile
+diff -x .c ...
 ```
+It works for directory inside the path, for instance:
+```bash
+diff -x .git ...
+```
+Will exclude all files containing `.git` in the path, including `/.../.git/.../somefile`.
 
 ### join
 
@@ -1472,6 +1496,35 @@ By default `join` uses the first column as the join field.
 Set the join fields, using column 3 in the first file and column 4 in the second file:
 ```bash
 join -1 3 -2 4 a.txt b.txt >c.txt
+```
+
+### patch
+
+Patching a source tree:
+```bash
+patch -p1 < patch-file-name-here
+```
+
+Patching a file:
+```bash
+patch original_file patch_file
+```
+
+### printf
+
+Formats and prints data.
+
+### sort
+
+Sorting inplace:
+```bash
+sort myfile -o myfile
+```
+
+In MacOS-X, sort will not recognize unicode in UTF-8 files.
+One must use iconv first to convert file into UTF8-MAC format:
+```bash
+iconv -t UTF8-MAC myfile.txt | sort
 ```
 
 ### cut
@@ -1606,6 +1659,10 @@ paste a.txt b.txt c.txt >d.txt
 ```
 By default, replace new line chars in a.txt and b.txt by tabulation.
 
+### ed
+
+Line editor.
+
 ### sed
 
 To remove spaces at the end of a line:
@@ -1686,6 +1743,37 @@ echo "MY LINE OF TEXT" | sed 's/ /\
 /g'
 ```
 
+### ex
+
+Text editor.
+
+### fold
+
+Wraps long lines to fit width.
+
+### iconv
+
+Converts between encodings.
+
+### m4
+
+Macro processor.
+
+### more
+
+Text file viewer.
+
+### less
+
+Text file viewer.
+
+### nl
+
+Count number of lines of files.
+
+### wc
+
+Count number of lines, words and characters of files.
 
 ### uniq
 
@@ -2035,6 +2123,11 @@ Get info on a package:
 ```bash
 pacman -Si mypkg
 pacman -Qi mypkg
+```
+
+List all files of an installed package:
+```bash
+pacman -Ql mypkg
 ```
 
 Update databases:
@@ -2966,42 +3059,6 @@ Run command each day at 9:00 and 21:00:
 Run a command every 2 hours:
 ```crontab
 0 */2 * * * command
-```
-
-## diff
-
-To make a patch:
-```bash
-diff -ru <old sources> <new sources> >myfile.patch
-diff -ruwNB old_v3 new_v3 > v3.patch
-```
-
-Flag | Description
----- | --------------------------------
-`-w` | Ignore all white spaces.
-`-B` | Ignore blank lines.
-`-N` | Make patch also for new files.
-
-Exclude files:
-```bash
-diff -x .c ...
-```
-It works for directory inside the path, for instance:
-```bash
-diff -x .git ...
-```
-Will exclude all files containing `.git` in the path, including `/.../.git/.../somefile`.
-
-## patch
-
-Patching a source tree:
-```bash
-patch -p1 < patch-file-name-here
-```
-
-Patching a file:
-```bash
-patch original_file patch_file
 ```
 
 ## ps
