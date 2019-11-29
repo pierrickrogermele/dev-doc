@@ -217,7 +217,7 @@ Get the class of an object:
 ```
 
 ### Constants
-	
+
 Define a constant:
 ```php
 <?php
@@ -847,7 +847,39 @@ foreach($myarray as $val)
 		break;
 ?>
 ```
-	
+
+### Switch
+
+With an integer:
+```php
+<?php
+switch ($i) {
+	case 0:
+		doSomething();
+		break;
+	case 1:
+		doSomething();
+		break;
+	default:
+		doSomething();
+}
+```
+
+With a string:
+```php
+<?php
+switch ($s) {
+	case 'a':
+		doSomething();
+		break;
+	case 'b':
+		doSomething();
+		break;
+	default:
+		doSomething();
+}
+```
+
 ### Alternate syntax with `:`
 
  * [Alternative syntax for control structures](http://php.net/manual/en/control-structures.alternative-syntax.php)
@@ -980,7 +1012,7 @@ if (preg_match('/^\s*\[(.+)\]\s*$/', $line, $matches)) {
 Replace:
 ```php
 <?php
-$new_string = preg_replace("/([to]+) ([0-9]+)/i", "${2} --- ${1}", $string);
+$new_string = preg_replace("/([to]+) ([0-9]+)/i", "$2 --- $1", $string);
 ?>
 ```
 
@@ -1384,6 +1416,7 @@ BOF:
 
 ## PhpDoc
 
+ * [PHPDoc reference](https://docs.phpdoc.org/references/phpdoc/index.html).
  * [Introduction to PhpDoc](https://www.sitepoint.com/introduction-to-phpdoc/).
  * [Documenting code in phpDoc for Laravel 4](https://stackoverflow.com/questions/28292447/documenting-code-in-phpdoc-for-laravel-4).
 
@@ -1439,7 +1472,8 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
 
 ### MongoDB
 
- * [MongoDB](http://php.net/manual/en/book.mongo.php).
+ * [MongoDB PHP library](https://docs.mongodb.com/php-library/current/).
+ * [MongoDB driver library](http://php.net/manual/en/book.mongo.php).
  * [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
 
 Installation with pecl:
