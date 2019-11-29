@@ -28,16 +28,33 @@ Primary Key | Primary Key (Default key `_id` provided by MongoDB itself)
  * No concept of relationship between collections.
  * Data is stored and transferred using [BSON](https://fr.wikipedia.org/wiki/BSON) format.
 
+### Installation
+
+On ArchLinux:
+```
+yay -S mongodb
+```
+
+Configuration file is `/etc/mongodb.conf`.
+
+Default data store path is `/data/db`. Create it with 'rwx' permissions for user mongodb.
+
 ### Interpreter
 
 To start interpreter:
 ```bash
 mongo
+mongo -u admin -p admin --authenticationDatabase "admin"
 ```
 
 To get help:
 ```
 db.help()
+```
+
+Print version:
+```
+db.version()
 ```
 
 The interpreter can also be run in script mode. Script are written in Javascript, so the syntax is different from the shell.
@@ -54,9 +71,54 @@ exit
 
 #### Security
 
+ * [User Management Methods](https://docs.mongodb.com/manual/reference/method/js-user-management/).
+
+Create an admin user:
+```
+use admin
+db.createUser(
+	{
+		user: "myUserAdmin",
+		pwd: passwordPrompt(), // or cleartext password
+		roles: [{ role: 'root', db: 'admin' }, { role: "userAdminAnyDatabase", db: "admin" }, "readWriteAnyDatabase" ]
+	}
+)
+```
+
+Inside the configuration file `/etc/mongodb.conf` set:
+```
+security:
+ authorization: enabled
+
+setParameter:
+  enableLocalhostAuthBypass: false
+```
+
+When connection with `mongo`:
+```bash
+mongo -u admin -p admin --authenticationDatabase "admin"
+```
+
 List users:
 ```
 db.getUsers()
+```
+
+Create read-only user for a database mydb:
+```
+use mydb
+db.createUser({user:'pierrick',pwd:'cea', roles:[ "read"]})
+```
+Roles can be defined for other database as well:
+```
+use mydb
+db.createUser({user:'pierrick',pwd:'cea', roles:[ { role: "read", db: "fake_exhalobase"}]})
+```
+
+Create read/write user:
+```
+use mydb
+db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
 ```
 
 #### Managing databases
