@@ -264,6 +264,32 @@ To allow listing of directory by web browser:
 Options Indexes
 ```
 
+#### SSL/TLS (HTTPS)
+
+ * [Enable SSL for apache server in 5 minutes](https://hallard.me/enable-ssl-for-apache-server-in-5-minutes/).
+ * [TLS](https://wiki.archlinux.org/index.php/Apache_HTTP_Server#TLS).
+
+Generate a private key with openssl:
+```bash
+openssl genpkey -algorithm RSA -pkeyopt rsa_keygen_bits:2048 -out server.key
+```
+
+Generate a self signed certificate with openssl:
+```bash
+openssl req -key server.key -x509 -new -days $((365*5)) -out server.crt
+```
+
+Uncomment the following lines in `/etc/httpd/conf/httpd.conf`:
+```
+LoadModule ssl_module modules/mod_ssl.so
+LoadModule socache_shmcb_module modules/mod_socache_shmcb.so
+Include conf/extra/httpd-ssl.conf
+```
+
+Make sure the `SSLCertificateFile` and `SSLCertificateKeyFile` lines in `/etc/httpd/conf/extra/httpd-ssl.conf` point to the key and certificate files.
+
+Restart the Apache service.
+
 ### IIS
 
 #### Installation
