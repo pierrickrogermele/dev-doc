@@ -1420,6 +1420,10 @@ BOF:
  * [Introduction to PhpDoc](https://www.sitepoint.com/introduction-to-phpdoc/).
  * [Documenting code in phpDoc for Laravel 4](https://stackoverflow.com/questions/28292447/documenting-code-in-phpdoc-for-laravel-4).
 
+## Authentication
+
+ * [Secure Login System with PHP and MySQL](https://codeshack.io/secure-login-system-php-mysql/#authenticatinguserswithphp).
+
 ## Interesting modules
 ### PHPUnit
 
