@@ -248,7 +248,7 @@ rsync -rlt ...
 ```
 
 ### ssh
-	
+
 Generate private and public keys:
 ```bash
 ssh-keygen 
@@ -269,6 +269,29 @@ Using local tunneling for accessing mail server:
 ssh -gNL 1993:imap.mail.me.com:993 server.addr
 ```
 Local port used is 1993. Everything going to this local port will be forwarded to imap.mail.me.com:993 through server.addr:22.
+
+## Time & date
+
+### cal
+
+Display a calendar.
+
+```bash
+cal 12 2019
+```
+
+### date
+
+Convert a date to Epoch time:
+```bash
+date -j '01171200' +%s # BSD
+```
+
+Flag        | Description
+----------- | -----------------------
+`-j`        | Do not try to set date.
+`-f '...'`  | set another format for input date. Default is [[[mm]dd]HH]MM[[cc]yy][.ss] (mm=month, cc=century).
+
 
 ### NTP, Network Time Protocol
 
@@ -701,19 +724,6 @@ dseditgroup -p -o edit -a pierrick -t user Dev
 `~/.MacOSX/environment.plist` file is for defining ENV VARS for the session.
 A MacOS-X application won't see ENV VARS defined from the terminal if run from the Windows Manager.
 See <Https://developer.apple.com/library/mac/#documentation/MacOSX/Conceptual/BPRuntimeConfig/Articles/EnvironmentVars.html>.
-
-### date
-
-Convert a date to Epoch time:
-```bash
-date -j '01171200' +%s # BSD
-```
-
-Flag        | Description
------------ | -----------------------
-`-j`        | Do not try to set date.
-`-f '...'`  | set another format for input date. Default is [[[mm]dd]HH]MM[[cc]yy][.ss] (mm=month, cc=century).
-
 
 ### Hardware
 

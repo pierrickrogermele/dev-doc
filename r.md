@@ -1070,6 +1070,8 @@ Suggests:
  * [Generating Rd files](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd.html).
  * [Object documentation](http://r-pkgs.had.co.nz/man.html).
  * [How to properly document S4 class slots using Roxygen2?](http://stackoverflow.com/questions/7368262/how-to-properly-document-s4-class-slots-using-roxygen2).
+ * [Rd formatting](https://cran.r-project.org/web/packages/roxygen2/vignettes/rd-formatting.html). Explains how to use Markdown inside documentation.
+ * [CommonMark Reference Implementation](https://commonmark.org/help/). The Markdown implementation reference followed by Roxygen2.
 
 Note that constructors of subclasses are ignored by roxygen2. You cannot document them.
 

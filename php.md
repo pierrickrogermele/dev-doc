@@ -541,7 +541,7 @@ $diff_array = array_diff($array1, $array2);
 ?>
 ```
 
-### Associative array
+### Associative array (Dictionary)
 
 ```php
 <?php
@@ -1182,6 +1182,16 @@ class MyException extends Exception {
 }
 ```
 
+Throw an exception:
+```php
+<?php throw new MyException();
+```
+
+Catch an exception:
+```php
+<?php 
+```
+
 ## Images
 	
 Get image size:
@@ -1356,6 +1366,11 @@ $xml = file_get_contents("http://www.example.com/file.xml");
 ?>
 ```
 See [file_get_contents](http://php.net/manual/en/function.file-get-contents.php).
+
+Build a query string:
+```php
+<?php http_build_query(['param1' => 'value1', 'param2' => 'value2']);
+```
 
 ## Generating HTML
 

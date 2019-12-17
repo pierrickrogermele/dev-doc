@@ -143,11 +143,16 @@ However the terminal info bust be changed in order to achieve italics handling w
 
 ## Redirections
 
-Redirection and pipe:
+ * [Bash Process Substitution](https://www.linuxjournal.com/content/shell-process-redirection).
+
+Redirect stdin:
 ```bash
-myprogram < somefile		# redirect STDIN
+myprogram < somefile
+```
+
+Redirections:
+```bash
 myprogram > someotherfile	# redirect STDOUT
-myprogram | someotherprogram	# pipe STDOUT
 myprogram 2>err.log		# redirect STDERR
 myprogram 2>/dev/null		# discard STDERR (put into null device)
 myprogram >myfile.log 2>&1	# redirect both STDOUT and STDERR into a log file
@@ -155,6 +160,26 @@ myprogram 2>&1 >myfile.log 	# redirect STDOUT to a file and STDERR to original S
 myprogram >&2			# redirect STDOUT to STDERR
 myprogram &>somefile		# redirect all outputs to a file
 myprogram &>/dev/null		# silence all outputs
+```
+
+Pipe stdout:
+```bash
+prog1 | prog2
+```
+
+Pipe both stderr and stdout:
+```bash
+prog1 2>&1 | prog2
+```
+
+Process substitution for input:
+```bash
+prog1 <(prog2)
+```
+
+Process substitution for output:
+```bash
+prog1 >(prog2)
 ```
 
 ## Alias

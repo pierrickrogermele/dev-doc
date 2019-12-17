@@ -290,6 +290,21 @@ Make sure the `SSLCertificateFile` and `SSLCertificateKeyFile` lines in `/etc/ht
 
 Restart the Apache service.
 
+#### .htaccess file
+
+ * [.htaccess](https://fr.wikipedia.org/wiki/.htaccess).
+ * [How can I redirect and rewrite my URLs with an .htaccess file?](https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-).
+ * [How to deny access to a file in .htaccess](https://stackoverflow.com/questions/11728976/how-to-deny-access-to-a-file-in-htaccess).
+ * [RewriteRule Flags](https://httpd.apache.org/docs/2.4/rewrite/flags.html).
+
+Rewrite rule example:
+```
+RewriteRule test/(.+)$ $1?cfg=test [QSA,NC,L]
+```
+ * `QSA`: .
+ * `NC`: No Case. Match in case insensitive mode.
+ * `L`: Last rule to be processed.
+
 ### IIS
 
 #### Installation
@@ -496,7 +511,3 @@ See file tomcat-users.xml in <Tomcat>/conf directory, and add the role manager-g
 Tomcat can be embedded.
 http://stackoverflow.com/questions/640022/howto-embed-tomcat-6
 
-## .htaccess file
-
- * [How can I redirect and rewrite my URLs with an .htaccess file?](https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-).
- * [How to deny access to a file in .htaccess](https://stackoverflow.com/questions/11728976/how-to-deny-access-to-a-file-in-htaccess).

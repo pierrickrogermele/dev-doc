@@ -1754,6 +1754,7 @@ result = compiled_re.match(string)
 
  * [Installation](https://conda.io/docs/user-guide/install/macos.html).
  * [Installing and updating conda build](https://conda.io/docs/user-guide/tasks/build-packages/install-conda-build.html#install-conda-build).
+ * [Conda-forge](https://conda-forge.org/).
 
 For installing miniconda see [Miniconda](https://conda.io/miniconda.html). On macos you can also use Homebrew:
 ```bash

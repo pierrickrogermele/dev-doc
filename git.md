@@ -7,39 +7,78 @@ GIT
  * [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), branch naming conventions.
  * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
 
-## init
+## branch
 
-Create a git repository from current directory:
+List local branches:
 ```bash
-git init .
+git branch
+git branch -vv # Prints more information, like tracked remote branche.
 ```
 
-Creating a bare repository from current directory:
+List remote branches:
 ```bash
-git init --bare .
-```
-The directory must be empty.
-
-When creating a bare repository, it is also useful to enable sharing so other
-users can push to it:
-```bash
-git init --bare --shared=group .
-```
-`group` (or `true`) will use group permissions.
-`umask` (or `false`) will use umask permissions.
-`all` (or `world` or `everybody`): same as group, plus everybody can read.
-`0xxx`: overrides umask modes.
-
-## status
-
-Get status:
-```bash
-git status
+git branch -r
 ```
 
-List ignored files:
+List local branches & remote-tracking branches:
 ```bash
-git status --ignored
+git branch -a
+```
+
+Create a branch (starting at HEAD):
+```bash
+git branch my_branch
+```
+
+Create a branch starting at a specific commit:
+```bash
+git branch my_branch my_commit_id
+```
+
+Deleting a branch locally and remotely:
+```bash
+git branch -d my_branch      # Delete locally
+git push -d origin my_branch # Delete remotely
+git push origin :my_branch   # Delete branch my_branch on remote
+```
+
+Make a local branch track a remote branch:
+```bash
+git branch -u myremote/mybranch # Apply on current local branch.
+git branch -u myremote/mybranch mylocalbranch
+```
+
+## checkout
+
+Get back a previously deleted file:
+```bash
+git checkout some_commit my/file/name.txt
+```
+
+Putting current modifications into a new branch:
+```bash
+git checkout -b my_new_branch
+```
+
+Putting current modifications into an existing branch:
+```bash
+git stash
+git checkout other_branch
+git stash pop
+```
+
+## clean
+
+Remove untracked files.
+
+Remove all untracked files:
+```bash
+git clean -f
+```
+
+Dry run:
+```bash
+git clean -n
 ```
 
 ## clone
@@ -84,37 +123,39 @@ Creating a bare repository (no working files):
 git clone --bare  /my/original/repos /my/new/repos
 ```
 
-## clean
+## init
 
-Remove untracked files.
-
-Remove all untracked files:
+Create a git repository from current directory:
 ```bash
-git clean -f
+git init .
 ```
 
-Dry run:
+Creating a bare repository from current directory:
 ```bash
-git clean -n
+git init --bare .
+```
+The directory must be empty.
+
+When creating a bare repository, it is also useful to enable sharing so other
+users can push to it:
+```bash
+git init --bare --shared=group .
+```
+`group` (or `true`) will use group permissions.
+`umask` (or `false`) will use umask permissions.
+`all` (or `world` or `everybody`): same as group, plus everybody can read.
+`0xxx`: overrides umask modes.
+
+## status
+
+Get status:
+```bash
+git status
 ```
 
-## checkout
-
-Get back a previously deleted file:
+List ignored files:
 ```bash
-git checkout some_commit my/file/name.txt
-```
-
-Putting current modifications into a new branch:
-```bash
-git checkout -b my_new_branch
-```
-
-Putting current modifications into an existing branch:
-```bash
-git stash
-git checkout other_branch
-git stash pop
+git status --ignored
 ```
 
 ## commit
@@ -151,47 +192,6 @@ git remote show my_remote
 Change the URL of a remote:
 ```bash
 git remote set-url remote_name new_url
-```
-
-## branch
-
-List local branches:
-```bash
-git branch
-git branch -vv # Prints more information, like tracked remote branche.
-```
-
-List remote branches:
-```bash
-git branch -r
-```
-
-List local branches & remote-tracking branches:
-```bash
-git branch -a
-```
-
-Create a branch (starting at HEAD):
-```bash
-git branch my_branch
-```
-
-Create a branch starting at a specific commit:
-```bash
-git branch my_branch my_commit_id
-```
-
-Deleting a branch locally and remotely:
-```bash
-git branch -d my_branch      # Delete locally
-git push -d origin my_branch # Delete remotely
-git push origin :my_branch   # Delete branch my_branch on remote
-```
-
-Make a local branch track a remote branch:
-```bash
-git branch -u myremote/mybranch # Apply on current local branch.
-git branch -u myremote/mybranch mylocalbranch
 ```
 
 ## config
