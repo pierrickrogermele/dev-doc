@@ -1117,6 +1117,11 @@ Reverse sort:
 sort!
 ```
 
+Sort decimal integer numbers:
+```vim
+sort n
+```
+
 Uniq:
 ```vim
 sort -u
