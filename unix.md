@@ -379,30 +379,6 @@ Get help on Debian:
 nmcli radio wifi help
 ```
 
-### Samba
-
-To setup Samba under macOS, declare the workgroup:
-	System Preferences -> Network -> [your network device] -> Advanced -> WINS -> Workgroup
-The path from a Windows computer is:
-	\\<server name\<shared folder>
-
-Access folders on samba share:
-```bash
-smbclient -L 123.456.789.012 -U INTRA\\PR228844
-```
-
-Get the netbiosname from a computer:
-```bash
-nbtscan 123.456.789.012
-```
-
-### NFS
-
-On macos:
-See dscl tool for setting NFS server.
-Use Disk Utility to mount an NFS directory on a client.
-
-
 ## System
 
 ### Installing
@@ -1218,23 +1194,138 @@ lsof | grep TCP
 mount -t cifs //123.456.78.90/MyFolder my/local/dir -o username=...,password=...
 ```
 
-### command
-
-POSIX command.
-
-Test if a command exists:
+Mount a samba directory under MacOS-X:
 ```bash
-command -v mycmd >/dev/null 2>&1
+mount -t smbfs //PR228844@DRTFAUCON-1/DCSI/LM2S/CLIMB smbnetdir
+```
+Then it asks the password.
+
+Mount a samba directory under Linux:
+```bash
+mount -t smbfs -o username=PR228844 //DRTFAUCON-1.INTRA.CEA.FR/DCSI/LM2S/CLIMB smbnetdir
+mount -t smbfs -o username=PR228844,password=Mypass0123 //DRTFAUCON-1.INTRA.CEA.FR/DCSI/LM2S/CLIMB smbnetdir
 ```
 
-### which
-
-The `which` command returns the path of a command. If the command cannot be found, an error is returned.
-
-On BSD/macOS `which` has a silent option:
-```bash
-which -s myprog
+To allow non-root users to mount a samba drive, use sudo.
+Create a `samba` group and add users to it.
+Edit `/etc/sudoers` and add the following like:
 ```
+%samba ALL=(ALL) NOPASSWD: /bin/mount,/bin/umount,/sbin/mount.cifs,/sbin/umount.cifs,/usr/bin/smbmount,/usr/bin/smbumount
+```
+The `NOPASSWD:` directive prevents `sudo` from prompting for the user's password. It is optional.
+
+### Samba
+
+ * [Samba](https://wiki.archlinux.org/index.php/samba).
+
+To setup Samba under macOS, declare the workgroup:
+	System Preferences -> Network -> [your network device] -> Advanced -> WINS -> Workgroup
+The path from a Windows computer is:
+	\\<server name\<shared folder>
+
+Access folders on samba share:
+```bash
+smbclient -L 123.456.789.012 -U INTRA\\PR228844
+```
+
+Get the netbiosname from a computer:
+```bash
+nbtscan 123.456.789.012
+```
+
+Install a Samba server on Debian:
+```bash
+apt-get install samba
+```
+
+Configuration in `/etc/samba/smb.conf`:
+```
+[global]
+server string = Vampire
+workgroup = Workgroup
+netbios name = Vampire
+public = yes
+encrypt passwords = true
+
+[projects]
+path = /home/zero/projects
+read only = no
+writeable = yes
+valid users = zero
+comment = all_my_projects
+```
+
+Check the conf file:
+```bash
+testparm
+```
+
+Be careful that all files under `/var/lib/samba` and `/var/cache/samba` belong to `root:root`.
+
+Create a user:
+```bash
+smbpasswd -a a_username
+```
+Samba uses existing Linux users, but has its own list of passwords.
+
+Restart samba:
+```bash
+/etc/init.d/samba restart
+```
+
+To debug samba demon, run:
+```bash
+sudo /usr/bin/smbd --foreground --no-process-group -i -S -d 5
+```
+
+To configure samba with guest access:
+```
+[global]
+security = share
+
+[myshareddir]
+guest ok = yes
+```
+
+#### Sambashare
+
+Use sambashare to allow non-root users to create their shared drives:
+```bash
+mkdir /var/lib/samba/usershares
+groupadd -r sambashare
+chown root:sambashare /var/lib/samba/usershares
+chmod 1770 /var/lib/samba/usershares
+```
+
+In `/etc/samba/smb.conf`:
+```
+[global]
+  usershare path = /var/lib/samba/usershares
+  usershare max shares = 100
+  usershare allow guests = yes
+  usershare owner only = yes
+```
+
+Add users to the group:
+```bash
+gpasswd sambashare -a <username>
+```
+
+Then as a user:
+```bash
+net usershare add <sharename> <abspath> [comment] [<user>:{R|D|F}] [guest_ok={y|n}]
+net usershare delete <sharename>
+net usershare list <wildcard-sharename>
+net usershare info <wildcard-sharename>
+```
+Where `R`, `D` and `F` stand for Read-only, Deny and Full respectively.
+
+### NFS
+
+On macos:
+See dscl tool for setting NFS server.
+Use Disk Utility to mount an NFS directory on a client.
+
 
 ### Partition management
 
@@ -1281,6 +1372,24 @@ xattr -d <attribute_name> <filename>
 To remove attributes for a whole directory:
 ```bash
 xattr -dr <attribute_name> <dirname>
+```
+
+### which
+
+The `which` command returns the path of a command. If the command cannot be found, an error is returned.
+
+On BSD/macOS `which` has a silent option:
+```bash
+which -s myprog
+```
+
+### command
+
+POSIX command.
+
+Test if a command exists:
+```bash
+command -v mycmd >/dev/null 2>&1
 ```
 
 ## Compression and uncompression
