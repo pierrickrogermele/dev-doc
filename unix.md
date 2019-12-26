@@ -410,7 +410,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 swapon /dev/sda3
 vi /etc/pacman.d/mirrorlist
-pacstrap /mnt base
+pacstrap /mnt base linux linux-... # see ArchLinux installation
 genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 vi /etc/locale.gen
