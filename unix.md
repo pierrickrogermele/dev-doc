@@ -2612,6 +2612,14 @@ Concat two audio files, one after the other:
 ffmpeg -i file1.mp3 -i file2.mp3 -filter_complex '[0:0][1:0]concat=n=2:v=0:a=1[out]' -map '[out]' output.mp3
 ```
 
+### pdfcrack
+
+Tool for cracking user password and/or owner password in PDF files.
+
+```bash
+pdfcrack myfile.pdf
+```
+
 ### pdfimages
 
 From package xpdf or poppler.
