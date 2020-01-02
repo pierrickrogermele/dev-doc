@@ -46,24 +46,43 @@ use strict "subs"; # enable only "subs" checking
 
 ## Modules
 
+To get a list of installed modules:
+```bash
+perldoc perllocal
+```
+
 ### Installing a module
 
-#### Install from CPAN
+On the following error (met when trying to install `Term::ANSIScreen` module): 
+	Can't locate inc/Module/Package.pm in @INC (you may need to install the inc::Module::Package module) 
+the solution is to install module `Module::Install`:
+```bash
+perl -MCPAN -e 'install Module::Install'
+```
+
+To uninstall a CPAN module:
+```bash
+rm -r /path/to/My/Module
+```
+
+#### perl -MCPAN
 
 Launching CPAN:
 ```bash
 perl -MCPAN -e shell
 ```
-or
+
+To install all standard CPAN modules:
 ```bash
-cpanm
-```
-`cpanm` seems better (more up-to-date about dependencies) than `cpan`. To install it on macos, run:
-```bash
-brew install cpanminus
+perl -MCPAN -e 'install Bundle::CPAN'
 ```
 
-CPAN commands:
+To update CPAN:
+```bash
+perl -MCPAN -e 'install CPAN'
+```
+
+#### cpan
 
 Command                                       | Description
 --------------------------------------------- | ---------------------------
@@ -87,38 +106,11 @@ To force an install, even when tests fail:
 cpan -fi 'My::Module'
 ```
 
-To install all standard CPAN modules:
-```bash
-perl -MCPAN -e 'install Bundle::CPAN'
-```
+#### cpanminus
 
-To update CPAN:
-```bash
-perl -MCPAN -e 'install CPAN'
-```
-
-To get a list of installed modules:
-```bash
-perldoc perllocal
-```
-
-On the following error (met when trying to install `Term::ANSIScreen` module): 
-	Can't locate inc/Module/Package.pm in @INC (you may need to install the inc::Module::Package module) 
-the solution is to install module `Module::Install`:
-```bash
-perl -MCPAN -e 'install Module::Install'
-```
-
-To uninstall a CPAN module:
-```bash
-rm -r /path/to/My/Module
-```
-
-CPAN minus is another way to manage CPAN modules. To install it:
-```bash
-apt install cpanminus
-```
-or
+`cpanm` seems better (more up-to-date about dependencies) than `cpan`. To get
+it, install package `cpanminus`, under Debian, macos or ArchLinux.
+Or downloading from site:
 ```bash
 curl -L http://cpanmin.us | perl - App::cpanminus
 ```
