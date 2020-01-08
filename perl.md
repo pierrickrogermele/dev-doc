@@ -364,6 +364,18 @@ Get size of an array:
 my $size = @arr;
 ```
 
+Last index of an array:
+```perl
+$#arr;
+```
+
+Loop on indices of an array:
+```perl
+for my $i (0 .. $#myarr) {
+	#...
+}
+```
+
 Sort:
 ```perl6
 my @sorted_array = sort @array;
@@ -804,7 +816,7 @@ my @files = readdir(DIR);
 my @html_files = grep(/\.html$/,readdir(DIR));
 closedir(DIR);
 ```
-	
+
 Glob `<>` operator for listing files in a folder:
 ```perl6
 my @f = <*.jp*>;
