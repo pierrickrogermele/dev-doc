@@ -295,8 +295,8 @@ str_extract_all("blabla lala", "la") # search several times for the same regexp:
 Searching for groups:
 ```r
 library(stringr)
-str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups
-str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups
+str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups.
+str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups.
 ```
 
 Ignoring case:
