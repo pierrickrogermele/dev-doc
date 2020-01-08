@@ -1,0 +1,110 @@
+#!/usr/bin/env perl
+# vi: fdm=marker
+
+use strict;
+use warnings;
+use Data::Dumper;
+use File::Basename;
+
+# Get folders {{{1
+################################################################################
+
+sub get_folders($) {
+	my ($path) = @_;
+
+	my @dirs = ();
+
+	for my $f (<$path/*>) {
+		push(@dirs, $f) if -d $f;
+	}
+
+	return sort @dirs;
+}
+
+# Get title of a markdown file {{{1
+################################################################################
+
+sub get_md_file_title($) {
+	my ($file) = @_;
+
+	my $title;
+
+	open my $fd, "<$file";
+	$title = <$fd>;
+	$title =~ s/^# *//;
+	close $fd;
+
+	return $title;
+}
+
+# Get markdown files {{{1
+################################################################################
+
+sub get_md_files($) {
+	my ($path) = @_;
+
+	my %files;
+
+	for my $f (<$path/*.md>) {
+		next if $f =~ /\/README.md$/;
+		my $t = get_md_file_title($f);
+		$files{$t} = $f;
+	}
+
+	return \%files;
+}
+
+# List markdown files {{{1
+################################################################################
+
+sub list_markdown_files {
+
+	my @dirs = ({'path' => '.', title => 'Root'});
+
+	# List subfolders
+	for my $d (get_folders($dirs[0]->{'path'})) {
+		my $t = ucfirst(basename($d));
+		push(@dirs, {title => $t, path => $d});
+	}
+
+	# List markdown files
+	for my $dir (@dirs) {
+		my $md_files = get_md_files($dir->{path});
+		$dir->{'md_files'} = $md_files;
+	}
+
+	return \@dirs;
+}
+
+# Print table {{{1
+################################################################################
+
+sub print_table($) {
+	my ($mdfiles) = @_;
+
+	my @cols = ();
+	for my $i (0 .. $#$mdfiles) {
+		push(@cols, $i) if 0 != keys %{$$mdfiles[$i]->{md_files}};
+	}
+
+	for my $i (@cols) {
+		print " | " if $i > 0;
+		print($$mdfiles[$i]->{title});
+	}
+	print "\n";
+	for my $i (@cols) {
+		print " | " if $i > 0;
+		print("----------");
+	}
+	print "\n";
+}
+
+# Main {{{1
+################################################################################
+
+my $mdfiles = list_markdown_files();
+
+print "# Index of Pierrick's public notes\n";
+print "\n";
+
+print_table($mdfiles);
