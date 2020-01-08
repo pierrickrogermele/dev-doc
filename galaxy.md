@@ -134,7 +134,9 @@ Galaxy should work with any DRM (Distributed Resources Managers) that implements
 
  * [Planemo](https://github.com/galaxyproject/planemo).
  * [Planemo documentation](http://planemo.readthedocs.org/en/latest/index.html).
+ * [Planemo Documentation](https://readthedocs.org/projects/planemo/downloads/pdf/stable/).
  * [IFB Planemo course at Galaxy Day 19/11/2015](http://www.france-bioinformatique.fr/sites/default/files/gd2015-planemo-1.0_0.pdf).
+ * [… test composite dataset contents?](https://planemo.readthedocs.io/en/latest/writing_how_do_i.html#test-composite-dataset-contents).
 
 macOS Homebrew installation:
 ```bash 
