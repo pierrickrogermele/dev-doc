@@ -1301,6 +1301,18 @@ Command     | Description
  * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
  * [Nvim-R](https://github.com/jalvesaq/Nvim-R).
 
+### csv.vim
+
+ * [csv.vim](https://github.com/chrisbra/csv.vim).
+
+Command        | Description
+-------------- | --------------------
+WhatColumn     | Get index of current column.
+WhatColumn!    | Get name of current column (read from header).
+ArrangeColumn  | Align columns.
+ArrangeColumn! | Align columns (force recalculating).
+SumCol         | Sum of a column.
+
 ### YouCompleteMe
 
 Code completion for Python, C, C++, C#, Java, ...
