@@ -395,8 +395,9 @@ Access additional files. HTML files (as primary files of composite datatypes) ca
 
 ## XML tool file
 
-  * [Tool XML file syntax](https://docs.galaxyproject.org/en/latest/dev/schema.html).
-  * [Galaxy Intergalactic Utilities Commission Standards and Best Practices](https://galaxy-iuc-standards.readthedocs.io/en/latest/).
+ * [Best Practices for Creating Galaxy Tools](https://galaxy-iuc-standards.readthedocs.io/en/latest/best_practices/tool_xml.html#command-formatting).
+ * [Tool XML file syntax](https://docs.galaxyproject.org/en/latest/dev/schema.html).
+ * [Galaxy Intergalactic Utilities Commission Standards and Best Practices](https://galaxy-iuc-standards.readthedocs.io/en/latest/).
 
 ### Selection list from an external file
 
