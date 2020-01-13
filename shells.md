@@ -10,6 +10,10 @@ SHELLS
 
 sh doesn't accept `for ((...` statement structure. It's reserved to bash.
 
+## ZSH
+
+`which` is a built-in command in zsh, that returns "<command> not found" on stdout when failing.
+
 ## SHEBANG
 
 Shebang (SHarp BANG or haSH BANG) is the first line in script, indicating the interpreter to run:
