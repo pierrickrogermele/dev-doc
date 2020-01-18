@@ -133,10 +133,13 @@ LDFLAGS     Linker
 
 ## Variables
 
-Define a variable:
+Assignment operators:
 ```make
-CC = gcc3				# override any definition in the environment but is overriden by any definition on make command line like `make CC=gcc4`.
-CC ?= gcc3			# This is a GNU Make specific operator. It only sets CC localy if it hasn't been set in the environment, so it is overriden by the command `CC=gcc4 make` and also by `make CC=gcc4`.
+CC = gcc3 # Override any definition in the environment but is overriden by any definition on make command line like `make CC=gcc4`.
+CC ?= gcc3 # This is a GNU Make specific operator. It only sets CC localy if it hasn't been set in the environment, so it is overriden by the command `CC=gcc4 make` and also by `make CC=gcc4`.
+myvar := ... # No recursive expansion.
+myvar ::= ... # No recursive expansion.
+myvar != ls *.txt # Set to the output of a shell command.
 ```
 
 Define a variable on multiple lines:
