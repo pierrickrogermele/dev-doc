@@ -69,6 +69,16 @@ Exit:
 exit
 ```
 
+Select database in the interpreter:
+```
+use admin
+```
+or in Javascript:
+```javascript
+conn = new Mongo();
+db = conn.getDB("myDatabase");
+```
+
 #### Security
 
  * [User Management Methods](https://docs.mongodb.com/manual/reference/method/js-user-management/).
@@ -94,7 +104,7 @@ setParameter:
   enableLocalhostAuthBypass: false
 ```
 
-When connection with `mongo`:
+When connecting with `mongo`:
 ```bash
 mongo -u admin -p admin --authenticationDatabase "admin"
 ```
