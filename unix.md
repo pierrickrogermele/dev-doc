@@ -2446,6 +2446,11 @@ Install a package archive `.deb`:
 dpkg -i mypkg.deb
 ```
 
+Compare versions:
+```bash
+dpkg --compare-versions "2.11" "lt" "3"
+```
+
 ### alien (RPM / Debian)
 
 Convert an RPM package into a DEB package:
@@ -3052,6 +3057,16 @@ install src_file_1 src_file2 ... dst_directory
 Setting mode (by default set to `rwxr-xr-x`):
 ```bash
 install -m <MODE> ...
+```
+
+## vercmp
+
+On ArchLinux, the `vercmp` script is available for  comparison versions:
+```bash
+if [ $(vercmp $myver $requiredver) -ge 0 ] ; then
+	# Wrong version
+	# ...
+fi
 ```
 
 ## mount
