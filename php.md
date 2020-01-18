@@ -1073,6 +1073,31 @@ echo 'Blabla', 'blibli', $myvar;
 print($mystring);
 ```
 
+Open a file:
+```php
+<?php
+$fh = fopen('/my/file', 'r');
+```
+
+Read a line:
+```php
+<?php
+$line = fgets($fh);
+```
+
+Read all lines in a loop:
+```php
+<?php
+while (($line = fgets($fh)) !== FALSE) {
+}
+```
+
+Close a file handle:
+```php
+<?php
+flclose($fh);
+```
+
 ## File system
 
 Open a file:
@@ -1189,7 +1214,17 @@ Throw an exception:
 
 Catch an exception:
 ```php
-<?php 
+<?php
+try {
+  // ...
+} catch (MyException $e) {
+  // ...
+  throw $e;
+} catch (Exception $e) {
+  // ...
+} finally {
+  // ...
+}
 ```
 
 ## Images
@@ -1273,6 +1308,32 @@ Interface implementation:
 class A implements I {
 }
 ?>
+```
+
+Class constant:
+```php
+<?php
+class MyClass
+{
+    const CONSTANT = 'constant value';
+
+	function foo() {
+		// ...
+		self::CONSTANT ... ;
+	}
+}
+MyClass::CONSTANT ...;
+```
+
+Class method:
+```php
+<?php
+class MyClass
+{
+	static public function foo() {
+	}
+}
+MyClass::foo();
 ```
 
 ### Properties (aka member variables)
