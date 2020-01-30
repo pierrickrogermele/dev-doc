@@ -1254,10 +1254,6 @@ Set background color, the first allocated color is considered as the background 
 <? $bg = imagecolorallocate($im, 0xff, 0xff, 0xff);
 ```
 
-## Multilingual web site
-
- * [How to Build a Multilingual App: A Demo With PHP and Gettext](https://www.toptal.com/php/build-multilingual-app-with-gettext).
-
 ## Namespace
 
 Namespace (PHP 5.3):
@@ -1500,6 +1496,10 @@ BOF:
 
  * [Secure Login System with PHP and MySQL](https://codeshack.io/secure-login-system-php-mysql/#authenticatinguserswithphp).
 
+## File upload
+
+ * [PHP File Upload](https://www.w3schools.com/php/php_file_upload.asp).
+
 ## Interesting modules
 ### PHPUnit
 
@@ -1571,6 +1571,7 @@ pacman -S php-mongodb
 Internationalization of applications.
 
  * [Gettext](https://www.php.net/manual/en/book.gettext.php).
+ * [How to Build a Multilingual App: A Demo With PHP and Gettext](https://www.toptal.com/php/build-multilingual-app-with-gettext).
 
 How to install gettext module for PHP on macos?
 
