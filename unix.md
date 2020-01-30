@@ -270,7 +270,24 @@ ssh -gNL 1993:imap.mail.me.com:993 server.addr
 ```
 Local port used is 1993. Everything going to this local port will be forwarded to imap.mail.me.com:993 through server.addr:22.
 
-## Time & date
+## Locale, time & date
+
+### locale
+
+Display current locale:
+```bash
+locale
+```
+
+Display available locales:
+```bash
+locale -a
+```
+
+Add a new locale:
+```bash
+locale-gen fr_FR.UTF-8
+```
 
 ### cal
 
@@ -882,6 +899,38 @@ sudo SetFile -a "v" /private # Show '/private' in the Finder.app
 sudo SetFile -a "V" /private # Hide '/private' from the Finder.app
 ```
 
+### kill
+
+Send a signal to a process by name or number:
+```bash
+kill -HUP 12648
+kill -HUP myproc
+```
+### pkill
+
+Send signal to processes by name.
+Portable?
+
+Use regexpattern by default:
+```bash
+pkill -HUP [sn]mbd
+```
+
+### killall
+
+Send signal to processes by name.
+Not portable.
+
+Fix string:
+```bash
+killall -HUP myprocess
+```
+
+Regex:
+```bash
+killall -r -HUP 'myproc[0-9]*'
+```
+
 ## Password managers
 
  * [pwsafe](https://github.com/nsd20463/pwsafe). Works in command line.
@@ -1276,6 +1325,11 @@ Restart samba:
 To debug samba demon, run:
 ```bash
 sudo /usr/bin/smbd --foreground --no-process-group -i -S -d 5
+```
+
+On ArchLinux, to start Samba service:
+```bash
+sudo systemctl start smb
 ```
 
 To configure samba with guest access:
