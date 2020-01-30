@@ -49,6 +49,16 @@ su - travis
 ```
 Then clone your repository, and run the commands of your `.travis.yml` file manually.
 
+### GitLab-CI
+
+File is `.gitlab-ci.yml`.
+
+To enable Git submodule recursive extraction:
+```yaml
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+```
+
 ### Jenkins
 
  * [Remote access API](https://wiki.jenkins-ci.org/display/JENKINS/Remote+access+API).
