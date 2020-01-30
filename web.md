@@ -12,10 +12,12 @@ WEB
 ### IE
 
 #### F12 DEVELOPER TOOLS
+
 Pressing F12 inside IE, opens a window that allows to change many configuration options about the page display, included the version of the display engine (IE8, IE9 or IE10).
 
 #### Virtual machines with different versions of IE
-http://www.microsoft.com/downloads/details.aspx?FamilyId=21EABB90-958F-4B64-B5F1-73D0A413C8EF&displaylang=en
+
+<http://www.microsoft.com/downloads/details.aspx?FamilyId=21EABB90-958F-4B64-B5F1-73D0A413C8EF&displaylang=en>.
 
 packages contain .vhd files that can be converted with qemu-img program.
 
@@ -400,6 +402,10 @@ Redémarrer l'ordinateur ou juste le service IIS pour prendre en compte les chan
 
  * [Délibération n° 2017-012 du 19 janvier 2017 portant adoption d'une recommandation relative aux mots de passe](https://www.legifrance.gouv.fr/affichTexte.do?cidTexte=JORFTEXT000033928007).
 
+### Authentication
+
+ * [Secure Login System with PHP and MySQL](https://codeshack.io/secure-login-system-php-mysql/#authenticatinguserswithphp).
+
 ## WEB Services
 
 ### SOAP
@@ -407,7 +413,7 @@ Redémarrer l'ordinateur ou juste le service IIS pour prendre en compte les chan
 SOAP is a webservice protocol that uses XML InfoSet for its message format. It relies on HTTP and/or SMTP.
 WSDL and UDDI were initially built on SOAP.
 
- * [SOAP page](https://en.wikipedia.org/wiki/SOAP) on Wikipedia.
+ * [SOAP](https://en.wikipedia.org/wiki/SOAP).
  * <http://www.soapuser.com/>.
 
 For transmitting large data (binary), the W3C has defined the Message Transmission Optimization Mechanism (MTOM).
