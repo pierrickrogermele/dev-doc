@@ -40,9 +40,9 @@ post: With the HTTP "post" method, the form data set is included in the body of 
 File upload:
 ```html
 <form enctype="multipart/form-data" action="uploader.php" method="post">
-<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-Choose a file to upload: <input name="uploadedfile" type="file" /><br />
-<input type="submit" value="Upload File" />
+<input type="hidden" name="MAX_FILE_SIZE" value="100000"/>
+Choose a file to upload: <input name="uploadedfile" type="file"/><br/>
+<input type="submit" value="Upload File"/>
 </form>
 ```
 
@@ -53,6 +53,10 @@ If 'readonly' is specified then user can change the visual state of the check bo
 ```html
 <INPUT type=checkbox name="field_name" checked="checked" disabled>text label
 ```
+
+## Upload file
+
+ * [PHP File Upload](https://www.w3schools.com/php/php_file_upload.asp).
 
 ## List
 
