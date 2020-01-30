@@ -27,7 +27,7 @@ ansible -i myinventory.txt all -m ping # Will ping all hosts listed inside the i
 
 Choose user for connection:
 ```bash
-ansible all -u myuser ... 
+ansible all -u myuser ...
 ansible all -u myuser -b ... # For running as super user (-b => sudo)
 ```
 
@@ -42,6 +42,43 @@ To get a list of system variables:
   become: yes
   tasks:
       - debug: var=ansible_facts
+```
+
+### roles
+
+ * [Ansible Roles and Variables](https://www.dasblinkenlichten.com/ansible-roles-and-variables/).
+
+Inside a role, variables can be defined inside `defaults/main.yml` or `vars/main.yml`.
+`vars` takes precedence on `defaults`.
+
+### variables
+
+ * [Ansible Roles and Variables](https://www.dasblinkenlichten.com/ansible-roles-and-variables/).
+
+Declare variable:
+```yaml
+foo:
+  field1: one
+  field2: two
+```
+Use it either as `foo['field1']` or `foo.field1`.
+
+Use a variable:
+```yaml
+mytask:
+	args: {{foo.field1}}
+```
+
+### service
+
+ * [service – Manage services](https://docs.ansible.com/ansible/latest/modules/service_module.html).
+
+```yaml
+- name: Ensure MongoDB is running
+  service:
+    name: mongod
+    state: started
+    enabled: yes
 ```
 
 ## Docker
@@ -283,6 +320,20 @@ Naming provision directives:
   config.vm.provision "Run my bootstrap command.", type: "shell", path: "vagrant-bootstrap.sh"
 ```
 Provision directives can be named. The name will be displayed during the construction of the VM as a message. Be careful, that since this is a name, if you name two provision directives with the exact same string, only one will be seen and run (XXX BUG ?).
+
+Error with log file when running an Ubuntu VM on another machine:
+```
+RawFile#0 failed to create the raw output file
+/home/pr228844/dev/exhalobase/ubuntu-bionic-18.04-cloudimg-console.log
+(VERR_PATH_NOT_FOUND).
+```
+This is because the Ubuntu box has been built with an exported log file.
+To disable the log:
+```ruby
+config.vm.provider "virtualbox" do |vb|
+  vb.customize [ "modifyvm", :id, "--uartmode1", "disconnected" ]
+  end
+```
 
 ## VirtualBox
 
