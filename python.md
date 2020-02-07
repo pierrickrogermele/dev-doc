@@ -175,6 +175,12 @@ Convert a string into an integer:
 i = int("-120")
 ```
 
+Get max integer:
+```python
+import sys
+sys.maxsize
+```
+
 ### Strings
 
 Unicode string:
@@ -844,6 +850,11 @@ s = 'a=3,b=9,c=10'
 mydict = dict(u.split("=") for u in s.split(","))
 ```
 
+Merge two dictionaries:
+```python
+z = {**x, **y}
+```
+
 ### Structure
 
 To create a struture, one uses an empty class:
@@ -1104,7 +1115,7 @@ for f in sorted(set(basket)):
 ```
 
 ### While loop
-	
+
 ```python
 while i < 100:
 	# do something
@@ -1194,13 +1205,27 @@ with open(myfilepath, 'rb') as csvfile:
 
 The expression between `with` and `as` must return a [context manager](https://docs.python.org/2/reference/datamodel.html#context-managers).
 
+### assert
+
+```python
+assert len(arr) > 0
+```
+
+Use a message
+```python
+assert len(arr) > 0, "Array arr is empty."
+```
+
 ## OOP
 
-Public/private:
+ * [Data model](https://docs.python.org/3/reference/datamodel.html). Lists all built-in attributes and methods of function objects and classes (__name__, __del__, __init__, ...).
+ * [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
+
+### Public/private
+
 All methods and attributes are public in Python.
 A common convention is to prefix by an underscore all methods and attributes that we want to be private.
-See [Private Variables](https://docs.python.org/3/tutorial/classes.html#private-variables).
-	
+
 ### Definition
 
 Class definition:
@@ -1218,6 +1243,7 @@ Class instantiation:
 ```python
 obj = MyClass()
 ```
+### __init__
 
 Initialization method:
 ```python
@@ -1229,6 +1255,14 @@ class MyComplex:
 		self.r = realpart
 		self.i = imagpart
 ```
+
+### __del__
+
+TODO
+
+### __enter__ and __exit__ (with statement)
+
+TODO
 
 ### Inheritance
 
@@ -1458,7 +1492,7 @@ import sys
 sys.exit(1)
 ```
 
-### Envrionment variables
+### Environment variables
 
 Import module:
 ```python
@@ -1614,6 +1648,21 @@ Remove a file:
 ```python
 os.unlink(myfile)
 os.remove(myfile)
+```
+
+Get current working directory:
+```python
+os.getcwd()
+```
+
+Copy the mode of a file onto another:
+```python
+shutil.copymode("model_file", "target_file")
+```
+
+Rename a file:
+```python
+os.rename('current_name', "new_name")
 ```
 
 ## Tail call recursion
@@ -1933,17 +1982,59 @@ Getting list of modules from inside python:
 python -c "help('modules')"
 ```
 
-Installing a new module (from UNIX shell):
+#### Writing setup.py and setup.cfg
+
+ * [Writing the Setup Configuration File](https://docs.python.org/3/distutils/configfile.html).
+ * [Configuring setup() using setup.cfg files](https://setuptools.readthedocs.io/en/latest/setuptools.html#configuring-setup-using-setup-cfg-files).
+
+When a writing a package, one must define a `setup.py` in which options are set:
+```python
+from setuptools import setup
+setup(
+	name='sampleproject',
+	version='1.3.1',
+	...
+)
+```
+Or define a minimalist `setup.py`:
+```python
+from setuptools import setup
+setup()
+```
+And put everything inside a `setup.cfg` file:
+```cfg
+[metadata]
+name = cea
+version = 0.1.0
+...
+```
+
+#### setup.py
+
+Installing a new module with `setup.py`:
 ```bash
 tar -xzf some-package.tar.gz
 cd some-package
 python setup.py install
 ```
 
+Running tests:
+```bash
+python setup.py test
+```
+
+Passing arguments to the test program:
+```bash
+python setup.py test --addopts '-k MyClass'
+```
+
+#### easy_install
 Other ways:
 ```bash
 easy_install <package>
 ```
+
+#### pip
 
 New way with `pip`:
 ```bash
@@ -2016,6 +2107,80 @@ from ..package import module3
 
 ## Some interesting modules
 
+### SQLAlchemy
+
+ * [SQLAlchemy 1.3 Documentation](https://docs.sqlalchemy.org/en/13/).
+
+Instantiate an SQLAchemy engine:
+```python
+address = db_user+':'+db_password+'@'+db_server+':'+db_port+'/'+db_name
+engine = sqlalchemy.create_engine('postgresql+psycopg2://'+address)
+```
+
+### psycopg2
+
+PostgreSQL connector module.
+
+ * [psycopg2](https://pypi.org/project/psycopg2/).
+ * [Python PostgreSQL Tutorial Using Psycopg2](https://pynative.com/python-postgresql-tutorial/).
+
+Open a connection:
+```python
+try:
+	conn = psycopg2.connect(host=self.db_server, database=self.db_name, user=self.db_user, password=self.db_password, port=self.db_port)
+	# ...
+finally:
+	conn.close()
+```
+
+Send a modification request:
+```python
+cur = conn.cursor()
+cur.execute("alter table mytable add mycol integer;")
+conn.commit()
+cur.close()
+```
+
+Run a select request:
+```python
+cur = conn.cursor()
+cur.execute("select * from mytable;")
+# ...
+cur.close()
+```
+
+Iterator over all records of a cursor:
+```python
+for record in cur:
+	# ...
+```
+
+Fetch all records from a cursor:
+```python
+single_record = cur.fetchall()
+```
+
+Fetch n records from a cursor:
+```python
+single_record = cur.fetchmany(4)
+```
+
+Fetch a single record:
+```python
+single_record = cur.fetchone()
+```
+
+### rrdtool
+
+ * [Round Robin Database tool library](https://pythonhosted.org/rrdtool/index.html).
+
+Resize an RRA inside an RRD file:
+```python
+rrdtool.resize("myfile.rrd", str(rra_index), "GROW", str(9)) # Add 9 rows. Output to "resize.rrd" file.
+rrdtool.resize("myfile.rrd", str(rra_index), "SHRINK", str(8)) # Remove 8 rows. Output to "resize.rrd" file.
+```
+See <https://en.wikipedia.org/wiki/RRDtool>.
+
 ### SciKit-learn
 
 Module for machine learning.
@@ -2042,7 +2207,7 @@ reader = csv.reader(fp)
 ```
 
 ### Decimal
-	
+
 The decimal module offers a Decimal datatype for decimal floating point arithmetic.
 ```python
 from decimal import *
@@ -2092,6 +2257,20 @@ Enable displaying of stdout and stderr:
 ```bash
 py.test -s
 ```
+
+To skip a test:
+```python
+@pytest.mark.skip()
+def test_something(self):
+	# ...
+```
+
+To test only one class:
+```python
+py.test -k MyClass
+```
+
+Test classes must not define an `__init__()` method or they will be ignored by PyTest.
 
 ### unittest
 
@@ -2188,6 +2367,15 @@ Set a handler for the root logger:
 ```python
 handler = logging.StreamHandler(sys.stderr)
 root.addHandler(handler)
+```
+
+Set a file output for the root logger:
+```python
+fh = logging.FileHandler('MyLogFile.log')
+fh.setLevel(logging.DEBUG)
+root = logging.getLogger()
+root.setLevel(logging.DEBUG)
+root.addHandler(fh)
 ```
 
 Log a message from some part of code:
