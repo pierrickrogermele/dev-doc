@@ -1,6 +1,10 @@
 NoSQL databases
 ===============
 
+## RRDtool
+
+ * [RRDtool](https://en.wikipedia.org/wiki/RRDtool).
+
 ## Triplestore
 
 Made to store RDF (Resource Description Framework) data.
@@ -79,9 +83,12 @@ conn = new Mongo();
 db = conn.getDB("myDatabase");
 ```
 
-#### Security
+### Security
 
  * [User Management Methods](https://docs.mongodb.com/manual/reference/method/js-user-management/).
+ * [Collection-Level Access Control](https://docs.mongodb.com/manual/core/collection-level-access-control/).
+ * [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/).
+ * [Privilege Actions](https://docs.mongodb.com/manual/reference/privilege-actions/).
 
 Create an admin user:
 ```
@@ -131,7 +138,7 @@ use mydb
 db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
 ```
 
-#### Managing databases
+### Managing databases
 
 Getting statistics about a database:
 ```
@@ -159,7 +166,7 @@ Drop a database:
 db.dropDatabase()
 ```
 
-#### Collections
+### Collections
 
 Collections are automatically created when inserting documents. However it is possible to create an empty collection, in order to define particular options, using the following command:
 ```
