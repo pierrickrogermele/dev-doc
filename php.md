@@ -203,6 +203,7 @@ Enable strict mode for types:
 <? declare(strict_types = 1);
 ```
 With this option, PHP will not try to convert basic types (`int`, `float`, `string` and `bool`) silently.
+Needs to be first line of file.
 
 ## Types
 
@@ -218,6 +219,9 @@ Get the class of an object:
 
 ### Constants
 
+Constant names are case sensitive by default.
+Only simple values are allowed for constants.
+
 Define a constant:
 ```php
 <?php
@@ -225,6 +229,12 @@ define("MY_CONST", "my value");
 define("MY_NUM_CONST", 25);
 const MY_CONST = 'my value';
 ?>
+```
+
+Define a case insensitive constant:
+```php
+<?php
+define('MY_CONST', 38, true); # The constant is then defined in lowercase ("my_const").
 ```
 
 Use a constant:
@@ -612,6 +622,8 @@ Test if an object has a property:
 
 ## Variables
 
+Variable names are case sensitive.
+
 Print a variable information (type and value):
 ```php
 <?php
@@ -783,6 +795,8 @@ $i += 12;
 
 ## Statements and control structures
 
+Attention ! Keywords are NOT case sensitive.
+
 ### If / elseif / else
 
 ```php
@@ -911,6 +925,8 @@ This construct is particularly useful for enabling or disabling HTML code:
 ```
 
 ## Functions
+
+Attention ! Function names are NOT case sensitive.
 
 Defining a function:
 ```php
@@ -1275,6 +1291,8 @@ class A {
 Be careful to not use static keyword for functions. It's not supported by old version of PHP, they will issue a "Parse error".
 
 ## OOP
+
+Attention ! Class names are NOT case sensitive.
 
  * [Classes and Objects](http://php.net/manual/en/language.oop5.php).
  * [Class iterator](https://www.php.net/manual/en/class.iterator.php).
