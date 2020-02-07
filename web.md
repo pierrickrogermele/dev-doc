@@ -517,3 +517,7 @@ See file tomcat-users.xml in <Tomcat>/conf directory, and add the role manager-g
 Tomcat can be embedded.
 http://stackoverflow.com/questions/640022/howto-embed-tomcat-6
 
+## Testing
+
+ * [Selenium (software)](en.wikipedia.org/wiki/Selenium_(software).
+ * [Selenium (informatique)](fr.wikipedia.org/wiki/Selenium_(informatique)), with a PHP example.
