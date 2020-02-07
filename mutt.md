@@ -145,3 +145,7 @@ Flag | Description
 `L`  | Message is sent to a subscribed mailing list.
 
 Some of the status flags can be turned on or off using `set-flag` and `clear-flag`.
+
+## Encryption
+
+ * [Simple tutorial - Mutt with GPG Encryption](https://tfe.eus/blog/tutorial-send-email-with-gpg-and-mutt.html).
