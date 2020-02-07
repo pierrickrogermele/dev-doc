@@ -166,6 +166,12 @@ bool        |
 string      | variable length unicode character string
 date        |
 
+### List tables
+
+```sql
+select table_name from information_schema.tables where table_catalog='ratppcc' and table_schema='public';
+```
+
 ### create table
 
 Create a table with an auto-incremented column:
@@ -751,9 +757,25 @@ Start server from shell manually:
 postgres -D /usr/local/var/postgres
 ```
 
-or enable service with systemd:
+or start service with systemd:
 ```bash
 systemctl start postgresql
+```
+
+### Interpreter
+
+```bash
+psql
+```
+
+Connect onto specific database:
+```bash
+psql -h hostname -p port -U username -W database
+```
+
+Run as `postgres` user:
+```bash
+sudo -u postgres psql
 ```
 
 ### Initializing a repository
@@ -772,10 +794,17 @@ From SQL:
 create database mydb;
 ```
 
+### Selecting a database
+
+```
+\connect mydb
+\c mydb
+```
+
 ### Deleting a database
 
 ```sql
-drop databases dbname
+drop database dbname;
 ```
 
 ### Running SQL commands
@@ -787,7 +816,7 @@ psql -h hostname -p port -U username database
 
 To run an SQL file:
 ```bash
-psql -h hostname -p port -U username -W passwd -f file.sql database
+psql -h hostname -p port -U username -W -f file.sql database
 ```
 
 `psql` special commands:
@@ -800,11 +829,17 @@ Command         Description
 \q              Quit.
 \d+ mytable     Get information about a table.
 
-### Create user
+### Users
 
+Create user
 ```sql
 create user myuser with encrypted password 'mypass';
 grant all privileges on database mydb to myuser;
+```
+
+Reset user's password:
+```sql
+ALTER USER ratpuser WITH PASSWORD 'ratp';
 ```
 
 ### Dumping and restoring
