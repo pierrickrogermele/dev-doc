@@ -282,6 +282,7 @@ Removing end of line:
 ```perl6
 chop; # remove last character of $_ (not safe)
 chomp; # remove last character of $_ if it's an end of line or similar char.
+chomp(my $var = $line);
 ```
 
 Search string:
@@ -390,7 +391,7 @@ Operator slice: taking a subset of an array:
 ```perl6
 @myarray[1..4];
 ```
-	
+
 Push values:
 ```perl6
 push(@myarray, $myvalue);

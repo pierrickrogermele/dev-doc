@@ -1,13 +1,9 @@
 #!/usr/bin/env perl
-# vi: fdm=marker
 
 use strict;
 use warnings;
 use Data::Dumper;
 use File::Basename;
-
-# Get folders {{{1
-################################################################################
 
 sub get_folders($) {
 	my ($path) = @_;
@@ -21,41 +17,32 @@ sub get_folders($) {
 	return sort @dirs;
 }
 
-# Get title of a markdown file {{{1
-################################################################################
-
 sub get_md_file_title($) {
 	my ($file) = @_;
 
 	my $title;
 
 	open my $fd, "<$file";
-	$title = <$fd>;
+	chomp($title = <$fd>);
 	$title =~ s/^# *//;
 	close $fd;
 
 	return $title;
 }
 
-# Get markdown files {{{1
-################################################################################
-
 sub get_md_files($) {
 	my ($path) = @_;
 
-	my %files;
+	my @files;
 
 	for my $f (<$path/*.md>) {
 		next if $f =~ /\/README.md$/;
 		my $t = get_md_file_title($f);
-		$files{$t} = $f;
+		push(@files, {title => $t, path => $f});
 	}
 
-	return \%files;
+	return \@files;
 }
-
-# List markdown files {{{1
-################################################################################
 
 sub list_markdown_files {
 
@@ -76,35 +63,74 @@ sub list_markdown_files {
 	return \@dirs;
 }
 
-# Print table {{{1
-################################################################################
+sub list_cols_to_print($) {
 
-sub print_table($) {
 	my ($mdfiles) = @_;
 
 	my @cols = ();
+
+	# Filter out directories with no md files
 	for my $i (0 .. $#$mdfiles) {
-		push(@cols, $i) if 0 != keys %{$$mdfiles[$i]->{md_files}};
+		push(@cols, $i) if 0 != @{$$mdfiles[$i]->{md_files}};
 	}
 
+	return @cols;
+}
+
+sub get_size_of_biggest_col($) {
+
+	my ($mdfiles) = @_;
+
+	my $s = 0;
+
+	for my $i (0 .. $#$mdfiles) {
+		my $n = @{$$mdfiles[$i]->{md_files}};
+		$s = $n if $n > $s;
+	}
+
+	return $s;
+}
+
+sub print_table($) {
+
+	my ($mdfiles) = @_;
+
+	my @cols = list_cols_to_print($mdfiles);
+	my $max_length = get_size_of_biggest_col($mdfiles);
+
+	# Write table header
 	for my $i (@cols) {
-		print " | " if $i > 0;
+		print " | " if $i != $cols[0];
 		print($$mdfiles[$i]->{title});
 	}
 	print "\n";
 	for my $i (@cols) {
-		print " | " if $i > 0;
+		print " | " if $i != $cols[0];
 		print("----------");
 	}
 	print "\n";
+
+	# Write links to Markdown files
+	for my $line (0 .. ($max_length - 1)) {
+		for my $i (@cols) {
+			print " | " if $i != $cols[0];
+			my $files = $$mdfiles[$i]->{md_files};
+			if ($line < @$files) {
+				print '['.$$files[$line]->{title}.']('.$$files[$line]->{path}.')';
+			}
+		}
+		print "\n";
+	}
 }
 
-# Main {{{1
-################################################################################
+sub main() {
 
-my $mdfiles = list_markdown_files();
+	my $mdfiles = list_markdown_files();
 
-print "# Index of Pierrick's public notes\n";
-print "\n";
+	print "# Index of Pierrick's public notes\n";
+	print "\n";
 
-print_table($mdfiles);
+	print_table($mdfiles);
+}
+
+main()

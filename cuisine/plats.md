@@ -1,5 +1,7 @@
 # Plats
 
+ * [Duo de carottes et pommes de terre rôties aux épices](http://www.epicetoutlacuisinededany.fr/2016/10/duo-de-carottes-et-pommes-de-terre-roti-aux-epices.html).
+
  * [Pois cassés et Morteau](https://www.cuisinemaison.net/legumes/pois-casse-et-morteau-18950).
 
  * [Risotto allo Zafferano](https://ricette.giallozafferano.it/Risotto-allo-Zafferano.html). Le pistils de safran doit infuser dans l'eau froide toute la nuit, depuis la veille.
