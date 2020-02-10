@@ -3339,6 +3339,11 @@ Gentoo:
  * [256 Xterm 24bit RGB color chart](http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html).
  * [X colors rgb.txt decoded](http://sedition.com/perl/rgb.html).
 
+### mimeapps.list
+
+`~/.config/mimeapps.list` defines default applications for MIME types.
+It defines the browser to use when clicking a link in the terminal.
+
 ### Take screenshots
 
  * [Take pictures of the screen on your Mac](https://support.apple.com/en-sa/KM204852?cid=acs::applesearch).

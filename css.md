@@ -2,7 +2,8 @@ CSS
 ===
 
  * [CSS Reference](http://www.w3schools.com/cssref/).
- 
+ * [Secure Login System with PHP and MySQL](https://codeshack.io/secure-login-system-php-mysql/), good example of using styles for navigation bar and form.
+
 ## Using CSS inside HTML
 
 Making reference to a CSS file:

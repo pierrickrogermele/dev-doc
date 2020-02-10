@@ -1460,7 +1460,7 @@ header('Content-type: text/html; charset=utf-8');
 ### Generate file download
 
 For downloading a file instead of displaying an HTML page:
-	
+
 First, set the content type.
 For a CSV file:
 ```php
