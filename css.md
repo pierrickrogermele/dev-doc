@@ -65,6 +65,11 @@ Anchor pseudo classes (for 'A' tag): link, visited, hover, active.
 The `:first-child` pseudo-class matches a specified element that is the first child of another element.
 The `:lang` pseudo-class allows you to define special rules for different languages.
 
+## Variables
+
+ * [Using CSS custom properties (variables)](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties).
+ * [CSS Variables](https://www.w3schools.com/css/css3_variables.asp).
+
 ## Color
 
 ```css
