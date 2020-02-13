@@ -78,9 +78,9 @@ To run `pdb` on a script:
 python -m pdb myscript.py
 ```
 
-Command | Description
-------- | -----------------------------
-`r`     | Run the script.
+| Command | Description
+| ------- | -----------------------------
+| `r`     | Run the script.
 
 ## Source file encoding
 
@@ -412,14 +412,14 @@ print '-3.14'.zfill(7)
 ### Lists
 
  * [Data Structure](https://docs.python.org/3/tutorial/datastructures.html).
-	
+
 A list, as a string, is a sequence.
-	
+
 Declare a list:
 ```python
 a = [’spam’, ’eggs’, 100, 1234]
 ```
-	
+
 Use the `range` function to create a list:
 ```python
 range(10)           # --> [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
@@ -460,17 +460,23 @@ Repeat:
 ```python
 a * 10
 ```
-	
+
 Assignment:
 ```python
 a[3] = 18
 ```
-	
+
+Compare:
+```python
+if [1, 2] == [2, 3]:
+	# ...
+```
+
 Replace:
 ```python
 a[1:3] = [3, 4]
 ```
-	
+
 Remove elements:
 ```python
 a[0:2] = []
@@ -867,8 +873,8 @@ john.dept = 'compute lab'
 ```
 
 `struct` module provides pack() and unpack() functions.
-"H" and "I" represent two and four byte unsigned intergers.
-"<" means little-endian byte order.
+`"H"` and `"I"` represent two and four byte unsigned intergers.
+`"<"` means little-endian byte order.
 ```python
 import struct
  # ...
@@ -876,7 +882,7 @@ fields = struct.unpack('<IIIHH', string_with_binary_data[offset:offset+16])
 ```
 
 ## Statements
-	
+
 Indentation, instead of curling braces in C, is used to control the grouping of blocks.
 
 ### `pass`
@@ -890,22 +896,22 @@ def myfunc(param1):
 
 ### Operators
 
-Operator | Description
--------- | -----------------------
-`+`      | Addition (unary plus), or concatenation for strings.
-`-`      | Subtraction (unary minus).
-`*`      | Multiplication.
-`**`     | Exponentiation (raise to the power).
-`/`      | Division.
-`//`     | Integer division (floor).
-`%`      | Modulo.
-`<`      | Less than.
-`>`      | Greater than.
-`<=`     | Less than or equal to.
-`>=`     | Greater than or equal to.
-`==`     | Equal to.
-`!=`     | Not equal to.
-`<>`     | An obsolete form of 'not equal to'.
+| Operator | Description
+| -------- | -----------------------
+| `+`      | Addition (unary plus), or concatenation for strings.
+| `-`      | Subtraction (unary minus).
+| `*`      | Multiplication.
+| `**`     | Exponentiation (raise to the power).
+| `/`      | Division.
+| `//`     | Integer division (floor).
+| `%`      | Modulo.
+| `<`      | Less than.
+| `>`      | Greater than.
+| `<=`     | Less than or equal to.
+| `>=`     | Greater than or equal to.
+| `==`     | Equal to.
+| `!=`     | Not equal to.
+| `<>`     | An obsolete form of 'not equal to'.
 
 No `--` and `++` operators exist.
 
@@ -1334,6 +1340,43 @@ class MyDerivedClass(Base1, Base2, Base3):
 Old-style classes: rule for searching an attribute or method is depth-first, then left-to-right.
 New-style classes: the method resolution order changes dynamically to support cooperative calls to super(). --> TODO: search for more explanations.
 
+### Attributes (aka properties, members and variables)
+
+If declared outside of a method, a variable is a class variable (i.e.: static):
+```python
+class MyClass:
+	my_var = 5 # Class variable (static)
+
+	def __init__(self):
+		my_var = 'foo' # Instance variable
+```
+
+A variable can also be defined outside a class:
+```python
+class MyClass:
+	pass
+
+o = MyClass()
+o.my_var = 10 # Instance variable
+```
+
+Adding a property dynamically to an instance:
+```python
+setattr(self, property_name, property_value)
+```
+
+Testing if an attribute exists:
+```python
+hasattr(obj, 'name')
+```
+
+Looping on all attributes of an object:
+```python
+for attr, value in myobj.__dict__.iteritems():
+	print(str(attr) + ': ' + str(value))
+```
+`__dict__` is of type `dict`.
+
 ### Methods
 
 Class method:
@@ -1356,7 +1399,7 @@ m.im_self	# The instance object
 m.im_func	# the function object
 ```
 
-Static method:
+Static method (Does not take the class as first argument):
 ```python
 class MyClass:
 
@@ -1365,7 +1408,7 @@ class MyClass:
 		return a * b
 ```
 
-Class method:
+Class method (Needs to take the class object as first argument):
 ```python
 class MyClass:
 	x = 1.0
@@ -1398,25 +1441,6 @@ class MySubClass(MyClass):
 	def my_abstract_method(self):
 		return 2 + super(self.__class__, self).my_abstract_method()
 ```
-
-### Attributes
-
-Adding a property dynamically to an instance:
-```python
-setattr(self, property_name, property_value)
-```
-
-Testing if an attribute exists:
-```python
-hasattr(obj, 'name')
-```
-
-Looping on all attributes of an object:
-```python
-for attr, value in myobj.__dict__.iteritems():
-	print(str(attr) + ': ' + str(value))
-```
-`__dict__` is of type `dict`.
 
 ### Introspection
 
@@ -1712,11 +1736,11 @@ Add argument:
 parser.add_argument('box_file', metavar='boxfile', type=str, default=None, help="Box file.", nargs="?")
 parser.add_argument('-p', help='prefix for cell names', dest='cell_prefix', required=True)
 ```
-Argument | Description
--------- | ---------------------
-metavar  | The name of the argument in the help message.
-help     | The help message.
-nargs    | Number of time the argument value may appear: `"?"` means 0 or 1, `"*"` means 0 or plus, `"+"` means 1 or plus, or a number for an exact number of times.
+| Argument | Description
+| -------- | ---------------------
+| metavar  | The name of the argument in the help message.
+| help     | The help message.
+| nargs    | Number of time the argument value may appear: `"?"` means 0 or 1, `"*"` means 0 or plus, `"+"` means 1 or plus, or a number for an exact number of times.
 
 Parsing the arguments:
 ```python
@@ -1766,6 +1790,8 @@ print textwrap.fill(mystring, width=40)
 
 ## Regex
 
+ * [re — Regular expression operations](https://docs.python.org/3/library/re.html).
+
 Regex library:
 ```python
 import re
@@ -1788,9 +1814,10 @@ m.group(1)	# first group
 m.group(0)	# whole matched string
 ```
 
-Replaceing:
+Replacing:
 ```python
-line = re.sub(r"a", "b", s)
+line = re.sub(r"a", "b", s) # Replaces all occurences.
+line = re.sub(r"a", "b", s, count=1) # Replaces first occurence.
 ```
 
 Compile --> compile a regexp into an object, so evaluation is faster:
@@ -2110,11 +2137,27 @@ from ..package import module3
 ### SQLAlchemy
 
  * [SQLAlchemy 1.3 Documentation](https://docs.sqlalchemy.org/en/13/).
+ * [Working with Engines and Connections](https://docs.sqlalchemy.org/en/13/core/connections.html).
 
 Instantiate an SQLAchemy engine:
 ```python
 address = db_user+':'+db_password+'@'+db_server+':'+db_port+'/'+db_name
 engine = sqlalchemy.create_engine('postgresql+psycopg2://'+address)
+```
+
+SQLAlchemy can be used with pandas to write a whole table:
+```python
+mydf.tosql("my_table", sqlachemy_engine, if_exists="replace", ...)
+```
+
+To read a table and get a data frame:
+```python
+mydf = pandas.read_sql_table("my_table", con=engine)
+```
+
+To get a data frame from a select request:
+```python
+mydf = pandas.read_sql("select * from my_table where id = 3", con=engine)
 ```
 
 ### psycopg2
@@ -2599,7 +2642,7 @@ To see stdout and stderr, open the console:
 open -a Console
 ```
 
-### Numpy
+### NumPy
 
 Import module:
 ```python
@@ -2609,6 +2652,28 @@ import numpy
 NaN value:
 ```python
 x = numpy.nan
+```
+
+Sort an array:
+```python
+my_sorted_array = numpy.sort(my_arr)
+```
+
+Get unique values in an array:
+```python
+my_uniq_elem = numpy.unique(my_arr)
+```
+
+Test if two arrays are equal:
+```python
+if numpy.equal(array_1, array_2):
+	# ...
+```
+
+Convert an array into a list:
+```python
+my_list = my_array.tolist()
+my_list = list(my_array)
 ```
 
 ### Pandas
@@ -2637,6 +2702,11 @@ if 'mycol' in mydf:
 	pass
 ```
 
+Get a column:
+```python
+mydf['mycol'] # Returns a NumPy array.
+```
+
 Get number of rows of data frame:
 ```python
 n = len(df.index)
@@ -2645,6 +2715,10 @@ n = len(df.index)
 Get number of columns of data frame:
 ```python
 n = len(df.columns)
+```
+
+Get column names:
+```python
 ```
 
 Modify an element of a data frame:
