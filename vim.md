@@ -972,7 +972,7 @@ matchstr('mystringtosearch', '[a-i]')
 
  * [Lists](http://learnvimscriptthehardway.stevelosh.com/chapters/35.html).
 
-#### Variables
+#### Options
 
 See <http://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables>.
 
@@ -980,11 +980,13 @@ Append to a list or string:
 ```vim
 set myopt+=myval
 ```
-	
+
 Insert at beginning of list or string:
 ```vim
 set myopt^=myval
 ```
+
+### Variables
 
 For printing a variable:
 ```vim
@@ -1312,6 +1314,12 @@ WhatColumn!    | Get name of current column (read from header).
 ArrangeColumn  | Align columns.
 ArrangeColumn! | Align columns (force recalculating).
 SumCol         | Sum of a column.
+Header         | Open top window with one line header.
+Header 4       | Open top window with 4 lines header.
+VHeader 2      | Open left window with 2 first columns.
+VHeader 2!     | Open left window with 2nd column.
+Header!        | Close header window.
+AddColumn      | Insert new column.
 
 ### YouCompleteMe
 
