@@ -1,4 +1,6 @@
-# Céréales
+# Céréales & légumineuses
+
+ * [Pois cassés au curry](https://www.marmiton.org/recettes/recette_pois-casses-au-curry_68500.aspx).
 
 ## Millet
 
