@@ -171,7 +171,7 @@ case (version_compare("5", phpversion(), ">")):
 	break;
 }
 ```
-	
+
 On some website (like free.fr), PHP4 is used by default. In order to use PHP5, one needs to create a `.htaccess` file at site root and write inside:
 ```
 php 5
@@ -1150,7 +1150,7 @@ $dir = dirname($path);
 ```
 
 Get file extension:
-````php
+```php
 <?php pathinfo($path, PATHINFO_EXTENSION);
 ```
 
@@ -1244,7 +1244,7 @@ try {
 ```
 
 ## Images
-	
+
 Get image size:
 ```php
 <?php
@@ -1575,14 +1575,18 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
  * [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
 
 Installation with pecl:
-```bash
+```sh
 pecl install mongodb
 ```
 
 Installation on ArchLinux with pacman:
-```bash
+```sh
 pacman -S php-mongodb
 ```
+
+BSON classes:
+ * `MongoDB\Model\BSONArray` extends [ArrayObject](https://www.php.net/arrayobject).
+ * `MongoDB\Model\BSONDocument` extends `ArrayObject` too.
 
 ### Gettext
 
