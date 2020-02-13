@@ -84,17 +84,17 @@ perl -MCPAN -e 'install CPAN'
 
 #### cpan
 
-Command                                       | Description
---------------------------------------------- | ---------------------------
-`o conf init`                                 | Run configuration.
-`o conf mbuildpl_arg "--install_base ~/perl"` | Set installation directory.
-`o conf makepl_arg "PREFIX=~/perl"`           | Set installation directory.
-`install Chocolate::Belgian`                  | Install a module.
-`o conf urllist`                              | Get configured CPAN mirror list.
-`o conf urllist push http://my.mirror/`       | Add mirror.
-`o conf urllist pop`                          | Remove the URL at the end of the mirror list.
-`o conf urllist shift`                        | Remove the URL at the front of the mirror list.
-`o conf commit`                               | Save configuration.
+| Command                                       | Description
+| --------------------------------------------- | ---------------------------
+| `o conf init`                                 | Run configuration.
+| `o conf mbuildpl_arg "--install_base ~/perl"` | Set installation directory.
+| `o conf makepl_arg "PREFIX=~/perl"`           | Set installation directory.
+| `install Chocolate::Belgian`                  | Install a module.
+| `o conf urllist`                              | Get configured CPAN mirror list.
+| `o conf urllist push http://my.mirror/`       | Add mirror.
+| `o conf urllist pop`                          | Remove the URL at the end of the mirror list.
+| `o conf urllist shift`                        | Remove the URL at the front of the mirror list.
+| `o conf commit`                               | Save configuration.
 
 Install a CPAN module directly from command line: 
 ```bash
