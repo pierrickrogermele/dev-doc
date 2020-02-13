@@ -35,7 +35,7 @@ Primary Key | Primary Key (Default key `_id` provided by MongoDB itself)
 ### Installation
 
 On ArchLinux:
-```
+```sh
 yay -S mongodb
 ```
 
@@ -46,18 +46,18 @@ Default data store path is `/data/db`. Create it with 'rwx' permissions for user
 ### Interpreter
 
 To start interpreter:
-```bash
+```sh
 mongo
 mongo -u admin -p admin --authenticationDatabase "admin"
 ```
 
 To get help:
-```
+```js
 db.help()
 ```
 
 Print version:
-```
+```js
 db.version()
 ```
 
@@ -69,7 +69,7 @@ mongo mylocaldb muyscript.js
 ```
 
 Exit:
-```
+```js
 exit
 ```
 
@@ -78,20 +78,22 @@ Select database in the interpreter:
 use admin
 ```
 or in Javascript:
-```javascript
+```js
 conn = new Mongo();
 db = conn.getDB("myDatabase");
 ```
 
 ### Security
 
+ * [Introduction to MongoDB](https://docs.mongodb.com/manual/introduction/).
  * [User Management Methods](https://docs.mongodb.com/manual/reference/method/js-user-management/).
  * [Collection-Level Access Control](https://docs.mongodb.com/manual/core/collection-level-access-control/).
  * [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/).
  * [Privilege Actions](https://docs.mongodb.com/manual/reference/privilege-actions/).
+ * [db.auth()](https://docs.mongodb.com/manual/reference/method/db.auth/).
 
 Create an admin user:
-```
+```js
 use admin
 db.createUser(
 	{
@@ -103,7 +105,7 @@ db.createUser(
 ```
 
 Inside the configuration file `/etc/mongodb.conf` set:
-```
+```cfg
 security:
  authorization: enabled
 
@@ -111,90 +113,99 @@ setParameter:
   enableLocalhostAuthBypass: false
 ```
 
-When connecting with `mongo`:
+Authenticate when connecting with `mongo`:
 ```bash
 mongo -u admin -p admin --authenticationDatabase "admin"
 ```
+Or from inside `mongo`:
+```js
+db.auth('readuser', 'mypassword');
+```
 
 List users:
-```
+```js
 db.getUsers()
 ```
 
 Create read-only user for a database mydb:
-```
+```js
 use mydb
 db.createUser({user:'pierrick',pwd:'cea', roles:[ "read"]})
 ```
 Roles can be defined for other database as well:
-```
+```js
 use mydb
 db.createUser({user:'pierrick',pwd:'cea', roles:[ { role: "read", db: "fake_exhalobase"}]})
 ```
 
 Create read/write user:
-```
+```js
 use mydb
 db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
+```
+
+Print users with all their privileges:
+```js
+db.getRoles({showPrivileges:1})
 ```
 
 ### Managing databases
 
 Getting statistics about a database:
-```
+```js
 db.stats()
 ```
 
 Create a database, or switch to it:
-```
+```js
 use mydb
 ```
 
 Print current database:
-```
+```js
 db
 ```
 
 List all databases:
-```
+```js
 show dbs
 ```
 Note: to exist, a database must at least contain one document.
 
 Drop a database:
-```
+```js
 db.dropDatabase()
 ```
 
 ### Collections
 
 Collections are automatically created when inserting documents. However it is possible to create an empty collection, in order to define particular options, using the following command:
-```
+```js
 db.createCollection("mycol", { capped : true, autoIndexId : true, size : 6142800, max : 10000 } )
 ```
 
 To insert a document into a collection:
-```
+```js
 db.mycol.insert({"name" : "tutorialspoint"})
 ```
 
 To list all collections of a database:
-```
+```js
 show collections
 ```
 
 To list the content of a collection:
-```
+```js
 db.mycol.find()
 ```
 or
-```
+```js
 db.mycol.find().pretty()
 ```
 to have JSON printed with new lines.
 
 To drop a collection:
-```
+```js
 db.mycol.drop()
 ```
 
