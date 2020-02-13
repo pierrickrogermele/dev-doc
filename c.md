@@ -3,9 +3,13 @@ C
 
  * [Rationale for International Standard— Programming Languages— C](http://www.open-std.org/jtc1/sc22/wg14/www/C99RationaleV5.10.pdf).
 
-## Clang
+## Compilers
 
  * [Clang Static Analyzer](http://clang-analyzer.llvm.org/).
+
+Vectorization (SIMD):
+ * [GCC SSE code optimization](https://stackoverflow.com/questions/7919304/gcc-sse-code-optimization).
+ * [Auto-Vectorization in LLVM](https://llvm.org/docs/Vectorizers.html).
 
 ## Preprocessor
 
