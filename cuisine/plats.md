@@ -23,7 +23,6 @@ CHAUSSONS LIBANAIS À LA VIANDE		Liban		http://aime-mange.com/chaussons-libanais
 Clafoutis poires, roquefort et noix, sauce au miel	fromage	France		http://cuisine.notrefamille.com/recettes-cuisine/clafoutis-poires-roquefort-et-noix-sauce-au-miel-_25811-r.html	
 Croissants	viennoiseries			https://www.meilleurduchef.com/fr/recette/croissant-facile.html	
 Dal tempering	lentilles	India		https://thoughtsfromajoy.wordpress.com/2013/01/09/perfect-dal-is-all-about-tadka-baghar-vagharne-chonk-phodni-or-just-call-it-tempering/	
-DORAYAKI (JAPANESE RED BEAN PANCAKE)	crêpes	Japon		https://www.justonecookbook.com/dorayaki-japanese-red-bean-pancake/	
 Far breton aux pruneaux	gâteau	France		http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx	
 fenouils braisés				https://www.marmiton.org/recettes/recette_fenouils-braises_35390.aspx	
 Filet mignon de porc en croûte tout simple	porc	France		https://www.marmiton.org/recettes/recette_filet-mignon-de-porc-en-croute-tout-simple_51838.aspx	
@@ -56,7 +55,6 @@ Orecchiette	pâtes	Italie		http://ricette.giallozafferano.it/Orecchiette.html
 Orecchiette broccoli e salsiccia	pâtes	Italie		https://ricette.giallozafferano.it/Orecchiette-broccoli-e-salsiccia.html	
 Le pain d'épices	pain d’épices	France	Alsace	https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html	
 Pains au lait	pain	France		http://www.marmiton.org/recettes/recette_petits-pain-au-lait-maison_220199.aspx	
-Pancakes	crêpes	Angleterre		http://www.marmiton.org/recettes/recette_pancakes_15299.aspx	
 Pane cafone	pain			http://ricette.giallozafferano.it/Pane-cafone.html	
 Pane di sapa	gâteau	Italie		https://www.youtube.com/watch?v=o1iJ50m1_-8 https://www.ricettedisardegna.it/pani-saba/	
 Pane di semola rimacinata	pain			http://www.misya.info/ricetta/pane-di-semola-rimacinata.htm	
@@ -64,19 +62,8 @@ Pane mafalde siciliane	pain			http://ricette.giallozafferano.it/Mafalde-sicilian
 Pasta con crema di carote	pâtes	Italie		https://blog.giallozafferano.it/graficareincucina/pasta-crema-carote/	
 Pasta con pesto di carote	pâtes	Italie		https://www.misya.info/ricetta/pasta-con-pesto-di-carote.htm	
 Pasta di semola di grano duro a mano	pâtes			http://www.cookaround.com/ricetta/Pasta-di-semola-di-grano-duro-a-mano.html	
-Pâte à crêpes de sarasin	crêpes	France	Bretagne	http://www.recettes-bretonnes.fr/galette-bretonne/recette-galette-sarrasin.html	500g de farine de sarrasin(blé noir)
-75cl d'eau
-15/20g de gros sel
-Pas d'oeuf c'est pas la peine
-Le miel n'est pas nécessaire non plus, il est là juste pour donner sa belle couleur dorée à la galette.
-Pour éviter de mettre du miel, il suffit de laisser reposer la pâte une bonne douzaine d'heure au frais.
-Personnellement je fais toujours mon pâton le soir avant de quitter la crêperie.
-Je le reprends le lendemain en rajoutant la quantité d'eau nécessaire à un bon étalement de la galette sur le Bilig chauffé à 220/230°C
-Pâte à crêpes simple	crêpes	France	Bretagne	https://www.marmiton.org/recettes/recette_pate-a-crepes-simple_27121.aspx	
-Pâte à crêpes mi-sarasin, mi-froment	crêpes	France	Bretagne	http://www.marmiton.org/recettes/recette_galettes-au-ble-noir-de-sophie_51829.aspx	
 Pâte d’azukis	pâtes de fruits	Japon		https://www.justonecookbook.com/how-to-make-anko-red-bean-paste/	
 Pâte feuilletée	pâte	Italie		https://www.meilleurduchef.com/fr/achat/epicerie/produit-frais/beurre-feuilletage/gre-beurre-special-professionnel-montaigu-2.html http://www.marmiton.org/recettes/recette_pate-feuilletee_20642.aspx	
-Piadine	crêpes			http://ricette.giallozafferano.it/Piadina-Romagnola.html	
 Poires au vin	fruits	France		http://www.marmiton.org/recettes/recette_poires-pochees-au-vin_30583.aspx	
 Poires au vin et aux épices	fruits	France		http://www.marmiton.org/recettes/recette_delice-de-poires-epicees-au-vin-rouge_29554.aspx https://www.meilleurduchef.com/fr/recette/poire-au-vin.html	
 Pommes au four	pommes	France		http://chefsimon.lemonde.fr/gourmets/chef-simon/recettes/pommes-au-four--7	
