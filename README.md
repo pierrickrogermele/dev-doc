@@ -3,12 +3,12 @@
 Root | Cuisine | Personal
 ---------- | ---------- | ----------
 [Amstrad computers and games](./amstrad.md) | [Cake aux raisins](./cuisine/cake_aux_raisins.md) | [CEA](./personal/cea.md)
-[AUTOTOOLS](./autotools.md) | [Céréales](./cuisine/cereales.md) | [Cloud](./personal/cloud.md)
-[BASH](./bash.md) | [Gâteaux](./cuisine/gateaux.md) | [Development](./personal/dev.md)
-[Books](./books.md) | [Plats](./cuisine/plats.md) | [Enfants](./personal/enfants.md)
-[C](./c.md) | [Vins](./cuisine/vins.md) | [Games](./personal/games.md)
-[CHEETAH](./cheetah.md) |  | [Local](./personal/local.md)
-[CMAKE](./cmake.md) |  | [Logement](./personal/logement.md)
+[AUTOTOOLS](./autotools.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [Cloud](./personal/cloud.md)
+[BASH](./bash.md) | [Crêpes](./cuisine/crepes.md) | [Development](./personal/dev.md)
+[Books](./books.md) | [Gâteaux](./cuisine/gateaux.md) | [Enfants](./personal/enfants.md)
+[C](./c.md) | [Plats](./cuisine/plats.md) | [Games](./personal/games.md)
+[CHEETAH](./cheetah.md) | [Viande](./cuisine/viande.md) | [Local](./personal/local.md)
+[CMAKE](./cmake.md) | [Vins](./cuisine/vins.md) | [Logement](./personal/logement.md)
 [COMPUTERS](./computers.md) |  | [Médias](./personal/media.md)
 [AMSTRAD CPC](./cpc.md) |  | [Références](./personal/ref.md)
 [CSS](./css.md) |  | 
