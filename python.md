@@ -212,6 +212,13 @@ Usage: thingy [OPTIONS]
 """
 ```
 
+Joined stings:
+```python
+s = ("My string "
+     "split in several"
+     "parts.")
+```
+
 Raw string (no backslashes are interpeted):
 ```python
 s = r"ABCD\n\EFG"
@@ -296,6 +303,15 @@ s = ','.join(mylist)
 s = string.join(mylist, ',')	# <--- not portable ?
 ```
 
+`%` replacement:
+```python
+'The value of PI is approximately %5.3f.' % math.pi
+"My object %r" % obj # obj converted with `repr()`
+"My object %s" % obj # obj converted with `str()`
+"My obj1 %s and my obj2 %s" % (obj1, obj2)
+"My obj1 %(a)s and my obj2 %(b)s" % {'a':obj1, 'b':obj2}
+```
+
 Template strings:
 ```python
 from string import Template
@@ -321,6 +337,19 @@ Stripping white spaces (trip spaces, tabs, new lines, ...):
 s2 = s.strip()	# strip at both end
 s2 = s.lstrip()	# strip at left
 s2 = s.rstrip()	# strip at right
+```
+
+Padding a string:
+```python
+s2 = s.rjust(6)	# right justify a string in a field of width 6
+s2 = s.ljust(5)	# left justify a string
+s2 = s.center(4)	# center a string
+```
+
+Padding a numeric string:
+```python
+s = '12'.zfill(5)	# Pads 3 zeros before the number 12
+s = '-3.14'.zfill(7)
 ```
 
 Uppercase and lowercase:
@@ -353,60 +382,22 @@ s = str(10)
 
 Format:
 ```python
-print '{0:2d}'.format(x)
-print '{0} {1}'.format(s1, s2)
-print '{tag} {0}'.format(v, tag='mystring')
-print '{0:.3f}'.format(x)
-print '{0:10} {1:8d}'.format(s, i)	# field 0 is 10 columns wide, and field 1 is 8 columns wide.
+s = '{0:2d}'.format(x)
+s = '{0} {1}'.format(s1, s2)
+s = '{tag} {0}'.format(v, tag='mystring')
+s = '{0:.3f}'.format(x)
+s = '{0:10} {1:8d}'.format(s, i)	# field 0 is 10 columns wide, and field 1 is 8 columns wide.
 ```
 
 Giving a dictionary to format:
 ```python
 table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table))
+s = ('Jack: {0[Jack]:d}; Sjoerd: {0[Sjoerd]:d}; Dcab: {0[Dcab]:d}'.format(table))
 ```
 OR
 ```python
 table = {'Sjoerd': 4127, 'Jack': 4098, 'Dcab': 8637678}
-print 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
-```
-
-`printf` style:
-```python
-print 'The value of PI is approximately %5.3f.' % math.pi
-```
-
-Print a Python object (convert it using `repr()`):
-```python
-print("My object %r" % obj)
-```
-
-Print a Python object (convert it using `str()`):
-```python
-print("My object %s" % obj)
-```
-
-Printing several objects:
-```python
-print("My obj1 %s and my obj2 %s" % (obj1, obj2))
-```
-
-Printing several objects, using keys:
-```python
-print("My obj1 %(a)s and my obj2 %(b)s" % {'a':obj1, 'b':obj2})
-```
-
-Padding a string:
-```python
-print s.rjust(6)	# right justify a string in a field of width 6
-print s.ljust(5)	# left justify a string
-print s.center(4)	# center a string
-```
-
-Padding a numeric string:
-```python
-print '12'.zfill(5)	# Pads 3 zeros before the number 12
-print '-3.14'.zfill(7)
+s = 'Jack: {Jack:d}; Sjoerd: {Sjoerd:d}; Dcab: {Dcab:d}'.format(**table)
 ```
 
 ### Lists
@@ -599,6 +590,10 @@ Filtering out elements using list comprehension:
 ```python
 [e for e in mylist if e > 2]
 ```
+or with filter and lambda:
+```python
+filter(lambda x: x != 4, mylist)
+```
 
 #### Yield
 
@@ -632,7 +627,7 @@ valedictorian = max((student.gpa, student.name) for student in graduates)
 list(mystring[i] for i in range(len(,mystring)-1,-1,-1)) # make a list of characters of mystring in reverse order
 ```
 
-### Sets
+### Set
 
 Construct a set from a list, eliminating all duplicates:
 ```python
@@ -1276,9 +1271,9 @@ Calling mother class' constructor:
 ```python
 class B(A):
 	def __init__(self, arg1):
-		super(self.__class__, self).__init__(arg1)
+		super().__init__(arg1)
 ````
-Does not work in Python 2, nor in Python 3 with chained calls of constructors, but the following works:
+Does not work in Python 2, but the following works:
 ```python
 class B(A):
 	def __init__(self, arg1, arg2):
@@ -1345,10 +1340,10 @@ New-style classes: the method resolution order changes dynamically to support co
 If declared outside of a method, a variable is a class variable (i.e.: static):
 ```python
 class MyClass:
-	my_var = 5 # Class variable (static)
+	my_var = 5 # Class variable (static).
 
 	def __init__(self):
-		my_var = 'foo' # Instance variable
+		my_var = 'foo' # Instance variable, overrides the class variable of the same name.
 ```
 
 A variable can also be defined outside a class:
@@ -1357,7 +1352,7 @@ class MyClass:
 	pass
 
 o = MyClass()
-o.my_var = 10 # Instance variable
+o.my_var = 10 # Instance variable.
 ```
 
 Adding a property dynamically to an instance:
@@ -1416,6 +1411,12 @@ class MyClass:
 	@classmethod
 	def my_class_method(cls):
 		return cls.x
+
+	def my_instance_method(self):
+		return MyClass.x
+
+	def my_other_instance_method(self):
+		return self.__class__.x
 ```
 
 Abstract method:
@@ -1915,6 +1916,13 @@ Running snakeviz to analyse a .pstat file:
 ```bash
 snakeviz myapp.pstat
 ```
+
+cProfile cannot profile parallel execution. You need to run a `cProfile.run()` inside each thread/process and write the output inside a different file:
+```python
+cProfile.run('p.start()', 'prof%d.prof' %i)
+```
+
+yappi, on the other hand, works with multi-threading (but does not seem to work with multi-processing).
 
 Installing yappi:
 ```bash
