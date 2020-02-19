@@ -44,6 +44,33 @@ To get a list of system variables:
       - debug: var=ansible_facts
 ```
 
+### ansible-playbook
+
+Run a playbook:
+```sh
+ansible-playbook provisioning/playbook.yml
+```
+
+Pass a variable:
+```sh
+ansible-playbook -e myvar=myvalue provisioning/playbook.yml
+```
+
+Check syntax, but does not execute anything:
+```sh
+ansible-playbook --syntax-check provisioning/playbook.yml
+```
+
+Run on localhost:
+```sh
+ansible-playbook --connection=local --inventory localhost, --limit localhost provisioning/playbook.yml
+```
+
+Set the Python interpreter to use (by default it is `/usr/bin/python`):
+```sh
+ansible-playbook -e ansible_python_interpreter=/usr/bin/python3 provisioning/playbook.yml
+```
+
 ### roles
 
  * [Ansible Roles and Variables](https://www.dasblinkenlichten.com/ansible-roles-and-variables/).
@@ -80,6 +107,123 @@ mytask:
     state: started
     enabled: yes
 ```
+
+### locale_gen
+
+ * [locale_gen – Creates or removes locales](https://docs.ansible.com/ansible/latest/modules/locale_gen_module.html).
+
+```yaml
+- name: Add FR locale
+  locale_gen:
+    name: fr_FR.UTF-8
+    state: present
+```
+
+### apache2_module
+
+```yaml
+- name: Enable rewrite module
+  apache2_module:
+    state: present
+    name: rewrite
+```
+
+### file
+
+Create a directory (mkdir):
+```yaml
+- name: Create directory for SSL certificate
+  file:
+    path: /etc/apache2/ssl
+    state: directory
+    mode: '0755'
+```
+
+Create a symbolic link (symlink):
+```yaml
+- name: Create a symbolic link for SSL conf
+  file:
+    src: /etc/apache2/sites-available/default-ssl.conf
+    dest: /etc/apache2/sites-enabled/000-default-ssl.conf
+    state: link
+```
+
+### debug
+
+Print debug messages.
+
+ * [debug – Print statements during execution](https://docs.ansible.com/ansible/latest/modules/debug_module.html).
+
+Print variable content:
+```yaml
+- name: Print myvar
+  debug:
+      msg: "{{ myvar }}"
+```
+
+Print the output of a command:
+```yaml
+- name: Run mycmd
+  shell: mycmd
+  register: mycmd_output
+
+- name: Print mycmd output
+  debug:
+      msg: "{{ mycmd_output }}"
+```
+
+### `openssl_*`
+
+Generate a private key:
+```yaml
+- name: Generate an OpenSSL private key with the default values (4096 bits, RSA)
+  openssl_privatekey:
+    path: /etc/apache2/ssl/server.pem
+```
+
+Generate a CSR file:
+```yaml
+- name: Generate an OpenSSL Certificate Signing Request with Subject information
+  openssl_csr:
+    path: /etc/apache2/ssl/server.csr
+    privatekey_path: /etc/apache2/ssl/server.pem
+    country_name: FR
+    organization_name: CEA
+    email_address: pierrick.roger@cea.fr
+    common_name: www.cea.fr
+```
+
+Generate a self signed certificate:
+```yaml
+- name: Generate a Self Signed OpenSSL certificate
+  openssl_certificate:
+    path: /etc/apache2/ssl/server.crt
+    privatekey_path: /etc/apache2/ssl/server.pem
+    csr_path: /etc/apache2/ssl/server.csr
+    provider: selfsigned
+```
+
+### shell
+
+Run a shell command:
+```yaml
+- name: Run my cmd
+  shell: mycmd
+```
+
+Register output of a command and use it inside a conditional:
+```yaml
+- name: Check if systemd is enabled
+  shell: "systemctl >/dev/null"
+  register: systemctl_output
+  ignore_errors: True
+
+- name: Start MongoDB daemon (no systemd) # No systemd inside a Docker image
+  shell: "mongod --fork --syslog"
+  when: systemctl_output.rc != 0
+```
+The `.rc` suffix gives the returned code. See [Return Values](https://docs.ansible.com/ansible/latest/reference_appendices/common_return_values.html) for a list of returned values.
+
 
 ## Docker
 
