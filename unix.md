@@ -580,6 +580,14 @@ Get CPU exact description on macos:
 sysctl -n machdep.cpu.brand_string
 ```
 
+### top
+
+### htop
+
+ * [Understanding and using htop to monitor system resources](https://www.deonsworld.co.za/2012/12/20/understanding-and-using-htop-monitor-system-resources/).
+
+A top app with %CPU for each core and colors.
+
 ### Machine name
 
 Under macOS, to set the name of a machine, run:
@@ -1176,6 +1184,23 @@ In MacOS-X, a `+` character after permissions means that the file has an ACL, sh
 Entering the following command will show these additional permissions for files in a directory:
 ```bash
 ls -le
+```
+
+### stat
+
+Gives information on file:
+```sh
+stat myfile
+```
+
+Print size of file:
+```sh
+stat --printf="%s" myfile
+```
+
+List found files by size:
+```sh
+find . -name *.h5 | xargs -n 1 -I @ stat --printf="%s %n\n" "@" | sort -n
 ```
 
 #### Coloring ls output
