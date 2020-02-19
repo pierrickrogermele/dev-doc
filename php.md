@@ -502,7 +502,7 @@ $index = array_search($val, $array);
 Map elements:
 ```php
 <?php
-array_map("my_func", my_array);
+array_map("my_func", $my_array);
 ?>
 ```
 
@@ -661,7 +661,7 @@ if (isset($my_var)) {
 }
 ?>
 ```
-	
+
 Accessing a global variable from inside a function:
 ```php
 <?php
@@ -675,7 +675,7 @@ Getting a variable value by dynamic variable name:
 $val = $$name; // get value of variable named $name
 ?>
 ```
-	
+
 Static variable:
 ```php
 <?php
@@ -684,7 +684,7 @@ function foo() {
 }
 ?>
 ```
-	
+
 Variable reference inside a loop:
 ```php
 <?php
@@ -1418,7 +1418,9 @@ $options = getopt($shortopts, $longopts);
 ?>
 ```
 
-## URL
+## `_GET`, `_POST`, `$_COOKIE` and `_REQUEST`
+
+ * [`$_REQUEST`](https://www.php.net/manual/en/reserved.variables.request.php).
 
 Getting URL arguments:
 ```php
@@ -1429,10 +1431,23 @@ $arg2 = $_GET['arg2'];
 ?>
 ```
 
+`$_POST` is used in the same way to get POST arguments.
+
+`$_REQUEST` is a merged of `$_GET`, `$_POST` and `$_COOKIE`.
+
 Simulating URL arguments on the command line:
 ```bash
 php -e -r 'parse_str("id=12134", $_GET); include "display-molecule.php";'
 ```
+
+## `http_build_query`
+
+Build a query string:
+```php
+<?php http_build_query(['param1' => 'value1', 'param2' => 'value2']);
+```
+
+## `file_get_contents`
 
 Getting a URL content:
 ```php
@@ -1442,9 +1457,37 @@ $xml = file_get_contents("http://www.example.com/file.xml");
 ```
 See [file_get_contents](http://php.net/manual/en/function.file-get-contents.php).
 
-Build a query string:
+Ignore certificate checking with `file_get_contents()`:
 ```php
-<?php http_build_query(['param1' => 'value1', 'param2' => 'value2']);
+<?php
+$arrContextOptions=array(
+	"ssl"=>array(
+		"verify_peer"=>false,
+		"verify_peer_name"=>false
+	)
+);
+$result = file_get_contents('https://my/url', false, stream_context_create($arrContextOptions));
+```
+
+## cURL
+
+ * [cURL Functions](https://www.php.net/manual/en/ref.curl.php).
+ * [curl_setopt](https://www.php.net/manual/en/function.curl-setopt.php).
+
+Transfering a file with cURL:
+```php
+<?php
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, $url);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$res = curl_exec($ch); # Returns `false` in case of failure, otherwise returns the received string.
+curl_close($ch);
+```
+
+Ignore certificate checking:
+```php
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 ```
 
 ## Generating HTML
@@ -1540,6 +1583,31 @@ use PHPUnit\Framework\TestCase;
 final class MyTest extends TestCase {
 
 	public function testSomething(): void {
+	}
+}
+```
+
+Asserts:
+```php
+<?php
+self::assertNull($myvar);
+self::assertNotNull($myvar);
+self::assertFalse($myvar);
+self::assertTrue($myvar);
+self::assertInstanceOf(MyClass::class, $myvar);
+self::assertFileExists($myfile);
+self::assertFileNotExists($myfile);
+```
+
+Assert exception:
+```php
+<?php
+final class MyTest extends TestCase {
+
+	public function testMyExcept(): void {
+		$this->expectException(MyException::class);
+		call_my_method_to_test();
+		# After that no code will be executed since exception is thrown.
 	}
 }
 ```
