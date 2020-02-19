@@ -34,6 +34,8 @@ My text&nbsp;:
 
 ## Form
 
+ * [HTML Form Elements](https://www.w3schools.com/html/html_form_elements.asp).
+
 get: With the HTTP "get" method, the form data set is appended to the URI specified by the action attribute (with a question-mark ("?") as separator) and this new URI is sent to the processing agent.
 post: With the HTTP "post" method, the form data set is included in the body of the form and sent to the processing agent.
 
@@ -46,12 +48,37 @@ Choose a file to upload: <input name="uploadedfile" type="file"/><br/>
 </form>
 ```
 
-Checkbox :
+Text field:
+```html
+<input type="text" id="myfield" name="myfield"/>
+```
+
+Checkbox (one or more choices):
+```html
+<input type="checkbox" id="choice1" name="choice1" value="choice1">
+<label for="choice1">Choice 1</label><br>
+<input type="checkbox" id="choice2" name="choice2" value="choice2">
+<label for="choice2">Choice 2</label><br>
+```
 If checked="checked" is specified, then the check box is pre-checked
 If 'disabled' is specified then user can't change the state of the check box
 If 'readonly' is specified then user can change the visual state of the check box but it doesn't change the internal value
+
+Radio buttons (one choice only):
 ```html
-<INPUT type=checkbox name="field_name" checked="checked" disabled>text label
+<input type="radio" id="choice1" name="choice" value="choice1">
+<label for="choice1">Choice 1</label><br>
+<input type="radio" id="choice2" name="choice" value="choice2">
+<label for="choice2">Choice 2</label><br>
+```
+
+Select (drop-down list):
+```html
+<select id="mychoice" name="mychoice" size=2 multiple> <!-- `size` sets the number of visible values. `multiple` allows multiple selections. -->
+	<option value="choice1">Choice 1</option>
+	<option value="choice2">Choice 2</option>
+	<option value="choice3" selected>Choice 3</option> <!-- default -->
+</select>
 ```
 
 ## Upload file
