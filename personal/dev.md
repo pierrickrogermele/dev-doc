@@ -17,6 +17,7 @@
 
  * [Exhalobase Prod (local)](http://localhost/exhalobase/).
  * [Exhalobase Test (local)](http://localhost/exhalobase/test).
+ * [Exhalobase Test (VM)](http://localhost:8081/exhalobase/test).
 
 ## CEA
 
