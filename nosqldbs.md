@@ -51,6 +51,12 @@ mongo
 mongo -u admin -p admin --authenticationDatabase "admin"
 ```
 
+Authenticate from inside the interpreter:
+```js
+db.auth('myuser', 'mypassword');
+db.auth('myuser', passwordPrompt());
+```
+
 To get help:
 ```js
 db.help()
@@ -119,7 +125,7 @@ mongo -u admin -p admin --authenticationDatabase "admin"
 ```
 Or from inside `mongo`:
 ```js
-db.auth('readuser', 'mypassword');
+db.auth('myuser', 'mypassword');
 ```
 
 List users:
