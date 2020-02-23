@@ -2010,6 +2010,14 @@ Code run at the same speed, but the module loading is faster with `.pyc` than wi
 It is possible to distribute `.pyc` instead of `.py`, in order to avoid easy reading of the code.
 The module `compileall` can create `.pyc` files for all modules in a directory.
 
+### import
+
+```python
+from .MyModule import * # Import module MyModule from the same directory as the current module.
+from ..MyModule import * # Import module from parent directory.
+from ...MyModule import * # Import module from two levels up.
+```
+
 ### Modules installation
 
 Getting list of modules from inside python:
@@ -2179,7 +2187,7 @@ Open a connection:
 ```python
 try:
 	conn = psycopg2.connect(host=self.db_server, database=self.db_name, user=self.db_user, password=self.db_password, port=self.db_port)
-	# ...
+	do_something()
 finally:
 	conn.close()
 ```
@@ -2196,14 +2204,14 @@ Run a select request:
 ```python
 cur = conn.cursor()
 cur.execute("select * from mytable;")
-# ...
+do_something()
 cur.close()
 ```
 
 Iterator over all records of a cursor:
 ```python
 for record in cur:
-	# ...
+	do_something()
 ```
 
 Fetch all records from a cursor:
