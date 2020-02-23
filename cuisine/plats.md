@@ -48,7 +48,6 @@ Lasagne di carciofi ai formaggi	pâtes	Italie		http://ricette.giallozafferano.it
 Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo	
 List of Japanese soups and stews	soupe	Japon		https://en.wikipedia.org/wiki/List_of_Japanese_soups_and_stews	
 Mapo Tofu	tofu	Chine	Szechuan	https://www.chinasichuanfood.com/mapo-tofu-recipe/	
-Migliaccio	gâteau	Italie	Campanie	http://ricette.giallozafferano.it/Migliaccio.html	
 Miso Fried Rice with Egg and Greens				https://nourisheveryday.com/miso-fried-rice-with-egg-and-greens/	
 Oden	poulet	Japon		https://www.justonecookbook.com/oden/	
 Orecchiette	pâtes	Italie		http://ricette.giallozafferano.it/Orecchiette.html	

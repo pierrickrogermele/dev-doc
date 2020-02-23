@@ -4,3 +4,5 @@
  * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
 
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
+
+ * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
