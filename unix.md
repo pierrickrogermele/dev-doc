@@ -310,6 +310,18 @@ Flag        | Description
 `-f '...'`  | set another format for input date. Default is [[[mm]dd]HH]MM[[cc]yy][.ss] (mm=month, cc=century).
 
 
+### wego
+
+ * [wego](https://github.com/schachmat/wego).
+ * [wttr.in](https://github.com/chubin/wttr.in).
+
+`wego` is a weather client for the terminal.
+
+The website wttr.in uses wego to display a weather report in text mode:
+```sh
+curl wttr.in
+```
+
 ### NTP, Network Time Protocol
 
  * [NTP configuration on Debian](https://wiki.debian.org/NTP).
