@@ -544,6 +544,13 @@ sort($array);
 ?>
 ```
 
+Filter values:
+```php
+<?php
+$my_ext_var = 12;
+$my_filtered_arr = array_filter($myarr, function($v) use($my_ext_var) { return $v == $my_ext_var; });
+```
+
 Compare:
 ```php
 <?php
@@ -954,6 +961,20 @@ Possible types:
  * `object`.
  * `self` (same class as this class).
  * The name of a valid class.
+Prefixing the type with `?` will allow to pass `null`.
+
+Returning value can also be typed or set to void:
+```php
+<?php
+function my_func(): void {
+}
+```
+`?` prefix is also allowed on returned type:
+```php
+<?php
+function my_func(): ?string {
+}
+```
 
 Passing a parameter by reference:
 ```php
@@ -1116,10 +1137,14 @@ flclose($fh);
 
 ## File system
 
+ * [fopen](https://www.php.net/manual/en/function.fopen.php).
+ * [md5_file](https://www.php.net/manual/en/function.md5-file.php).
+
 Open a file:
 ```php
 <?php
 $handle = fopen("/home/rasmus/file.txt", "r");
+fclose($handle);
 ?>
 ```
 
@@ -1198,6 +1223,12 @@ Create a directory:
 mkdir("/path/to/my/dir");
 mkdir("/path/to/my/dir", 0700);
 ?>
+```
+
+Compute MD5 sum of file:
+```php
+<?php
+md5_file($filepath);
 ```
 
 ## Exceptions
