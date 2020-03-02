@@ -15,9 +15,9 @@
 
 ## FOCH Exhalobase
 
- * [Exhalobase Prod (local)](http://localhost/exhalobase/).
- * [Exhalobase Test (local)](http://localhost/exhalobase/test).
- * [Exhalobase Test (VM)](http://localhost:8081/exhalobase/test).
+ * [Exhalobase Prod (local)](https://localhost/exhalobase/).
+ * [Exhalobase Test (local)](https://localhost/exhalobase/test).
+ * [Exhalobase Test (VM)](https://localhost:8443/exhalobase/test).
 
 ## CEA
 
