@@ -207,11 +207,30 @@ package main;
 ## Types and variables
 
  * [Arrays vs. Lists in Perl: What's the Difference?](http://friedo.com/blog/2013/07/arrays-vs-lists-in-perl).
-	
+
 To force declaring variables:
 ```perl6
 use strict;
 ```
+
+### Undef
+
+Unset a variable with `undef()` method:
+```perl
+undef $myvar;
+```
+or
+```perl
+$myvar = undef;
+```
+
+Test if a variable is set with `defined()`:
+```perl
+if (defined $myvar) {
+}
+```
+
+An undefined variable is silently replaced by `0` in a numerical context and by `""` in a string context.
 
 ### Integers
 
@@ -878,7 +897,7 @@ while(<STDIN>) {
 	}
 }
 ```
-	
+
 Reading file descriptor:
 ```perl6
 while(<FILE>) {
@@ -892,7 +911,7 @@ while (my $line = <FILE>) {
 ```
 
 ### Standard streams
-	
+
 Set a file descriptor with a standard stream:
 ```perl6
 my $fd = *STDOUT;
@@ -954,8 +973,8 @@ $SIG{'TERM'} = SeeYa;
 
  * [Parser Generation in Perl: an Overview and Available Tools](http://inforum.org.pt/INForum2010/papers/compiladores-e-linguagens-de-programacao/Paper083.pdf), Hugo Areias, Alberto Simões, Pedro Henriques, and Daniela da Cruz.
 
-## Command line
-	
+## Command line arguments
+
 Program full path, it also contains the directory taken from `PATH` envvar:
 ```perl6
 my $cmd = $0;
@@ -967,8 +986,8 @@ use File::Basename;
 my $SCRIPTNAME = basename($0);
 my $SCRIPTPATH = dirname($0);
 ```
-	
-Arguments:
+
+Reading command line arguments from `@ARGV`:
 ```perl6
 my $nb_args = $#ARGV;
 my $first_arg = $ARGV[0];
@@ -991,7 +1010,7 @@ our $VERSION = "1.00";
 ```
 
 ### Constructor
-	
+
 Declaration:
 ```perl6
 sub new {
