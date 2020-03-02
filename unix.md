@@ -32,6 +32,7 @@ and restart FortiClient.
 List processes that uses a port:
 ```bash
 lsof -i:8080
+```
 
 ### List network devices
 
@@ -3317,6 +3318,17 @@ Option          | Description
 For monitoring memory usage of processes:
 ```bash
 while true ; do ps -o %mem,rss,sz,vsize,fname ; sleep 1 ; done
+```
+
+## gettext
+
+ * [GNU gettext utilities](https://www.gnu.org/software/gettext/manual/gettext.html).
+
+Internationalization of applications.
+
+Create a template file by extracting strings to translate from the code:
+```bash
+xgettext --from-code=UTF-8 -o messages.pot *.php
 ```
 
 ## Numbers (calculate and compute)
