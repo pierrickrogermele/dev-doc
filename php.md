@@ -1,5 +1,4 @@
-PHP
-===
+# PHP
 
  * [Language Reference](http://php.net/manual/en/langref.php).
 
@@ -430,6 +429,9 @@ $mydate_in_seconds_from_1970 = strtotime("11/29/2010");
 
 ### Array
 
+ * [array_intersect](https://www.php.net/manual/en/function.array-intersect.php).
+ * [array_diff](https://www.php.net/manual/en/function.array-diff.php).
+
 Declaring an array:
 ```php
 <?php
@@ -437,6 +439,16 @@ $my_array = array();
 $my_array = [];
 array_fill(0, 10, 'NaN');
 ?>
+```
+
+Get element:
+```php
+<? $my_val = $my_array[9];
+```
+
+Get last element:
+```php
+<? $last_val = end($my_array);
 ```
 
 Get array size:
@@ -532,12 +544,17 @@ Merge:
 <? $a = array_merge($b, $c); ?>
 ```
 
+Intersection:
+```php
+<? $a = array_intersect($b, $c);
+```
+
 Append:
 ```php
 <? $a[] = 12; ?>
 ```
 
-Sort:
+Sort in place:
 ```php
 <?php
 sort($array);
@@ -551,14 +568,16 @@ $my_ext_var = 12;
 $my_filtered_arr = array_filter($myarr, function($v) use($my_ext_var) { return $v == $my_ext_var; });
 ```
 
-Compare:
+Search for elements of an array that are not in other arrays:
 ```php
 <?php
-$diff_array = array_diff($array1, $array2);
+$diff_array = array_diff($my_array, $other_array1, $other_array2, ...);
 ?>
 ```
 
 ### Associative array (Dictionary)
+
+ * [array_intersect_assoc](https://www.php.net/manual/en/function.array-intersect-assoc.php).
 
 ```php
 <?php
@@ -602,6 +621,11 @@ Removes an element:
 <?php
 unset($my_array['foo']);
 ?>
+```
+
+Intersection of two associative arrays:
+```php
+<? array_intersect_assoc($my_arr1, $my_arr2);
 ```
 
 ### Object
@@ -703,9 +727,16 @@ Only available starting from PHP version 5.
 
 ## Built-in constants & variables
 
+ * [Magic constants](https://www.php.net/manual/en/language.constants.predefined.php).
+
 Current directory of execution:
 ```php
 <?php __DIR__ ?>
+```
+
+Full path of current file script:
+```php
+<?php __FILE__ ?>
 ```
 
 `$_SERVER` contains many context variables:
@@ -1670,8 +1701,11 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
 ### MongoDB
 
  * [MongoDB PHP library](https://docs.mongodb.com/php-library/current/).
+  - [MongoDB\Client::listDatabases()](https://docs.mongodb.com/php-library/v1.2/reference/method/MongoDBClient-listDatabases/).
+  - [MongoDB\GridFS\Bucket Class](https://docs.mongodb.com/php-library/v1.2/reference/class/MongoDBGridFSBucket/).
+  - [db.collection.find()](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
  * [MongoDB driver library](http://php.net/manual/en/book.mongo.php).
- * [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
+  - [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
 
 Installation with pecl:
 ```sh
