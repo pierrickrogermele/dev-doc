@@ -243,6 +243,12 @@ Call program:
 system "myprog", "arg1", "arg2"
 ```
 
+## Printing text
+
+```ruby
+puts('My text')
+```
+
 ## File system
 
 Create a file:
