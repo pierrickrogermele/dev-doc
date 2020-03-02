@@ -7,6 +7,14 @@ GIT
  * [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow), branch naming conventions.
  * [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/).
 
+## archive
+
+Create archive (zip) of sources.
+
+```bash
+git archive --prefix=myrepos-v1.0.1/ -o myrepos-1.0.1.tar.gz v1.0.1
+```
+
 ## branch
 
 List local branches:
