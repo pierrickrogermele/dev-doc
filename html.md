@@ -16,6 +16,17 @@ Required settings for an XHTML page:
 </html>
 ```
 
+## lang attribute
+
+ * [Declaring language in HTML](https://www.w3.org/International/questions/qa-html-language-declarations).
+
+Setting language for the whole page:
+```html
+<html lang='fr'...>
+```
+
+The `lang` attribute can be used in any element. You can declare a different language inside an embedded element.
+
 ## Encoding
 
 Set UTF-8 character encoding for this HTML file:
@@ -60,7 +71,17 @@ Checkbox (one or more choices):
 <input type="checkbox" id="choice2" name="choice2" value="choice2">
 <label for="choice2">Choice 2</label><br>
 ```
-If checked="checked" is specified, then the check box is pre-checked
+An array can also be used:
+```html
+<input type="checkbox" id="choice1" name="choices[]" value="choice1">
+<label for="choice1">Choice 1</label><br>
+<input type="checkbox" id="choice2" name="choices[]" value="choice2">
+<label for="choice2">Choice 2</label><br>
+```
+If checked attribute is specified, then the check box is pre-checked:
+```html
+<input type="checkbox" checked id="choice2" name="choice2" value="choice2">
+```
 If 'disabled' is specified then user can't change the state of the check box
 If 'readonly' is specified then user can change the visual state of the check box but it doesn't change the internal value
 
