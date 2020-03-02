@@ -17,6 +17,10 @@
  * [DIGITEO Grid Report](http://is227470.intra.cea.fr/ganglia/).
  * [CUPS Printer DRT-LIST-DCSI-C-2525i-565-2033](http://cups-saclay.intra.cea.fr:631/printers/DRT-LIST-DCSI-C-2525i-565-2033).
  * [Associations](http://www-saclay.cea.fr/associations/index.php).
+  + [ASCEA (Association Sportive)](http://www-saclay.cea.fr/ascea/).
+   - [ASCEA - Section Tennis](http://www-saclay.cea.fr/ascea/Phocea/Page/index.php?id=179).
+   - [ASCEA - Section Tennis de Table](http://www-saclay.cea.fr/ascea/Phocea/Page/index.php?id=180).
+   - [ASCEA - Section Équitation](http://www-saclay.cea.fr/ascea/Phocea/Page/index.php?id=165).
 
 ## Internet
 
