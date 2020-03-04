@@ -1692,11 +1692,12 @@ file.rename(current.file.name, new.file.name)
 Create a directory:
 ```r
 dir.create(mydir)
+dir.create(mydir, recursive=TRUE) # Create parent directories as needed.
 ```
 
 Remove a directory and its content:
 ```r
-unlink(mydir, recursive = TRUE)
+unlink(mydir, recursive=TRUE)
 ```
 
 Get absolute path:
@@ -2823,6 +2824,23 @@ public class rserveuseClass {
 ### RJSONIO
 
 [RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
+
+A better JSON package is jsonlite.
+
+### jsonlite
+
+ * []().
+
+Parse JSON:
+```r
+jsonlite::fromJSON(content, simplifyDataFrame=FALSE)
+```
+
+Build JSON string:
+```r
+jsonlite::toJSON(x, pretty=TRUE, digits=NA_integer_)
+```
+The `digits` parameter is set to max precision (`NA`).
 
 ### tripack
 
