@@ -270,6 +270,7 @@ Command     | Description
 `nG`        | Line n in file.
 `:n`        | Line n in file.
 ----------- | ---------------------
+%           | Jump to matching opening/closing bracket.
 `(`         | Beginning of current sentence.
 `)`         | Beginning of next sentence.
 `{`         | Beginning of current paragraph.
@@ -1353,6 +1354,11 @@ With Pathogen, packages are now installed inside ~/.vim/bundle folder in a dedic
 
  * [For R: nvim-R](https://hpcc.ucr.edu/manuals_linux-cluster_terminalIDE.html#for-r-nvim-r).
  * [nvim-R](https://github.com/jalvesaq/Nvim-R).
+
+Start an R session (does not need an opened .R file):
+```vim
+call StartR("R")
+```
 
 Nvim-R commands:
  * Intialize a connected R session with `\rf` (Once an .R file has been opened).
