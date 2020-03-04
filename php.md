@@ -1704,6 +1704,7 @@ imagecolortransparent($graph->getDriver()->resource, $color_gd);
   - [MongoDB\Client::listDatabases()](https://docs.mongodb.com/php-library/v1.2/reference/method/MongoDBClient-listDatabases/).
   - [MongoDB\GridFS\Bucket Class](https://docs.mongodb.com/php-library/v1.2/reference/class/MongoDBGridFSBucket/).
   - [db.collection.find()](https://docs.mongodb.com/manual/reference/method/db.collection.find/).
+  - [MongoDB\Model\BSONDocument](https://docs.mongodb.com/php-library/current/reference/bson/#phpclass.MongoDB\Model\BSONDocument).
  * [MongoDB driver library](http://php.net/manual/en/book.mongo.php).
   - [executeQuery](http://php.net/manual/en/mongodb-driver-manager.executequery.php).
 
@@ -1720,6 +1721,21 @@ pacman -S php-mongodb
 BSON classes:
  * `MongoDB\Model\BSONArray` extends [ArrayObject](https://www.php.net/arrayobject).
  * `MongoDB\Model\BSONDocument` extends `ArrayObject` too.
+
+Get info about all users:
+```php
+<? $cursor = $dbConn->command(['usersInfo'=>1, 'filter'=>new MongoDB\Model\BSONDocument([])]);
+```
+
+Get users info:
+```php
+<? $cursor = $dbConn->command(['usersInfo'=>1, 'filter'=>['user'=>'some_user']]);
+```
+
+Get info about one user (works when the user itself asks info about its account):
+```php
+<? $cursor = $dbConn->command(['usersInfo'=>$user]);
+```
 
 ### Gettext
 
