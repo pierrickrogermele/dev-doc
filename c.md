@@ -483,6 +483,17 @@ printf("%lld", mylonglong);
 
 ### File system
 
+Test if a folder exists:
+```c
+#include <sys/types.h>
+#include <sys/stat.h>
+
+struct stat info;
+
+if (stat(mypath, &info) == 0 && (info.st_mode & S_IFDIR))
+	/* Is a directory */
+```
+
 Maximum number of characters a path can have:
 ```c
  #include <limits.h>
