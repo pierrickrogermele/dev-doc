@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<style>
+form {
+/*	display: flex;
+	flex-direction: column;*/
+	width: 30%;
+/*	height: 100%;
+	align-items: stretch;*/
+	background-color: red;
+}
+div {
+	display: flex;
+/*	align-items: center;*/
+	background-color: blue;
+}
+input[type="text"] {
+	flex-shrink: 0;
+	flex-basis: 150px;
+	background-color: yellow;
+}
+
+label {
+/*	flex-grow: 2;*/
+	width: 60%;
+	flex-grow: 1;
+	background-color: green;
+}
+input[type="submit"] {
+	flex-grow: 1;
+	background-color: orange;
+}
+
+		</style>
+	</head>
+	<body>
+		<form>
+			<div>
+				<label for="zoo">Some label that is very very very very very very very very very very very very long</label>
+				<input type="text" id="zoo" value="some value"/>
+			</div>
+			<div>
+				<label for="zoo2">Some other label</label>
+				<input type="text" id="zoo2" value="some value"/>
+			</div>
+			<div>
+				<input type="submit" value="some value"/>
+			</div>
+		</form>
+		
+	</body>
+	
+</html>

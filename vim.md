@@ -1,5 +1,4 @@
-VIM
-===
+# Vim
 
 ## Install
 
