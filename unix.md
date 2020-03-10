@@ -2359,8 +2359,7 @@ Run `yay` as normal user, not as root.
 
 Search for packages containing a file:
 ```bash
-sudo pacman -Fy # Update file database
-pacman -Fs myfile
+pacman -Qo myfile
 ```
 
 Remove a package and all its dependencies that are not used by any other package
