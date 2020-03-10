@@ -340,6 +340,13 @@ Another example which counts the number of elements of an array which are <= 1:
 p <- sum(v <= 1) # where v is an array
 ```
 
+### Matrix
+
+Remove dimnames of a matrix:
+```r
+attr(myobj, 'dimnames') <- NULL
+```
+
 ### Numeric (float)
 
 By default a number is a floating number (called numeric in R):
@@ -1460,7 +1467,23 @@ myfunc <- function(n) {
 
 Arguments can have default values:
 ```r
-myfunc <- function(a, b = 2, c = FALSE) {
+myfunc <- function(a, b=2, c=FALSE) {
+}
+```
+
+Testing if a parameter is not set:
+```r
+myfunc <- function(a) {
+	if (missing(a))
+		# ...
+}
+```
+
+Using enumerate for a function parameter:
+```r
+myfunc <- function(a, b=c('val1', 'val2', 'val3')) {
+	b <- match.arg(b) # 'val1' will be the default value.
+	b <- match.arg(b, several.ok=TRUE) # b can have multiple values.
 }
 ```
 
@@ -1480,6 +1503,12 @@ Returning multiple values:
 ```r
 list[a, b] <- myfunc(c) # myfunc returns a list with two values.
 list[, b] <- myfunc(c) # we only want the second value
+```
+
+Get list of function parameters:
+```r
+formals(my_func)
+formals('my_func')
 ```
 
 Calling a function from its name as a string:
@@ -1754,7 +1783,7 @@ y <- as.matrix(x)
 y <- as.data.frame(x)
 ```
 
-Getting type:
+Getting the basic type (integer, numeric, logical or character) of an object:
 ```r
 typeof(x)
 ```
@@ -1781,6 +1810,16 @@ Generate a floating random number, with Uniform distribution:
 x <- runif(1, 5.0, 7.5)     # generates a random number between 5.0 and 7.5 included
 x <- runif(1)   # generates a number in [0.0;1.0]
 v <- runif(10)  # generates an array if 10 numbers
+```
+
+Fix the seed:
+```r
+v <- R.utils::withSeed(runif(10), 1L)
+```
+
+Fix the RNG (Random Number Generator) version:
+```r
+RNGversion('3.4.0')
 ```
 
 ## Basic statistical functions
