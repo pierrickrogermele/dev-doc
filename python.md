@@ -2781,3 +2781,10 @@ Sort columns order:
 ```python
 df = df.reindex(sorted(df.columns), axis=1)
 ```
+
+### Arcade
+
+ * [How to create a 2D game with Python and the Arcade library](https://opensource.com/article/18/4/easy-2d-game-creation-python-and-arcade).
+
+A library for writing 2D video games.
+
