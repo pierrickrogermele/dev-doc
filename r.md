@@ -1,5 +1,4 @@
-R
-=
+# R
 
 ## Installing
 
@@ -655,16 +654,9 @@ examsquiz[2:5, 2, drop=FALSE] # returns a one column data frame
 
 ### Factors (enum)
 
+Create a factor variable:
 ```r
-gender <- c(rep("male",20), rep("female", 30)) 
-gender <- factor(gender) 
-
-mons = c("March","April","January","November","January",
-         "September","October","September","November","August",
-         "January","November","November","February","May","August",
-         "July","December","August","August","September","November",
-         "February","April")
-mons = factor(mons)
+gender <- as.factor(c(rep("male",20), rep("female", 30)))
 ```
 
 There exists an ordered factor where values can be ordered (ex: small, medium, high):
@@ -676,12 +668,24 @@ mons = factor(mons,
               ordered=TRUE)
 ```
 
+Get levels of a factor, as a character vector:
+```r
+levels(myfactor)
+```
+
 ### Table
 
 Compute an histogram: count occurences of each value.
 
 ```r
 hist <- table(c(1,45,1,6,3,14,45,6,6))
+```
+
+### Date
+
+Parse a date:
+```r
+as.Date('2020-03-18', format='%Y-%m-%d')
 ```
 
 ## Statements
@@ -2317,6 +2321,14 @@ To a open a new window for plotting:
 windows() # on Windows platform
 quartz() # on MacOS-X platform
 X11() # on UNIX platform (opens a Quartz window on MacOS-X)
+```
+
+Plotting columns of a data frame on the same graphic, with first column as X values:
+```r
+require(ggplot2)
+require(reshape2)
+mydf <- melt(mydf,  id.vars='myfirstcolumn', variable.name='series')
+ggplot(mydf, aes(myfirstcolumn, value)) + geom_line(aes(colour=series))
 ```
 
 ## HPC
