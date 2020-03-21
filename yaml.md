@@ -29,3 +29,15 @@ Converting a file from JSON to YAML:
 ```bash
 python -c 'import sys, yaml, json; yaml.safe_dump(json.load(sys.stdin), sys.stdout, default_flow_style=False)' < file.json > file.yaml
 ```
+
+In a multiline text, if you want to escape colon char (`:`):
+```yaml
+---
+-
+	field:
+	  - some text
+	  - some other text
+	  - |-
+	      "some text with a colon : inside it"
+```
+Quoting is not enough.
