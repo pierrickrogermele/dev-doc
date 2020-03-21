@@ -646,9 +646,14 @@ update-rc.d -f gdm defaults
 
 ### Users and groups
 
-Create new user with specific UID:
+Create new user with specific UID on BSD:
 ```bash
 sudo adduser -u 1200 myuser
+```
+
+Create new user on GNU/Linux:
+```bash
+sudo useradd ...
 ```
 
 Add a user to sudoers group:
@@ -1295,7 +1300,7 @@ mount -t smbfs -o username=PR228844,password=Mypass0123 //DRTFAUCON-1.INTRA.CEA.
 
 To allow non-root users to mount a samba drive, use sudo.
 Create a `samba` group and add users to it.
-Edit `/etc/sudoers` and add the following like:
+Edit `/etc/sudoers` and add the following line:
 ```
 %samba ALL=(ALL) NOPASSWD: /bin/mount,/bin/umount,/sbin/mount.cifs,/sbin/umount.cifs,/usr/bin/smbmount,/usr/bin/smbumount
 ```
@@ -1361,8 +1366,14 @@ Restart samba:
 ```
 
 To debug samba demon, run:
-```bash
+```sh
 sudo /usr/bin/smbd --foreground --no-process-group -i -S -d 5
+```
+
+Start `smdb` and `nmdb` as daemons:
+```sh
+sudo /usr/bin/smbd -D
+sudo /usr/bin/nmbd -D
 ```
 
 On ArchLinux, to start Samba service:
