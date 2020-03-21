@@ -1,6 +1,10 @@
 # Céréales & légumineuses
 
  * [Pois cassés au curry](https://www.marmiton.org/recettes/recette_pois-casses-au-curry_68500.aspx).
+ * [Boulgour nature](https://www.marmiton.org/recettes/recette_boulgour-nature_29441.aspx).
+
+ * lentilles: Mettre les lentilles avec 3 fois leur volume d’eau froide dans une casserole. Portez à ébullition et laissez cuire à petit feu et à couvert, pendant 10 à 15 minutes.
+ * pommes de terre à l’eau: Dans l’eau froide, entières, avec la peau, porter à ébullition. 45 minutes en tout pour des grosses pommes de terre.
 
 ## Millet
 
@@ -10,9 +14,3 @@ Verser le millet dans une casserole puis ajouter 2 fois son volume d'eau froide.
 
  millet	2 vol. d’eau bouillante pour 1 vol. de millet.
  Faire cuire 30 min. à couvert à feu doux.
-
- lentilles	Mettre les lentilles avec 3 fois leur volume d’eau froide dans une casserole.
- Portez à ébullition et laissez cuire à petit feu et à couvert, pendant 10 à 15 minutes.
-
- pommes de terre à l’eau	Dans l’eau froide, entières, avec la peau, porter à ébullition. 45 minutes en tout pour des grosses pommes de terre.
-
