@@ -329,6 +329,7 @@ Command                 | Description
 `:tabs`                 | List all tabs including their displayed windows.
 `:tabm 0`               | Move current tab to first.
 `:tabm 2`               | Move current tab to position 3.
+`:tabm -2`              | Move current tab of 2 positions to the left.
 `:tabm`                 | Move current tab to last.
 `:tabn`                 | Go to next tab.
 `:tabp`                 | Go to previous tab.
@@ -376,7 +377,6 @@ To force physical wraping of text on selected lines, use `gq` key commands.
  * [Folding](http://vim.wikia.com/wiki/Folding).
  * [How to fold](http://vimcasts.org/episodes/how-to-fold/).
  * [Writing a custom fold expression](http://vimcasts.org/episodes/writing-a-custom-fold-expression/).
- * [Markdown folding](https://github.com/nelstrom/vim-markdown-folding).
 
 ```vim
 setlocal foldmethod=syntax
@@ -1300,8 +1300,16 @@ Command     | Description
 
 ## Packages
 
+Packages management:
  * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
- * [Nvim-R](https://github.com/jalvesaq/Nvim-R).
+
+### Markdown plugins
+
+ * https://github.com/tpope/vim-markdown
+ * https://github.com/plasticboy/vim-markdown
+ * https://github.com/masukomi/vim-markdown-folding
+ * https://github.com/vim-pandoc/vim-pandoc
+ * https://github.com/vim-pandoc/vim-pandoc-syntax
 
 ### csv.vim
 
