@@ -1,21 +1,20 @@
-PERL
-====
+# PERL
 
  * [Writing better Perl - Tips and tricks to make Perl easier, faster, and more fun](http://www.sourceformat.com/pdf/perl-coding-standard-robert.pdf).
 
 ## Running
 
 Shebang:
-```perl6
+```perl
 #!/usr/bin/perl -w
 ```
 or safer (since perl may reside in another path):
-```perl6
+```perl
 #!/usr/bin/env perl
 ```
-	
+
 Set library path:
-```perl6
+```perl
 export PERL5LIB=$HOME/install-perl/lib
 ```
 
@@ -25,19 +24,19 @@ perl -w ...
 ```
 
 Can be used in shebang:
-```perl6
+```perl
 #!/usr/bin/perl -w
 #!/usr/bin/env perl -w
 ```
 
 The warnings pragma is a replacement for the command line flag -w , but the pragma is limited to the enclosing block, while the flag is global:
-```perl6
+```perl
 use warnings;
 use warnings "all";
 ```
-	
+
 Strict directive:
-```perl6
+```perl
 use strict; # enable all
 use strict "vars"; # enable only variable declarations checking
 use strict "refs"; # enable only symbolic references checking
@@ -134,9 +133,9 @@ perl Makefile.PL PREFIX=/home/stas
 ```
 
 ### Loading a module
-	
+
 To add a path to `@INC`:
-```perl6
+```perl
 use lib "my/path/";
 ```
 
@@ -146,7 +145,7 @@ use MyModule;
 ```
 
 Specify which function must be imported:
-```perl6
+```perl
 use MyModule qw(myfunc1, myfunc2);
 ```
 
@@ -165,29 +164,29 @@ use MyModule;
 The module file extension must be `.pm`.
 
 A package (=namespace) can be declared:
-```perl6
+```perl
 package My::New::Class;
 ```
 
 It is worth declaring the following builtin diretives:
-```perl6
+```perl
 use strict;
 use warnings;
 ```
 
 A version can be declared and later used by some special forms of "use" statement:
-```perl6
+```perl
 our $VERSION = "1.00";
 ```
 
 Inheriting from Exporter module allows to choose which functions to export:
-```perl6
+```perl
 use base 'Exporter';
 our @EXPORT = qw(myfunc); # defines which functions are exported by default
 ```
 
 A Perl module must end with a true value:
-```perl6
+```perl
 1;
 ```
 
@@ -195,12 +194,12 @@ Private functions: there are no private functions in Perl. The convention is to 
 
 The package directive declares a namespace for all the following declarations (variables and functions).
 It's mainly used for declaring modules and classes (see corresponding files).
-```perl6
+```perl
 package My::Name::Space;
 ```
 
 Main package:
-```perl6
+```perl
 package main;
 ```
 
@@ -209,7 +208,7 @@ package main;
  * [Arrays vs. Lists in Perl: What's the Difference?](http://friedo.com/blog/2013/07/arrays-vs-lists-in-perl).
 
 To force declaring variables:
-```perl6
+```perl
 use strict;
 ```
 
@@ -235,22 +234,22 @@ An undefined variable is silently replaced by `0` in a numerical context and by 
 ### Integers
 
 Truncate float to integer:
-```perl6
+```perl
 int($f);
 ```
 
 Rounding:
-```perl6
+```perl
 my $round = int($num + 0.5);
 ```
 or
-```perl6
+```perl
 use Math::Round qw/round/;
 my $round = round($num);
 ```
 
 Ceil & floor:
-```perl6
+```perl
 use POSIX;
 ceil($f);
 floor($f);
@@ -259,22 +258,22 @@ floor($f);
 ### Strings
 
 Get string length:
-```perl6
+```perl
 my $length = length($s);
 ```
 
 Get char code:
-```perl6
+```perl
 $n = ord($c);
 ```
 
 Make char from code:
-```perl6
+```perl
 $c = chr($n);
 ```
 
 Multi-lines string:
-```perl6
+```perl
 my $s = <<"END";
 blabla
 blabla
@@ -283,42 +282,42 @@ END
 ```
 
 Get sub-string:
-```perl6
+```perl
 my $sub = substr($s, 4, 10); # offset, length
 ```
 
 Set to lowercase:
-```perl6
+```perl
 my $lower_case = lc($upper_case);
 ```
 
 Set to uppercase:
-```perl6
+```perl
 my $upper_case = lc($lower_case);
 ```
 
 Removing end of line:
-```perl6
+```perl
 chop; # remove last character of $_ (not safe)
 chomp; # remove last character of $_ if it's an end of line or similar char.
 chomp(my $var = $line);
 ```
 
 Search string:
-```perl6
+```perl
 my $i = index($s, $substr, $pos);
 ```
 
 Look for all regexp matches in a string:
-```perl6
+```perl
 while ($s =~ m/[A-Z]+/g) {
 }
 ```
 
 Removing trailing whitespaces: --> no trim function.
-	
+
 Comparing strings:
-```perl6
+```perl
 if $s1 eq $s2; # ==
 if $s1 ne $s2; # !=
 if $s1 lt $s2; # <
@@ -329,22 +328,22 @@ $s1 cmp $s2; # compare
 ```
 
 Repeating a string:
-```perl6
+```perl
 my $s = "mystring" x 4;
 ```
 
 Joining values of an array into a string:
-```perl6
+```perl
 print join("\n", keys(%ENV));
 ```
 
 Split:
-```perl6
+```perl
 my @array = split(/,/, $string);
 ```
 
 Split and remove spaces:
-```perl6
+```perl
 my @vals = map { s/\s+$//; s/^\s+//; $_ } split(',', $args);
 ```
 
@@ -380,7 +379,7 @@ my $val = $arr[0];
 ```
 
 Get size of an array:
-```perl6
+```perl
 my $size = @arr;
 ```
 
@@ -397,39 +396,39 @@ for my $i (0 .. $#myarr) {
 ```
 
 Sort:
-```perl6
+```perl
 my @sorted_array = sort @array;
 ```
 
 Sorting using your own comparison:
-```perl6
+```perl
 my @sorted = sort { $a <=> $b } @not_sorted; # sorts numerically
 ```
 
 Operator slice: taking a subset of an array:
-```perl6
+```perl
 @myarray[1..4];
 ```
 
 Push values:
-```perl6
+```perl
 push(@myarray, $myvalue);
 push(@myarray, @myotherarray);
 ```
 
 Splice:
-```perl6
+```perl
 splice(@a, @a, 0, $v);  # push $v at the end of $a
 splice(@a, -1);         # pop last value from @a
 splice(@a, 0,  0, $v);  # insert $v at beginning of @a
 ```
 
 Search a value:
-```perl6
+```perl
 my @a = grep(/^$someval$/, @myarray); # be careful of what is inside $someval, because it will be interpreted as regexp.
 ```
 or
-```perl6
+```perl
 if ($someval ~~ @myarray) # Good !
 ```
 
@@ -443,32 +442,32 @@ See `Array::Utils` and `List::Util` for packages providing functions on arrays.
  * Deep hases, see Deep::Hash::Utils module.
 
 Define a hash:
-```perl6
+```perl
 my %data = ('John Paul' => 45, 'Lisa' => 30, 'Kumar' => 40);
 ```
 
 Deleting a key:
-```perl6
+```perl
 delete $HASH{$key};
 ```
 
 Loop on all key/value pairs, without order:
-```perl6
+```perl
 while (my ($key, $value) = each %hash) {}
 ```
 
 Loop on all key:
-```perl6
+```perl
 for my $k (keys %myhash) {}
 ```
 
 Loop on all keys, sorted:
-```perl6
+```perl
 for my $k (sort keys %myhash) { }
 ```
 
 How to place a value in a hash using a list of nested keys:
-```perl6
+```perl
 $ref = \\%my_hash;
 $ref= \$$ref->{$_} foreach @keys;
 $$ref = $value;
@@ -476,7 +475,7 @@ $$ref = $value;
 
 ### Environment variables
 
-```perl6
+```perl
 my $path = $ENV{PATH};
 ```
 
@@ -489,7 +488,7 @@ my $path = $ENV{PATH};
 
 ### For
 
-```perl6
+```perl
 for my $v (@array) {
 }
 ```
@@ -497,7 +496,7 @@ for my $v (@array) {
 `foreach` and `for` are synonyms.
 
 To leave a loop:
-```perl6
+```perl
 for my $v (@array) {
 	if ($v->{value})  {
 		# ...
@@ -507,7 +506,7 @@ for my $v (@array) {
 ```
 
 To process next element:
-```perl6
+```perl
 for my $v (@array) {
 	if (...) {
 		# ...
@@ -530,7 +529,7 @@ while (my ($key, $value) = each(%hash)) {
 
 An experimental switch statement has been introduced in Perl 5.10.1.
 
-```perl6
+```perl
 use feature "switch";
 given($var) {
 	when(/^aaa/) { do_something() }
@@ -544,7 +543,7 @@ given($var) {
 
  * [perlfork](http://perldoc.perl.org/perlfork.html).
 
-```perl6
+```perl
 my $pid = fork();
 die "fork() failed: $!" unless defined $pid;
 if ($pid) {
@@ -557,12 +556,12 @@ if ($pid) {
 ### Map
 
 To apply a function on each element of an array:
-```perl6
+```perl
 my @b = map { myfunc($_) } @a;
 ```
 
 To transform an array:
-```perl6
+```perl
 my @new_list = map { s/aa/bb/g; $_ } @old_list; # --> @old_list is going to be transformed too !
 my @new_list = map { my $i = $_ ; $i =~ s/aa/bb/g; $i } @old_list; # --> OK
 map { s/aa/bb/g } (my @new_list = @old_list); # --> OK
@@ -571,32 +570,32 @@ map { s/aa/bb/g } (my @new_list = @old_list); # --> OK
 ### Sort
 
 Sort alphabetically:
-```perl6
+```perl
 sort { $a cmp $b } @myarray;
 ```
 
 Sort numerically:
-```perl6
+```perl
 sort { $a <=> $b } @myarray;
 ```
 
 ### Grep
 
 Grep string:
-```perl6
+```perl
 my @result = grep("some text", @an_array);
 ```
 TODO Check that it works:
 
 Reversed grep:
-```perl6
+```perl
 my @new_list = grep(!/mypattern/, @old_list);
 ```
 
 ## Functions
 
 Calling a function using a string:
-```perl6
+```perl
 my $fct_name = "foo";
 &$fct_name();
 &$fct_name($param);
@@ -632,7 +631,7 @@ sub mytime ()	{}          # mytime
 ```
 	
 Taking any type of argument:
-```perl6
+```perl
 sub myref (\[$@%&*]) {} # will allow calling myref() as:
 myref $var;
 myref @array;
@@ -645,7 +644,7 @@ myref *glob;
 ### Recursivity
 
 We must first declare the function prototype before definning a recursive function:
-```perl6
+```perl
 sub foo($);
 sub foo($) {
 	# ...
@@ -656,20 +655,20 @@ sub foo($) {
 ## References
 	
 To take a reference of a variable:
-```perl6
+```perl
 my $hash_ref = \%hash;
 my $array_ref = \@array;
 my $scalar_ref = \$scalar;
 ```
 
 To create a reference to an anonymous array or hash:
-```perl6
+```perl
 my $array_ref = ['a', 'b'];
 my $hash_ref = {'a' => 1, 'b' => 2};
 ```
 The perl interpretor can be confused between curly braces for blocks and those for hash ref.
 To disambuiguate, use `{;}` for blocks and `+{}` for hash ref, or use return statements at right place:
-```perl6
+```perl
 sub hashem {       +{ @_ } }
 sub hashem { return { @_ } }
 sub showem {       {; @_ } }
@@ -677,22 +676,22 @@ sub showem { { return @_ } }
 ```
 
 Taking reference of a list:
-```perl6
+```perl
 my @refs = \($a, @b, %c)
 ```
 is the same as:
-```perl6
+```perl
 my @refs = (\$a, \@b, \%c)
 ```
 
 To know if a var is a reference:
-```perl6
+```perl
 ref($var);
 ```
 It returns one of: SCALAR, ARRAY, HASH, CODE, REF, GLOB, LVALUE.
-	
+
 To test if it is a reference:
-```perl6
+```perl
 if (ref($var)) {
 	# it's a reference
 	if (ref($var) eq 'ARRAY') {
@@ -708,13 +707,13 @@ else {
 ```
 
 Compare references:
-```perl6
+```perl
 if ($r1 == $r2) {
 	# only works if r1 and r2 aren't object and haven't overloaded the value they return
 }
 ```
 Or use `refaddr()` function:
-```perl6
+```perl
 use Scalar::Util 'refaddr';
 if ($obj1 && ref($obj1) && $obj2 && ref($obj2) && refaddr($obj1) == refaddr($obj2)) {
 		# objects are the same...
@@ -724,26 +723,26 @@ if ($obj1 && ref($obj1) && $obj2 && ref($obj2) && refaddr($obj1) == refaddr($obj
 ## Regex
 
 Regexp match:
-```perl6
+```perl
 if (/^a.*b$/) {} # match regexp against $_
 if ($string =~ /.*aa/) {} # match with a specific variable
 if (/^a.*b$/i) {} # match with case insensitive on
 ```
 
 Get all matches:
-```perl6
+```perl
 while ($s =~ m/[A-Z]+/g) {
 }
 ```
 
 Ungreedy matching: use ? marker.
 The following regexp will set $name to the basename of the file path, without the extension:
-```perl6
+```perl
 (my $name = $file) =~ s!^(.*/)?([^/]+)\..+$!$2!;
 ```
 
 Translate:
-```perl6
+```perl
 $s =~ tr/A/a/;
 ```
 
@@ -768,19 +767,19 @@ Code   | Description
 ## File system
 
 Removing directory tree:
-```perl6
+```perl
 use File::Path;
 rmtree($dir);
 ```
-	
+
 Touch a file:
-```perl6
+```perl
 use File::Touch;
 $count = touch(@file_list);
 ```
 
 Get dirname and basename of a path:
-```perl6
+```perl
 use File::Basename;
 $basename = basename($fullname, @suffixlist);
 $dirname  = dirname($fullname);
@@ -791,12 +790,12 @@ fileparse("/foo/bar/baz.txt", qr/\.[^.]*/);
 ```
 
 Returns the path where the symbolic link points to:
-```perl6
+```perl
 readlink($f) : 
 ```
 
 Test a file type:
-```perl6
+```perl
 if (-f $f) {...}
 ```
 as in shell :
@@ -830,7 +829,7 @@ rename $old_name => $new_name || die "Failed.";
 ### Listing files in a directory
 
 Opening diretory:
-```perl6
+```perl
 opendir(DIR, "mydir");
 my @files = readdir(DIR);
 my @html_files = grep(/\.html$/,readdir(DIR));
@@ -838,12 +837,12 @@ closedir(DIR);
 ```
 
 Glob `<>` operator for listing files in a folder:
-```perl6
+```perl
 my @f = <*.jp*>;
 ```
 
 Set Glob options:
-```perl6
+```perl
 use File::Glob qw(:globally :nocase);
 ```
 
@@ -852,24 +851,24 @@ use File::Glob qw(:globally :nocase);
 ### Opening & closing a file
 
 Open a file for reading:
-```perl6
+```perl
 open(FILE_TAG, "<:utf8", "some file");
 open(FILE_TAG, "<some file");
 ```
 
 Open a file for writing:
-```perl6
+```perl
 open(FILE_TAG, ">:utf8", "some file");
 open(FILE_TAG, ">some file");
 ```
 
 Close a file:
-```perl6
+```perl
 close(FILE_TAG);
 ```
 
 Use a variable for the file descriptor:
-```perl6
+```perl
 open($fd, "<some file");
 close($fd);
 ```
@@ -879,7 +878,7 @@ close($fd);
  * [How can I read in an entire file all at once?](https://metacpan.org/pod/perlfaq5#How-can-I-read-in-an-entire-file-all-at-once).
 
 Load an entire file content into a scalar:
-```perl6
+```perl
 my $var;
 {
 	local $/;
@@ -889,7 +888,7 @@ my $var;
 ```
 
 Read line by line:
-```perl6
+```perl
 while(<STDIN>) {
 	if (/sometext/) { # $_ is the line
 		do_something($_);
@@ -899,13 +898,13 @@ while(<STDIN>) {
 ```
 
 Reading file descriptor:
-```perl6
+```perl
 while(<FILE>) {
 }
 ```
 
 Using a variable:
-```perl6
+```perl
 while (my $line = <FILE>) {
 }
 ```
@@ -913,7 +912,7 @@ while (my $line = <FILE>) {
 ### Standard streams
 
 Set a file descriptor with a standard stream:
-```perl6
+```perl
 my $fd = *STDOUT;
 my $fd = *STDIN;
 ```
@@ -921,14 +920,14 @@ my $fd = *STDIN;
 ### Pipe
 
 Read the output of a command with a pipe:
-```perl6
+```perl
 my $cmd = "wget -O - http://www.ecb.int/stats/eurofxref/eurofxref-hist.zip 2>/dev/null | funzip";
 open($fd, "-|", $cmd);
 ```
 
 ### FIFO
 
-```perl6
+```perl
 use File::Temp qw/ :POSIX /;
 use POSIX qw(mkfifo);
 my $mplayer_fifo = File::Temp::tempnam(File::Spec->tmpdir(), "mplayerfifo");
@@ -943,17 +942,17 @@ In fact both processes blocks until both of them have open the FIFO for reading 
 ### Printing
 
 Print to stdout:
-```perl6
+```perl
 print "blabla\n";
 ```
 
 Print to file:
-```perl6
+```perl
 print FILE "blabla\n";
 ```
 
 Printf strings:
-```perl6
+```perl
 printf "<%s>", "a";       # prints "<a>"
 printf "<%6s>", "a";      # prints "<     a>"
 printf "<%*s>", 6, "a";   # prints "<     a>"
@@ -964,7 +963,7 @@ printf "<%2s>", "long";   # prints "<long>" (does not truncate)
 ## Signals
 
 Affecting a routine to a signal:
-```perl6
+```perl
 sub SeeYa { warn"Hasta la vista, baby!" }
 $SIG{'TERM'} = SeeYa;
 ```
@@ -976,19 +975,19 @@ $SIG{'TERM'} = SeeYa;
 ## Command line arguments
 
 Program full path, it also contains the directory taken from `PATH` envvar:
-```perl6
+```perl
 my $cmd = $0;
 ```
 
 Getting directory path and name of the running program:
-```perl6
+```perl
 use File::Basename;
 my $SCRIPTNAME = basename($0);
 my $SCRIPTPATH = dirname($0);
 ```
 
 Reading command line arguments from `@ARGV`:
-```perl6
+```perl
 my $nb_args = $#ARGV;
 my $first_arg = $ARGV[0];
 ```
@@ -998,12 +997,12 @@ my $first_arg = $ARGV[0];
   * [Object Oriented Exception Handling in Perl](http://www.perl.com/pub/2002/11/14/exception.html).
 
 To declare a new class, simply declare a package:
-```perl6
+```perl
 package My::New::Class;
 ```
 	
 As for modules creation, the following declaration can be useful:
-```perl6
+```perl
 use strict;
 use warnings;
 our $VERSION = "1.00";
@@ -1012,7 +1011,7 @@ our $VERSION = "1.00";
 ### Constructor
 
 Declaration:
-```perl6
+```perl
 sub new {
 	my($class, %args) = @_;
 
@@ -1026,20 +1025,20 @@ sub new {
 ```
 	
 Call:
-```perl6
+```perl
 my $obj1 = new MyClass;
 my $obj2 = MyClass->create();
 ```
 
 ### Inheritance
 
-```perl6
+```perl
 use AutoLoader qw(AUTOLOAD);
 ```
 
 The special array `@ISA` lists in order packages/classes that have to be searched when a function isn't found.
 
-```perl6
+```perl
 package UNIVERSAL;
 	
 sub AUTOLOAD { # The special function AUTOLOAD is called when a function isn't found. It can then be dynamically loaded.
@@ -1058,14 +1057,14 @@ our @ISA = qw(A);
 ### Introspection
 
 Testing inheritance:
-```perl6
+```perl
 if ($obj->isa('AClassName')) {
 	# ...
 }
 ```
 
 Getting class name:
-```perl6
+```perl
 use Scalar::Util 'blessed';
 my $classname = blessed($obj);
 ```
@@ -1073,12 +1072,12 @@ my $classname = blessed($obj);
 ## Die & warn
 
 Quit immediatly the program, printing the specified message:
-```perl6
+```perl
 die "my message";  
 ```
 
 Just print a warning:
-```perl6
+```perl
 warn "my message";
 ```
 
@@ -1089,23 +1088,23 @@ See `Carp` package for printing the callstack on failure.
 Install profiler module `Devel::NYTProf`.
 
 Profile code and write database to `./nytprof.out`:
-```perl6
+```perl
 perl -d:NYTProf some_perl.pl
 ```
 
 Convert database into a set of html files, e.g., `./nytprof/index.html` and open a web browser on the `nytprof/index.html` file:
-```perl6
+```perl
 nytprofhtml --open
 ```
 or into comma separated files, e.g., `./nytprof/*.csv`:
-```perl6
+```perl
 nytprofcsv
 ```
 
 ## Unicode
 	
 Reading/Writing UTF8 from/to already opened streams:
-```perl6
+```perl
 binmode (STDOUT, ":utf8");
 binmode (STDIN, ":utf8");
 ```
@@ -1113,26 +1112,26 @@ binmode (STDIN, ":utf8");
 WARNING: coherence between input data encoding and output data encoding is essential !
 So when forcing encoding for an input stream, be sure to set accordingly the output stream.
 Example:
-```perl6
+```perl
 open(FILE, "<:utf8", "some file");
 while(<FILE>) {
 	print $_;
 }
 ```
 will produce wrong output if
-```perl6
+```perl
 binmode (STDIN, ":utf8");
 ```
 has not been set.
 	
 Decoding utf8 when not detected by Perl. This happens for instance when reading command line arguments:
-```perl6
+```perl
 use Encode;
 $var = decode_utf8($var);
 ```
 
 Attention, `printf` does not count correctly utf8 chars (like accentuated chars), if "%-60s" format is used and the following is not set :
-```perl6
+```perl
 use utf8;
 binmode (STDOUT, ":utf8");
 ```
@@ -1140,16 +1139,16 @@ binmode (STDOUT, ":utf8");
 ### Removing accents (in order to  sort correctly)
 
 `Unicode::Normalize::NFD($s)` decompose the characters in character+accent.
-```perl6
+```perl
 $string = Unicode::Normalize::NFC($string);
 ```
 then apply
-```perl6
+```perl
 $string =~ s/\pM//g;
 ```
 
 More simple (and works):
-```perl6
+```perl
 use Text::Unaccent::PurePerl;
 $s = unac_string('utf8', $s);
 ```
@@ -1207,7 +1206,7 @@ cpan -r
 ### Array::Utils
 
 Intersection:
-```perl6
+```perl
 use Array::Utils;
 my @isect = Array::Utils::intersect(@a, @b);
 ```
@@ -1216,99 +1215,99 @@ my @isect = Array::Utils::intersect(@a, @b);
 
 Module for displaying more useful messages than die.
 	
-```perl6
+```perl
 use Carp;
 ```
 
 Send a warning:
-```perl6
+```perl
 carp "my message";
 ```
 
 Quit:
-```perl6
+```perl
 coark "my message";
 ```
 
 Quit and print the call stack:
-```perl6
+```perl
 confess "my message";
 ```
 
 Warn user (from perspective of caller):
-```perl6
+```perl
 carp "string trimmed to 80 chars";
 ```
 
 Die of errors (from perspective of caller):
-```perl6
+```perl
 croak "We're outta here!";
 ```
 
 Die of errors with stack backtrace:
-```perl6
+```perl
 confess "not implemented";
 ```
 
 `cluck` not exported by default:
-```perl6
+```perl
 use Carp qw(cluck);
 cluck "This is how we got here!";
 ```
 
 ### Class::Date
 
-```perl6
+```perl
 use Class::Date;
 ```
 
 Create a Date object from a string "YYYY-MM-DD":
-```perl6
+```perl
 my $date = new Class::Date("2013-01-03");
 ```
 
 With time:
-```perl6
+```perl
 my $date = new Class::Date("2013-01-03 15:30:28");
 ```
 
 Get UNIX epoch time:
-```perl6
+```perl
 my $time = $date->epoch;
 ```
 
 Get current date:
-```perl6
+```perl
 my $today = Class::Date->now;
 ```
 
 Addition:
-```perl6
+```perl
 $date= date('2001-12-11')+'3Y';
 $date= Class::Date->new('2001-12-11')+Class::Date::Rel->new('3Y');
 ```
 
 To change print date format:
-```perl6
+```perl
 $Class::Date::DATE_FORMAT="%Y-%m-%d";
 ```
 
 ### Data::Dumper
 
 To dump a structure:
-```perl6
+```perl
 use Data::Dumper;
 Data::Dumper->Dump([\@my_array, \%my_hash], ["array_name", "hash_name"]);
 ```
 the second parameter (variable names) is optional.
 
 To avoid cross-references:
-```perl6
+```perl
 $Data::Dumper::Deepcopy = 1;
 ```
 	
 Encoding issue: be careful to output data structures in ASCII, or do() function could make mistake while reading, and assume another encoding than UTF-8 for strings.
-```perl6
+```perl
 use Data::Dumper;
 binmode(STDOUT, ":utf8");
 print Data::Dumper->Dump([\%my_hash]);
@@ -1316,18 +1315,18 @@ print Data::Dumper->Dump([\%my_hash]);
 
 ### DBI / database connection
 
-```perl6
+```perl
 use DBI;
 ```
 
 Connection:
-```perl6
+```perl
 my $dbh = DBI->connect('DBI:mysql:mydatabase');
 my $dbh = DBI->connect('DBI:mysql:mydatabase', $user, $password, { RaiseError => 1, AutoCommit => 0 });
 ```
 
 Espace and quote query string before using it:
-```perl6
+```perl
 my $quoted_string = $dbh->quote($unquoted_string);
 ```
 
@@ -1341,7 +1340,7 @@ Encodings supported by Encode.
 
  * [CPAN ExtUtils::MakeMaker](http://search.cpan.org/~bingos/ExtUtils-MakeMaker-7.24/lib/ExtUtils/MakeMaker.pm).
 
-```perl6
+```perl
 use ExtUtils::MakeMaker;
 WriteMakefile( ATTRIBUTE => VALUE [, ...] );
 ```
@@ -1349,7 +1348,7 @@ WriteMakefile( ATTRIBUTE => VALUE [, ...] );
 Put module files under lib directory. Everything will be taken.
 	
 Scripts:
-```perl6
+```perl
 WriteMakefile( EXE_FILES => ['scriptA', 'scriptB']);
 ```
 	
@@ -1375,7 +1374,7 @@ make test TEST_VERBOSE=1
 
 ### File::Basename
 
-```perl6
+```perl
 use File::Basename;
 ```
 
@@ -1383,34 +1382,34 @@ use File::Basename;
 ### GD::Image
 	
 To create an image:
-```perl6
+```perl
 my $im = new GD::Image($width, $height);
 ```
 	
 To load an image:
-```perl6
+```perl
 my $im = new GD::Image($filepath);
 my $im = new GD::Image($file_descriptor);
 ```
 
 To write text on the image:
-```perl6
+```perl
 $im->stringFT($color, $ttf_file, $point_size, $angle, $x, $y, $text);
 ```
 angle is expressed in radians.
 
 To write in a file:
-```perl6
+```perl
 $im->png($compression_level);
 ```
 
 Allocating a color:
-```perl6
+```perl
 $im->colorAllocate($red, $green, $blue);
 ```
 
 Draw a filled polygon:
-```perl6
+```perl
 $poly = new GD::Polygon;
 $poly->addPt($x1 + 200, $y1 + 200);
 $poly->addPt($x1 + 250, $y1 + 230);
@@ -1420,13 +1419,13 @@ $im->filledPolygon($poly, $color);
 ```
 
 Draw a dashed line:
-```perl6
+```perl
 $im->dashedLine($x1, $y1, $x2, $y2, $color);
 ```
 
 ### Getopt
 
-```perl6
+```perl
 use Getopt::Std;
 
 getopt('oDI');    # -o, -D & -I take arg.  Sets $opt_* as a side effect.
@@ -1440,25 +1439,25 @@ Arguments found by getopt are removed from @ARGV.
 
 ### Getopt::Long
 
-```perl6
+```perl
 use Getopt::Long;
 ```
 
 Read a string value:
-```perl6
+```perl
 my $s = "default value";
 GetOptions("myopt1=s" => \$s);
 ```
 
 Read values and put them inside a hash:
-```perl6
+```perl
 my %args = ( myopt1 => "default value 1", myopt2 => "default value 2" );
 GetOptions("myopt1=s" => \$args{myopt1}, "myopt2=s" => \$args{myopt2});
 ```
 
 ### HotKey / input keys
 
-```perl6
+```perl
 use HotKey;
 use feature "switch";
 $key = readkey();
@@ -1471,11 +1470,11 @@ given($key) {
 
 Add XPath support to `HTML::TreeBuilder`.
 
-```perl6
+```perl
 use HTML::TreeBuilder::XPath;
 ```
 
-```perl6
+```perl
 my $tree= HTML::TreeBuilder::XPath->new;
 $tree->parse_file( "mypage.html");
 ```
@@ -1485,7 +1484,7 @@ $tree->parse_file( "mypage.html");
  * [CPAN inc::Module::Install](http://search.cpan.org/~ether/Module-Install-1.17/lib/Module/Install.pod).
 
 Makefile.PL:
-```perl6
+```perl
 use inc::Module::Install;
 name           'DocMaking';
 all_from       'lib/Your/Module.pm';
@@ -1510,27 +1509,27 @@ make install
 ```
 
 Getting share directory from a program:
-```perl6
+```perl
 my $share = File::ShareDir::dist_dir('My::Module');
 ```
 
 ### List::Util
 	
 Reduce:
-```perl6
+```perl
 use List::Util qw(reduce);
 my $sum = List::Util::reduce { $a + $b } 0, @mynumbers;
 ```
 
 Remove duplicates:
-```perl6
+```perl
 use List::MoreUtils qw(uniq);
 my @unique = uniq( 1, 2, 3, 4, 4, 5, 6, 5, 7 ); # 1,2,3,4,5,6,7
 my $unique = uniq( 1, 2, 3, 4, 4, 5, 6, 5, 7 ); # 7
 ```
 
 Find maximum and minimum:
-```perl6
+```perl
 use List::Util qw(max);
 my $max = max(@myarray);
 my $max = min(@myarray);
@@ -1538,7 +1537,7 @@ my $max = min(@myarray);
 
 ### List::MoreUtils
 
-```perl6
+```perl
 use List::MoreUtils;
 ```
 
@@ -1546,43 +1545,43 @@ use List::MoreUtils;
 
 A simplified facade to the `libwww-perl` library.
 
-```perl6
+```perl
 use LWP::Simple;
 ```
 
 Getting a web page content:
-```perl6
+```perl
 $content = get("http://www.sn.no/");
 ```
 
 ### MySQL
 
-```perl6
+```perl
 use Mysql;
 ```
 
 Connecting:
-```perl6
+```perl
 my $db = Mysql->connect($host, $database, $user, $password);
 ```
 
 Selecting database:
-```perl6
+```perl
 $db->selectdb($database);
 ```
 
 List databases:
-```perl6
+```perl
 my @array = $db->listdbs;
 ```
 
 List tables:
-```perl6
+```perl
 my @array = $db->listtables;
 ```
 
 Fields info:
-```perl6
+```perl
 my $fields = $db->listfields($table);
 $fields->name;
 $fields->type;
@@ -1594,7 +1593,7 @@ $fields->isblob;
 ```
 
 Query:
-```perl6
+```perl
 my $query = $db->query($sql_query);
 mysql_fetch_row($query_id); # get one row, call again to get the next row
 my %hash = $query->fetchhash; # get one row in a hash (column name as key)
@@ -1602,7 +1601,7 @@ $query->dataseek($row_number); # first row has index 0
 ```
 
 Query Statement Statistics:
-```perl6
+```perl
 my $number = $query->numrows;
 my $number = $query->numfields;
 my $number = $query->affectedrows;
@@ -1610,71 +1609,71 @@ my $id = $query->insertid; # gives back the automatically inserted id in the new
 ```
 
 Espace and quote query string before using it:
-```perl6
+```perl
 my $quoted_string = $db->quote($unquoted_string);
 ```
 
 Error:
-```perl6
+```perl
 $error_message = $db->errmsg();
 ```
 
 Create/remove a database:
-```perl6
+```perl
 my $newdb = $dbh->createdb("database name");
 my $nodb = $db->dropdb("database name");
 ```
 
 ### Tk
 	
-```perl6
+```perl
 use Tk;
 ```
 
 Create a main window:
-```perl6
+```perl
 my $mw = MainWindow->new;
 ```
 	
 Scrollbars:
-```perl6
+```perl
 my $wmain = $g_main_window->Scrolled('Pane', -height => 1, -width => 1, -scrollbars => 'e');
 ```
 
 hide/show a window:
-```perl6
+```perl
 $mw->withdraw(); # hide
 $mw->deiconify(); # show
 ```
 
 Run the GUI:
-```perl6
+```perl
 MainLoop;
 ```
 	
 Create a button:
-```perl6
+```perl
 my $button = $mw->Button(-text => "label", -command => sub{foo()});
 my $button = $mw->Button(-text => "label", -command => &foo});
 ```
 
 Load a color image:
-```perl6
+```perl
 my $img = $mw->Photo(-file => "/my/file/path");
 ```
 
 Set image on button:
-```perl6
+```perl
 $button->configure(-image => $img);
 ```
 	
 Grid layout:
-```perl6
+```perl
 $button->grid(-row => 2, -column => 1);
 ```
 
 Pack layout:
-```perl6
+```perl
 $button->pack;
 $button->pack(-side => 'bottom', -expand => 1, -fill => 'x');
 $button->pack(-side => 'left', -expand => 1, -fill => 'both');
@@ -1691,19 +1690,19 @@ $button->pack(-side => 'left', -expand => 1, -fill => 'both');
 `-ipady` => amount Increases the size of the widget vertically by amount ✕ 2
 `-padx` => amount Places padding on the left and right of the widget
 `-pady` => amount Places padding on the top and bottom of the widget
-	
+
 Label:
-```perl6
+```perl
 my $label = $mw->Label(-text => 'label text');
 ```
 
 Frame:
-```perl6
+```perl
 my $frame = $mw->Frame();
 ```
 
 Key presses:
-```perl6
+```perl
 $mw->bind('Q', sub{exit});
 ```
 
@@ -1717,6 +1716,11 @@ By default it wants to put a 'name' attribute in tags, so you can't have an empt
 
 On XMLin and XMLout use option `KeepRoot => 1` to keep root element.
 
-```perl6
+```perl
 use XML::Simple;
 ```
+
+### Parse::RecDescent
+
+ * [Parse::RecDescent](https://metacpan.org/pod/Parse::RecDescent).
+ * [Parse::RecDescent Tutorial]( https://www.perl.com/pub/2001/06/13/recdecent.html/).
