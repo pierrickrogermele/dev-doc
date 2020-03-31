@@ -6,6 +6,8 @@
 
  * [Risotto allo Zafferano](https://ricette.giallozafferano.it/Risotto-allo-Zafferano.html). Le pistils de safran doit infuser dans l'eau froide toute la nuit, depuis la veille.
 
+  * [Gnocchi di patate](https://ricette.giallozafferano.it/Gnocchi-di-patate.html).
+
 Apfel Strudel	gâteau	Autriche		http://ricette.giallozafferano.it/Strudel-di-mele.html	
 Baguette viennoise	pain	France		http://www.marmiton.org/recettes/recette_baguette-viennoise_30706.aspx	
 Blanquette de poulet	poulet	France		http://www.marmiton.org/recettes/recette_blanquette-de-poulet_66981.aspx	
