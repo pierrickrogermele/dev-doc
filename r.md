@@ -897,6 +897,16 @@ f <- function(x) x - 300 - x^0.8
 uniroot(f, c(300, 1200))
 ```
 
+Differentiate:
+```r
+diff(v)
+```
+
+Smooth vector:
+```r
+smooth(v)
+```
+
 ## Packages
 
 Getting information about loaded packages (package version, ...) in a session:
