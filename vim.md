@@ -1,9 +1,11 @@
 # Vim
 
+ * [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/).
+
 ## Install
 
 ```bash
-./configure --with-features=big --disable-gui 
+./configure --with-features=big --disable-gui
 ```
 
 ## Configuration
@@ -13,7 +15,7 @@ To reload vimrc:
 source $MYVIMRC
 ```
 
-To known path of vimrc file:
+To know path of vimrc file:
 ```vim
 echo $MYVIMRC
 ```
@@ -25,6 +27,11 @@ echo $HOME
 
 `MYVIMRC` is `$HOME/.vimrc` in UNIX and `$HOME/_vimrc` in Windows.
 Be careful that under Windows, *gVim* installs a global `_vimrc` inside its installation directory.
+
+To get information about vim files:
+```vim
+help runtimepath
+```
 
 ## Display
 
@@ -42,9 +49,95 @@ Set GUI off (menu, toolbars, ...):
 :se go=
 ```
 
-## Key bindings
+## Key mapping (key bindings)
 
  * [Mapping keys in Vim - Tutorial (Part 1)](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial).
+
+Map key `-` to key sequence `dd` in normal and visual modes:
+```vim
+map - dd
+```
+Do not put a comment after a map, it will be integrated in the mapping value.
+```vim
+map - dd " Some comment that will be mapped to the `-` key too.
+```
+
+Map space key:
+```vim
+map <space> dd
+```
+
+Map Ctrl+d:
+```vim
+map <c-d> dd
+```
+
+Map only in normal mode:
+```vim
+nmap \ dd
+```
+
+Map only in visual mode:
+```vim
+vmap \ U
+```
+
+Map only in insert mode for deleting current line:
+```vim
+imap <c-d> <esc>ddi
+```
+
+Remove a normal mode mapping:
+```vim
+nunmap -
+```
+
+Be careful about recursive mapping like:
+```vim
+nmap dd O<esc>jddk
+```
+To avoid recursion use the `*noremap` commands:
+```vim
+noremap \ dd
+nnoremap \ dd
+vnoremap \ dd
+inoremap dd O<esc>jddk
+```
+
+Mapping a sequence of keys:
+```vim
+nnoremap -d dd
+```
+
+Define key mapping inside current buffer only:
+```vim
+nnoremap <buffer> <leader>x dd
+```
+The correct way is however to use the local leader:
+```vim
+nnoremap <buffer> <localleader>x dd
+```
+
+Define a leader:
+```vim
+let mapleader = "-"
+```
+
+Use leader for key sequence:
+```vim
+nnoremap <leader>d dd
+```
+
+Define local leader as `\` (for specific file types):
+```vim
+let maplocalleader = "\\"
+```
+Use `<localleader>` in mappings.
+
+Key mapping for quoting current word:
+```vim
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+```
 
 List mappings in normal, visual and select and operator pending mode:
 ```vim
@@ -61,7 +154,13 @@ To know what commands where assigned to a key:
 :verbose map <leader>c
 ```
 
-The `Leader` key is mapped to `\` by default. To redefine it, set `mapleader` variable.
+The `Leader` key is mapped to "\" by default. To redefine it, set `mapleader` variable.
+
+## Abbreviations
+
+```vim
+iabbrev adn and
+```
 
 ## Modeline
 
@@ -730,6 +829,10 @@ keys   | Description
 `"k`   | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
 `"K`   | Append to register k.
 `:reg` | Get list of all actual registers.
+`ve`   | Select from current position to end of word.
+`viw`  | Select current word.
+`x`    | Delete current character.
+`dd`   | Delete current line.
 
 In command or insert mode:
 keys        | Description
@@ -746,6 +849,8 @@ Register | Description
 `+`, `*` | System clipboard registers.
 
 ## Debugging
+
+ * [Debugging Vim by example](https://codeinthehole.com/tips/debugging-vim-by-example/).
 
 For debugging with gdb or pdb under vim, install <http://pyclewn.sourceforge.net/index.html>.
 
@@ -810,7 +915,7 @@ Command | Description
 
 Repeat the replacement done by |z=| for all matches	with the replaced word in the current window:
 ```
-:spellr[epall]	
+:spellr[epall]
 ```
 
 
@@ -822,6 +927,9 @@ Command     | Description
 ----------- | --------------------------------------------
 `CTRL-R "`  | Insert the content of the unnamed register.
 `CTRL-R +`  | Insert the content of the clipboard. 
+<esc>       | Quit insert mode.
+<c-c>       | Quit insert mode.
+<c-[>       | Quit insert mode.
 
 ## Visual mode
 
@@ -850,6 +958,7 @@ Command     | Description
 ## Syntax highlighting
 
  * [Create your own syntax files](http://vim.wikia.com/wiki/Creating_your_own_syntax_files).
+ * [Different syntax highlighting within regions of a file](https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file).
 
 To turn syntax highlighting on and off:
 ```vim
@@ -993,6 +1102,32 @@ For printing a variable:
 echo myvar
 ```
 
+### Printing
+
+Print string at bottom of window:
+```vim
+echo "My string"
+```
+
+Print and save in messages:
+```vim
+echom "My string"
+```
+
+### Messages
+
+Print list of messages:
+```vim
+messages
+```
+
+### Comments
+
+Write comments:
+```vim
+" Some comment
+```
+
 ### Environment variables
 
 Set an environment variable:
@@ -1007,24 +1142,47 @@ echo $MYVAR
 
 ### Options
 
-Options can be set either with set or let:
+Set a boolean option on:
 ```vim
-set myopt = 10
-let &myopt = 10
+set number
 ```
-The advantage of using `let`, is that you can make computation:
+Set a boolean option off:
+```vim
+set nonumber
+```
+Toggle a boolean option:
+```vim
+set number!
+```
+
+Get a boolean option value:
+```vim
+set number? " Returns 'number' or 'nonumber'.
+```
+
+Set an option with value:
+```vim
+set numberwidth=10
+```
+
+Get an option's value:
+```vim
+se numberwidth?
+```
+
+Set multiple options:
+```vim
+set number numberwidth=8
+```
+
+Set option locally for the current buffer only:
+```vim
+setlocal number
+```
+
+Use `let`, to set an option's value from a computation:
 ```vim
 let &myopt = someothervar + 10 + z
-```
-
-Setting a boolean option:
-```vim
-set cindent
-```
-
-Unsetting a boolean option (prefix with 'no'):
-```vim
-set nocindent
 ```
 
 Testing an option in .vim script:
@@ -1067,34 +1225,34 @@ let wordsfile = expand("~/.vim/spell/en.utf-8.add")
 ```
 
 ## Printing
-	
+
 Printing from vi:
 ```vim
 hardcopy
 ha
 ```
 Can be applied to a range of lines.
-	
+
 Printing in landscape mode:
 ```vim
 se popt=portrait:n
 ```
-	
+
 Printing from command line:
 ```bash
 vim -c hardcopy -c quit <myfile>
 ```
-	
+
 Output to a postscript file, with syntax highlighting:
 ```bash
 vim -c 'hardcopy >myfile.ps' -c quit <myfile>
 ```
-	
+
 Turn off header on printer output:
 ```bash
 vim -c 'set popt+=header:0' ...
 ```
-	
+
 Set font size:
 ```bash
 vim -c 'set pfn=:h16' ...
@@ -1140,7 +1298,7 @@ exe  "%!LC_ALL=fr_FR." . &fileencoding . " sort"
 ```
 
 ## Statusline
-	
+
 ```vim
 set laststatus=2
 set statusline=%n:%<%F%Y%R%=%l(%P)
@@ -1303,6 +1461,8 @@ Command     | Description
 Packages management:
  * [Vim: So long Pathogen, hello native package loading](https://shapeshed.com/vim-packages/).
 
+Packages must be installed in `~/.vim/pack/somedir/start` for automatic loading at startup, or `~/.vim/pack/somedir/opt` for manual loading with `packadd packagename` command.
+
 ### Markdown plugins
 
  * https://github.com/tpope/vim-markdown
@@ -1310,6 +1470,15 @@ Packages management:
  * https://github.com/masukomi/vim-markdown-folding
  * https://github.com/vim-pandoc/vim-pandoc
  * https://github.com/vim-pandoc/vim-pandoc-syntax
+
+### vim-commentary
+
+ * [vim-commentary](https://github.com/tpope/vim-commentary).
+
+command | Description
+------- | -------------
+`gcc`   | comment out or uncomment a line.
+`gc`    | to comment out a selected block.
 
 ### csv.vim
 
