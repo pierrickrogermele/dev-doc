@@ -261,6 +261,27 @@ $flag = False;
 ?>
 ```
 
+### Enumerate
+
+There is no enum type in PHP.
+
+See [PHP and Enumerations](https://stackoverflow.com/questions/254514/php-and-enumerations) for writing an enum class.
+
+Best simple way is to use constants:
+```php
+<?php
+const BLACK = 0;
+const RED = 1;
+const GREEN = 2;
+const BLUE = 3;
+
+void setColor(int color) {
+	// ...
+}
+
+setColor(RED);
+```
+
 ### Strings
 
 Accessing the character at index 4:
@@ -707,7 +728,7 @@ $val = $$name; // get value of variable named $name
 ?>
 ```
 
-Static variable:
+Static variable inside function:
 ```php
 <?php
 function foo() {
@@ -992,7 +1013,6 @@ Possible types:
  * `object`.
  * `self` (same class as this class).
  * The name of a valid class.
-Prefixing the type with `?` will allow to pass `null`.
 
 Returning value can also be typed or set to void:
 ```php
@@ -1000,6 +1020,13 @@ Returning value can also be typed or set to void:
 function my_func(): void {
 }
 ```
+
+Prefixing the type with `?` will allow to pass `null`:
+```php
+<?php function my_func(?int i): void {
+}
+```
+
 `?` prefix is also allowed on returned type:
 ```php
 <?php
@@ -1359,6 +1386,15 @@ Attention ! Class names are NOT case sensitive.
  * [Classes and Objects](http://php.net/manual/en/language.oop5.php).
  * [Class iterator](https://www.php.net/manual/en/class.iterator.php).
 
+Instantiate a new class:
+```php
+<?php $obj = new MyClass();
+```
+From a string for class name:
+```php
+<?php $obj = new $myClassName();
+```
+
 Inheritance:
 ```php
 <?php
@@ -1386,6 +1422,12 @@ class A implements I {
 ?>
 ```
 
+Abstract class:
+```php
+<?php abstract class MyAbstractClass {
+}
+```
+
 Class constant:
 ```php
 <?php
@@ -1410,6 +1452,13 @@ class MyClass
 	}
 }
 MyClass::foo();
+```
+
+### Methods
+
+Abstract method:
+```php
+<?php abstract protected function myFunc();
 ```
 
 ### Properties (aka member variables)
