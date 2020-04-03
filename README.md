@@ -2,20 +2,22 @@
 
 Root | Cuisine | Personal
 ---------- | ---------- | ----------
-[Amstrad computers and games](./amstrad.md) | [Cake aux raisins](./cuisine/cake_aux_raisins.md) | [CEA](./personal/cea.md)
-[AUTOTOOLS](./autotools.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [Cloud](./personal/cloud.md)
-[BASH](./bash.md) | [Crêpes](./cuisine/crepes.md) | [Development](./personal/dev.md)
-[Books](./books.md) | [Gâteaux](./cuisine/gateaux.md) | [Enfants](./personal/enfants.md)
+[Amstrad computers and games](./amstrad.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [CEA](./personal/cea.md)
+[AUTOTOOLS](./autotools.md) | [Crêpes](./cuisine/crepes.md) | [Cloud](./personal/cloud.md)
+[BASH](./bash.md) | [Gâteaux](./cuisine/gateaux.md) | [Development](./personal/dev.md)
+[Books](./books.md) | [Pain](./cuisine/pain.md) | [Enfants](./personal/enfants.md)
 [C](./c.md) | [Plats](./cuisine/plats.md) | [Games](./personal/games.md)
-[CHEETAH](./cheetah.md) | [Viande](./cuisine/viande.md) | [Local](./personal/local.md)
-[CMAKE](./cmake.md) | [Vins](./cuisine/vins.md) | [Logement](./personal/logement.md)
-[COMPUTERS](./computers.md) |  | [Médias](./personal/media.md)
+[CHEETAH](./cheetah.md) | [Riz](./cuisine/riz.md) | [Local](./personal/local.md)
+[CMAKE](./cmake.md) | [Viande](./cuisine/viande.md) | [Logement](./personal/logement.md)
+[COMPUTERS](./computers.md) | [Vins](./cuisine/vins.md) | [Médias](./personal/media.md)
 [AMSTRAD CPC](./cpc.md) |  | [Références](./personal/ref.md)
 [CSS](./css.md) |  | 
 [EFI](./efi.md) |  | 
 [EMULATORS](./emulators.md) |  | 
 [GALAXY](./galaxy.md) |  | 
+[Game programming](./game_programming.md) |  | 
 [GIT](./git.md) |  | 
+[HDF5](./hdf5.md) |  | 
 [HTML](./html.md) |  | 
 [JSON](./json.md) |  | 
 [LICENSING](./licensing.md) |  | 
@@ -35,6 +37,6 @@ Root | Cuisine | Personal
 [SVG](./svg.md) |  | 
 [UNIX](./unix.md) |  | 
 [Versioning](./versioning.md) |  | 
-[VIM](./vim.md) |  | 
+[Vim](./vim.md) |  | 
 [WEB](./web.md) |  | 
 [YAML file](./yaml.md) |  | 
