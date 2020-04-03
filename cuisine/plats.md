@@ -78,14 +78,11 @@ Quiche lorraine		France	Loraine	https://www.cuisineactuelle.fr/guide-du-bien-man
 Ratatouille		France	Provence	https://www.marmiton.org/recettes/recette_ratatouille_23223.aspx	
 Ricette con farina di grano duro		Italie		http://www.giallozafferano.it/ricerca-ricette/cosa+posso+fare+con+farina+di+grano+duro/	
 Ricette con farina di semola di grano duro		Italie		http://www.giallozafferano.it/ricerca-ricette/farina+di+semola+di+grano+duro/	
-Riz cantonais	riz	Chine		https://spicetrekkers.com/recipes/cantonese-fried-rice  https://www.kikkoman.co.uk/recipes/all/classic-cantonese-fried-rice/	
-Riz pilaf	riz	Inde		https://www.marmiton.org/recettes/recette_riz-pilaf_27905.aspx	
 Rôti de veau au four	veau			https://www.marmiton.org/recettes/recette_roti-de-veau-au-four_61313.aspx	
 Sauce béchamel	sauce	France		http://www.marmiton.org/recettes/recette_bechamel_23880.aspx	
 Soba noodles in duck broth	canard	Japon		http://www.japanesefoodreport.com/2008/01/soba-noodles-in-duck-broth.html	
 Spaghetti alla Carbonara	pâtes	Italie	Rome	https://ricette.giallozafferano.it/Spaghetti-alla-Carbonara.html	
 Spaghetti con sugo alle carote	pâtes	Italie		https://ricette-utenti.cookaround.com/spaghetti-con-sugo-alle-carote.html	
-Spicy Indian rice	riz	Inde		https://www.bbcgoodfood.com/recipes/3238/spicy-indian-rice	
 Tajine de poulet aux pruneaux	poulet	Maroc		http://www.marmiton.org/recettes/recette_tajine-de-poulet-aux-pruneaux_20082.aspx	
 Tajine de veau aux pruneaux	veau	Maroc		http://www.recetteshanane.com/2016/06/tajine-de-veau-aux-pruneaux.html	
 Tofu bourguignon végétalien	tofu			http://www.recettesjecuisine.com/fr/recettes/plats-principaux/vege/tofu-bourguignon-vegetalien/	
