@@ -46,6 +46,16 @@
   + Only numerical keypad for moving.
  * [Tales of Maj'Eyal](https://en.wikipedia.org/wiki/Tales_of_Maj%27Eyal).
   + Install tome4 package.
-  * Has a graphical mode by default, using mouse.
+  + Run tome4.
+  + Has a graphical mode by default, using mouse.
  * [Dungeon Crawl Stone Soup](https://en.wikipedia.org/wiki/Dungeon_Crawl_Stone_Soup).
+  + Package stone-soup.
+  + Run` crawl`.
+  + Character is centered on screen, the map moves around him.
+  + Dungeons are more like tunnels and caves (like in The Elder Scrolls).
+  + Lots of choice in spieces and classes.
  * [Mystery Dungeon](https://en.wikipedia.org/wiki/Mystery_Dungeon).
+ * [Egoboo](http://egoboo.sourceforge.net/).
+  + Package egoboo.
+  * 3D isometric.
+  * Modules to complete with different characters.
