@@ -263,7 +263,7 @@ result <- gsub('\\.in$', '.out', variable)   # replace all occurences
 ```r
 grep("blabla", df) # returns a list of indices
 length(grep("blabla", df)) > 0
-grep("blabla", df, value = TRUE) # returns a the matched elements of the vector 
+grep("blabla", df, value = TRUE) # returns a the matched elements of the vector
 ```
 
 `grepl` searches for regexp in vector, and returns a vector of booleans:
@@ -2410,6 +2410,10 @@ assay.fiel.names <- getMSAssayFilenames(isa)
 
 ## Interesting packages
 
+### countrycode
+
+To get list of official country codes, country names, continent of a country, etc.
+
 ### Rmpi
 
 HPC package.
@@ -3002,13 +3006,38 @@ No more in CRAN.
  * [R Package SSOAP](http://arademaker.github.io/blog/2012/01/02/package-SSOAP.html).
  * [SOAP Client with WSDL for R](http://stackoverflow.com/questions/32594448/soap-client-with-wsdl-for-r). --> Example of using RCurl in replacement of SSOAP.
 
+### evobiR
 
+Too much dependencies.
+
+Apply a function within a sliding window on a vector, output vector is smaller:
+```r
+data <- c(1,2,1,2,10,2,1,2,1,2,3,4,5,6,2,5)
+evobiR::SlidingWindow("mean", data, 3, 1)
+```
+
+### zoo
+
+Compute mean with sliding window, with output vector same length as input vector:
+```vim
+B <- c(0, 0, 0, 1, 0, 1, 1, 1, 0)
+k <- 3
+zoo::rollapply(B, 2*k-1, function(x) max(zoo::rollmean(x, k, na.rm = TRUE)), partial = TRUE)
+```
 
 ### Grid
 
  * [Grid](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html).
 
 Use to make graphical presentation. See also [gridSVG](https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html) to export grid object to SVG file.
+
+### readxl
+
+Read Excel files.
+
+```r
+x <- readxl::read_xlsx('myfile.xlsx')
+```
 
 ### RSQLite
 
