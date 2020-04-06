@@ -1,6 +1,7 @@
 # Références
 
  * [Wiktionary](https://en.wiktionary.org/wiki/Wiktionary:Main_Page).
+ * [Wiktionnaire](https://fr.wiktionary.org/wiki/Wiktionnaire:Page_d%E2%80%99accueil).
  * [Linguee](https://www.linguee.fr/).
  * [DeepL Translator](https://www.deepl.com/translator).
  * [EU Translate text snippet](https://webgate.ec.europa.eu/cas/login?loginRequestId=ECAS_LR-13929233-jIbZH6jy1NkGm4hUcHq9URGRutfqkHnId9uCdB49IyPUBYCR8pzLB7JG793hGK8W3UN5u7SQ6urfQdox9Rbxf4-jpJZscgsw0KNBCX3BRxcxS-Q3Oy7GjOnl9mzVt0VgxEZ7gI7eRwugzziCXtkt05vDS8).
