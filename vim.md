@@ -2,12 +2,6 @@
 
  * [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/).
 
-## Install
-
-```bash
-./configure --with-features=big --disable-gui
-```
-
 ## Configuration
 
 To reload vimrc:
@@ -33,23 +27,209 @@ To get information about vim files:
 help runtimepath
 ```
 
-## Display
+Standard configuration/plugin folders:
+	~/.vim/colors/
+	~/.vim/plugin/
+	~/.vim/ftdetect/
+	~/.vim/ftplugin/
+	~/.vim/syntax/
+	~/.vim/indent/
+	~/.vim/compiler/
+	~/.vim/after/
+	~/.vim/autoload/
+	~/.vim/doc/
 
-Command      | Description
------------- | ----------------
-`:se nu`     | Turn on line numbering.
-`:se nonu`   | Turn off line numbering.
-`:se list`   | Turn on display of non-printable characters.
-`:se nolist` | Turn off display of non-printable characters.
+### colors folder
 
-## Gui
+Color scheme files.
+Command `color mycolors` will search for `mycolors.vim` file inside `colors` folders.
 
-Set GUI off (menu, toolbars, ...):
+### plugin folder
+
+Files in this directory will be loaded once at startup.
+
+### ftdetect folder
+
+Files in this directory will be loaded once at startup.
+Should contain autocommands that detect and set the filetype of files.
+
+For instance, for Potion language (`*.pn` files), we create the file `ftdetect/potion.vim`:
+```vim
+au BufNewFile,BufRead *.pn set filetype=potion
 ```
-:se go=
+
+### ftplugin folder
+
+When Vim sets a buffer's filetype if looks for `<filetype>.vim` and `<filetype>/*.vim` files inside this folder.
+Code in theses files must only set buffer-local options since it is called each time a buffer's filetype is set.
+
+To force reloading filetype plugins, just reset filetype inside buffer:
+```vim
+set filetype=potion
 ```
 
-## Key mapping (key bindings)
+### syntax folder
+
+Contains syntax highlighting files.
+See `help syntax`.
+
+For instance for Potion language, we create the file `syntax/potion.vim`:
+```vim
+if exists("b:current_syntax")
+	finish
+endif
+
+" Define keyword groups
+syntax keyword potionKeyword loop times to while
+syntax keyword potionKeyword if elsif else
+syntax keyword potionKeyword class return
+
+syntax keyword potionFunction print join string
+
+" Link keyword groups to highlighting groups.
+highlight link potionKeyword Keyword
+highlight link potionFunction Function
+
+let b:current_syntax = "potion"
+```
+
+See `help syn-keyword`.
+`iskeyword` option defines which characters are allowed for a keyword. Thus only these characters are recognized by Vim.
+For common highlighting groups see `help group-name`.
+
+To define syntax highlighting for operators and keywords that contain characters not in `iskeyword`, we must use a regex. Example for Potion comments that start with `#`:
+```vim
+syntax match potionComment "#.*$"
+highlight link potionComment Comment
+```
+
+Defining syntax highlighting for operators:
+```vim
+syntax match potionOperator "\v/"
+syntax match potionOperator "\v\+"
+syntax match potionOperator "\v-"
+syntax match potionOperator "\v\?"
+syntax match potionOperator "\v\*\="
+syntax match potionOperator "\v/\="
+syntax match potionOperator "\v\+\="
+syntax match potionOperator "\v-\="
+syntax match potionOperator "\v\="
+highlight link potionOperator Operator
+```
+See `help syn-match` and `help syn-priority`.
+
+Use `syntax region` to highlight strings:
+```vim
+syntax region potionString start=/\v"/ skip=/\v\\./ end=/\v"/
+highlight link potionString String
+```
+See `help syn-region`.
+
+### indent folder
+
+Same as ftplugin, but code in this folder is only related to indentation.
+
+### compiler folder
+
+Same as ftplugin but for compiler-related options.
+
+### after folder
+
+Files in this directory will be loaded once at startup, but after files in `~/.vim/plugin/`.
+
+### autoload folder
+
+Autoload is a way to delay the loading of your plugin's code until it's actually needed.
+
+If a function like the following one is called:
+```vim
+call somefile#Hello()
+```
+and this function is unknown, Vim will look for the function inside `autoload/somefile.vim`.
+
+Inside file `autoload/somefile.vim`, the function must look like this:
+```vim
+function somefile#Hello()
+	" ...
+endfunction
+```
+
+If the function is already known, Vim will not look for it. Hence if you need to reload your script file, call an unknown function from this file like `call somefile#BadFct()` and Vim will force reload of `autoload/somefile.vim`.
+
+Subdirectories are allowed by the use of multiple `#` characters:
+```vim
+call myplugin#somefile#Hello()
+```
+Then in the file `autoload/myplugin/somefile.vim`:
+```vim
+function myplugin#somefile#Hello()
+	" ...
+endfunction
+```
+
+### doc folder
+
+Documentation files are simply files with file type `help`.
+
+Create a file `doc/potion.txt` for Potion language:
+```vim
+*potion.txt* functionality for the potion programming language
+
+                   ___      _   _              ~
+                  / _ \___ | |_(_) ___  _ __   ~
+                 / /_)/ _ \| __| |/ _ \| '_ \  ~
+                / ___/ (_) | |_| | (_) | | | | ~
+                \/    \___/ \__|_|\___/|_| |_| ~
+
+       Functionality for the Potion programming language.
+     Includes syntax highlighting, code folding, and more!
+
+====================================================================
+CONTENTS                                            *PotionContents*
+
+    1. Usage ................ |PotionUsage|
+    2. Mappings ............. |PotionMappings|
+    3. License .............. |PotionLicense|
+    4. Bugs ................. |PotionBugs|
+    5. Contributing ......... |PotionContributing|
+    6. Changelog ............ |PotionChangelog|
+    7. Credits .............. |PotionCredits|
+
+====================================================================
+Section 1: Usage                                       *PotionUsage*
+
+This plugin with automatically provide syntax highlighting for
+Potion files (files ending in .pn).
+
+It also...
+
+```
+Set its file type to `help` (`se ft=help`) to get syntax highlighting.
+The `~` characters at the end of the ASCII art prevent Vim from highlighting the lines.
+The `*sometag*` marks place tags inside the document. They can be called with help (e.g.: `help sometag`).
+The `|sometag|` marks create links to tags. User can press `<c-]>` on it to jump to the corresponding tag.
+
+## Options
+
+Name        | Description
+----------- | ----------------
+number      | Line numbering.
+list        | Display non-printable characters.
+wrap        | 
+textwidth   |
+ignorecase  | Ignore case when comparing strings with `==` operator.
+foldcolumn  | Integer. If 0, then disabled. Otherwise display a column of foldings (width=number).
+runtimepath | Where to look for standard folders (`colors`, `syntax`, `ftplugin`, ...).
+iskeyword   | Define the list of allowed characters for keywords.
+........... | Used in syntax highlighting.
+
+Local options:
+Name        | Description
+----------- | ------------------------------
+buftype     | The type of buffer. (e.g.: `"nofile"` for a scratch buffer)
+filetype    | The type of file (e.g.: `"c", "java", ...`).
+
+## map & co
 
  * [Mapping keys in Vim - Tutorial (Part 1)](http://vim.wikia.com/wiki/Mapping_keys_in_Vim_-_Tutorial).
 
@@ -132,12 +312,27 @@ Define local leader as `\` (for specific file types):
 ```vim
 let maplocalleader = "\\"
 ```
-Use `<localleader>` in mappings.
+Use `<localleader>` in mappings that are `<buffer>` specific.
 
 Key mapping for quoting current word:
 ```vim
 nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
 ```
+
+Key mapping for searching for word under cursor:
+```vim
+nnoremap <leader>g :grep -R '<cword>' .<cr>
+```
+For searching for WORD (even if it contains quote characters)):
+```vim
+nnoremap <leader>g :execute "grep -R " . shellescape(expand("<cWORD>")) . " ."<cr>
+```
+Do not jump to first match, but open the quickfix window automatically:
+```vim
+nnoremap <leader>g :silent execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>:copen<cr>
+```
+`grep` being a shell command the string passed to it must be escaped (hence the call to `shellescape()`).
+The word under the cursor must be retrieved using the `expand()` method so it can be embedded inside the command to execute.
 
 List mappings in normal, visual and select and operator pending mode:
 ```vim
@@ -156,20 +351,217 @@ To know what commands where assigned to a key:
 
 The `Leader` key is mapped to "\" by default. To redefine it, set `mapleader` variable.
 
+### operator-pending mappings
+
+Define an new operator movement for selecting all content between current parenthesis:
+```vim
+onoremap p i(
+```
+
+Remove everything inside next parenthesis and goes into insert mode (use `cin(`):
+```vim
+onoremap in( :<c-u>normal! f(vi(<cr>
+```
+Same thing with previous parenthesis (`cil(`):
+```vim
+onoremap il( :<c-u>normal! F)vi(<cr>
+```
+
+Remove markdown title of current section and goes into insert to change title (`cih`):
+```vim
+onoremap ih :<c-u>execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<cr>
+```
+The `g_` is to go to the last non-blank character of the line.
+
+Creating a new operator (`<leader>g`) to grep for word under cursor:
+```vim
+nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
+vnoremap <leader>g :<c-u>call <SID>GrepOperator(visualmode())<cr>
+
+function! s:GrepOperator(type)
+	let saved_unnamed_register = @@
+
+	if a:type ==# 'v'
+		execute "normal! `<v`>y"
+	elseif a:type ==# 'char'
+		execute "normal! `[v`]y"
+	else
+		return
+	endif
+
+	silent execute "grep! -R " . shellescape(@@) . " ."
+	copen
+
+	let @@ = saved_unnamed_register
+endfunction
+```
+`g@` calls the function as an operator, thus we ca type `<leader>giw` to call the function for the word under the cursor.
+`<c-u>` deletes the `'<,'>` automatically inserted by Vim when text is selected and `:` is pressed. This is because we are going to call a function of our own and pass it the type of selection made (`visualmode()`).
+`visualmode()` returns `"v"` for characterwise, `"V"` for linewise, and a `Ctrl-v` character for blockwise.
+`a:type` has the following values:
+ * `"v"` when we press `viw<leader>g`.
+ * `"V"` when we press `Vjj<leader>g`.
+ * `"char"` when we press `<leader>giw`.
+ * `"line"` when we press `<leader>gG`.
+`@@` is the unnamed regsiter, the one used by default when deleting and yanking.
+`s:` declares the function inside the current script namespace.
+`<SID>` looks for a function inside the current script namespace and not the global namespace (default).
+
 ## Abbreviations
 
+Replace keys sequence by another. The end of a sequence is marked by a non-keyword character.
+To see the list of non-keyword characters:
+```vim
+set iskeyword?
+```
+
+Define an abbreviation in insert mode for correcting mistyping:
 ```vim
 iabbrev adn and
 ```
 
+Create an abbreviation for the current buffer only:
+```vim
+iabbrev <buffer> --- &mdash;
+```
+
+## autocmd
+
+Save all new text buffers:
+```vim
+autocmd BufNewFile *.txt :write
+```
+
+Re-indent HTML files when saving or loading:
+```vim
+autocmd BufWritePre,BufRead *.html :normal gg=G
+```
+
+Add comment out shortcut for Javascript and Python:
+```vim
+autocmd FileType javascript nnoremap <buffer> <localleader>c I//<esc>
+autocmd FileType python     nnoremap <buffer> <localleader>c I#<esc>
+```
+
+Get list of all autocmd events available:
+```vim
+help autocmd-events
+```
+
+Clear all autocommands:
+```vim
+autocmd!
+```
+
+Define an abbreviation to insert `if` statement more easily in Python and Javascript:
+```vim
+autocmd FileType python     :iabbrev <buffer> iff if:<left>
+autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+```
+
+Redefining the same autocommand will define it twice. To avoid that, use a group:
+```vim
+augroup filetype_python
+	autocmd!
+	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+augroup END
+```
+Using a group and the `autocmd!` to clear all groups definition inside a vimrc
+file will avoid redefining multiple times the same autocommands when sourcing
+again `.vimrc`.
+
+## augroup
+
+Groups autocommands together.
+
+```vim
+augroup filetype_python
+	autocmd!
+	autocmd FileType python nnoremap <buffer> <localleader>c I#<esc>
+augroup END
+```
+
+## executable
+
+Test if a shell command exists:
+```vim
+if executable("my-command")
+	dosomething()
+endif
+```
+
+## execute
+
+Execute a Vimscript in a string.
+
+Write current buffer:
+```vim
+execute "write"
+```
+
+Open new window on the right and edit previous buffer in it:
+```vim
+execute "rightbelow vsplit " . bufname("#")
+```
+
+If you want to use variables or special characters (like `<cr>`) inside a command, you must use a vimscript as a string and run it with the `execute` command:
+```vim
+execute "mkspell " . myfile
+```
+
+## normal
+
+Execute command in normal mode.
+
+Go to start of file:
+```vim
+normal gg
+```
+However the `normal` command takes remapping of keys into account.
+To avoid that, use the `normal!` command:
+```vim
+normal! gg
+```
+If `g` or `gg` was remapped, it will be ignored in this case.
+
+`normal` does not recognize special characters like `<cr>`.
+A workaround is to use `execute`:
+```vim
+execute "normal! gg/a<cr>"
+```
+
+Puts a semicolon at the end of the line:
+```vim
+execute "normal! mqA;\<esc>`q"
+```
+
+## help
+
+Get help on a command or option.
+
+```vim
+help helpgrep
+```
+
+## helpgrep
+
+Search the help using regular expressions.
+
+```vim
+helpgrep .*indent
+```
+Use `copen` to open window with the full list of results.
+
 ## Modeline
 
-Vim settings inside a file:
+A modeline is a line at top of file used to set vim options.
+
+In Java or C++:
 ```java
 // vi: se ts=4 et
 ```
 
-Or with a `/**/` comment style:
+In C:
 ```c
 /* vi: se fdm=marker: */
 ```
@@ -346,6 +738,9 @@ Command     | Description
 `Ctrl-e`    | Display another line at bottom of screen.
 `Ctrl-y`    | Display another line at top of screen.
 ----------- | ---------------------
+`f(`        | Move forward to next parenthesis.
+`F(`        | Move backward to previous parenthesis.
+----------- | ---------------------
 `w`         | Start of next word.
 `W`         | Start of next word, ignoring punctuation.
 `b`         | Start of previous/current word.
@@ -375,6 +770,97 @@ Command     | Description
 `}`         | Beginning of next paragraph.
 `[[`        | Beginning of current section.
 `]]`        | Beginning of next section.
+----------- | ---------------------
+
+Using marks:
+	mq Mark location in mark "q".
+	`q Go back to location stored in mark "q".
+
+## Section movements
+
+See `help ]]`:
+ * `[[` Beginning of current section or previous `{`.
+ * `]]` Beginning of next section or next `{`.
+ * `][` Beginning of next section or next `}`.
+ * `][` Beginning of current section or previous `}`.
+
+Example of redefining section movements for filetype Potion. Create file `ftplugin/potion/sections.vim`:
+```vim
+noremap <script> <buffer> <silent> [[ :call <SID>NextSection(1, 1, 0)<cr>
+noremap <script> <buffer> <silent> ]] :call <SID>NextSection(1, 0, 0)<cr>
+noremap <script> <buffer> <silent> ][ :call <SID>NextSection(2, 0, 0)<cr>
+noremap <script> <buffer> <silent> [] :call <SID>NextSection(2, 1, 0)<cr>
+vnoremap <script> <buffer> <silent> [[ :<c-u>call <SID>NextSection(1, 1, 1)<cr>
+vnoremap <script> <buffer> <silent> ]] :<c-u>call <SID>NextSection(1, 0, 1)<cr>
+vnoremap <script> <buffer> <silent> ][ :<c-u>call <SID>NextSection(2, 0, 1)<cr>
+vnoremap <script> <buffer> <silent> [] :<c-u>call <SID>NextSection(2, 1, 1)<cr>
+
+function! s:NextSection(type, backwards, visual)
+	if a:visual
+		normal! gv
+	endif
+
+	if a:type == 1
+		let pattern = '\v(\n\n^\S|%^)'
+		let flags = 'e'
+	elseif a:type == 2
+		let pattern = '\v^\S.*\=.*:$'
+		let flags = ''
+	endif
+
+	if a:backwards
+		let dir = '?'
+	else
+		let dir = '/'
+	endif
+
+	execute 'silent normal! ' . dir . pattern . dir . flags . "\r"
+endfunction
+```
+
+## Execute external command ( ! operator)
+
+`!` operator runs a command and display its output:
+```vim
+:!ls
+```
+
+Use `silent` to suppress the output and the prompt for pressing *ENTER*:
+```vim
+:silent !ls
+```
+Vim screen could be altered by use of `silent` afterward. In this case use `:redraw!` to fix the screen.
+
+Example of a function to compile & run a Potion script file.
+Write the following `ftplugin/potion/running.vim`:
+```vim
+if !exists("g:potion_command")
+	let g:potion_command = "potion"
+endif
+
+function! PotionCompileAndRunFile()
+	silent !clear
+	execute "!" . g:potion_command . " " . bufname("%")
+endfunction
+
+function! PotionShowBytecode()
+	" Get the bytecode.
+	let bytecode = system(g:potion_command . " -c -V " . bufname("%"))
+
+	" Open a new split and set it up.
+	vsplit __Potion_Bytecode__ " Split a new buffer
+	normal! ggdG " Delete everything inside buffer
+	setlocal filetype=potionbytecode " Set buffer type
+	setlocal buftype=nofile " Set the buffer as scratch (never saved)
+
+	" Insert the bytecode.
+	call append(0, split(bytecode, '\v\n'))
+endfunction
+
+nnoremap <buffer> <localleader>r :call PotionCompileAndRunFile()<cr>
+nnoremap <buffer> <localleader>b :call PotionShowBytecode()<cr>
+```
+The command `!clear` clears the screen.
 
 ## Windows
 
@@ -477,18 +963,40 @@ To force physical wraping of text on selected lines, use `gq` key commands.
  * [How to fold](http://vimcasts.org/episodes/how-to-fold/).
  * [Writing a custom fold expression](http://vimcasts.org/episodes/writing-a-custom-fold-expression/).
 
+6 different ways of folding:
+	manual Created manually, erased when leaving Vim. May be used in conjunction with some key mapping.
+	marker Use markers `{{{` for begin and `}}}` for end (optional). Levels are possible `{{{1`, `{{{2`, ....
+	diff   Used in vimdiff.
+	expr
+	indent Uses code indentation for folding.
+	syntax
+See `help foldmethod`.
+
+Vim associates each line with a folding level.
+ * A line with a level of `0` is never folded.
+ * Lines of same level are grouped together.
+ * When fold of level n is closed, all lines with level >= n are folded with it.
+To display the fold level of line 3:
+```vim
+echom foldlevel(3)
+```
+
 ```vim
 setlocal foldmethod=syntax
 ```
 
-Marker folding (use `{{{X` marking):
-```java
+Set folding style inside file:
+```vim
 // vi: fdm=marker
-class Blabla { // {{{1
-}
+```
 
-class Zoup { // {{{1
-}
+Marker folding (use `{{{` or `{{{X` markingi with or without `}}}` ending marker):
+```vim
+" My section {{{
+...
+" }}}
+
+" My other section {{{1
 ```
 
 Key  | Description
@@ -503,6 +1011,57 @@ Key  | Description
 `zR` | Open all levels of all folds.
 `zm` | Close all folds by one more level.
 `zM` | Close all levels of all folds.
+
+Example with defining folding for Potion language using indent method. Create the following `ftplugin/potion/folding.vim` file:
+```vim
+setlocal foldmethod=indent
+setlocal foldignore=
+```
+The `foldignore=` is used to cancel ignoring of lines starting with `#`. This is only relevant for indent folding.
+
+Using expr method gives more flexibility. Here is an example:
+```vim
+setlocal foldmethod=expr
+setlocal foldexpr=GetPotionFold(v:lnum)
+
+function! GetPotionFold(lnum)
+	" Blank lines
+	if getline(a:lnum) =~? '\v^\s*$'
+		return '-1'
+	endif
+
+	let this_indent = IndentLevel(a:lnum)
+	let next_indent = IndentLevel(NextNonBlankLine(a:lnum))
+
+	if next_indent == this_indent
+		return this_indent
+	elseif next_indent < this_indent
+		return this_indent
+	elseif next_indent > this_indent
+		return '>' . next_indent
+	endif
+endfunction
+
+function! IndentLevel(lnum)
+	return indent(a:lnum) / &shiftwidth
+endfunction
+
+function! NextNonBlankLine(lnum)
+	let numlines = line('$') " Total number of lines in buffer
+	let current = a:lnum + 1
+
+	while current <= numlines
+		if getline(current) =~? '\v\S' " Line contains at least one non-blank char
+			return current
+		endif
+
+		let current += 1
+	endwhile
+
+	return -2
+endfunction 
+```
+`-1` means undefined folding level. Vim will define and set the level of this line to the level of the line before or after, which ever is smaller.
 
 ## Argdo
 
@@ -596,6 +1155,8 @@ Regex code        | Description
 ----------------- | ----------------------------------------
 `\n`              | Newline character when searching.
 `\r`              | Newline character when replacing.
+`\v`              | 'Very magic' mode to use extended regex.
+                  | Put it at the start of the regex.
 
 Search for character with its hexadecimal code: `/\%x95`.
 
@@ -807,6 +1368,45 @@ Command                          | Description
 `:clast`                         | Last error.
 `:clist`                         | List errors.
 
+## Operators
+
+An operator is a command that waits for you to enter a movement command (for selecting the text on which to apply the operator).
+
+Op. | Description
+--- | -----------------
+d   | delete
+y   | yank
+p   | paste
+c   | change (delete selection and go into insert mode)
+v   | select
+
+Some movements associated with these operators:
+
+Movement | Description
+-------- | -----------------
+i(       | Select everything inside the parenthesis surrounding the current position.
+iw       | Select current word.
+t,       | Select everything up to the next comma (excluded).
+w        | Select everything up to beginning of next word (excluded).
+W        | Select everything up to beginning of next word (excluded), including punctuations as part of the current word.
+e        | Select everything up to end of current word.
+E        | Select everything up to end of current word, including punctuations as part of the word.
+$        | Select everything up to end of line.
+G        | Select everything up to end of file.
+
+See `onoremap` for defining new movements for these operators.
+
+These operators have uppercase versions and double versions, which are shortcuts:
+Keys | Description
+---- | -------------------
+D    | Delete current line.
+dd   | Delete current line.
+Y    | Yank current line.
+yy   | Yank current line.
+C    | Change from current position to end of line.
+cc   | Change current line.
+V    | Select current line.
+
 ## Copy, paste & registers
 
  * [How to paste yanked text into Vim command line?](http://stackoverflow.com/questions/3997078/how-to-paste-yanked-text-into-vim-command-line).
@@ -814,25 +1414,12 @@ Command                          | Description
 Normal mode:
 keys   | Description
 ------ | -------------------
-`Y`    | Copy current line.
-`yy`   | Copy current line.
-`2Y`   | Copy current line and next one.
-`10Y`  | Copy 10 lines, starting from current one.
-`yG`   | Copy all lines from current line to the end of the file.
 `P`    | Paste above current line or before cursor.
 `p`    | Paste below current line or after cursor.
-`yw`   | Copy from current position to beginning of next word.
-`yW`   | Copy from current position to beginning of next word (including punctuations).
-`ye`   | Copy from current position to end of current word.
-`yE`   | Copy from current position to end of current word (including punctuations).
-`y$`   | Copy from current position to end of the line.
 `"k`   | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
 `"K`   | Append to register k.
 `:reg` | Get list of all actual registers.
-`ve`   | Select from current position to end of word.
-`viw`  | Select current word.
 `x`    | Delete current character.
-`dd`   | Delete current line.
 
 In command or insert mode:
 keys        | Description
@@ -846,7 +1433,12 @@ Register | Description
 `1`..`9` | Shifting delete registers. Used when pressing `c` or `d`.
 `"`      | Default register (same as `0` ?).
 `a`..`z` | User registers.
-`+`, `*` | System clipboard registers.
+`+`, `\*` | System clipboard registers.
+
+Accessing register in Vimscript:
+```vim
+echom @@ " unnamed register (default register, used when yanking or deleting).
+```
 
 ## Debugging
 
@@ -1009,23 +1601,24 @@ To override a group link:
 hi! def link rNumber Float
 ```
 
-## Vimscript
+## mkspell
 
-### Running vim commands
+Generates a Vim spell file from a list of words.
 
-One can run vim command directly inside a vimscript:
 ```vim
 mkspell ~/.vim/spell/en.utf-8.add
 ```
 
-However if you must use a variable this isn't possible, because in a vim command variables are not interpreted. You must use the `exec` vimscript command:
+## Pipe character (|)
+
+Pipe character is used to separate commands on the same line:
 ```vim
-exec "mkspell " . myfile
+om "foo" | echom "bar"
 ```
 
-### Statements
+## Statements
 
-#### If
+### if
 
  * [Conditionals](http://learnvimscriptthehardway.stevelosh.com/chapters/21.html).
  * [Comparisons](http://learnvimscriptthehardway.stevelosh.com/chapters/22.html).
@@ -1040,48 +1633,502 @@ else
 endif
 ```
 
-Test if a shell command exists:
+If the expression passed to if is not a number, it will be coerced to a number. So if it is a string that starts with a number (e.g.: "13foo") then it will be coerced to that number, otherwise it will be coerced to zero.
 ```vim
-if executable("my-command")
-	dosomething()
+if ""    " 0 => False
+if "10"  " 10 => True
+if "10foo"  " 10 => True
+if "foo"  " 0 => False
+if "foo" + 10  " 10 => True
+```
+
+Testing an option:
+```vim
+if &myopt == 'myvalue'
 endif
 ```
 
-#### For
-
+Compare numbers:
 ```vim
-for i in [1 2 5 70]
+if 1 < 2
+```
+
+Test equality of numbers:
+```vim
+if 1 == 2
+```
+
+Test equality of strings (depending on `ignorecase` option):
+```vim
+if "foo" == "FOO"
+```
+
+Test equality of strings (case-insensitive):
+```vim
+if "foo" ==? "FOO"
+```
+
+Test equality of strings (case-sensitive):
+```vim
+if "foo" ==# "FOO"
+```
+
+Case-sensitive comparison:
+```vim
+if "foo" ># "Foo"
+```
+
+### for
+
+Loop on elements of a list:
+```vim
+for i in [1, 2, 5, 70]
+	echom i
 endfor
 ```
 
-### Types & variables
+# while
 
-#### Strings
+```vim
+while i <= 10
+	echom i
+endwhile
+```
+
+## Types
+
+### Number
+
+A Number is a 32 bit signed integer.
+
+A decimal:
+```vim
+echom 100
+```
+
+An hexadecimal:
+```vim
+echom 0xff
+echom 0Xff
+```
+
+An octal:
+```vim
+echom 010 " Decimal 8
+```
+But wrong octals are silently interpreted as decimals:
+```vim
+echom 019 " Decimal 19
+```
+
+### Float
+
+Diverse float numbers:
+```vim
+echo 100.1
+echo 5.45e+3
+echo 15.45e-2
+echo 15.3e9
+echo 5e10 " Error ! Decimal point is compulsory.
+```
+
+### Boolean
+
+A boolean option has for value `1` or `0` when used.
+All integer values different of `0` are treated as true.
+
+### Strings
 
  * [Strings](http://learnvimscriptthehardway.stevelosh.com/chapters/26.html).
  * [String Functions](http://learnvimscriptthehardway.stevelosh.com/chapters/27.html).
 
-To concatenate strings:
+A string:
 ```vim
-let myvar = "somestring" . somevar . "some other string"
+echom "Hello"
 ```
 
-Search for a substring:
+Escaping characters:
 ```vim
-match('mystringtosearch', '[a-i]')
-```
-Returns the index of the substring or `-1`.
-
-Get the found substring:
-```vim
-matchstr('mystringtosearch', '[a-i]')
+echom "a \"b\" \\c."
+echo "a\nb" " Will print two lines.
+echom "a\nb" " Will replace \n with ^@
 ```
 
-#### Lists
+Literal string (no escaping):
+```vim
+echo 'a\nb' " No escaping. Will print a\nb.
+echo 'a''b' " Will print a'b.
+```
+
+Getting a character from a string:
+```vim
+echo 'abcdef'[1] " 'a'
+echo 'abcdef'[-1] " '' empty string is always returned for negative indices.
+```
+
+Getting a subrange of a string:
+```vim
+echo 'abcdef'[0:2] " 'abc'
+echo 'abcdef'[3:] " 'def'
+echo 'abcdef'[-2:] " 'ef', negative indices are allowed in a range.
+```
+
+Concatenate strings:
+```vim
+echo 'abc' . 'def'
+```
+
+### Lists
 
  * [Lists](http://learnvimscriptthehardway.stevelosh.com/chapters/35.html).
 
-#### Options
+Create a list:
+```vim
+echo ['foo', 3, 'bar']
+```
+
+A nested list:
+```vim
+echo ['foo', [3, 'bar']]
+```
+
+Lists are zero indexed. Negative indices can be used to get elements starting from the end: `-1` is the last, `-2` the one before the last, etc. 
+Get elements:
+```vim
+echo [0, 2]][0] " 0
+echo [0, 2][1] " 2
+echo [0, 2][-1] " 2
+echo [0, 2][-2] " 0
+```
+
+Slicing:
+```vim
+echo ['a', 'b', 'c', 'd', 'e'][0:2] " ['a', 'b', 'c']
+echo ['a', 'b', 'c', 'd', 'e'][0:100000] " Whole list.
+echo ['a', 'b', 'c', 'd', 'e'][-2:-1] " ['d', 'e']
+echo ['a', 'b', 'c', 'd', 'e'][:1] " ['a', 'b']
+echo ['a', 'b', 'c', 'd', 'e'][3:] " ['d', 'e']
+```
+
+Concatenate lists:
+```vim
+echo ['a', 'b'] + ['c']
+```
+
+Define a list:
+```vim
+let mylist = ['a']
+```
+
+Get the length of a list:
+```vim
+len(['a', 'b']) " 2
+```
+
+Get a value from a list, using default value:
+```vim
+get(['a'], 0, 'default') " 'a'
+get(['a'], 100, 'default') " 'default'
+```
+
+Search for an element:
+```vim
+index(['a', 'b'], 'b') " 1
+index(['a', 'b'], 'c') " -1
+```
+
+Join:
+```vim
+join(['a', 'b']) " 'a b'
+join(['a', 'b'], '-') " 'a-b'
+```
+
+Reverse elements in-place:
+```vim
+call reverse(mylist)
+```
+
+Sort a list:
+```vim
+call sort(mylist)
+```
+
+Append to a list:
+```vim
+call add(mylist, 'b')
+```
+
+Make a copy:
+```vim
+myNewList = deepcopy(mylist)
+```
+
+Remove element in-place:
+```vim
+call remove(mylist, 'a')
+```
+
+Apply a function on each element:
+```vim
+call map(mylist, 'myfunc(v:val)')
+```
+
+Filter out values:
+```vim
+call filter(mylist, 'myfunc(v:val)')
+```
+
+### Dictionaries
+
+Keys are always strings.
+
+Define a dictionary:
+```vim
+{'a': 1, 'b': 'foo'}
+{'a': 1, 'b': 'foo',} " Coma after last element is ignored.
+```
+
+Get a element:
+```vim
+{'a': 1, 100: 'foo',}['a'] " 1
+{'a': 1, 100: 'foo',}[100] " 'foo'
+{'a': 1, 100: 'foo',}.a    " 1
+{'a': 1, 100: 'foo',}.100  " 'foo'
+```
+
+Using `get()` and default value to get an element's value:
+```vim
+get({'a': 100}, 'a', 'default') " 100
+get({'a': 100}, 'b', 'default') " 'default'
+```
+
+Check if a key exists:
+```vim
+has_key({'a': 100}, 'a') " 1
+has_key({'a': 100}, 'b') " 0
+```
+
+Adding an element:
+```vim
+let mydict.key = 100
+```
+
+Remove an entry:
+```vim
+unlet mydict.key
+unlet mydict['key']
+```
+
+Remove an entry and get the removed value:
+```vim
+let removeValue = remove(mydict, 'key')
+```
+
+Removing an non existing key generates an error.
+
+Getting the list of keys:
+```vim
+keys({'a': 100, 'b': 200}) " ['a', 'b']
+```
+
+Getting the list of values:
+```vim
+values({'a': 100, 'b': 200}) " [100, 200]
+```
+
+Getting a selections of entries:
+```vim
+items({'a': 100, 'b': 200}) " [['a', 100], ['b', 200]]
+```
+
+## Concatenate operatoe
+
+To concatenate strings:
+```vim
+echom "a" . "b"
+```
+Integers can be used with concatenation:
+```vim
+echom "a" . 10
+```
+## Arithmetic operators
+
+Integer division:
+```vim
+echom 3 / 2
+```
+
+Float division:
+```vim
+echom 3 / 2.0
+```
+
+Additions cast strings into integers (Number type):
+```vim
+echom "a" + "b" " Gives 0.
+echom "20a" + "b" " Gives 20.
+echom "20" + "5.6" " Gives 25.
+```
+
+## function
+
+Functions must start with a capital letter if they are unscoped!:
+```vim
+function Meow()
+	echom "Meow!"
+endfunction
+```
+
+Redefinition of a function is forbidden by default.
+To override this, use the `!` suffix:
+```vim
+function! Meow()
+	echom "Meow!"
+endfunction
+```
+
+Even if scoped, convention is to capitalize the first letter of a function.
+
+Function with a return value:
+```vim
+function Foo()
+	return "foo"
+endfunction
+```
+
+A function not returning any value is called with `call`:
+```vim
+call Meow()
+```
+One with a return value is used in expressions:
+```vim
+echom Foo()
+```
+A function not returning explicitly a value, returns `0`.
+
+Function with an argument:
+```vim
+function DisplayName(name)
+	echom "Hello!  My name is:"
+	echom a:name
+:endfunction
+```
+Arguments must be prefixed by `a:` when used.
+Call the function:
+```vim
+call DisplayName("Your Name")
+```
+
+Variable length arguments:
+```vim
+function Varg2(foo, ...)
+	echom a:foo
+	echom a:0 " Number of arguments in `...`.
+	echom a:1 " First argument in `...`.
+	echo a:000 " full list of arguments in `...`.
+endfunction
+```
+
+Arguments are not modifiable inside a function, we must create local variables:
+```vim
+function AssignGood(foo)
+	let foo_tmp = a:foo
+	let foo_tmp = "Yep"
+	echom foo_tmp
+endfunction
+```
+
+## call
+
+Calls a function:
+```vim
+call MyFct()
+```
+
+## operatorfunc
+
+This option allows to use a function as an operator inside a key mapping.
+
+```vim
+noremap <leader>g :set operatorfunc=GrepOperator<cr>g@
+
+function! GrepOperator(type)
+	echom "Test"
+endfunction
+```
+
+## echo
+
+Print string at bottom of window:
+```vim
+echo "My string"
+```
+
+Print a variable:
+```vim
+echo foo
+```
+
+Print option:
+```vim
+echo &myopt
+```
+
+Print register:
+```vim
+echo @a
+echo @" " Unnamed register
+echo @/ " Search pattern used
+```
+
+Print buffer local variable:
+```vim
+echo b:myvar
+```
+
+## echom
+
+Print and save in messages:
+```vim
+echom "My string"
+```
+
+## messages
+
+Print list of messages:
+```vim
+messages
+```
+
+## Comments
+
+Write comments:
+```vim
+" Some comment
+```
+
+## append
+
+Appends text into a buffer.
+
+Insert text at beginning of buffer:
+```vim
+call append(0, ['line1', 'line2', 'line3'])
+```
+
+## Environment variables
+
+Set an environment variable:
+```vim
+let $MYVAR='myvalue'
+```
+
+Print an environment variable:
+```vim
+echo $MYVAR
+```
+
+## set
 
 See <http://learnvimscriptthehardway.stevelosh.com/chapters/19.html#options-as-variables>.
 
@@ -1094,53 +2141,6 @@ Insert at beginning of list or string:
 ```vim
 set myopt^=myval
 ```
-
-### Variables
-
-For printing a variable:
-```vim
-echo myvar
-```
-
-### Printing
-
-Print string at bottom of window:
-```vim
-echo "My string"
-```
-
-Print and save in messages:
-```vim
-echom "My string"
-```
-
-### Messages
-
-Print list of messages:
-```vim
-messages
-```
-
-### Comments
-
-Write comments:
-```vim
-" Some comment
-```
-
-### Environment variables
-
-Set an environment variable:
-```vim
-let $MYVAR='myvalue'
-```
-
-Print an environment variable:
-```vim
-echo $MYVAR
-```
-
-### Options
 
 Set a boolean option on:
 ```vim
@@ -1167,7 +2167,7 @@ set numberwidth=10
 
 Get an option's value:
 ```vim
-se numberwidth?
+set numberwidth?
 ```
 
 Set multiple options:
@@ -1175,19 +2175,11 @@ Set multiple options:
 set number numberwidth=8
 ```
 
+## setlocal
+
 Set option locally for the current buffer only:
 ```vim
 setlocal number
-```
-
-Use `let`, to set an option's value from a computation:
-```vim
-let &myopt = someothervar + 10 + z
-```
-
-Testing an option in .vim script:
-```vim
-if &filetype == 'java'
 ```
 
 Many options have a shortcut, like filetype:
@@ -1198,20 +2190,243 @@ set ft=C
 For printing an option:
 ```vim
 set myopt
-echo &myopt
 ```
+
+## let
+
+Set a variable:
+```vim
+let foo = "bar"
+let foo2 = 23
+```
+
+Set a buffer local variable:
+```vim
+let b:myvar = 1
+```
+
+Use `let` to set an option's value from a computation:
+```vim
+let &myopt = someothervar + 10 + z
+```
+
+Set option locally:
+```vim
+let &l:number = 1
+```
+
+Set register:
+```vim
+let @a = "hello!"
+```
+
+## Assignement operators
+
+Set a variable
+```vim
+let myvar = 'a'
+```
+
+Add a number:
+```vim
+let n += 4
+```
+
+Concatenate:
+```vim
+let s .= 'a'
+```
+
+## put
 
 Writing an option to the current buffer:
 ```vim
 put=&myopt
 ```
 
-### File system
+## strlen
+
+Returns the length of a string:
+```vim
+echom strlen("foo")
+```
+
+## len
+
+Returns the length of a string:
+```vim
+echom len("foo")
+```
+
+## split
+
+Splits a string into a list:
+```vim
+echo split("one two three")
+echo split("one,two,three", ",")
+```
+
+## join
+
+Joins a list into a string:
+```vim
+echo join(["foo", "bar"], ",")
+```
+
+## tolower
+
+Convert string to lower case:
+```vim
+echom tolower("Foo")
+```
+
+## toupper
+
+Convert string to upper case:
+```vim
+echom toupper("foo")
+```
+
+## match
+
+Search for a substring:
+```vim
+match('mystringtosearch', '[a-i]')
+```
+Returns the index of the substring or `-1`.
+
+## matchstr
+
+Get the found substring:
+```vim
+matchstr('mystringtosearch', '[a-i]')
+```
+
+## escape
+
+Escape characters with `\`.
+
+Escape space and backslash characters:
+```vim
+echo escape('c:\program files\vim', ' \')
+```
+
+## shellescape
+
+Escape a string so it can be used safely as an argument for a shell command.
+
+```vim
+call system("chmod +w -- " . shellescape(expand("%")))
+```
+
+## silent
+
+Hides messages of a command.
+
+```vim
+silent mycommand ...
+```
+
+## winnr
+
+Returns the current window's number:
+```vim
+let n = winnr()
+```
+
+A window number may change each time windows are closed and opened.
+It is only for one tab.
+
+## bufwinid
+
+Returns the window-ID of the first buffer matched by an expression:
+```vim
+bufwinid('myexpr')
+```
+
+The window-ID of a buffer never changes during a Vim session.
+It is valid accross tabs.
+
+## bufwinnr
+
+Returns the window number of the first buffer matched by an expression:
+```vim
+bufwinnr('myexpr')
+```
+
+A window number may change each time windows are closed and opened.
+It is only for one tab.
+
+## wincmd
+
+Moves to window n:
+```vim
+execute n . 'wincmd w'
+```
+
+## bufnr
+
+Get the number of the current buffer:
+```vim
+bufnr()
+```
+
+Get the number of the buffer matching an expression, and with the highest number:
+```vim
+bufnr('myexpr')
+```
+
+### bufname
+
+Get the name of the current buffer:
+```vim
+bufname()
+```
+
+We can search with an expression:
+```vim
+bufname('myexpr')
+```
+
+## system
+
+Calls an external program and returns its output as a string.
+
+Call `ls`:
+```vim
+system("ls")
+```
+
+Pass characters on stdin:
+```vim
+system('wc -c', 'abcdef')
+```
+
+## File system
 
 Testing if a file exists:
 ```vim
-if filereadable(myfile)
-endif
+filereadable(myfile)
+```
+
+Get relative path of current buffer:
+```vim
+expand('%')
+```
+
+Get absolute path of current buffer:
+```vim
+expand('%:p')
+```
+
+Get path to a file inside current directory:
+```vim
+fnamemodify('foo.txt', ':p')
+```
+
+When using `~`, get the fullpath by calling `expand`:
+```vim
+let myfile = expand("~/.vim/spell/en.utf-8.add")
 ```
 
 Getting the modification time of a file:
@@ -1219,9 +2434,23 @@ Getting the modification time of a file:
 let modiftime = getftime(myfile)
 ```
 
-To get a correct path to a file/dir using `~`, use the `expand` keyword:
+List files in current directory:
 ```vim
-let wordsfile = expand("~/.vim/spell/en.utf-8.add")
+globpath('.', '*')
+```
+The result of `globpath()` is a single string containing filenames separated by newline characters.
+To get a list, run:
+```vim
+split(globpath('.', '*'), '\n')
+split(globpath('.', '*.txt'), '\n')
+split(globpath('.', 'prefix?.txt'), '\n') " ? replaces one character.
+split(globpath('.', 'prefix[abc].txt'), '\n') " '[abc]' matches 'a', 'b' or 'c'.
+split(globpath('.', '**'), '\n') " '**' recursively list files.
+```
+
+Get real file behing symbolic link:
+```vim
+resolve(myfilename)
 ```
 
 ## Printing
@@ -1309,19 +2538,22 @@ Flag | Description
 `%l` | Line number.
 `%c` | Column number.
 
-## Grep
-
-### Internal vim grep command
+## Internal vim grep command
 
 ```vim
 vim /print(/ ~/dev/mydir/*
 ```
 
-### External grep
+## grep
 
 ```vim
 gr mypattern myfiles
 grep mypattern myfiles
+```
+
+Do not jump to first result (but still fill quickfix window):
+```vim
+grep! mypattern
 ```
 
 Add results to the current results:
@@ -1348,7 +2580,9 @@ agrep
 ragrep
 ```
 
-## Error format
+## errorformat
+
+ * [Vim errorformat Demystified](https://flukus.github.io/vim-errorformat-demystified.html).
 
 To add a new error format:
 ```vim
@@ -1431,6 +2665,19 @@ Special meaning inside the path:
 `/usr/share/doc;` First search in `/usr/share/doc`, then `/usr/share/`, then `/usr/`, then `/`.
 `/home/kate/*` Search all of `/home/kate` and its subfolders, recursively.
 
+## cword, cWORD, cfile, ...
+
+`<cword>` is replaced with word under cursor.
+`<cWORD>` is replaced with WORD (series of non-blank characters)) under cursor.
+`<cfile>` is replaced with path under cursor.
+`<cexpr>` is replaced with C expression under cursor.
+
+## cfile
+
+Read error file and jump to first error:
+```vim
+cfile myerrorfile.err
+```
 
 ## Quickfix window
 
