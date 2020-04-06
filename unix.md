@@ -2738,6 +2738,11 @@ Concat two audio files, one after the other:
 ffmpeg -i file1.mp3 -i file2.mp3 -filter_complex '[0:0][1:0]concat=n=2:v=0:a=1[out]' -map '[out]' output.mp3
 ```
 
+Convert mp4 to avi:
+```bash
+ffmpeg -i input.mp4 -c:v libx264 -c:a libmp3lame -b:a 384K output.avi
+```
+
 ### pdfcrack
 
 Tool for cracking user password and/or owner password in PDF files.
@@ -2780,7 +2785,33 @@ magick convert -colorspace Gray input.jpg output.jpg
 ```
 
 ```bash
-For f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done 
+for f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done 
+```
+
+Rotate 180 degrees:
+```bash
+magick convert -rotate 180 input.jpeg output.jpeg
+```
+
+### exiftool
+
+Package `perl-image-exiftool` on ArchLinux.
+
+Read EXIF information:
+```bash
+exiftool myfile.jpeg
+```
+
+Remove a orientation information:
+```bash
+exiftool -Orientation= myfile.jpeg
+```
+
+### figlet
+
+Generates ASCII art:
+```sh
+figlet -f ogre "Potion"
 ```
 
 ### dd
