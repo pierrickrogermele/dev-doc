@@ -441,11 +441,35 @@ $texte = str_replace(
 
 ### Date
 
-Convert a English/US date string into a UNIX timestamp date:
+ * [strtotime](https://www.php.net/manual/en/function.strtotime.php).
+ * [strptime](https://www.php.net/manual/en/function.strtotime.php).
+ * [strftime](https://www.php.net/manual/en/function.strtotime.php).
+ * [DateTime](https://www.php.net/manual/en/class.datetime.php).
+
+Convert a /US date string into a UNIX timestamp date:
 ```php
 <?php
-$mydate_in_seconds_from_1970 = strtotime("11/29/2010");
+$s = strtotime("11/29/2010"); # m/d/y
+$s = strtotime("29-11-2010"); # d-m-y
+$s = strtotime("29-11-2010 11:54:38"); # d-m-y
 ?>
+```
+
+Parse date/time string into array of values:
+```php
+<?php
+$format = '%d/%m/%Y %H:%M:%S';
+$strf = strftime($format, time());
+$datetime = strptime($strf, $format);
+```
+
+Create `DateTime` object from string:
+```php
+<?php $date = DateTime::createFromFormat('j-M-Y', '15-Feb-2009');
+```
+With time zone:
+```php
+<?php $date = DateTime::createFromFormat('j-M-Y', '15-Feb-2009', new DateTimeZone('Europe/Paris'));
 ```
 
 ### Array
@@ -685,47 +709,33 @@ var_dump($var);
 
 Print variable value:
 ```php
-<?php
-print($var);
-?>
+<?php print($var);
 ```
 
 Set a variable to null:
 ```php
-<?php
-$myvar = NULL;
-?>
+<?php $myvar = NULL;
 ```
 
-Test if a variable is null:
+Test if a variable is null or is of a type:
 ```php
-<?php
-if (is_null($myvar)) {
-}
-?>
+<?php is_null($myvar);
+is_int($myvar);
 ```
 
 Testing if a variable is defined:
 ```php
-<?php
-if (isset($my_var)) {
-	//...
-}
-?>
+<?php isset($my_var)
 ```
 
 Accessing a global variable from inside a function:
 ```php
-<?php
-global $toto;
-?>
+<?php global $toto;
 ```
 
 Getting a variable value by dynamic variable name:
 ```php
-<?php
-$val = $$name; // get value of variable named $name
-?>
+<?php $val = $$name; // get value of variable named $name
 ```
 
 Static variable inside function:
@@ -736,6 +746,7 @@ function foo() {
 }
 ?>
 ```
+Static variables cannot be initialized from other variables, even static. Same rules as for constant definition.
 
 Variable reference inside a loop:
 ```php
@@ -1104,6 +1115,18 @@ if (preg_match('/^\s*\[(.+)\]\s*$/', $line, $matches)) {
 ?>
 ```
 
+Matching using keys:
+```php
+<?php
+if (preg_match('/(?P<name>\w+): (?P<digit>\d+)/', 'foobar: 2008', $matches))
+	// ...
+```
+`$matches` is an associative array with the following keys:
+"0" for the whole match.
+"1" for the first match.
+"2" for the first match.
+"name" and "digit" for the named groups.
+
 Replace:
 ```php
 <?php
@@ -1117,6 +1140,7 @@ Filter & replace:
 $ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
 ?>
 ```
+
 ## Math
 
 Ceil:
@@ -1357,6 +1381,28 @@ $im = @imagecreate($width, $height) or Process::die_with_error("Unable to create
 Set background color, the first allocated color is considered as the background color:
 ```php
 <? $bg = imagecolorallocate($im, 0xff, 0xff, 0xff);
+```
+
+## JSON
+
+Encode variable into JSON string:
+```php
+<?php json_encode($myvar);
+```
+
+Decode JSON string:
+```php
+<?php json_decode($my_json_str);
+```
+
+Decode JSON string into associative array:
+```php
+<?php json_decode($my_json_str, true);
+```
+
+Load JSON file:
+```php
+<?php json_decode(file_get_contents($myfile));
 ```
 
 ## Namespace
@@ -1673,6 +1719,17 @@ BOF:
  * [PHP File Upload](https://www.w3schools.com/php/php_file_upload.asp).
 
 ## Interesting modules
+
+### Symfony\Component\Yaml
+
+```php
+try {
+	$this->cfg = Symfony\Component\Yaml\Yaml::parseFile($file);
+} catch (Symfony\Component\Yaml\ParseException $e) {
+	throw new ExhalobaseException("YAML parsing error in file \"$file\". " . $e->getMessage());
+}
+```
+
 ### PHPUnit
 
 [PHPUnit](https://phpunit.de) is a testing framework.
@@ -1704,8 +1761,10 @@ Asserts:
 self::assertNull($myvar);
 self::assertNotNull($myvar);
 self::assertFalse($myvar);
+self::assertEquals(10, 11);
 self::assertTrue($myvar);
 self::assertInstanceOf(MyClass::class, $myvar);
+self::assertIsArray($myvar);
 self::assertFileExists($myfile);
 self::assertFileNotExists($myfile);
 ```
