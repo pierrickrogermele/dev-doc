@@ -6,6 +6,7 @@
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
 
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
+ * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).
  * [Mamounié (gâteau de semoule libanais)](https://www.marmiton.org/recettes/recette_mamounie-gateau-de-semoule-libanais_59693.aspx).
 
 ## Cake aux raisins
