@@ -1,6 +1,9 @@
-# Pain
+# Pain & viennoiseries
 
  * [Comment réaliser son pain maison sans machine](https://madame.lefigaro.fr/cuisine/conseils-et-etapes-pour-realiser-son-pain-maison-sans-machine-101016-117222).
+ * [Pane di Altamura, Pane Pugliese, fatto in casa](https://www.chefstefanobarbato.com/ita/ricette/pane-di-altamura-pane-pugliese-fatto-in-casa/).
+ * [Brioches (croissants italiens)](https://ricette.giallozafferano.it/Brioches.html).
+ * [Croissants sfogliati: la ricetta per farli in casa](https://video.cookist.it/video/an/Xnna_-SwH3PFLOiT).
 
 8g levure sèche = 25g levure fraîche = 38ml levure liquide
 
