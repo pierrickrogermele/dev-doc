@@ -30,11 +30,6 @@ fenouils braisés				https://www.marmiton.org/recettes/recette_fenouils-braises_
 Filet mignon de porc en croûte tout simple	porc	France		https://www.marmiton.org/recettes/recette_filet-mignon-de-porc-en-croute-tout-simple_51838.aspx	
 Fish & ships (Golden beer-battered fish with chips)	poisson	UK		https://www.bbcgoodfood.com/recipes/7785/golden-beerbattered-fish-with-chips	
 Flammekueche au Munster	fromage	France	Alsace	http://www.marmiton.org/recettes/recette_flammekueche-au-munster_25606.aspx	
-Galette des rois à la frangipane	gâteau	France		http://www.marmiton.org/recettes/recette_galette-des-rois-a-la-frangipane_20147.aspx	
-Gâteau à l'orange rapide	gâteau	France		http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3	
-Gâteau au yaourt	gâteau	France		http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx	
-Gâteau de semoule	gâteau	France		http://www.marmiton.org/recettes/recette_gateau-de-semoule_24969.aspx	
-Gâteau de semoule (à la casserole)	gâteau	France		http://www.marmiton.org/recettes/recette_gateau-de-semoule-a-la-casserole_43864.aspx	
 Gaufres à la courgette, emmental et lardons	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-a-la-courgette-emmental-et-lardons_229534.aspx	
 Gaufres de courgettes au saumon fumé	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-de-courgettes-au-saumon-fume_73980.aspx	
 Gnocchi alla romana		Italie		http://ricette.giallozafferano.it/Gnocchi-alla-romana.html	

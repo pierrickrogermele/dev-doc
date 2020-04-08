@@ -8,6 +8,14 @@
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
  * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).
  * [Mamounié (gâteau de semoule libanais)](https://www.marmiton.org/recettes/recette_mamounie-gateau-de-semoule-libanais_59693.aspx).
+ * [Gâteau de semoule](http://www.marmiton.org/recettes/recette_gateau-de-semoule_24969.aspx).
+ * [Gâteau de semoule (à la casserole)](http://www.marmiton.org/recettes/recette_gateau-de-semoule-a-la-casserole_43864.aspx).
+
+ * [Galette des rois à la frangipane](http://www.marmiton.org/recettes/recette_galette-des-rois-a-la-frangipane_20147.aspx).
+
+ * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
+
+ * [Gâteau au yaourt](http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx).
 
 ## Cake aux raisins
 

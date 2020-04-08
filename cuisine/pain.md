@@ -7,5 +7,7 @@
 
 8g levure sèche = 25g levure fraîche = 38ml levure liquide
 
+3-5 grammes levure sèche pour 300-450 grammes de farine.
+
 Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
 	Mettre la levure dans un verre d'eau tiède et remuer, puis attendre 10 minutes.
