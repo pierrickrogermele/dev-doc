@@ -4,6 +4,75 @@ CSS
  * [CSS Reference](http://www.w3schools.com/cssref/).
  * [Secure Login System with PHP and MySQL](https://codeshack.io/secure-login-system-php-mysql/), good example of using styles for navigation bar and form.
 
+ * [CSS declarations](https://developer.mozilla.org/en-US/docs/Web/CSS/Syntax).
+
+## Rulesets
+
+  * [Cascade and inheritance](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance).
+
+A CSS file is made of rulesets (aka rules).
+A rule is composed of a selector group and a declarations block delimited by curly braces.
+```css
+some_selector {
+	/* the declarations block */
+}
+```
+
+The selector group is made of one or more coma-separated selectors.
+
+Attention ! If a selector group uses one unknown pseudo-element or pseudo-class, then the whole ruleset is invalid and thus ignore.
+
+An element of a page may be matched by more than one selectors. In this case the cascade algorithm is used to which order the rulesets are applied.
+
+## Selectors
+
+  * [CSS selectors](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
+
+There are no selectors or combinators to select parent items, siblings of parents, or children of parent siblings.
+
+```css
+* {} /* All elements. */
+ns|* {} /* All elements of namespace ns. */
+*|* {} /* All elements of all namespaces. */
+elementname {} /* All elements elementname. */
+.classname {} /* All elements of class classname. */
+#idname {} /* The element with id attribute set to idname.
+			  There should be only one such element in a document. */
+[attr] {} /* All elements which have the attribute attr set.*/
+[attr=value] {} /* All elements which have the attribute attr set to value value. */
+[attr=~value] {}
+[attr|=value] {}
+[attr^=value] {}
+[attr$=value] {}
+[attr*=value] {}
+```
+
+Grouping selectors is done with coma as separator:
+```css
+selector1, selector2 {}
+```
+
+Combinators:
+```css
+A B {} /* B elements that are descendant of A (B elements inside A). */
+A > B {} /* B elements that are direct children of A (B elements directly under A). */
+A ~ B {} /* B is a sibling of A (same parent) and A appears first. */
+A + B {} /* B is a sibling of A (same parent) and B follows directly A (adjacent). */
+A || B {} /* B elements that belong to the scope of A (e.g.: col || td --> all <td> elements that belong to <col>). */
+```
+
+Pseudo classes `:`:
+```css
+a:visited {} /* All <a>  elements that have been visited. */
+```
+See [Pseudo-classes](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-classes#Specifications).
+
+Pseudo elements `::`:
+```css
+p::first-line {} /* First line of all <p> elements. */
+```
+See [Pseudo-elements](https://developer.mozilla.org/en-US/docs/Web/CSS/Pseudo-elements#Specifications).
+
 ## Using CSS inside HTML
 
 Making reference to a CSS file:
@@ -52,7 +121,13 @@ P.my_class { /*...*/ }
 ```
 
 Using a class:
-`<P class="my_class">...</P>`
+```html
+<p class="my_class">...</p>
+```
+Multiple classes can be set for an element:
+```html
+<p class="class1 class2 class3">...</p>
+```
 
 Pseudo classes:
 CSS pseudo-classes are used to add special effects to some selectors.
