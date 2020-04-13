@@ -463,6 +463,11 @@ $strf = strftime($format, time());
 $datetime = strptime($strf, $format);
 ```
 
+Format date/time string respecting locale:
+```php
+<? $dateString = strftime('%c', time());
+```
+
 Create `DateTime` object from string:
 ```php
 <?php $date = DateTime::createFromFormat('j-M-Y', '15-Feb-2009');
@@ -560,6 +565,7 @@ Map elements:
 ```php
 <?php
 array_map("my_func", $my_array);
+array_map(function($x) {return($x+1);}, [1, 2])
 ?>
 ```
 
@@ -671,6 +677,15 @@ unset($my_array['foo']);
 Intersection of two associative arrays:
 ```php
 <? array_intersect_assoc($my_arr1, $my_arr2);
+```
+
+Join values of an associative array:
+```php
+<? join(',', ['a'=>1, 'b'=>2]); // 1,2
+```
+For joining keys and values, use `http_build_query`:
+```php
+<? http_build_query(['a'=>1, 'b'=>2], '', ','); // a=1,b=2
 ```
 
 ### Object
@@ -1006,6 +1021,17 @@ function my_func($param1, $param2) {
 	return $ret_val;
 }
 ```
+PHP uses return by copy by default.
+
+For returning by reference, use the `&` operand in both function definition and call:
+```php
+<?php
+function &returns_reference() {
+	return $someref;
+}
+
+$newref =& returns_reference();
+```
 
 Using parameter types:
 ```php
@@ -1313,6 +1339,21 @@ Compute MD5 sum of file:
 md5_file($filepath);
 ```
 
+## exit
+
+Exit current script:
+```php
+<?php exit(0);
+```
+Exit with an error code:
+```php
+<?php exit(2);
+```
+Exit with a string status:
+```php
+<?php exit('error');
+```
+
 ## Exceptions
 
  * [Exceptions](https://www.php.net/manual/en/language.exceptions.php).
@@ -1446,7 +1487,6 @@ Inheritance:
 <?php
 class A extends B {
 }
-?>
 ```
 
 Constructor:
@@ -1457,7 +1497,11 @@ class A extends B {
 		parent::__construct();
 	}
 }
-?>
+```
+
+Get class of an object:
+```php
+<?php get_class($myobj)
 ```
 
 Interface implementation:
@@ -1465,7 +1509,6 @@ Interface implementation:
 <?php
 class A implements I {
 }
-?>
 ```
 
 Abstract class:
@@ -1507,6 +1550,23 @@ Abstract method:
 <?php abstract protected function myFunc();
 ```
 
+A static method can be made abstract, but must be called with `static::` (not `self::`):
+```php
+<?php
+abstract class A {
+	protected static abstract function foo();
+	private function foo2() {
+		static::foo();
+	}
+}
+
+class B extends A {
+	protected static function foo() {
+		// ...
+	}
+}
+```
+
 ### Properties (aka member variables)
 
  * [Properties](https://www.php.net/manual/en/language.oop5.properties.php).
@@ -1514,14 +1574,24 @@ Abstract method:
 Member variables are declared with visibility level:
 ```php
 <?php
-public $myvar = 1;
-protected $myvar2 = 1;
-private $myvar3 = 1;
+class MyClass {
+	public $myvar = 1;
+	protected $myvar2 = 1;
+	private $myvar3 = 1;
+```
+
+Member variables can be typed:
+```php
+<?php
+class MyClass {
+	public int $myvar = 1;
+	protected string $myvar2 = 'abc';
+	private bool $myvar3 = false;
 ```
 
 A member variable is accessed using the `->` operator:
 ```php
-<?php $myobj->myvar; ?>
+<? $myobj->myvar;
 ```
 
 Static member variables can be defined:
