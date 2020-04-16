@@ -1,4 +1,10 @@
-# Gâteaux
+# Gâteaux, galettes & biscuits
+
+Apfel Strudel	gâteau	Autriche		http://ricette.giallozafferano.it/Strudel-di-mele.html	
+Pudding		France		https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx	
+Pumpkin pie				https://www.simplyrecipes.com/recipes/suzannes_old_fashioned_pumpkin_pie/	
+Torta morbida alla zucca	potiron	Italie		https://ricette.giallozafferano.it/Torta-morbida-alla-zucca.html	
+Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo	
 
  * [Gâteau aux pommes à la poêle (crapiaux)](https://cuisine.journaldesfemmes.fr/recette/1003991-le-crapiaux-gateau-aux-pommes-a-la-poele).
  * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
@@ -15,7 +21,18 @@
 
  * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
 
+Far breton aux pruneaux	gâteau	France		http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx	
  * [Gâteau au yaourt](http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx).
+
+ * [Tourteau fromager](https://www.accueil-vendee.com/recettes/le-tourteau-fromager/).
+
+ * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
+
+Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+
+## Galettes
+
+Broyé du Poitou	gâteau	France		http://www.marmiton.org/recettes/recette_broyer-du-poitou_53917.aspx	
 
 ## Cake aux raisins
 
