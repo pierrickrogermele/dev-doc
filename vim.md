@@ -222,6 +222,7 @@ foldcolumn  | Integer. If 0, then disabled. Otherwise display a column of foldin
 runtimepath | Where to look for standard folders (`colors`, `syntax`, `ftplugin`, ...).
 iskeyword   | Define the list of allowed characters for keywords.
 ........... | Used in syntax highlighting.
+autowrite   | Enable buffer writing before running external commands (`!`) or `make`, ...
 
 Local options:
 Name        | Description
@@ -527,7 +528,7 @@ If `g` or `gg` was remapped, it will be ignored in this case.
 `normal` does not recognize special characters like `<cr>`.
 A workaround is to use `execute`:
 ```vim
-execute "normal! gg/a<cr>"
+execute "normal! gg/a\<cr>"
 ```
 
 Puts a semicolon at the end of the line:
@@ -1345,6 +1346,7 @@ Arguments:
 command -nargs=0 MyCommand ...
 command -nargs=1 MyCommand the_command <args>
 command -nargs=* MyCommand the_command <args>
+command -nargs=+ MyCommand the_command <args>
 ```
 Possible `nargs` values:
 
@@ -1550,7 +1552,6 @@ Command     | Description
 ## Syntax highlighting
 
  * [Create your own syntax files](http://vim.wikia.com/wiki/Creating_your_own_syntax_files).
- * [Different syntax highlighting within regions of a file](https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file).
 
 To turn syntax highlighting on and off:
 ```vim
@@ -1588,17 +1589,22 @@ mkdir -p $HOME/.vim/colors
 cp mycolorscheme.vim $HOME/.vim/colors
 ```
 
+To override a group link:
+```vim
+hi! def link rNumber Float
+```
+
+### Embedded syntax highligthing
+
+ * [Different syntax highlighting within regions of a file](https://vim.fandom.com/wiki/Different_syntax_highlighting_within_regions_of_a_file).
+ * [vim-syntax-shakespeare](https://github.com/pbrisbin/vim-syntax-shakespeare/blob/master/after/syntax/haskell.vim).
+
 Embedded syntax highlighting (syntax highlighting of code embedded inside another language code):
 ```bash
 runtime! syntax/xml.vim
 unlet b:current_syntax
 syntax include @Python syntax/python.vim
 syntax region pythonCode  start=+<Python>+ keepend end=+</Python>+  contains=@Python
-```
-
-To override a group link:
-```vim
-hi! def link rNumber Float
 ```
 
 ## mkspell
@@ -2123,6 +2129,11 @@ Set an environment variable:
 let $MYVAR='myvalue'
 ```
 
+Unset an environment variable:
+```vim
+unlet $MYVAR
+```
+
 Print an environment variable:
 ```vim
 echo $MYVAR
@@ -2219,6 +2230,15 @@ Set register:
 ```vim
 let @a = "hello!"
 ```
+
+Prefixes:
+	  g:	global variables
+	  b:	local buffer variables
+	  w:	local window variables
+	  t:	local tab page variables
+	  s:	script-local variables
+	  l:	local function variables
+	  v:	Vim variables.
 
 ## Assignement operators
 
@@ -2453,6 +2473,16 @@ Get real file behing symbolic link:
 resolve(myfilename)
 ```
 
+Change directory:
+```vim
+cd /my/new/dir
+chdir /my/new/dir
+lcd /my/new/dir " Local. Only for current window
+lchdir /my/new/dir " Local. Only for current window
+tcd /my/new/dir " Only for current tab (and all its windows).
+tchdir /my/new/dir " Only for current tab (and all its windows).
+```
+
 ## Printing
 
 Printing from vi:
@@ -2593,6 +2623,11 @@ For a literal %, type %%.
 To insert a new error format at beginning of list:
 ```vim
 set errorformat^=someformat
+```
+
+Reset to default value:
+```vim
+set errorformat&
 ```
 
 ## Netrw
