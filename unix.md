@@ -15,10 +15,28 @@ These notes refer to UNIX and Linux operating systems.
 
 The DNS address is stored inside `/etc/resolv.conf`.
 
-### RSS Feed readers
+### newsboat.
+
+RSS Feed reader.
 
  * [Newsboat](https://newsboat.org/releases/2.12/docs/newsboat.html).
+
+### canto
+
+RSS Feed reader.
+
  * [Canto](https://codezen.org/canto-ng/manual/).
+
+### lynx
+
+Dump web page in text format:
+```lynx
+lynx -dump myfile.html
+```
+`-width=600` sets the number of columns to use (default 80, max 1024).
+`-list_inline` writes the links inside the text at their place instead of writin them at the end of the output.
+
+### links
 
 ### FortiClient SSLVPN
 
@@ -125,8 +143,7 @@ sudo pfctl -s rules
 
 ### offlineimap
 
-Synchronize locally with a IMAP account.
-Can use a mail app to access local mail boxes.
+Synchronize locally with an IMAP account.
 
 Install on MacOS-X:
 ```bash
@@ -2402,6 +2419,7 @@ sudo pacman -Rs mypkg
 
  * <http://mxcl.github.com/homebrew/>.
  * <https://github.com/mxcl/homebrew/>.
+ * [Homebrew Multi User Setup](https://medium.com/@leifhanack/homebrew-multi-user-setup-e10cb5849d59). --> Old versions of brew, does not work anymore.
 
 For installing in `/usr/local`:
 ```bash
@@ -2829,7 +2847,7 @@ dd if=myiso.iso of=/dev/sdb # Do not use the index, /dev/sdb1 or /dev/sdb2, ...
 ```
 
 ### mkisofs
-	
+
 Create an ISO from a directory:
 ```bash
 Mkisofs -r -f -iso-level 4 -V <volume_label> <directory> > file.iso
