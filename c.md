@@ -18,34 +18,34 @@ Vectorization (SIMD):
 
 Error:
 ```c
- #error "An error !"
+#error "An error !"
 ```
 
 Warning (non standard):
 ```c
- #warning "Some warning message."
+#warning "Some warning message."
 ```
 
 ### Macros
 
 Concatening strings in a macro:
 ```c
- #define TOTO(index, name) name##_##index
+#define TOTO(index, name) name##_##index
 ```
 
 Transform a macro value into a C string:
 ```c
- #define TOTO(param) # param
- #define TOTO(param) #param
+#define TOTO(param) # param
+#define TOTO(param) #param
 ```
 
 Use of semi-colon with multi-lines macros:
 ```c
- #define CMDS \
-  do { \
-    a = b; \
-    c = d; \
-  } while (0)
+#define CMDS \
+ do { \
+   a = b; \
+   c = d; \
+ } while (0)
 
 if (var == 13)
 	CMDS;
@@ -103,9 +103,9 @@ Macro          | Compiler | Description
 
 Compute maximum of built-in types:
 ```c
- #define MAX_UINT (~(unsigned int)0)
- #define MAX_INT ((int)(MAX_UINT >> 1))
- #define MIN_INT (- MAX_INT - 1)
+#define MAX_UINT (~(unsigned int)0)
+#define MAX_INT ((int)(MAX_UINT >> 1))
+#define MIN_INT (- MAX_INT - 1)
 ```
 In a 32-bit machine:
  * `MAX_UINT = 2^32 - 1`
@@ -114,11 +114,11 @@ In a 32-bit machine:
 
 Limits:
 ```c
- #include <limits.h>
+#include <limits.h>
 LONG_MAX;
 LONG_MIN;
 
- #include <float.h>
+#include <float.h>
 FLT_MAX;
 DBL_MAX;
 ```
@@ -127,7 +127,7 @@ DBL_MAX;
 
 Lower/upper case:
 ```c
- #include <ctype.h>
+#include <ctype.h>
 char C = 'A';
 char c = tolower(C); /* c = 'a' */
 char D = toupper(c); /* D = 'A' */
@@ -179,7 +179,7 @@ int arr[10] = {0}; /* first and all following values are initialized to 0 */
 ```
 
 ### Volatile
-	
+
 A *volatile* specified is a hint to a compiler that an object may change its value in ways _NOT_ SPECIFIED BY THE LANGUAGE so that aggressive optimizations must be avoided. For example a real time clock might be declared:
 ```c
 extern const volatile clock;

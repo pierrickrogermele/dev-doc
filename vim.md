@@ -135,7 +135,10 @@ Same as ftplugin but for compiler-related options.
 
 ### after folder
 
-Files in this directory will be loaded once at startup, but after files in `~/.vim/plugin/`.
+Subdirectories are allowed:
+ * Files in `after/syntax` will be loaded after files in `syntax`.
+ * Files in `after/plugin` will be loaded after files in `plugin`.
+ * Files in `after/ftplugin` will be loaded after files in `ftplugin`.
 
 ### autoload folder
 
@@ -172,7 +175,7 @@ endfunction
 Documentation files are simply files with file type `help`.
 
 Create a file `doc/potion.txt` for Potion language:
-```vim
+```help
 *potion.txt* functionality for the potion programming language
 
                    ___      _   _              ~
@@ -963,6 +966,7 @@ To force physical wraping of text on selected lines, use `gq` key commands.
  * [Folding](http://vim.wikia.com/wiki/Folding).
  * [How to fold](http://vimcasts.org/episodes/how-to-fold/).
  * [Writing a custom fold expression](http://vimcasts.org/episodes/writing-a-custom-fold-expression/).
+ * [Advanced Folding](https://learnvimscriptthehardway.stevelosh.com/chapters/49.html).
 
 6 different ways of folding:
 	manual Created manually, erased when leaving Vim. May be used in conjunction with some key mapping.
@@ -987,7 +991,7 @@ setlocal foldmethod=syntax
 ```
 
 Set folding style inside file:
-```vim
+```cpp
 // vi: fdm=marker
 ```
 
@@ -1060,9 +1064,15 @@ function! NextNonBlankLine(lnum)
 	endwhile
 
 	return -2
-endfunction 
+endfunction
 ```
-`-1` means undefined folding level. Vim will define and set the level of this line to the level of the line before or after, which ever is smaller.
+`>1` means to start a fold level 1 on this line.
+`<3` means to end a fold level 3 on this line.
+`a2` means that fold level = fold level of previous line + 2.
+`s3` means that fold level = fold level of previous line - 3.
+`-1` means undefined folding level. Vim will define and set the level of this line to the level of the line before or after, which ever is smaller. However when it's before a fold level `>1` it will be set to 0.
+`0` means "no fold".
+`=` means to use fold level from the previous line.
 
 ## Argdo
 
@@ -1693,7 +1703,7 @@ for i in [1, 2, 5, 70]
 endfor
 ```
 
-# while
+### while
 
 ```vim
 while i <= 10
@@ -1766,6 +1776,11 @@ echo 'a\nb' " No escaping. Will print a\nb.
 echo 'a''b' " Will print a'b.
 ```
 
+Returns the length of a string:
+```vim
+echom strlen("foo")
+```
+
 Getting a character from a string:
 ```vim
 echo 'abcdef'[1] " 'a'
@@ -1782,6 +1797,46 @@ echo 'abcdef'[-2:] " 'ef', negative indices are allowed in a range.
 Concatenate strings:
 ```vim
 echo 'abc' . 'def'
+```
+
+Splits a string into a list:
+```vim
+echo split("one two three")
+echo split("one,two,three", ",")
+```
+
+Joins a list into a string:
+```vim
+echo join(["foo", "bar"], ",")
+```
+
+Convert string to lower case:
+```vim
+echom tolower("Foo")
+```
+
+Convert string to upper case:
+```vim
+echom toupper("foo")
+```
+
+Search for a substring:
+```vim
+match('mystringtosearch', '[a-i]')
+```
+Returns the index of the substring or `-1`.
+
+Get the found substring:
+```vim
+matchstr('mystringtosearch', '[a-i]')
+```
+
+Get a subgroup from a regex match:
+```vim
+let m = matchlist('MyStringToMatchAnInteger123, '^[^0-9]*\([0-9]\+\)$')
+if len(m) > 0
+	let i = m[1]
+endif
 ```
 
 ### Lists
@@ -2264,62 +2319,11 @@ Writing an option to the current buffer:
 put=&myopt
 ```
 
-## strlen
-
-Returns the length of a string:
-```vim
-echom strlen("foo")
-```
-
 ## len
 
 Returns the length of a string:
 ```vim
 echom len("foo")
-```
-
-## split
-
-Splits a string into a list:
-```vim
-echo split("one two three")
-echo split("one,two,three", ",")
-```
-
-## join
-
-Joins a list into a string:
-```vim
-echo join(["foo", "bar"], ",")
-```
-
-## tolower
-
-Convert string to lower case:
-```vim
-echom tolower("Foo")
-```
-
-## toupper
-
-Convert string to upper case:
-```vim
-echom toupper("foo")
-```
-
-## match
-
-Search for a substring:
-```vim
-match('mystringtosearch', '[a-i]')
-```
-Returns the index of the substring or `-1`.
-
-## matchstr
-
-Get the found substring:
-```vim
-matchstr('mystringtosearch', '[a-i]')
 ```
 
 ## escape
