@@ -1848,6 +1848,15 @@ Create a list:
 echo ['foo', 3, 'bar']
 ```
 
+Create a list of integers from 1 to 50:
+```vim
+echo range(1, 50)
+```
+Create a list of integers from 1 to 50, with step 2:
+```vim
+echo range(1, 50, 2)
+```
+
 A nested list:
 ```vim
 echo ['foo', [3, 'bar']]
