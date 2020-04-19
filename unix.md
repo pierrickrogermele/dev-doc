@@ -146,12 +146,18 @@ sudo pfctl -s rules
 Synchronize locally with an IMAP account.
 
 Install on MacOS-X:
-```bash
+```sh
 brew install offline-imap
 ```
 
  * [Folder filtering and Name translation](https://offlineimap.readthedocs.org/en/latest/nametrans.html).
  * [Use Mac OS X's Keychain for Password Retrieval in OfflineIMAP](https://blog.aedifice.org/2010/02/01/use-mac-os-xs-keychain-for-password-retrieval-in-offlineimap/).
+
+Run manually:
+```sh
+offlineimap # For all default accounts.
+offlineimap -a myaccount # For one specific account.
+```
 
 For running offlineimap as daemon under Ubuntu, see `/usr/share/doc/offlineimap/examples`.
 
@@ -191,16 +197,18 @@ echo "some text" | msmtp [-a account] email@address
 ```
 
 In Mutt:
-```bash
+```muttrc
 set sendmail="/usr/local/bin/msmtp"	# for normal msmtp
 ```
 
 Using queuing in Mutt:
 ```bash
 mkdir $HOME/.msmtp.queue
+```
+And in Mutt:
+```muttrc
 set sendmail="/usr/local/bin/msmtpq"	# for queueing version
 ```
-
 Queued messages are sent later on when sending another email, when connected.
 It's also possible to force sending with the following command:
 ```bash
