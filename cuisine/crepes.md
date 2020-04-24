@@ -1,10 +1,10 @@
-# Pâtes, crêpes & gaufres
-
-Pâte feuilletée	pâte	Italie		https://www.meilleurduchef.com/fr/achat/epicerie/produit-frais/beurre-feuilletage/gre-beurre-special-professionnel-montaigu-2.html http://www.marmiton.org/recettes/recette_pate-feuilletee_20642.aspx	
+# Crêpes, gaufres
 
  * [Pancakes](http://www.marmiton.org/recettes/recette_pancakes_15299.aspx).
 Gaufres à la courgette, emmental et lardons	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-a-la-courgette-emmental-et-lardons_229534.aspx	
 Gaufres de courgettes au saumon fumé	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-de-courgettes-au-saumon-fume_73980.aspx	
+
+ * [Crêpes à la farine de maïs](https://www.monfournil.fr/recettes/crepes-a-farine-de/).
 
  * [Pâte à crêpes de sarasin](http://www.recettes-bretonnes.fr/galette-bretonne/recette-galette-sarrasin.html).
   - 500g de farine de sarrasin(blé noir)

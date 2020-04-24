@@ -1,4 +1,4 @@
-# Gâteaux, galettes & biscuits
+# Gâteaux, tartes, galettes
 
 Apfel Strudel	gâteau	Autriche		http://ricette.giallozafferano.it/Strudel-di-mele.html	
 Pudding		France		https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx	
@@ -10,6 +10,10 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
  * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
  * [Gâteau aux pommes facile](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-facile_13493.aspx).
  * [Clafoutis light aux pommes](https://www.marmiton.org/recettes/recette_clafoutis-light-aux-pommes_14926.aspx).
+ * [TORTA DI MELE INTEGRALE SENZA BURRO E SENZA UOVA](https://blog.giallozafferano.it/maniamore/torta-di-mele-con-farina-integrale/).
+
+ * [TORTA INTEGRALE ALL’ACQUA senza uova, latte o burro!](https://blog.giallozafferano.it/maniamore/torta-integrale-all-acqua/).
+ * [Torta con farina integrale](https://ricette.giallozafferano.it/Torta-con-farina-integrale.html).
 
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
 
@@ -23,8 +27,13 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
 
  * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
 
-Far breton aux pruneaux	gâteau	France		http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx	
+ * [Far breton aux pruneaux](http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx).
+ * [Gâteau breton](https://www.marmiton.org/recettes/recette_gateau-breton_21004.aspx).
+
  * [Gâteau au yaourt](http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx).
+ * [Gâteau de ma grand-mère](https://www.marmiton.org/recettes/recette_gateau-de-ma-grand-mere_17731.aspx).
+ * [Gâteau grand-mère](https://cuisine.journaldesfemmes.fr/recette/344653-gateau-grand-mere).
+ * [Gâteau aérien (crème fraîche) très rapide](https://www.marmiton.org/recettes/recette_gateau-aerien-creme-fraiche-tres-rapide_314416.aspx).
 
  * [Tourteau fromager](https://www.accueil-vendee.com/recettes/le-tourteau-fromager/).
 

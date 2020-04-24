@@ -1,5 +1,13 @@
 # Pain & viennoiseries
 
+ * [Pitas (pains grecs à garnir)](https://www.marmiton.org/recettes/recette_pitas-pains-grecs-a-garnir_38611.aspx).
+ * [Tortillas de maïs](https://cuisine.journaldesfemmes.fr/recette/347916-tortillas-de-mais).
+
+ * [Brioche](https://www.marmiton.org/recettes/recette_brioche-de-micheline-26eme-rencontre_40232.aspx).
+
+ * [Focaccia](https://ricette.giallozafferano.it/Focaccia.html).
+ * [Focaccia integrale](https://ricette.giallozafferano.it/Focaccia-integrale.html).
+
 Baguette viennoise	pain	France		http://www.marmiton.org/recettes/recette_baguette-viennoise_30706.aspx	
 Chaussons aux pommes	viennoiseries			http://www.marmiton.org/recettes/recette_chausson-aux-pommes-maison_16812.aspx	
 Croissants	viennoiseries			https://www.meilleurduchef.com/fr/recette/croissant-facile.html	
