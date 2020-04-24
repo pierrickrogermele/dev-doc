@@ -3064,6 +3064,19 @@ For reloading the config file inside current tmux session, run the following com
 tmux source-file ~/.tmux.conf
 ```
 
+Change window name/title from a bash script:
+```bash
+echo $'\ekMYTITLE\e\\'
+```
+Use script name as title:
+```bash
+echo $'\ek'$(basename $0)$'\e\\'
+```
+For this to work, you must first enable renaming:
+```tmux
+set -g allow-rename on
+```
+
 ### Prefix
 
 Prefix is by default `C-b`.

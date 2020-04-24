@@ -1,5 +1,10 @@
 # Game programming
 
+## Python
+
+ * [PyGame: A Primer on Game Programming in Python](https://realpython.com/pygame-a-primer/).
+ * [How to create a 2D game with Python and the Arcade library](https://opensource.com/article/18/4/easy-2d-game-creation-python-and-arcade).
+
 ## Maps
 
  * [Polygon map generation](http://simblob.blogspot.com/2010/09/polygon-map-generation-part-1.html).

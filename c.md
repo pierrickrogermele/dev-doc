@@ -676,6 +676,12 @@ for (int i = 0 ; i < N / 4 ; ++i) {
 
 ## Libraries
 
+### ASCII / terminal libraries
+
+ * [ncurses](https://invisible-island.net/ncurses/announce.html).
+ * [aalib](http://aa-project.sourceforge.net/aalib/).
+ * [libcaca](http://caca.zoy.org/wiki/libcaca). An improvement of aalib, with colors.
+
 ### wxWidgets
 
  * [Hello World Example](http://docs.wxwidgets.org/trunk/overview_helloworld.html).
