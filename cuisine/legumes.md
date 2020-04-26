@@ -1,5 +1,7 @@
 # Légumes, légumineuses, algues
 
+ * [Recette indienne Légumes Korma en vidéo](http://www.pankaj-blog.com/article-recette-indienne-korma-video-72101596.html).
+
 Kombu no Tsukudani	algues	Japon		https://www.thespruceeats.com/kombu-no-tsukudani-2031442	
 Carottes Vichy	légumes	France		http://www.marmiton.org/recettes/recette_carottes-vichy_17717.aspx	
 Fenouils braisés				https://www.marmiton.org/recettes/recette_fenouils-braises_35390.aspx	
