@@ -2788,3 +2788,10 @@ df = df.reindex(sorted(df.columns), axis=1)
 
 A library for writing 2D video games.
 
+### pyfiglet
+
+A program and library to render text in figlet style.
+
+### asciimatics
+
+[asciimatics](https://pypi.org/project/asciimatics/) helps create full-screen text UIs, including also ASCII animations.
