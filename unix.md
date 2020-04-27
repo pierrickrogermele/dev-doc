@@ -2833,6 +2833,13 @@ Remove a orientation information:
 exiftool -Orientation= myfile.jpeg
 ```
 
+### banner
+
+Generates simple ASCII art:
+```sh
+banner 0123
+```
+
 ### figlet
 
 Generates ASCII art:

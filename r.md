@@ -1763,7 +1763,7 @@ ls()
 
 Clear workspace:
 ```r
-rm(list = ls())
+rm(list=ls())
 ```
 
 ## Types
