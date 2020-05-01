@@ -2,26 +2,28 @@
 
 Root | Cuisine | Personal
 ---------- | ---------- | ----------
-[Amstrad computers and games](./amstrad.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [CEA](./personal/cea.md)
-[AUTOTOOLS](./autotools.md) | [Crêpes](./cuisine/crepes.md) | [Cloud](./personal/cloud.md)
-[BASH](./bash.md) | [Gâteaux](./cuisine/gateaux.md) | [Development](./personal/dev.md)
-[Books](./books.md) | [Pain](./cuisine/pain.md) | [Enfants](./personal/enfants.md)
-[C](./c.md) | [Plats](./cuisine/plats.md) | [Games](./personal/games.md)
-[CHEETAH](./cheetah.md) | [Riz](./cuisine/riz.md) | [Local](./personal/local.md)
-[CMAKE](./cmake.md) | [Viande](./cuisine/viande.md) | [Logement](./personal/logement.md)
-[COMPUTERS](./computers.md) | [Vins](./cuisine/vins.md) | [Médias](./personal/media.md)
-[AMSTRAD CPC](./cpc.md) |  | [Références](./personal/ref.md)
-[CSS](./css.md) |  | 
-[EFI](./efi.md) |  | 
-[EMULATORS](./emulators.md) |  | 
-[GALAXY](./galaxy.md) |  | 
-[Game programming](./game_programming.md) |  | 
-[GIT](./git.md) |  | 
-[HDF5](./hdf5.md) |  | 
-[HTML](./html.md) |  | 
+[Amstrad computers and games](./amstrad.md) | [Boissons](./cuisine/boissons.md) | [CEA](./personal/cea.md)
+[AUTOTOOLS](./autotools.md) | [Boulettes et quenelles](./cuisine/boulettes.md) | [Cloud](./personal/cloud.md)
+[BASH](./bash.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [Covid 19](./personal/covid-19.md)
+[Books](./books.md) | [Crêpes, gaufres](./cuisine/crepes.md) | [Development](./personal/dev.md)
+[C](./c.md) | [Fruits et préparations sucrés](./cuisine/fruits.md) | [Enfants](./personal/enfants.md)
+[CHEETAH](./cheetah.md) | [Gâteaux, tartes, galettes](./cuisine/gateaux.md) | [Games](./personal/games.md)
+[CMAKE](./cmake.md) | [Légumes, légumineuses, algues](./cuisine/legumes.md) | [Local](./personal/local.md)
+[COMPUTERS](./computers.md) | [Pain & viennoiseries](./cuisine/pain.md) | [Logement](./personal/logement.md)
+[AMSTRAD CPC](./cpc.md) | [Pâtes, raviolis, gnocchi chaussons salés](./cuisine/pasta.md) | [Médias](./personal/media.md)
+[CSS](./css.md) | [Pâtes à tarte et biscuits](./cuisine/pates_biscuits.md) | [Références](./personal/ref.md)
+[Eclipse](./eclipse.md) | [Poisson](./cuisine/poisson.md) | [Stop motion](./personal/stopmotion.md)
+[EFI](./efi.md) | [Riz](./cuisine/riz.md) | 
+[EMULATORS](./emulators.md) | [Sauces](./cuisine/sauces.md) | 
+[GALAXY](./galaxy.md) | [Soupes](./cuisine/soupes.md) | 
+[Game programming](./game_programming.md) | [Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | 
+[GIT](./git.md) | [Tofu](./cuisine/tofu.md) | 
+[HDF5](./hdf5.md) | [Viande](./cuisine/viande.md) | 
+[HTML](./html.md) | [Vins](./cuisine/vins.md) | 
 [JSON](./json.md) |  | 
 [LICENSING](./licensing.md) |  | 
 [Make](./make.md) |  | 
+[Modeling](./modeling.md) |  | 
 [MUTT](./mutt.md) |  | 
 [NoSQL databases](./nosqldbs.md) |  | 
 [PERL](./perl.md) |  | 
