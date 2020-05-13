@@ -1,3 +1,4 @@
+<!-- vimvars: b:markdown_embedded_syntax={'php':'','bash':'','apache':'','html':''} -->
 # PHP
 
  * [Language Reference](http://php.net/manual/en/langref.php).
@@ -78,6 +79,11 @@ Using a shebang, you can make the script executable:
 #!/usr/bin/php
 <?php
 $s = shell_exec('ls'); echo "$s";
+```
+
+Running PHP interactively:
+```sh
+php -a
 ```
 
 ### Configuration
@@ -446,7 +452,7 @@ $texte = str_replace(
  * [strftime](https://www.php.net/manual/en/function.strtotime.php).
  * [DateTime](https://www.php.net/manual/en/class.datetime.php).
 
-Convert a /US date string into a UNIX timestamp date:
+Convert a US date string into a UNIX timestamp date:
 ```php
 <?php
 $s = strtotime("11/29/2010"); # m/d/y
@@ -466,6 +472,11 @@ $datetime = strptime($strf, $format);
 Format date/time string respecting locale:
 ```php
 <? $dateString = strftime('%c', time());
+```
+
+Format date/time string using fixed representation ("%Y-%m-%d_%H:%M:%S"):
+```php
+<? $dateString = strftime('%F_%T', time());
 ```
 
 Create `DateTime` object from string:
@@ -568,6 +579,10 @@ array_map("my_func", $my_array);
 array_map(function($x) {return($x+1);}, [1, 2])
 ?>
 ```
+To use a variable outside the scope of `array_map()`:
+```php
+<? array_map(function($x) use($myvar) {/*...*/}, [1, 2]);
+```
 
 Slice (extract a part of an array):
 ```php
@@ -590,7 +605,7 @@ array_unshift($queue, "apple", "raspberry"); // put first
 ?>
 ```
 
-Merge:
+Merge (append two arrays):
 ```php
 <? $a = array_merge($b, $c); ?>
 ```
@@ -619,11 +634,9 @@ $my_ext_var = 12;
 $my_filtered_arr = array_filter($myarr, function($v) use($my_ext_var) { return $v == $my_ext_var; });
 ```
 
-Search for elements of an array that are not in other arrays:
+Search for elements of an array `my_array` that are not in other arrays:
 ```php
-<?php
-$diff_array = array_diff($my_array, $other_array1, $other_array2, ...);
-?>
+<? $diff_array = array_diff($my_array, $other_array1, $other_array2, ...);
 ```
 
 ### Associative array (Dictionary)
@@ -645,8 +658,15 @@ Build an associative array from a list of keys and a list of values:
 
 Test if a key exists:
 ```php
-<?php array_key_exists($key, $array);
+<? array_key_exists($key, $array);
 ```
+If `$array` does not exist, an error is raised.
+The value corresponding to the key is not tested, thus if it is `null` it will return `true`.
+It is also possible to use `isset()` which is a more general way to test if a variable is defined:
+```php
+<? isset($array[$key]);
+```
+`isset()` will not raise an error if `$array` is not defined, and will return `false` if the value corresponding to the key is `null`.
 
 Get keys:
 ```php
@@ -687,6 +707,12 @@ For joining keys and values, use `http_build_query`:
 ```php
 <? http_build_query(['a'=>1, 'b'=>2], '', ','); // a=1,b=2
 ```
+
+Merge two associative arrays:
+```php
+<? $a = array_merge($b, $c);
+```
+If the same string key exists in the two arrays, the one in the second array will overwrite the one in the first array.
 
 ### Object
 
@@ -1236,6 +1262,11 @@ Read all lines in a loop:
 while (($line = fgets($fh)) !== FALSE) {
 }
 ```
+or
+```php
+<? while (!feof($fd))
+     print(fread($fd, 1024));
+```
 
 Close a file handle:
 ```php
@@ -1254,6 +1285,11 @@ Open a file:
 $handle = fopen("/home/rasmus/file.txt", "r");
 fclose($handle);
 ?>
+```
+
+Open a temporary file:
+```php
+<? $handle = tmpfile();
 ```
 
 List files using pattern:
@@ -1284,7 +1320,7 @@ $dir = dirname($path);
 
 Get file extension:
 ```php
-<?php pathinfo($path, PATHINFO_EXTENSION);
+<? pathinfo($path, PATHINFO_EXTENSION);
 ```
 
 Getting dir name:
@@ -1358,6 +1394,9 @@ Exit with a string status:
 
  * [Exceptions](https://www.php.net/manual/en/language.exceptions.php).
 
+`Throwable` is the top level interface of all exceptions.
+`Exception` and `Error` are the two main types of exceptions, implementing `Throwable`.
+
 Throw an exception:
 ```php
 <?php throw new Exception("Error !");?>
@@ -1392,8 +1431,20 @@ try {
   throw $e;
 } catch (Exception $e) {
   // ...
+} catch (Throwable $e) {
+  // ...
 } finally {
   // ...
+}
+```
+
+Catching different exceptions in same catch:
+```php
+<?
+try {
+	// ...
+} catch (MyException | MyOtherException $e) {
+	// ...
 }
 ```
 
@@ -1425,6 +1476,8 @@ Set background color, the first allocated color is considered as the background 
 ```
 
 ## JSON
+
+ * [json_encode](https://www.php.net/manual/en/function.json-encode.php).
 
 Encode variable into JSON string:
 ```php
@@ -1471,7 +1524,9 @@ Be careful to not use static keyword for functions. It's not supported by old ve
 Attention ! Class names are NOT case sensitive.
 
  * [Classes and Objects](http://php.net/manual/en/language.oop5.php).
+ * [Classes/Object Functions](https://www.php.net/manual/en/ref.classobj.php).
  * [Class iterator](https://www.php.net/manual/en/class.iterator.php).
+ * [Magic Methods](https://www.php.net/manual/en/language.oop5.magic.php).
 
 Instantiate a new class:
 ```php
@@ -1501,7 +1556,22 @@ class A extends B {
 
 Get class of an object:
 ```php
-<?php get_class($myobj)
+<?php get_class($myobj);
+```
+
+Test if a class exists:
+```php
+<? class_exists("MyClass");
+```
+
+Test if a class inherits from another class:
+```php
+<? is_subclass_of("MySubClass", "MySuperClass");
+```
+
+Test if an object is of a class or inherits from a class:
+```php
+<? is_subclass_of($myObj, "MyClass");
 ```
 
 Interface implementation:
@@ -1565,6 +1635,16 @@ class B extends A {
 		// ...
 	}
 }
+```
+
+### `__toString()`
+
+This method, when implemented, converts automatically an object into a string.
+It is called when casting to string or printing:
+```php
+<?php
+echo $myobj;
+$s = (string)$myobj;
 ```
 
 ### Properties (aka member variables)
@@ -1719,12 +1799,39 @@ curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 ## Generating HTML
 
-### Set encoding
+### header
 
+ * [header](https://www.php.net/manual/en/function.header.php).
+ * [RFC 2616 - Hypertext Transfer Protocol -- HTTP/1.1](http://www.faqs.org/rfcs/rfc2616.html). --> includes full list of authorized HTTP status codes.
+
+Set HTTP header.
+
+Set status line:
 ```php
-<?php
-header('Content-type: text/html; charset=utf-8');
-?>
+<? header("HTTP/1.1 404 Not Found");
+```
+
+Set content type:
+```php
+<? header('Content-type: text/html; charset=utf-8');
+```
+
+### headers_list
+
+ * [headers_list](https://www.php.net/manual/en/function.headers-list.php).
+
+Get list of reponsde header configured:
+```php
+<? var_dump(headers_list());
+```
+
+### http_response_code
+
+ * [http_response_code](https://www.php.net/manual/en/function.http-response-code.php).
+
+Set responde code (this works in last version of PHP):
+```php
+<? http_response_code(404);
 ```
 
 ### Generate file download
@@ -1793,6 +1900,7 @@ BOF:
 ### Symfony\Component\Yaml
 
 ```php
+<?
 try {
 	$this->cfg = Symfony\Component\Yaml\Yaml::parseFile($file);
 } catch (Symfony\Component\Yaml\ParseException $e) {
@@ -1900,6 +2008,10 @@ BSON classes:
  * `MongoDB\Model\BSONArray` extends [ArrayObject](https://www.php.net/arrayobject).
  * `MongoDB\Model\BSONDocument` extends `ArrayObject` too.
 
+Create a connector:
+```php
+```
+
 Get info about all users:
 ```php
 <? $cursor = $dbConn->command(['usersInfo'=>1, 'filter'=>new MongoDB\Model\BSONDocument([])]);
@@ -1914,6 +2026,47 @@ Get info about one user (works when the user itself asks info about its account)
 ```php
 <? $cursor = $dbConn->command(['usersInfo'=>$user]);
 ```
+
+Get a reference to a collection:
+```php
+```
+
+Get all objects of a collection:
+```php
+<? $result = $coll->find();
+```
+
+Search for objects with one field set to a particular value:
+```php
+<? $result = $coll->find(['myfield' => 'myvalue']);
+```
+
+Search for objects with two fields set particular values:
+```php
+<? $result = $coll->find(['myfield1' => 'myvalue1', 'myfield2' => 'myvalue2']);
+```
+
+Filter on a set of possible values:
+```php
+<? $result = $coll->find(['myfield' => ['$in' => ['myvalue1', 'myvalue2']]);
+```
+
+Filter on field existence:
+```php
+<? $result = $coll->find(['myfield' => ['$exists'=>true]]);
+```
+
+Use two filters together with AND operator:
+```php
+<? $result = $coll->find(['$and'=>[['myfield1' => 'myvalue1'], ['myfield2' => ['$in' => ['myvalue2', 'myvalue3']]]]]);
+```
+`$and` can take more than 2 arguments, but not just one.
+
+Use two filters together with OR operator:
+```php
+<? $result = $coll->find(['$or'=>[['myfield1' => ['$exists'=>false]], ['myfield1' => ['$in' => ['myvalue1', 'myvalue2']]]]]);
+```
+`$or` can take more than 2 arguments, but not just one.
 
 ### Gettext
 
