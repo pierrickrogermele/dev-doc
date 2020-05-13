@@ -1,3 +1,4 @@
+<!-- vimvars: b:markdown_embedded_syntax={'r':'','bash':''} -->
 # R
 
 ## Installing
@@ -78,6 +79,42 @@ quit()
 quit(status = 1)
 ```
 
+## Comments
+
+```r
+# A comment in R
+```
+
+## Line continuation
+
+Inside an if/else structure, avoid the following structure:
+```r
+if (myTest) myAction()
+else myOtherAction() # WRONG
+```
+For R to understand that the statement is not ended after the `if`, it is necessary to start an openning block with `{` or write the `else` at the end of the line:
+```r
+if (myTest) myAction() else
+	myOtherAction()
+# or
+if (myTest) {
+	myAction()
+} else {
+	myOtherAction()
+}
+```
+
+For operators, the operator must not be written at the beginning of a line:
+```r
+x <- myFirstFunctionToCall()
+     + mySecondFunctionToCall() # WRONG
+```
+The operator must be written at then of the line:
+```r
+x <- myFirstFunctionToCall() +
+     mySecondFunctionToCall()
+```
+
 ## Variables & Types
 
 ### Assignment
@@ -103,7 +140,6 @@ Getting dynamically the value of a variable:
 ```r
 x <- get("myvar")
 ```
-
 
 ### NA
 
@@ -248,7 +284,6 @@ Trimming leading and trailing white spaces:
 ```r
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 ```
-
 
 #### Search, replace and regex
 
@@ -561,6 +596,13 @@ or
 d <- data.frame(kids=c("Jack","Jill"),ages=c(12,10))
 d <- data.frame(kids=c("Jack","Jill"),ages=c(12,10), stringsAsFactors=FALSE) # don't create factors
 ```
+
+Converting a list into a data frame:
+```r
+x <- as.data.frame(mylist, stringsAsFactors=FALSE, optional=TRUE)
+```
+`optional=TRUE` disables `check.names` and thus avoids the rewriting of column names (replacement of space with a dot, ...).
+`stringsAsFactors=FALSE` avoids the use of factor type for columns.
 
 Columns and rows can be created at will:
 ```r
@@ -905,6 +947,14 @@ diff(v)
 Smooth vector:
 ```r
 smooth(v)
+```
+
+Cumulative sum/prod/max/min:
+```r
+cumsum(1:10)
+cumprod(1:10)
+cummax(1:10)
+cummin(1:10)
 ```
 
 ## Packages
@@ -3047,8 +3097,129 @@ x <- readxl::read_xlsx('myfile.xlsx')
 ### Shiny
 
  * [Shiny](https://shiny.rstudio.com).
+  + [LESSON 1 Welcome to Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/).
+ * [Appli SHINY Covid19 par Eric Venot](https://ericvenot.shinyapps.io/suivicovid/).
+ * [Application layout guide](https://shiny.rstudio.com/articles/layout-guide.html).
+ * [Reference](https://shiny.rstudio.com/reference/shiny/).
 
 Shiny is a package for building interactive web apps.
+
+Create a folder `myapp` and write an `app.R` script inside.
+You can then run your script with:
+```r
+shiny::runApp("myApp")
+```
+
+Inside the `app.R` script
+```r
+ui <- ...
+server <- function(input, output) {
+	# ...
+}
+shinyApp(ui=ui, server=server)
+```
+
+Inside the `ui` definition, we use `imputId` and `outputId` parameters to set input and output names. We can then use those names inside the server function with `input$myInput` or `output$myOutput`.
+
+Order of code execution:
+ 1. The `app.R` script is first executed when creating the app (`runApp()` call). What is inside `ui` and `server` is not executed at this stage.
+ 2. When a new user's session is created (i.e.: a new user connects to the server), the code inside `ui` and `server` (but the not the code inside `reactive()` or `render*()` functions) is executed.
+ 3. Whenever the user interact with a GUI widget, the corresponding codes (i.e.: if dependent on widget input) in `reactive()` and `render*()` defintions are called.
+
+Plot output (inside `ui` definition):
+```r
+plotOutput(outputId="myPlotId")
+```
+
+Build plot inside server function:
+```r
+output$myPlotId <- renderPlot({ ... })
+```
+
+UI layout pages:
+ * `fluidPage`: rows, one element in each row. Can be combined with `fluidRow` to put more than one element in a row.
+ * `navbarPage`
+
+UI layouts:
+ * `sidebarLayout`: includes `sidebarPanel` and `mainPanel`.
+
+UI panels:
+ * `sidebarPanel`
+ * `mainPanel`
+ * `titlePanel`
+
+#### Input widgets
+
+ * [LESSON 3 Add control widgets](https://shiny.rstudio.com/tutorial/written-tutorial/lesson3/).
+ * [Build a dynamic UI that reacts to user input](https://shiny.rstudio.com/articles/dynamic-ui.html).
+
+Slider input:
+```r
+sliderInput(inputId="mySliderId", label="My Title", min=1, max=50, value=20)
+```
+
+#### Loading data
+
+ * [LESSON 6 Use reactive expressions](https://shiny.rstudio.com/tutorial/written-tutorial/lesson6/).
+ 
+User session data must be loaded using `reactive()` function inside the server:
+```r
+server <- function(input, output) {
+	myData <- reactive({myFctToLoadData(input$someInputId)})
+}
+```
+
+Application data can be loaded at two different places: when `app.R` script is loaded, or when a user's session is created:
+```r
+myAppData1 <- loadMyData() # Executed when script is sourced
+
+ui <- ...
+
+server <- function(input, output) {
+	myAppData2 <- loadDataForNewUser() # Executed when for a new user's session
+}
+```
+
+#### Output widgets
+
+ * [LESSON 4 Display reactive output](https://shiny.rstudio.com/tutorial/written-tutorial/lesson4/).
+
+#### HTML
+
+HTML functions can be used to format text:
+```r
+mainPanel(
+	h1("First level title"),
+	h2("Second level title"),
+	...
+)
+```
+
+Use an attribute:
+```r
+h6("My title", align="center")
+```
+List of functions:
+
+Function | HTML Tag   | Description
+-------- | ---------- | -----------
+p        | `<p>`      | A paragraph of text
+h1       | `<h1>`     | A first level header
+h2       | `<h2>`     | A second level header
+h3       | `<h3>`     | A third level header
+h4       | `<h4>`     | A fourth level header
+h5       | `<h5>`     | A fifth level header
+h6       | `<h6>`     | A sixth level header
+a        | `<a>`      | A hyper link
+br       | `<br>`     | A line break (e.g. a blank line)
+div      | `<div>`    | A division of text with a uniform style
+span     | `<span>`   | An in-line division of text with a uniform style
+pre      | `<pre>`    | Text ‘as is’ in a fixed width font
+code     | `<code>`   | A formatted block of code
+img      | `<img>`    | An image
+strong   | `<strong>` | Bold text
+em       | `<em>`     | Italicized text
+HTML     |            | Directly passes a character string as HTML code
 
 ### DiagrammeR
 
