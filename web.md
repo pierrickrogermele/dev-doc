@@ -462,6 +462,7 @@ WSDL 2.0 accepts to bind to all HTTP request methods (not just GET and POST), an
 ### REST
 
  * [REST page](https://en.wikipedia.org/wiki/Representational_state_transfer) on Wikipedia.
+ * [HTTP Status Codes](https://restfulapi.net/http-status-codes/).
 
 Representational State Transfer (REST) is a *software architecture style* for building scalable web services.
 
