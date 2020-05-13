@@ -1,3 +1,4 @@
+<!-- vimvars: b:markdown_embedded_syntax={'vim':''} -->
 # Vim
 
  * [Learn Vimscript the Hard Way](https://learnvimscriptthehardway.stevelosh.com/).
@@ -1443,9 +1444,12 @@ Register | Description
 -------- | --------------------------------------------
 `0`      | Yank register. The one used when pressing `y`.
 `1`..`9` | Shifting delete registers. Used when pressing `c` or `d`.
-`"`      | Default register (same as `0` ?).
 `a`..`z` | User registers.
 `+`, `\*` | System clipboard registers.
+@         | Unnamed register
+"         | Unnamed register (i.e.: default register)
+/         | Search pattern used
+%         | Current buffer file path
 
 Accessing register in Vimscript:
 ```vim
@@ -1471,6 +1475,19 @@ Terminate Pyclewn (and vim betbeans interface):
 ```
 :nbclose
 ```
+
+## Profiling
+
+Profiling a command:
+```vim
+profile start ~/profile.log
+profile file * " Profiles all Vimscript files
+profile func * " Profiles all functions
+do_something " Runs a command that will be profiled
+quit " Leaves Vim
+```
+
+Then opens the profile log file to look at result.
 
 ## Encoding
 
@@ -2144,11 +2161,9 @@ Print option:
 echo &myopt
 ```
 
-Print register:
+Print a register:
 ```vim
-echo @a
-echo @" " Unnamed register
-echo @/ " Search pattern used
+echom @a
 ```
 
 Print buffer local variable:
@@ -2295,14 +2310,22 @@ Set register:
 let @a = "hello!"
 ```
 
-Prefixes:
-	  g:	global variables
-	  b:	local buffer variables
-	  w:	local window variables
-	  t:	local tab page variables
-	  s:	script-local variables
-	  l:	local function variables
-	  v:	Vim variables.
+Variable scope:
+	  g: global variable
+	  b: local buffer variable
+	  w: local window variable
+	  t: local tab page variable
+	  s: script-local variable
+	  l: local function variable
+	  a: parameter of the current function
+	  v: Vim variable.
+
+Prefixes for options, registers and env vars:
+	&varname    A Vim option (local option if defined, otherwise global)
+	&l:varname  A local Vim option
+	&g:varname  A global Vim option
+	@varname    A Vim register
+	$varname    An environment variable
 
 ## Assignement operators
 
@@ -2645,6 +2668,8 @@ set errorformat&
 
 ## Netrw
 
+ * [Vim: you don't need NERDtree or (maybe) netrw](https://shapeshed.com/vim-netrw/).
+
 Netrw is the file navigation system of vim.
 
 Entering netrw:
@@ -2658,6 +2683,12 @@ Command | Description
 ------- | -------------------
 `d`     | Make a directory.
 `%`     | Create/open new file.
+i       | Change view.
+
+Set the tree view as default:
+```vim
+let g:netrw_liststyle = 3
+```
 
 ## File system
 
