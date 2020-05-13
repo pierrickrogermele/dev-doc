@@ -50,6 +50,23 @@ My text&nbsp;:
 get: With the HTTP "get" method, the form data set is appended to the URI specified by the action attribute (with a question-mark ("?") as separator) and this new URI is sent to the processing agent.
 post: With the HTTP "post" method, the form data set is included in the body of the form and sent to the processing agent.
 
+Simple form:
+```html
+<form action="mypage.php" method="post">
+	<!-- My input fields ... -->
+	<input type="submit" value="Filter"/>
+</form>
+```
+
+Form with multiple buttons with different actions (destination URL):
+```html
+<form action="mypage.php" method="post">
+	<!-- My input fields ... -->
+	<input type="submit" value="Filter"/> <!-- Use default form action -->
+	<input type="submit" formaction="mysecondpage.php" value="Download"/>
+</form>
+```
+
 File upload:
 ```html
 <form enctype="multipart/form-data" action="uploader.php" method="post">
@@ -105,6 +122,11 @@ Select (drop-down list):
 ## Upload file
 
  * [PHP File Upload](https://www.w3schools.com/php/php_file_upload.asp).
+
+Uploading multiple files:
+```html
+<input type="file" name="file[]" id="file" multiple/>
+```
 
 ## List
 
