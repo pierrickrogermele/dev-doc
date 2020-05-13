@@ -16,6 +16,7 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
  * [Torta con farina integrale](https://ricette.giallozafferano.it/Torta-con-farina-integrale.html).
 
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
+ * [Japanese Cotton Sponge Cake](https://www.youtube.com/watch?v=PFUC4UZ8cNw).
 
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
  * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).

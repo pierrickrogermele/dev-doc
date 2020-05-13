@@ -1,5 +1,26 @@
 # Pain & viennoiseries
 
+ * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
+ * Pains: techniques qui font le pain:
+  + [Modes de fermentation](https://www.youtube.com/watch?v=Whc2JJnAFGU).
+  + [Le Pointage pesage](https://www.youtube.com/watch?v=NX6dQzJXVoY).
+  + [Le Façonnage](https://www.youtube.com/watch?v=PWjSa6xBwtw).
+  + [Façonnages divers](https://www.youtube.com/watch?v=Et-0CkiOfR4).
+  + [L'apprêt](https://www.youtube.com/watch?v=Ru562dfRFSg).
+  + [La mise au four](https://www.youtube.com/watch?v=4NLKLZVLzQA).
+  + [La Cuisson](https://www.youtube.com/watch?v=2q24hiVzPWE).
+  + [Le Ressuage](https://www.youtube.com/watch?v=utkHgk5Z0YU).
+  + [Le Divisage](https://www.youtube.com/watch?v=Ru2XLjXQfuE).
+  + [Le Boulage Préformage](https://www.youtube.com/watch?v=zqsnz6XXqVs).
+ * [Boulangerie Pas à pas](https://www.youtube.com/channel/UCyukUh-uOQJE6YqedFTkQlw):
+  + [Pain sur Poolish à la maison](https://www.youtube.com/watch?v=Me7tGobX-Gw).
+  + [Pain facile](https://www.youtube.com/watch?v=GmgccO5yDOk).
+  + [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
+  + [Cheese Naans](https://www.youtube.com/watch?v=RLQJKNnyb7o).
+  + [La Tourte Auvergnate](https://www.youtube.com/watch?v=1fHzga2ZL9o).
+  + [Façonnage, tourne et mise au four.](https://www.youtube.com/watch?v=WdROz5L2n5Y).
+  * [Pain de seigle au citron](https://www.youtube.com/watch?v=QhCXDNDY6w4).
+
 8g levure sèche = 25g levure fraîche = 38ml levure liquide
 
 3-5 grammes levure sèche pour 300-450 grammes de farine.
