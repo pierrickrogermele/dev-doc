@@ -1,6 +1,7 @@
 # Pain & viennoiseries
 
  * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
+ * [Fabrication du pain](https://fr.wikipedia.org/wiki/Fabrication_du_pain).
  * Pains: techniques qui font le pain:
   + [Modes de fermentation](https://www.youtube.com/watch?v=Whc2JJnAFGU).
   + [Le Pointage pesage](https://www.youtube.com/watch?v=NX6dQzJXVoY).
@@ -61,11 +62,35 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * [Brioche](https://www.marmiton.org/recettes/recette_brioche-de-micheline-26eme-rencontre_40232.aspx).
  * [Baguette viennoise](http://www.marmiton.org/recettes/recette_baguette-viennoise_30706.aspx).
 
- * [Le pain d'épices](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
- * [Pane di sapa](https://www.youtube.com/watch?v=o1iJ50m1_-8 https://www.ricettedisardegna.it/pani-saba/).
-
  * [Chaussons aux pommes](http://www.marmiton.org/recettes/recette_chausson-aux-pommes-maison_16812.aspx).
  * [Croissants](https://www.meilleurduchef.com/fr/recette/croissant-facile.html).
  * [Brioches (croissants italiens)](https://ricette.giallozafferano.it/Brioches.html).
  * [Croissants sfogliati: la ricetta per farli in casa](https://video.cookist.it/video/an/Xnna_-SwH3PFLOiT).
  * [Pains au lait](http://www.marmiton.org/recettes/recette_petits-pain-au-lait-maison_220199.aspx).
+
+## Pain sur poolish
+
+ * [Pain sur Poolish à la maison](https://www.youtube.com/watch?v=Me7tGobX-Gw).
+
+Recette de la vidéo :
+Produit   | Base  | J1    | J2
+--------- | ----- | ----- | ----
+T65       | 400g  | 70g   | 330g
+T80       | 100g  | 100g  | 0g
+sel       | 8g    | 0     | 8g
+levure    | 4g    | 1g    | 3g
+eau       | 340ml | 170ml | 170ml
+
+ * pointage 1h15
+ * division / mise en forme (détente 10 min)
+ * façonnage
+ * apprêt 45 min
+ * cuisson 25min à 250°C
+
+Recette essayée le 15/05/2020:
+Produit                     | Base  | J1    | J2
+--------------------------- | ----- | ----- | ----
+Farine de blé semi-complète | 800g  | 200g  | 600g
+sel                         | 13g   | 0     | 13g
+levure                      | 8g    | 4g    | 4g
+eau                         | 500ml | 250ml | 250ml + x ml ?

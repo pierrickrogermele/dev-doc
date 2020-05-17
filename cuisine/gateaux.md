@@ -1,10 +1,10 @@
 # Gâteaux, tartes, galettes
 
-Apfel Strudel	gâteau	Autriche		http://ricette.giallozafferano.it/Strudel-di-mele.html	
-Pudding		France		https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx	
-Pumpkin pie				https://www.simplyrecipes.com/recipes/suzannes_old_fashioned_pumpkin_pie/	
-Torta morbida alla zucca	potiron	Italie		https://ricette.giallozafferano.it/Torta-morbida-alla-zucca.html	
-Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo	
+ * [Apfel Strudel](http://ricette.giallozafferano.it/Strudel-di-mele.html).
+ * [Pudding](https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx).
+ * [Pumpkin pie](https://www.simplyrecipes.com/recipes/suzannes_old_fashioned_pumpkin_pie/).
+ * [Torta morbida alla zucca](https://ricette.giallozafferano.it/Torta-morbida-alla-zucca.html).
+ * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
 
  * [Gâteau aux pommes à la poêle (crapiaux)](https://cuisine.journaldesfemmes.fr/recette/1003991-le-crapiaux-gateau-aux-pommes-a-la-poele).
  * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
@@ -17,6 +17,7 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
 
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
  * [Japanese Cotton Sponge Cake](https://www.youtube.com/watch?v=PFUC4UZ8cNw).
+ * [Käsekuchen (tarte au fromage blanc) à la rhubarbe](https://www.visit.alsace/recettes/tarte-au-fromage-blanc-a-la-rhubarbe/).
 
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
  * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).
@@ -29,6 +30,16 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
  * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
 
  * [Far breton aux pruneaux](http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx).
+  + œufs    n (p grammes)   4    5    6
+  + lait    p * 4         800 1000 1200
+  + farine  p             240  300  360
+  + sucre   p / 2         120  150  180
+ * [Le far breton au blé noir / sarrasin](http://www.recettes-bretonnes.fr/gateaux-bretons/far-breton-ble-noir.html).
+  + œufs    n (p grammes)   4    6
+  + lait    p * 4        1000 1400
+  + farine  p             240  360
+  + sucre   p * 4 / 10    100  140
+ * [Le far breton à la poêle ou farz pitilig](http://www.recettes-bretonnes.fr/gateaux-bretons/far-poele-farz-pitilig.html).
  * [Gâteau breton](https://www.marmiton.org/recettes/recette_gateau-breton_21004.aspx).
 
  * [Gâteau au yaourt](http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx).
@@ -41,6 +52,12 @@ Les Leckerli de Bâle		Suisse		http://misstamkitchenette.com/les-leckerli-de-bal
  * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
 
 Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+
+## Pain d'épices
+
+ * [La recette du véritable pain d’épices de Reims](https://www.jujube-en-cuisine.fr/veritable-pain-epices/). Farine de seigle, pas d'œufs, pas de beurre, pas de lait.
+ * [Mon pain d’épices parfait : moelleux et parfumé](https://www.lesepicesrient.fr/12/2013/mon-pain-d-epices-parfait-moelleux-parfume/).
+ * [Pain d'épices](https://www.marmiton.org/recettes/recette_pain-d-epices_11087.aspx).
 
 ## Galettes
 
