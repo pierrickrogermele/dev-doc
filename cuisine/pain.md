@@ -1,4 +1,6 @@
-# Pain & viennoiseries
+# Pain, pâtes et viennoiseries
+
+ * [Pâte feuilletée](http://www.marmiton.org/recettes/recette_pate-feuilletee_20642.aspx).
 
  * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
  * [Fabrication du pain](https://fr.wikipedia.org/wiki/Fabrication_du_pain).

@@ -6,39 +6,39 @@ Root | Cuisine | Personal
 [AUTOTOOLS](./autotools.md) | [Boulettes et quenelles](./cuisine/boulettes.md) | [Cloud](./personal/cloud.md)
 [BASH](./bash.md) | [Céréales & légumineuses](./cuisine/cereales.md) | [Covid 19](./personal/covid-19.md)
 [Books](./books.md) | [Crêpes, gaufres](./cuisine/crepes.md) | [Development](./personal/dev.md)
-[C](./c.md) | [Fruits et préparations sucrés](./cuisine/fruits.md) | [Enfants](./personal/enfants.md)
-[CHEETAH](./cheetah.md) | [Gâteaux, tartes, galettes](./cuisine/gateaux.md) | [Games](./personal/games.md)
+[<!-- vimvars: b:markdown_embedded_syntax={'c':''} -->](./c.md) | [Fruits et préparations sucrés](./cuisine/fruits.md) | [Enfants](./personal/enfants.md)
+[CHEETAH](./cheetah.md) | [Gâteaux, tartes, galettes, biscuits](./cuisine/gateaux.md) | [Games](./personal/games.md)
 [CMAKE](./cmake.md) | [Légumes, légumineuses, algues](./cuisine/legumes.md) | [Local](./personal/local.md)
-[COMPUTERS](./computers.md) | [Pain & viennoiseries](./cuisine/pain.md) | [Logement](./personal/logement.md)
+[COMPUTERS](./computers.md) | [Pain, pâtes et viennoiseries](./cuisine/pain.md) | [Logement](./personal/logement.md)
 [AMSTRAD CPC](./cpc.md) | [Pâtes, raviolis, gnocchi chaussons salés](./cuisine/pasta.md) | [Médias](./personal/media.md)
-[CSS](./css.md) | [Pâtes à tarte et biscuits](./cuisine/pates_biscuits.md) | [Références](./personal/ref.md)
-[Eclipse](./eclipse.md) | [Poisson](./cuisine/poisson.md) | [Stop motion](./personal/stopmotion.md)
-[EFI](./efi.md) | [Riz](./cuisine/riz.md) | 
-[EMULATORS](./emulators.md) | [Sauces](./cuisine/sauces.md) | 
-[GALAXY](./galaxy.md) | [Soupes](./cuisine/soupes.md) | 
-[Game programming](./game_programming.md) | [Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | 
-[GIT](./git.md) | [Tofu](./cuisine/tofu.md) | 
-[HDF5](./hdf5.md) | [Viande](./cuisine/viande.md) | 
-[HTML](./html.md) | [Vins](./cuisine/vins.md) | 
+[CSS](./css.md) | [Poisson](./cuisine/poisson.md) | [Références](./personal/ref.md)
+[Eclipse](./eclipse.md) | [Riz](./cuisine/riz.md) | [Stop motion](./personal/stopmotion.md)
+[EFI](./efi.md) | [Sauces](./cuisine/sauces.md) | 
+[EMULATORS](./emulators.md) | [Soupes](./cuisine/soupes.md) | 
+[GALAXY](./galaxy.md) | [Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | 
+[Game programming](./game_programming.md) | [Tofu](./cuisine/tofu.md) | 
+[GIT](./git.md) | [Viande](./cuisine/viande.md) | 
+[HDF5](./hdf5.md) | [Vins](./cuisine/vins.md) | 
+[HTML](./html.md) |  | 
 [JSON](./json.md) |  | 
 [LICENSING](./licensing.md) |  | 
 [Make](./make.md) |  | 
 [Modeling](./modeling.md) |  | 
 [MUTT](./mutt.md) |  | 
-[NoSQL databases](./nosqldbs.md) |  | 
+[<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','js':'javascript'} -->](./nosqldbs.md) |  | 
 [PERL](./perl.md) |  | 
 [PHONES](./phones.md) |  | 
-[PHP](./php.md) |  | 
+[<!-- vimvars: b:markdown_embedded_syntax={'php':'','bash':'','apache':'','html':''} -->](./php.md) |  | 
 [PYTHON](./python.md) |  | 
 [Quality, testing and integration](./quality.md) |  | 
-[R](./r.md) |  | 
+[<!-- vimvars: b:markdown_embedded_syntax={'r':'','bash':''} -->](./r.md) |  | 
 [RUBY](./ruby.md) |  | 
 [SCREEN](./screen.md) |  | 
 [SHELLS](./shells.md) |  | 
 [Relational databases](./sqldbs.md) |  | 
 [SVG](./svg.md) |  | 
-[UNIX](./unix.md) |  | 
+[<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','r':''} -->](./unix.md) |  | 
 [Versioning](./versioning.md) |  | 
-[Vim](./vim.md) |  | 
+[<!-- vimvars: b:markdown_embedded_syntax={'vim':''} -->](./vim.md) |  | 
 [WEB](./web.md) |  | 
 [YAML file](./yaml.md) |  | 

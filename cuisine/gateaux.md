@@ -1,4 +1,8 @@
-# Gâteaux, tartes, galettes
+# Gâteaux, tartes, galettes, biscuits
+
+ * [Pane di sapa](https://www.ricettedisardegna.it/pani-saba/).
+
+ * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
 
  * [Apfel Strudel](http://ricette.giallozafferano.it/Strudel-di-mele.html).
  * [Pudding](https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx).
