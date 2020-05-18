@@ -1,5 +1,5 @@
-NoSQL databases
-===============
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','js':'javascript'} -->
+# NoSQL databases
 
 ## RRDtool
 
@@ -48,7 +48,12 @@ Default data store path is `/data/db`. Create it with 'rwx' permissions for user
 To start interpreter:
 ```sh
 mongo
-mongo -u admin -p admin --authenticationDatabase "admin"
+mongo -u admin -p admin --authenticationDatabase admin
+```
+
+Run javascript on command line:
+```sh
+mongo --eval 'db.collection.find().forEach(printjson)'
 ```
 
 Authenticate from inside the interpreter:
