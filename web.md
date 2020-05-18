@@ -298,6 +298,7 @@ Restart the Apache service.
  * [How can I redirect and rewrite my URLs with an .htaccess file?](https://help.dreamhost.com/hc/en-us/articles/215747748-How-can-I-redirect-and-rewrite-my-URLs-with-an-htaccess-file-).
  * [How to deny access to a file in .htaccess](https://stackoverflow.com/questions/11728976/how-to-deny-access-to-a-file-in-htaccess).
  * [RewriteRule Flags](https://httpd.apache.org/docs/2.4/rewrite/flags.html).
+ * [Expressions in Apache HTTP Server](https://httpd.apache.org/docs/2.4/expr.html). Variables (`HTTP_POST`, `DOCUMENT_ROOT`, ...).
 
 Rewrite rule example:
 ```
@@ -517,6 +518,11 @@ See file tomcat-users.xml in <Tomcat>/conf directory, and add the role manager-g
 #### Embedded tomcat
 Tomcat can be embedded.
 http://stackoverflow.com/questions/640022/howto-embed-tomcat-6
+
+## Site maintenance
+
+ * [Redirect Site to Maintenance Page using Apache and HTAccess](https://www.shellhacks.com/redirect-site-maintenance-page-apache-htaccess/).
+ * [How to make your website to maintenance mode - Apache](https://gist.github.com/wataruoguchi/649963c3ee18640e0105).
 
 ## Testing
 
