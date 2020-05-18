@@ -1,5 +1,5 @@
-UNIX
-====
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','r':''} -->
+# UNIX
 
 These notes refer to UNIX and Linux operating systems.
 
@@ -2341,8 +2341,8 @@ Sorting an array (the array must be numerically indexed):
 ## env
 
 Running command from shebang:
-```R
- #!/usr/bin/env -S Rscript --vanilla
+```r
+#!/usr/bin/env -S Rscript --vanilla
 ```
 If `-S` is not set:
 ```
