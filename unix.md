@@ -1059,6 +1059,13 @@ Return directory portion of pathname:
 dirname /my/path/to/a/file
 ```
 
+### realpath
+
+Returns resolved absolute path:
+```bash
+realpath my/path/to/some/where
+```
+
 ### du
 
 To measure disk usage of a folder:
@@ -3187,7 +3194,7 @@ A2ps -4 -A fill file1.txt file2.txt file3.txt -o output.ps
 	-4 :		4 pages virtuelles par page
 	-A fill :	mettre les fichiers les uns à la suite des autres sur une même page
 
-## `test` / `[`
+## test / [
 
 File test operators:
 
