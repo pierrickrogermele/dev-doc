@@ -2,6 +2,7 @@
 
  * [Pois cassés au curry](https://www.marmiton.org/recettes/recette_pois-casses-au-curry_68500.aspx).
  * [Boulgour nature](https://www.marmiton.org/recettes/recette_boulgour-nature_29441.aspx).
+  + Cuisson comme le riz asiatique : volume d'eau = 2 x volume de boulgour, absorption sans couvercle puis repos avec couvercle. 
 
  * lentilles: Mettre les lentilles avec 3 fois leur volume d’eau froide dans une casserole. Portez à ébullition et laissez cuire à petit feu et à couvert, pendant 10 à 15 minutes.
  * pommes de terre à l’eau: Dans l’eau froide, entières, avec la peau, porter à ébullition. 45 minutes en tout pour des grosses pommes de terre.

@@ -11,14 +11,15 @@ Root | Cuisine | Personal
 [CMAKE](./cmake.md) | [Légumes, légumineuses, algues](./cuisine/legumes.md) | [Local](./personal/local.md)
 [COMPUTERS](./computers.md) | [Pain, pâtes et viennoiseries](./cuisine/pain.md) | [Logement](./personal/logement.md)
 [AMSTRAD CPC](./cpc.md) | [Pâtes, raviolis, gnocchi chaussons salés](./cuisine/pasta.md) | [Médias](./personal/media.md)
-[CSS](./css.md) | [Poisson](./cuisine/poisson.md) | [Références](./personal/ref.md)
-[Eclipse](./eclipse.md) | [Riz](./cuisine/riz.md) | [Stop motion](./personal/stopmotion.md)
-[EFI](./efi.md) | [Sauces](./cuisine/sauces.md) | 
-[EMULATORS](./emulators.md) | [Soupes](./cuisine/soupes.md) | 
-[GALAXY](./galaxy.md) | [Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | 
-[Game programming](./game_programming.md) | [Tofu](./cuisine/tofu.md) | 
-[GIT](./git.md) | [Viande](./cuisine/viande.md) | 
-[HDF5](./hdf5.md) | [Vins](./cuisine/vins.md) | 
+[<!-- vimvars: b:markdown_embedded_syntax={'cs':'','sh':'bash'} -->](./csharp.md) | [Poisson](./cuisine/poisson.md) | [Références](./personal/ref.md)
+[CSS](./css.md) | [Riz](./cuisine/riz.md) | [Stop motion](./personal/stopmotion.md)
+[Eclipse](./eclipse.md) | [Sauces](./cuisine/sauces.md) | 
+[EFI](./efi.md) | [Soupes](./cuisine/soupes.md) | 
+[EMULATORS](./emulators.md) | [Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | 
+[GALAXY](./galaxy.md) | [Tofu](./cuisine/tofu.md) | 
+[Game programming](./game_programming.md) | [Viande](./cuisine/viande.md) | 
+[GIT](./git.md) | [Vins](./cuisine/vins.md) | 
+[HDF5](./hdf5.md) |  | 
 [HTML](./html.md) |  | 
 [JSON](./json.md) |  | 
 [LICENSING](./licensing.md) |  | 

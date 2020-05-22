@@ -4,6 +4,14 @@
 Gaufres à la courgette, emmental et lardons	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-a-la-courgette-emmental-et-lardons_229534.aspx	
 Gaufres de courgettes au saumon fumé	gaufres	France		http://www.marmiton.org/recettes/recette_gaufres-de-courgettes-au-saumon-fume_73980.aspx	
 
+ * [Pane injera](https://ricette.giallozafferano.it/Pane-injera.html). Etiopia.
+
+ * [Cheese Naans](https://www.youtube.com/watch?v=RLQJKNnyb7o).
+
+ * [Pitas (pains grecs à garnir)](https://www.marmiton.org/recettes/recette_pitas-pains-grecs-a-garnir_38611.aspx).
+
+ * [Tortillas de maïs](https://cuisine.journaldesfemmes.fr/recette/347916-tortillas-de-mais).
+
  * [Crêpes à la farine de maïs](https://www.monfournil.fr/recettes/crepes-a-farine-de/).
 
  * [Pâte à crêpes de sarasin](http://www.recettes-bretonnes.fr/galette-bretonne/recette-galette-sarrasin.html).

@@ -1,6 +1,12 @@
 # Gâteaux, tartes, galettes, biscuits
 
+ * [Yaourts maison SANS yaourtière (à la casserole et au four ou à la cocotte)](https://www.marmiton.org/recettes/recette_yaourts-maison-sans-yaourtiere-a-la-casserole-et-au-four-ou-a-la-cocotte_24394.aspx).
+
  * [Pane di sapa](https://www.ricettedisardegna.it/pani-saba/).
+
+ * [Vrai baba au rhum](https://www.marmiton.org/recettes/recette_vrai-baba-au-rhum_17689.aspx).
+
+ * [Kougelhopf, kouglof](https://www.recettes-alsace.fr/kougelhopf-kouglof/).
 
  * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
 
