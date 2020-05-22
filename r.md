@@ -133,7 +133,8 @@ Used in OOP, to modify a field's value.
 
 Assigning dynamically:
 ```r
-assign("varname", value, pos = .GlobalEnv) # create a new variable varname in global environment.
+assign("varname", value) # create a new variable varname inside current environment.
+assign("varname", value, pos=.GlobalEnv) # create a new variable varname inside global environment.
 ```
 
 Getting dynamically the value of a variable:
@@ -2463,6 +2464,11 @@ assay.fiel.names <- getMSAssayFilenames(isa)
 ### countrycode
 
 To get list of official country codes, country names, continent of a country, etc.
+
+Get full & normalized country name:
+```r
+countrycode::countrycode('Antigua', origin='country.name', destination='country.name')
+```
 
 ### Rmpi
 
