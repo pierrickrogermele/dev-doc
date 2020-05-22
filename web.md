@@ -188,7 +188,11 @@ In Apache 2.4:
 
 Make sure that the path `/Users/someuser/dev/my/project/site` is allowed for access by everyone, as well as the files contained in the folder.
 
-#### Enable .htaccess
+#### .htaccess
+
+ * [Apache HTTP Server Tutorial: .htaccess files](https://httpd.apache.org/docs/2.4/howto/htaccess.html).
+ * [Apache Core Features](https://httpd.apache.org/docs/2.4/mod/core.html).
+ * [Expressions in Apache HTTP Server](https://httpd.apache.org/docs/2.4/expr.html).
 
 Set the following line inside Apache config file to allow .htaccess in a directory and all its sub-folders:
 ```
