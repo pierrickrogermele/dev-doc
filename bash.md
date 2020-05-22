@@ -1,5 +1,4 @@
-BASH
-====
+# BASH
 
 ## `.bashrc`, `.bash_profile`, `.bash_logout`
 
@@ -16,8 +15,9 @@ executed/loaded when run as interactive login shell.
 `~/.bash_logout`:
 executed when exiting from login shell
 
+## source, `.`
 
-Use code from another file:
+Include/run code from another file:
 ```bash
 . myfile
 source myfile
@@ -88,7 +88,7 @@ script_name=$(basename $0)
 Get path to scriptname:
 ```bash
 script_dir="${0%/*}" # Returns script name if no path.
-script_name=$(dirname $0) # Returns '.' if no path.
+script_dir=$(dirname $0) # Returns '.' if no path.
 ```
 This only works if there is a path (i.e.: at least one slash), but this should be the case since the system prefixes the program name with the path used inside PATH when calling a program.
 
@@ -107,7 +107,7 @@ Escape sequence | Description
 `\u`            | User name.
 `\h`            | Host name.
 
-## `echo`
+## echo
 
  * [Moving cursor](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html).
 
