@@ -15,14 +15,11 @@ Gaufres de courgettes au saumon fumé	gaufres	France		http://www.marmiton.org/re
  * [Crêpes à la farine de maïs](https://www.monfournil.fr/recettes/crepes-a-farine-de/).
 
  * [Pâte à crêpes de sarasin](http://www.recettes-bretonnes.fr/galette-bretonne/recette-galette-sarrasin.html).
+ * Recette sans œuf :
+  - ~25cl d'eau pour 100g de farine
+  - 3 g de sel pour 100g farine
   - 500g de farine de sarrasin(blé noir)
-  - 75cl d'eau
-  - 15/20g de gros sel
-  - Pas d'oeuf c'est pas la peine
-    Le miel n'est pas nécessaire non plus, il est là juste pour donner sa belle couleur dorée à la galette.
-    Pour éviter de mettre du miel, il suffit de laisser reposer la pâte une bonne douzaine d'heure au frais.
-    Personnellement je fais toujours mon pâton le soir avant de quitter la crêperie.
-    Je le reprends le lendemain en rajoutant la quantité d'eau nécessaire à un bon étalement de la galette sur le Bilig chauffé à 220/230°C
+  - 2h ou 12h de repos au réfrigérateur ?
 
  * [Pâte à crêpes simple](https://www.marmiton.org/recettes/recette_pate-a-crepes-simple_27121.aspx).
 

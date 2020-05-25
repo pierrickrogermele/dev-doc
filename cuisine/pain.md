@@ -82,10 +82,16 @@ sel       | 8g    | 0     | 8g
 levure    | 4g    | 1g    | 3g
 eau       | 340ml | 170ml | 170ml
 
- * pointage 1h15
- * division / mise en forme (détente 10 min)
+ * Poolish : mélange J1 (un peu liquide, visqueux) à température ambiante pour 10h, filmé, protégé des courants d'air.
+ * frasage : on ajoute le reste des ingrédients J2 et on mélange. On doit obtenir une pâte visqueuse.
+ * on laisse reposer 20 min.
+ * pétrissage / étirage pour former une boule.
+ * pointage 1h15 à température ambiante, bien couvert. Le volume doit doubler, la pâte doit être douce et un peu collante.
+ * division / mise en forme.
+ * détente 10 min.
  * façonnage
- * apprêt 45 min
+ * apprêt 45 min, 25°C, dans le four avec bol d'eau. On pose le pain sur un linge de lin tamisé de farine, soudure en bas.
+ * on renverse le pain sur la plaque, soudure vers le haut.
  * cuisson 25min à 250°C
 
 Recette essayée le 15/05/2020:
@@ -95,7 +101,7 @@ Produit                     | Base  | J1    | J2
 Farine de blé semi-complète | 800g  | 200g  | 600g
 du moulin de Mirebeau       |       |       |     
 sel                         | 13g   | 0     | 13g
-levure                      | 8g    | 4g    | 4g
+levure                      | 8g    | 4g ou 3g?    | 4g
 eau                         | 500ml | 250ml | 250ml + x ml ?
 
 ## Seigle sur Poolish
