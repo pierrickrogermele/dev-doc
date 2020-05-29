@@ -3027,6 +3027,17 @@ Or use the Stop reporter (`StopReporter`) that will stop at the first error:
 R -q -e "devtools::test('.', reporter = c('stop', 'summary', 'fail'))"
 ```
 
+Assertions:
+```r
+testthat::expect_is(myObj, 'MyClass') # Uses `inherits()`
+testthat::expect_is(x, 'data.frame')
+testthat::expect_type(x, 'integer')
+testthat::expect_type(x, 'double')
+testthat::expect_type(x, 'list')
+testthat::expect_s3_class(x, 'data.frame')
+testthat::expect_s4_class(myObj, 'MyS4Class')
+```
+
 ### RUnit
 
 ```r
@@ -3105,6 +3116,7 @@ x <- readxl::read_xlsx('myfile.xlsx')
  * [Shiny](https://shiny.rstudio.com).
   + [LESSON 1 Welcome to Shiny](https://shiny.rstudio.com/tutorial/written-tutorial/lesson1/).
  * [Appli SHINY Covid19 par Eric Venot](https://ericvenot.shinyapps.io/suivicovid/).
+  + [suivicovid](https://github.com/ericvenot/suivicovid).
  * [Application layout guide](https://shiny.rstudio.com/articles/layout-guide.html).
  * [Reference](https://shiny.rstudio.com/reference/shiny/).
 
