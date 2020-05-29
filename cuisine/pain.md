@@ -101,8 +101,8 @@ Produit                     | Base  | J1    | J2
 Farine de blé semi-complète | 800g  | 200g  | 600g
 du moulin de Mirebeau       |       |       |     
 sel                         | 13g   | 0     | 13g
-levure                      | 8g    | 4g ou 3g?    | 4g
-eau                         | 500ml | 250ml | 250ml + x ml ?
+levure                      | 8g    | 3g    | 5g
+eau                         | 500ml | 250ml | 250ml + 15 ml
 
 ## Seigle sur Poolish
 
