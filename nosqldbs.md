@@ -160,6 +160,21 @@ Print users with all their privileges:
 db.getRoles({showPrivileges:1})
 ```
 
+### Cloning a database
+
+ * [Copy/Clone a Database](https://docs.mongodb.com/manual/reference/program/mongodump/#mongodump-example-copy-clone-database).
+
+In two steps:
+```sh
+mongodump --archive="mongodump-test-db" --db=test
+mongorestore --archive="mongodump-test-db" --nsFrom='test.*' --nsTo='examples.*'
+```
+
+In one step:
+```sh
+mongodump --archive --db=test | mongorestore --archive  --nsFrom='test.*' --nsTo='examples.*'
+```
+
 ### Managing databases
 
 Getting statistics about a database:
