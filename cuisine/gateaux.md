@@ -2,8 +2,6 @@
 
  * [Yaourts maison SANS yaourtière (à la casserole et au four ou à la cocotte)](https://www.marmiton.org/recettes/recette_yaourts-maison-sans-yaourtiere-a-la-casserole-et-au-four-ou-a-la-cocotte_24394.aspx).
  * [Crème au caramel](https://www.marmiton.org/recettes/recette_creme-au-caramel_27061.aspx).
- * [Riz au lait de ma maman](https://www.marmiton.org/recettes/recette_riz-au-lait-de-ma-maman_20380.aspx).
- * [Riz au lait](https://lacuisinedannie.20minutes.fr/recette-riz-au-lait-165.html).
 
  * [Pane di sapa](https://www.ricettedisardegna.it/pani-saba/).
 
@@ -12,25 +10,27 @@
  * [Kougelhopf, kouglof](https://www.recettes-alsace.fr/kougelhopf-kouglof/).
 
  * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
-
- * [Apfel Strudel](http://ricette.giallozafferano.it/Strudel-di-mele.html).
- * [Pudding](https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx).
- * [Pumpkin pie](https://www.simplyrecipes.com/recipes/suzannes_old_fashioned_pumpkin_pie/).
- * [Torta morbida alla zucca](https://ricette.giallozafferano.it/Torta-morbida-alla-zucca.html).
  * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
 
- * [Gâteau aux pommes à la poêle (crapiaux)](https://cuisine.journaldesfemmes.fr/recette/1003991-le-crapiaux-gateau-aux-pommes-a-la-poele).
- * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
- * [Gâteau aux pommes facile](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-facile_13493.aspx).
- * [Clafoutis light aux pommes](https://www.marmiton.org/recettes/recette_clafoutis-light-aux-pommes_14926.aspx).
- * [TORTA DI MELE INTEGRALE SENZA BURRO E SENZA UOVA](https://blog.giallozafferano.it/maniamore/torta-di-mele-con-farina-integrale/).
+ * [Pudding](https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx).
 
- * [TORTA INTEGRALE ALL’ACQUA senza uova, latte o burro!](https://blog.giallozafferano.it/maniamore/torta-integrale-all-acqua/).
- * [Torta con farina integrale](https://ricette.giallozafferano.it/Torta-con-farina-integrale.html).
+ * [Crumble à la rhubarbe](https://www.marmiton.org/recettes/recette_crumble-a-la-rhubarbe_29261.aspx).
+ * [Rhubarb crumble](https://www.bbcgoodfood.com/recipes/rhubarb-crumble).
 
- * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
- * [Japanese Cotton Sponge Cake](https://www.youtube.com/watch?v=PFUC4UZ8cNw).
- * [Käsekuchen (tarte au fromage blanc) à la rhubarbe](https://www.visit.alsace/recettes/tarte-au-fromage-blanc-a-la-rhubarbe/).
+ * [Galette des rois à la frangipane](http://www.marmiton.org/recettes/recette_galette-des-rois-a-la-frangipane_20147.aspx).
+
+ * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
+
+ * [Tourteau fromager](https://www.accueil-vendee.com/recettes/le-tourteau-fromager/).
+
+ * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
+
+Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+
+## Riz au lait et gâteaux de riz ou de semoule
+
+ * [Riz au lait de ma maman](https://www.marmiton.org/recettes/recette_riz-au-lait-de-ma-maman_20380.aspx).
+ * [Riz au lait](https://lacuisinedannie.20minutes.fr/recette-riz-au-lait-165.html).
 
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
  * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).
@@ -38,9 +38,7 @@
  * [Gâteau de semoule](http://www.marmiton.org/recettes/recette_gateau-de-semoule_24969.aspx).
  * [Gâteau de semoule (à la casserole)](http://www.marmiton.org/recettes/recette_gateau-de-semoule-a-la-casserole_43864.aspx).
 
- * [Galette des rois à la frangipane](http://www.marmiton.org/recettes/recette_galette-des-rois-a-la-frangipane_20147.aspx).
-
- * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
+## Far, quatre-quarts et gâteaux bretons
 
  * [Far breton aux pruneaux](http://www.marmiton.org/recettes/recette_far-breton-aux-pruneaux_19101.aspx).
   + œufs    n (p grammes)   4    5    6
@@ -53,19 +51,40 @@
   + farine  p             240  360
   + sucre   p * 4 / 10    100  140
  * [Le far breton à la poêle ou farz pitilig](http://www.recettes-bretonnes.fr/gateaux-bretons/far-poele-farz-pitilig.html).
+
  * [Gâteau breton](https://www.marmiton.org/recettes/recette_gateau-breton_21004.aspx).
+
  * [Quatre-quarts](http://www.recettes-bretonnes.fr/gateaux-bretons/quatre-quarts-breton.html).
+
+## Cheesecake et gâteaux au yaourt ou fromage blanc
 
  * [Gâteau au yaourt](http://www.marmiton.org/recettes/recette_gateau-au-yaourt_12719.aspx).
  * [Gâteau de ma grand-mère](https://www.marmiton.org/recettes/recette_gateau-de-ma-grand-mere_17731.aspx).
  * [Gâteau grand-mère](https://cuisine.journaldesfemmes.fr/recette/344653-gateau-grand-mere).
  * [Gâteau aérien (crème fraîche) très rapide](https://www.marmiton.org/recettes/recette_gateau-aerien-creme-fraiche-tres-rapide_314416.aspx).
 
- * [Tourteau fromager](https://www.accueil-vendee.com/recettes/le-tourteau-fromager/).
+ * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
 
- * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
+ * [Japanese Cotton Sponge Cake](https://www.youtube.com/watch?v=PFUC4UZ8cNw).
 
-Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+ * [Käsekuchen (tarte au fromage blanc) à la rhubarbe](https://www.visit.alsace/recettes/tarte-au-fromage-blanc-a-la-rhubarbe/).
+
+## Potiron
+
+ * [Pumpkin pie](https://www.simplyrecipes.com/recipes/suzannes_old_fashioned_pumpkin_pie/).
+ * [Torta morbida alla zucca](https://ricette.giallozafferano.it/Torta-morbida-alla-zucca.html).
+
+## Pommes
+
+ * [Apfel Strudel](http://ricette.giallozafferano.it/Strudel-di-mele.html).
+ * [Gâteau aux pommes à la poêle (crapiaux)](https://cuisine.journaldesfemmes.fr/recette/1003991-le-crapiaux-gateau-aux-pommes-a-la-poele).
+ * [Gâteau aux pommes à la poêle](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-a-la-poele_25684.aspx).
+ * [Gâteau aux pommes facile](https://www.marmiton.org/recettes/recette_gateau-aux-pommes-facile_13493.aspx).
+ * [Clafoutis light aux pommes](https://www.marmiton.org/recettes/recette_clafoutis-light-aux-pommes_14926.aspx).
+ * [TORTA DI MELE INTEGRALE SENZA BURRO E SENZA UOVA](https://blog.giallozafferano.it/maniamore/torta-di-mele-con-farina-integrale/).
+
+ * [TORTA INTEGRALE ALL’ACQUA senza uova, latte o burro!](https://blog.giallozafferano.it/maniamore/torta-integrale-all-acqua/).
+ * [Torta con farina integrale](https://ricette.giallozafferano.it/Torta-con-farina-integrale.html).
 
 ## Pain d'épices
 

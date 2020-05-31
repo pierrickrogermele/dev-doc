@@ -1,12 +1,18 @@
 # Légumes, légumineuses, algues
 
+## Salades de quinoa
+
+ * [SALADE DE QUINOA, FÈVES, BROCOLIS, AMANDES ET NOIX](https://www.fashioncooking.fr/2015/07/salade-quinoa-feves-brocolis/).
+
+## Navets
+
+ * [Navets à l'orientale](https://cuisine.journaldesfemmes.fr/recette/347065-navets-a-l-orientale).
+ * [Navets caramelisés](https://www.marmiton.org/recettes/recette_navets-caramelises_20708.aspx).
+
 ## Légumes
 
  * [Recette indienne Légumes Korma en vidéo](http://www.pankaj-blog.com/article-recette-indienne-korma-video-72101596.html).
  * [Ratatouille](https://www.marmiton.org/recettes/recette_ratatouille_23223.aspx).
-
- * [Navets à l'orientale](https://cuisine.journaldesfemmes.fr/recette/347065-navets-a-l-orientale).
- * [Navets caramelisés](https://www.marmiton.org/recettes/recette_navets-caramelises_20708.aspx).
 
  * [Gratin de chou-fleur](https://www.marmiton.org/recettes/recette_gratin-de-chou-fleur_23112.aspx).
 
