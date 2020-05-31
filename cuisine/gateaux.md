@@ -27,6 +27,14 @@
 
 Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
 
+## Chocolat
+
+ * [Brownies](https://www.marmiton.org/recettes/recette_brownies_16951.aspx).
+ * [Fondant au chocolat](https://www.marmiton.org/recettes/recette_fondant-au-chocolat_15025.aspx).
+ * [Moelleux au chocolat](https://www.marmiton.org/recettes/recette_moelleux-au-chocolat_17982.aspx).
+ * [Gâteau simple au chocolat](https://www.cuisineaz.com/recettes/gateau-simple-au-chocolat-34206.aspx).
+ * [Gâteau au chocolat fondant rapide](https://www.marmiton.org/recettes/recette_gateau-au-chocolat-fondant-rapide_166352.aspx).
+
 ## Riz au lait et gâteaux de riz ou de semoule
 
  * [Riz au lait de ma maman](https://www.marmiton.org/recettes/recette_riz-au-lait-de-ma-maman_20380.aspx).
