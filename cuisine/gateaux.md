@@ -9,9 +9,6 @@
 
  * [Kougelhopf, kouglof](https://www.recettes-alsace.fr/kougelhopf-kouglof/).
 
- * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
- * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
-
  * [Pudding](https://www.marmiton.org/recettes/recette_le-pudding-de-quand-j-etais-p-tite_31801.aspx).
 
  * [Crumble à la rhubarbe](https://www.marmiton.org/recettes/recette_crumble-a-la-rhubarbe_29261.aspx).
@@ -26,6 +23,12 @@
  * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
 
 Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+
+## Biscuits
+
+ * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
+ * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
+ * [Cookies maison au chocolat](https://www.marmiton.org/recettes/recette_cookies-maison_86989.aspx).
 
 ## Chocolat
 
@@ -70,6 +73,8 @@ Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/rec
  * [Gâteau de ma grand-mère](https://www.marmiton.org/recettes/recette_gateau-de-ma-grand-mere_17731.aspx).
  * [Gâteau grand-mère](https://cuisine.journaldesfemmes.fr/recette/344653-gateau-grand-mere).
  * [Gâteau aérien (crème fraîche) très rapide](https://www.marmiton.org/recettes/recette_gateau-aerien-creme-fraiche-tres-rapide_314416.aspx).
+
+ * [Gâteau au fromage blanc](https://www.ptitchef.com/recettes/dessert/gateau-au-fromage-blanc-super-facile-fid-1507834).
 
  * [Cheesecake aux framboises sans cuisson](https://www.cuisineaz.com/recettes/cheesecake-aux-framboises-sans-cuisson-80993.aspx).
 
