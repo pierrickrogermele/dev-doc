@@ -17,7 +17,6 @@
   + [Le Boulage Préformage](https://www.youtube.com/watch?v=zqsnz6XXqVs).
  * [Boulangerie Pas à pas](https://www.youtube.com/channel/UCyukUh-uOQJE6YqedFTkQlw):
   + [Pain facile](https://www.youtube.com/watch?v=GmgccO5yDOk).
-  + [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
   + [La Tourte Auvergnate](https://www.youtube.com/watch?v=1fHzga2ZL9o).
   + [Façonnage, tourne et mise au four.](https://www.youtube.com/watch?v=WdROz5L2n5Y).
   * [Pain de seigle au citron](https://www.youtube.com/watch?v=QhCXDNDY6w4).
@@ -67,6 +66,20 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * [Brioches (croissants italiens)](https://ricette.giallozafferano.it/Brioches.html).
  * [Croissants sfogliati: la ricetta per farli in casa](https://video.cookist.it/video/an/Xnna_-SwH3PFLOiT).
  * [Pains au lait](http://www.marmiton.org/recettes/recette_petits-pain-au-lait-maison_220199.aspx).
+
+## Pain de mie
+
+ * [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
+ * [Pain de mie](https://cuisine.journaldesfemmes.fr/recette/309493-pain-de-mie).
+
+ * 500g farine T55
+ * 15g  sucre en poudre
+ * 15g  sel
+ * 20g  levure fraiche
+ * 50g beurre
+ * 250ml lait
+ * 1/2 tasse eau
+ * 40min a 210 C
 
 ## Pain de froment sur poolish
 
