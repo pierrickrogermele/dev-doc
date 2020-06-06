@@ -11,6 +11,8 @@
 
 ## Légumes
 
+ * [Gratin d'asperges blanches au cantal](https://www.marmiton.org/recettes/recette_gratin-d-asperges-blanches-au-cantal_73404.aspx).
+
  * [Recette indienne Légumes Korma en vidéo](http://www.pankaj-blog.com/article-recette-indienne-korma-video-72101596.html).
  * [Ratatouille](https://www.marmiton.org/recettes/recette_ratatouille_23223.aspx).
 
