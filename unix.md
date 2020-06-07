@@ -375,6 +375,10 @@ sudo timedatectl set-ntp on
 
 ## Network & web
 
+ * [khal](http://lostpackets.de/khal/), CLI calendar program.
+ * [khard](https://github.com/scheibler/khard/), CLI address book program.
+ * [Vdirsyncer](https://github.com/pimutils/vdirsyncer), synchronizes your calendars and addressbooks between two storages.
+
 ### Lynx
 
 Cmd | Desc.
@@ -3539,6 +3543,24 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 `.xsessionrc` is specific to Debian and Ubuntu.
 
 `.xprofile` is specific to GDM (Gnome).
+
+### i3
+
+Basic commands:
+	$mod+<Enter> open a terminal
+	$mod+d open dmenu (text based program launcher)
+	$mod+r resize mode ( or to leave resize mode)
+	$mod+shift+e exit i3
+	$mod+shift+r restart i3 in place
+	$mod+shift+c reload config file
+	$mod+shift+q kill window (does normal close if application supports it)
+
+Windows layout:
+	$mod+w tabbed layout
+	$mod+e vertical and horizontal layout (switches to and between them)
+	$mod+s stacked layout
+	$mod+f fullscreen
+	$mod+shift+<direction key> Move window in direction (depends on direction keys settings)
 
 ### Xfce
 
