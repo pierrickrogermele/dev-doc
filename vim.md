@@ -1525,7 +1525,7 @@ Command | Description
 `]S`    | Like ]s but only stop at bad words, not at rare words or words for another region.
 `[S`    | Move backward.
 `zg`    | Add word as good word to spell file (the word under cursor, or the selected word in visual mode).
-`zG`    | Add word as goot word into internal word list.
+`zG`    | Add word as good word into internal word list.
 `zw`    | Add word as bad word to spell file.
 `zW`    | Add word as bad word into internal word list.
 `zuw`   | Remove word from list.
@@ -1534,7 +1534,7 @@ Command | Description
 `zuG`   | Remove word from list.
 `z=`    | Make suggestions for bad word.
 
-Repeat the replacement done by |z=| for all matches	with the replaced word in the current window:
+Repeat the replacement done by |z=| for all matches with the replaced word in the current window:
 ```
 :spellr[epall]
 ```
