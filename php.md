@@ -167,13 +167,10 @@ $version = phpversion();
 Running different code depending on version:
 ```php
 <?php
-switch(true) {
-case (version_compare("5", phpversion(), "<=")):
+if (version_compare(phpversion(), "5", ">=")) {
 	//do php5 code
-	break;
-case (version_compare("5", phpversion(), ">")):
+} else {
 	//do php4 code
-	break;
 }
 ```
 
@@ -350,6 +347,11 @@ To convert from numeric to string and vice-versa:
 $str = strval($number);
 $number = intval($str);
 ?>
+```
+
+Convert a string to boolean:
+```php
+<? $bool = $s ? true : false; // '' and '0' are considered false, any other string is considered true.
 ```
 
 Repeat:
@@ -1281,10 +1283,8 @@ flclose($fh);
 
 Open a file:
 ```php
-<?php
-$handle = fopen("/home/rasmus/file.txt", "r");
+<? $handle = fopen("/home/rasmus/file.txt", "r");
 fclose($handle);
-?>
 ```
 
 Open a temporary file:
@@ -1294,33 +1294,27 @@ Open a temporary file:
 
 List files using pattern:
 ```php
-<?php
-foreach (glob("*.txt") as $filename) {
+<? foreach (glob("*.txt") as $filename) {
 	// ...
 }
-?>
 ```
 
 Getting file size:
 ```php
-<?php
-filesize($filename);
-?>
+<? filesize($filename);
 ```
 
 Getting file base name:
 ```php
-<?php
-$path = "/home/httpd/html/index.php";
+<? $path = "/home/httpd/html/index.php";
 $file = basename($path);         // $file is set to "index.php"
 $file = basename($path, ".php"); // $file is set to "index"
 $dir = dirname($path);
-?>
 ```
 
 Get file extension:
 ```php
-<? pathinfo($path, PATHINFO_EXTENSION);
+<? pathinfo('myfile.ext', PATHINFO_EXTENSION); // Returns 'ext'.
 ```
 
 Getting dir name:
@@ -1896,6 +1890,20 @@ BOF:
  * [PHP File Upload](https://www.w3schools.com/php/php_file_upload.asp).
 
 ## Interesting modules
+
+### PhpSpreadsheet
+
+ * [PhpSpreadsheet](https://github.com/PHPOffice/PhpSpreadsheet).
+ * [Welcome to PhpSpreadsheet's documentation](https://phpspreadsheet.readthedocs.io/en/latest/#learn-by-documentation).
+ * [Accessing cells](https://phpspreadsheet.readthedocs.io/en/latest/topics/accessing-cells/).
+
+Read and write MS Excel xlsx and xls documents.
+
+```php
+<?php
+$spreadsheet = \PhpOffice\PhpSpreadsheet\IOFactory::load("05featuredemo.xlsx");
+$sheet = $spreadsheet->getSheet(0);
+```
 
 ### Symfony\Component\Yaml
 
