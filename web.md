@@ -188,6 +188,13 @@ In Apache 2.4:
 
 Make sure that the path `/Users/someuser/dev/my/project/site` is allowed for access by everyone, as well as the files contained in the folder.
 
+#### Upload file size limit
+
+```apache
+post_max_size = 100M
+upload_max_filesize = 100M
+```
+
 #### .htaccess
 
  * [Apache HTTP Server Tutorial: .htaccess files](https://httpd.apache.org/docs/2.4/howto/htaccess.html).
