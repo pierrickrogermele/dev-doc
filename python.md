@@ -1,3 +1,4 @@
+<!-- vimvars: b:markdown_embedded_syntax={'python':''} -->
 PYTHON
 ======
 
@@ -284,6 +285,11 @@ s[2] = 'z' # ILLEGAL !
 Get the size of a string:
 ```python
 len(s)
+```
+
+Search for a substring:
+```python
+s.find(t, start, end) # Returns -1 if not found, index otherwise.
 ```
 
 Split a string into a list:
@@ -1045,7 +1051,7 @@ obj1 is obj2
 obj1 is not obj2
 ```
 
-### If then else
+### if elif else
 
 ```python
 if x < 0:
@@ -1141,13 +1147,13 @@ Try block:
 ```python
 try:
 	# ...
-except ValueError:	# catch exception whose type is ValueError
+except ValueError: # catch exception whose type is ValueError
 	print "Some error occured !"
 except (RuntimeError, TypeError, NameError):
 	pass
-except:			# catch all exceptions
+except: # catch all exceptions
 	print "Unexpected error"
-	raise		# throw the exception again
+	raise # throw the exception again
 else:
 	# put here some code that will be executed only if the try clause doesn't raise an exception
 ```
@@ -1205,6 +1211,19 @@ with open(myfilepath, 'rb') as csvfile:
 ```
 
 The expression between `with` and `as` must return a [context manager](https://docs.python.org/2/reference/datamodel.html#context-managers).
+
+### Switch / case
+
+Switch statement does not exist in Python.
+Use a dictionnary instead, or if/elif.
+
+```python
+def f(x):
+	return {
+		'a': 1,
+		'b': 2
+	}.get(x, 9)  # 9 is default.
+```
 
 ### assert
 
@@ -1805,7 +1824,7 @@ re.match("c", "abcdef")  # No match
 
 Search --> checks for a match anywhere in the string (like in Perl):
 ```python
-re.search("c", "abcdef") # Match
+if (in_header and re.search("c", "abcdef") # Match
 ```
 
 Grouping:
@@ -2117,7 +2136,7 @@ It also contains a `__init__.py` file, which in its simplest form is an empty fi
 Importing a module defined inside a package:
 ```python
 import pkg.subpkg.mymodule
-pkg.subpkg.mymodule.myfunc()	# myfunc must be fully referenced
+pkg.subpkg.mymodule.myfunc() # myfunc must be fully referenced
 ```
 or
 ```python
@@ -2132,7 +2151,7 @@ myfunc()
 
 Importing all:
 ```python
-from pkg import *	# import everything in the __all__ list defined inside __init__.py
+from pkg import * # import everything in the __all__ list defined inside __init__.py
 ```
 This behaviour is explained by the fact that under Microsoft OS like Windows 95 or MS-DOS, there are ambiguities about file names, and thus about module names, so they need to be properly defined somewhere.
 ```python
