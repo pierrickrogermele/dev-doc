@@ -11,3 +11,7 @@
  * [BBC](https://www.bbc.com/).
  * [EURACTIV](https://www.euractiv.fr/).
  * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+
+ * [Apple Music](https://music.apple.com/).
+ * [Deezer](http://www.deezer.com).
+ * [Spotify](http://www.spotify.com).
