@@ -98,6 +98,7 @@ db = conn.getDB("myDatabase");
 
  * [Introduction to MongoDB](https://docs.mongodb.com/manual/introduction/).
  * [User Management Methods](https://docs.mongodb.com/manual/reference/method/js-user-management/).
+ * [Manage Users and Roles](https://docs.mongodb.com/manual/tutorial/manage-users-and-roles/).
  * [Collection-Level Access Control](https://docs.mongodb.com/manual/core/collection-level-access-control/).
  * [Role-Based Access Control](https://docs.mongodb.com/manual/core/authorization/).
  * [Privilege Actions](https://docs.mongodb.com/manual/reference/privilege-actions/).
@@ -155,9 +156,20 @@ use mydb
 db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
 ```
 
+#### Roles
+
+ * [Create a User-Defined Role](https://docs.mongodb.com/manual/tutorial/manage-users-and-roles/#create-a-user-defined-role).
+
 Print users with all their privileges:
 ```js
 db.getRoles({showPrivileges:1})
+```
+
+"Except for roles created in the admin database, a role can only include privileges that apply to its database and can only inherit from other roles in its database."
+
+To grant a role (from another database) to a user:
+```js
+db.grantRolesToUser("<username>", { role: "<role>", db: "<database>" })
 ```
 
 ### Cloning a database
@@ -174,6 +186,8 @@ In one step:
 ```sh
 mongodump --archive --db=test | mongorestore --archive  --nsFrom='test.*' --nsTo='examples.*'
 ```
+
+There is an option `--dumpDbUsersAndRoles` for `mongodump` for dumping users and roles, and an option `--restoreDbUsersAndRoles` for `mongorestore` for restoring users and roles. However restoring users does not work when restoring to a different destination database (`--toDb`), it seems only to work when restoring  to the same database name.
 
 ### Managing databases
 

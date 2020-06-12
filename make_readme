@@ -20,12 +20,29 @@ sub get_folders($) {
 sub get_md_file_title($) {
 	my ($file) = @_;
 
-	my $title;
+	my $title = undef;
 
 	open my $fd, "<$file";
-	chomp($title = <$fd>);
-	$title =~ s/^# *//;
+	my $i = 0;
+	my $prev_line = undef;
+	while (<$fd>) {
+		chomp;
+		if (/^#/) {
+			$title = $_;
+			$title =~ s/^# *//;
+			last;
+		}
+		if (/^===/ && defined($prev_line)) {
+			$title = $prev_line;
+			last;
+		}
+		$prev_line = $_;
+		++$i;
+		last if $i > 5;
+	}
 	close $fd;
+
+	print STDERR "Cannot find title in file \"$file\".\n" unless defined($title);
 
 	return $title;
 }

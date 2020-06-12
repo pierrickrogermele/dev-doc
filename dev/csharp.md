@@ -1,6 +1,5 @@
 <!-- vimvars: b:markdown_embedded_syntax={'cs':'','sh':'bash'} -->
-C#
-==
+# C#
 
  * [The Mono log profiler](http://www.mono-project.com/docs/debug+profile/profile/profiler/).
 

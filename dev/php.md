@@ -1304,12 +1304,20 @@ Getting file size:
 <? filesize($filename);
 ```
 
-Getting file base name:
+Concatenate file path:
 ```php
-<? $path = "/home/httpd/html/index.php";
-$file = basename($path);         // $file is set to "index.php"
-$file = basename($path, ".php"); // $file is set to "index"
-$dir = dirname($path);
+<?php $mypath = '/some/path/' . 'myfile';
+```
+
+Get file base name:
+```php
+<? $file = basename('/my/path/to/index.php');         // $file is set to "index.php"
+   $file = basename('/my/path/to/index.php', ".php"); // $file is set to "index"
+```
+
+Get directory part:
+```php
+<? $dir = dirname($path);
 ```
 
 Get file extension:
@@ -1317,12 +1325,9 @@ Get file extension:
 <? pathinfo('myfile.ext', PATHINFO_EXTENSION); // Returns 'ext'.
 ```
 
-Getting dir name:
+Get real path (resolve sym link and relative paths):
 ```php
-<?php
-$path = "/etc/passwd";
-$dir = dirname($path); // $dir is set to "/etc"
-?>
+<? realpath('/my/path/../to/some/../folder');
 ```
 
 Getting current working directory:
@@ -1339,11 +1344,6 @@ if (file_exists($filename)) {
 	//...
 }
 ?>
-```
-
-Concatenate file path:
-```php
-<?php $mypath = '/some/path/' . 'myfile';
 ```
 
 File type:
@@ -1558,12 +1558,17 @@ Test if a class exists:
 <? class_exists("MyClass");
 ```
 
+Test if an object is of a class (inherits or is of this class):
+```php
+<? is_a($myobj, "MyClass");
+```
+
 Test if a class inherits from another class:
 ```php
 <? is_subclass_of("MySubClass", "MySuperClass");
 ```
 
-Test if an object is of a class or inherits from a class:
+Test if an object'class is a subclass of a class:
 ```php
 <? is_subclass_of($myObj, "MyClass");
 ```
@@ -1629,6 +1634,18 @@ class B extends A {
 		// ...
 	}
 }
+```
+
+### Object comparison
+
+Test if two objects have the same field values:
+```php
+<? $a == $b
+```
+
+Test if two objects refer to the same instance:
+```php
+<? $a === $b
 ```
 
 ### `__toString()`

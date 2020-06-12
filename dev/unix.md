@@ -3544,7 +3544,28 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
 `.xprofile` is specific to GDM (Gnome).
 
-### i3
+### xrandr
+
+Setup external screens for use. Improvement of xinerama.
+
+To get a list of available screens:
+```sh
+xrandr
+```
+
+To use a screen:
+```sh
+xrandr --output HDMI-2 --auto --right-of eDP1
+```
+
+Create a virtual monitor from two monitors:
+```sh
+xrandr --setmonitor NameOfDisplay auto HDMI-A-0,HDMI-A-1
+```
+
+### i3wm
+
+ * [i3](https://i3wm.org/).
 
 Basic commands:
 	$mod+<Enter> open a terminal
@@ -3561,6 +3582,15 @@ Windows layout:
 	$mod+s stacked layout
 	$mod+f fullscreen
 	$mod+shift+<direction key> Move window in direction (depends on direction keys settings)
+
+### xmonad
+
+ * [xmonad](https://xmonad.org/).
+
+Default commands:
+	mod-shift-return    Open terminal
+	mod-shift-Q         Quit xmonad
+	mod-space           Cycles through tiling algorithms.
 
 ### Xfce
 
