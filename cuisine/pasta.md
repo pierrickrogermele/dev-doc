@@ -4,6 +4,7 @@
  * [Spaetzle, pâtes alsaciennes](https://www.recettes-alsace.fr/spaetzle-pates-alsaciennes/).
 
 Soba noodles in duck broth	canard	Japon		http://www.japanesefoodreport.com/2008/01/soba-noodles-in-duck-broth.html	
+
 Spaghetti alla Carbonara	pâtes	Italie	Rome	https://ricette.giallozafferano.it/Spaghetti-alla-Carbonara.html	
 Spaghetti con sugo alle carote	pâtes	Italie		https://ricette-utenti.cookaround.com/spaghetti-con-sugo-alle-carote.html	
 Gnocchi alla romana		Italie		http://ricette.giallozafferano.it/Gnocchi-alla-romana.html	

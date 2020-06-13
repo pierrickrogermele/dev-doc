@@ -11,7 +11,6 @@ Temps de cuisson des saucisses de Francfort : 5 minutes dans l'eau frémissante.
 
  * [Poulet à l’ananas](https://blog.giallozafferano.it/ilchiccodimais/pollo-allananas-ricetta-cinese/).
  * [Japanese Chicken, Radish and Tofu Stew](https://www.foodiebaker.com/japanese-chicken-radish-and-tofu-stew/).
- * [Oden](https://www.justonecookbook.com/oden/).
  * [Butter chicken](https://www.allrecipes.com/recipe/45957/chicken-makhani-indian-butter-chicken/).
 
 ## Porc

@@ -5,3 +5,5 @@
  * [Mapo Tofu](https://www.chinasichuanfood.com/mapo-tofu-recipe/).
 
  * [Tofu bourguignon végétalien](http://www.recettesjecuisine.com/fr/recettes/plats-principaux/vege/tofu-bourguignon-vegetalien/).
+
+ * [Oden](https://www.justonecookbook.com/oden/).
