@@ -81,6 +81,17 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * 1/2 tasse eau
  * 40min a 210 C
 
+Produit                     | Base  | J1    | J2
+--------------------------- | ----- | ----- | ----
+Farine de blé semi-complète | 800g  | 200g  | 600g
+du moulin de Mirebeau       |       |       |     
+sel                         | 13g   | 0     | 13g ou 24g?
+sucre                       | 24g   | 0     | 24g
+levure                      | 8g    | 3g    | 5g
+eau                         | 250ml | 250ml | 250ml + 15 ml
+lait                        | 250ml | 0     | 250ml + ? 15 ml ?
+beurre                      | 80g   | 0     | 80g + 20g?
+
 ## Pain de froment sur poolish
 
  * [Pain sur Poolish à la maison](https://www.youtube.com/watch?v=Me7tGobX-Gw).
