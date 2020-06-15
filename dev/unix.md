@@ -950,6 +950,13 @@ Deactivate a service (stop it):
 systemctl stop myunit
 ```
 
+#### journalctl
+
+Print system logs:
+```sh
+journalctl
+```
+
 ### CUPS
 
  * [Connecting Ubuntu client to Cups server](http://blog.delgurth.com/2009/01/06/connecting-ubuntu-client-to-cups-server/).
@@ -1339,6 +1346,11 @@ lsof | grep TCP
 
 ```bash
 mount -t cifs //123.456.78.90/MyFolder my/local/dir -o username=...,password=...
+```
+
+To mount automatically, on demand, create a file /etc/autofs/auto.myext:
+```conf
+mylocalfoldername -fstype=cifs,username=******,workgroup=*****,password=*******,uid=${UID},gid=******* ://myserver/my/path/to/my/folder/
 ```
 
 Mount a samba directory under MacOS-X:
@@ -3543,6 +3555,10 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 `.xsessionrc` is specific to Debian and Ubuntu.
 
 `.xprofile` is specific to GDM (Gnome).
+
+### Touchpad
+
+ * [Enable tap to click in i3 WM](https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/).
 
 ### xrandr
 
