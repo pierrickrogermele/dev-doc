@@ -3560,6 +3560,33 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
  * [Enable tap to click in i3 WM](https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/).
 
+### xdg-settings
+
+Get and set settings for the desktop environment.
+
+Get default browser:
+```sh
+xdg-settings get default-web-browser
+```
+
+Change default browser:
+```sh
+xdg-settings set default-web-browser firefox.desktop
+```
+
+### xdg-open 
+
+Opens a file with the preferred user's application.
+
+### xset
+
+Set user preferences for X.
+
+Get current settings:
+```sh
+xset q
+```
+
 ### xrandr
 
 Setup external screens for use. Improvement of xinerama.
