@@ -381,10 +381,100 @@ sudo timedatectl set-ntp on
 
 ### Lynx
 
+ * [Lynx users guide](http://lynx.invisible-island.net/lynx_help/Lynx_users_guide.html).
+
+Open page
+```bash
+lynx www.mypage.com
+```
+Or press "G" key inside lynx
+
 Cmd | Desc.
 --- | --------
 a   | Add current page to bookmarks.
 v   | View bookmarks.
+
+### Links
+
+ * [Links user manual](http://links.twibright.com/user_en.html).
+
+
+#### Debugging
+
+Turning on log output
+```bash
+lynx -trace ...
+```
+Log is written inside Lynx.trace file.
+
+#### Config file
+
+First lynx reads the common config file (On MacOS-X brew install: /usr/local/Cellar/lynx/2.8.8/etc/lynx.cfg)
+
+Force cfg file
+```bash
+lynx -cfg my_file
+```
+
+#### Print configuration
+```bash
+lynx -show_cfg
+```
+
+Setting option value in config file:
+```
+character_set=utf-8
+```
+For a comment use #.
+
+#### Key commands
+
+Key       | Description
+--------- | --------------------------------
+`G`       | Open link.
+`UP/DOWN` | Move up and down inside a page.
+`LEFT`    | Back to previous page.
+`RIGHT`   | Follow link.
+`SPACE`   | Move down in a page.
+`CTRL-R`  | Reload current page.
+
+### W3M
+
+Open a link:
+```bash
+w3m www.lemonde.fr
+```
+
+Cookie:
+```bash
+w3m -cookie ...
+```
+Don't work perfectly with cookies. Doesn't recognize/accept cookies of www.mediapart.fr for instance.
+
+Commands:
+
+Key      | Description
+-------- | ----------------------------------------------------
+`l`      | Cursor right.
+`h`      | Cursor left. Cursor pad also works.
+`j`      | Cursor down.
+`k`      | Cursor up.
+`SPC`    | Go forward one screen of page
+`b`      | Go back one screen of page
+`:`      | Toggle auto detection of URLs (http://...):
+`B`      | Go backward (previous opened page)
+`RET`    | Follow link.
+`TAB`    | Next link.
+`ESC TAB`| Previous link.
+
+### vimb
+
+Vim like browser.
+
+bma | Add bookmark
+bmr | Remove bookmark
+y   | Yank current URI to clipboard
+"xy | Yank current URI into register x
 
 ### Wake On LAN
 
@@ -2388,7 +2478,9 @@ pmset -g batt
 
 ### pacman (ArchLinux)
 
-Install or upgrade a package:
+ * [Mirrors](https://wiki.archlinux.org/index.php/Mirrors).
+
+Install or upgrade (synchronize) a package:
 ```bash
 pacman -S mypkg
 ```
@@ -2423,6 +2515,14 @@ Update databases:
 ```bash
 pacman -Syy # The second `y` force refresh of all databases even if it appears up-to-date.
 ```
+A file `/etc/pacman.d/mirrorlist.pacnew`
+
+To select the fastest mirrors, use `rankmirrors` from `pacman-contrib` package:
+```sh
+cp /etc/pacman.d/mirrorlist mirrorlist.bkp
+sed -i 's/^#Server/Server/' mirrorlist.bkp
+rankmirrors -n 10 mirrorlist.bkp > mirrorlist.10fastest
+```
 
 Upgrade/update all packages:
 ```bash
@@ -2441,9 +2541,14 @@ pacman -Qo myfile
 ```
 
 Remove a package and all its dependencies that are not used by any other package
-and has not been installed explictly:
-```bash
+and has not been installed explicitly:
+```sh
 sudo pacman -Rs mypkg
+```
+
+Downgrade packages (in case some packages are detected as newer than in repository):
+```sh
+sudo pacman -Suu
 ```
 
 ### Homebrew / brew
@@ -2840,6 +2945,34 @@ for f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done
 Rotate 180 degrees:
 ```bash
 magick convert -rotate 180 input.jpeg output.jpeg
+```
+
+### feh
+
+Light image viewer.
+
+Display images of the current directory:
+```sh
+feh -g 640x480 --auto-rotate -. -d -S filename .
+```
+	-g ...x... set/force geometry
+	-. scale image
+	-d Print filename onto the image
+	-S ... sort by type: filename, name, dirname, mtime, width, size, ...
+
+Set X background image:
+```sh
+feh --bg-scale /path/to/image.file
+```
+Other scaling for background:
+	--bg-tile FILE
+	--bg-center FILE
+	--bg-max FILE
+	--bg-fill FILE
+
+Set randomly the background image:
+```sh
+feh --bg-fill --randomize ~/data/wallpapers/
 ```
 
 ### exiftool
@@ -3460,6 +3593,27 @@ Create a template file by extracting strings to translate from the code:
 xgettext --from-code=UTF-8 -o messages.pot *.php
 ```
 
+## winehq (wine and winetricks)
+
+ * [WineHQ](https://www.winehq.org/).
+
+Default prefix is `~/.wine`.
+
+Install .NET 4.5:
+```sh
+winetricks dotnet45
+```
+
+Remove wine installation:
+```sh
+winetricks annihilate
+```
+
+Run a program:
+```sh
+wine myprog.exe
+```
+
 ## Numbers (calculate and compute)
 
 ### seq
@@ -3601,6 +3755,11 @@ To use a screen:
 xrandr --output HDMI-2 --auto --right-of eDP1
 ```
 
+To disable a screen:
+```sh
+xrandr --output DP-1-2 --off
+```
+
 Create a virtual monitor from two monitors:
 ```sh
 xrandr --setmonitor NameOfDisplay auto HDMI-A-0,HDMI-A-1
@@ -3629,11 +3788,38 @@ Windows layout:
 ### xmonad
 
  * [xmonad](https://xmonad.org/).
+ * [XMonad.Doc.Configuring](https://hackage.haskell.org/package/xmonad-contrib-0.16/docs/XMonad-Doc-Configuring.html) --> how to write an xmonad configuration.
+ * [Xmonad default bindings](https://wiki.haskell.org/File:Xmbindings.png).
+
+`mod` is left Alt by default.
 
 Default commands:
 	mod-shift-return    Open terminal
-	mod-shift-Q         Quit xmonad
+	mod-shift-q         Quit xmonad
+	mod-q               Compile and reload configuration
 	mod-space           Cycles through tiling algorithms.
+	mod-j               Move focus to previous window
+	mod-k               Move focus to next window
+	mod-,               Increase the number of windows in the master pane
+	mod-.               Decrease the number of windows in the master pane
+	mod-return          Swap focused window with window in master pane
+	mod-shift-j         Swap focused window with next window
+	mod-shift-k         Swap focused window with previous window
+	mod-h               Increase/Decrease window size
+	mod-l               Increase/Decrease window size
+	mod-button1         Drag a window and make it float
+	mod-t               Put back a floating window into the tiling layer.
+	mod-button2         Bring floating window to the top
+	mod-button3         Resize floating window
+	mod-shift-c         Kill window
+	mod-p               Open dmenu
+	mod-n               Switch to workspace n (1-9)
+	mod-shift-n         Move focused window to workspace n (1-9)
+
+Compile configuration file:
+```sh
+xmonad --recompile
+```
 
 ### Xfce
 
@@ -3720,3 +3906,12 @@ Set cursor color:
 ```bash
 xterm -cr white
 ```
+
+### urxvt
+
+ * [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
+
+### xsel
+
+ A clipboard manager.
+ Can be used in combination with urxvt, since urxvt has no copy&paste feature by default (it needs a perl extesion). See [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
