@@ -9,6 +9,33 @@
 
  * [.NET Core on ArchLinux](https://wiki.archlinux.org/index.php/.NET_Core).
 
+### Running
+
+Get help:
+```sh
+dotnet --help
+```
+
+Get help on a command:
+```sh
+dotnet new --help
+```
+
+Create Hello World console app:
+```sh
+dotnet new console
+```
+
+Create WPF console app:
+```sh
+dotnet new wpf
+```
+
+Run the current project:
+```sh
+dotnet run
+```
+
 ## Mono
 
  * [Mono Project](http://www.mono-project.com).
@@ -83,7 +110,20 @@ using My.Library;
 
 ## Windows Presentation Foundation (WPF)
 
-  * [How to: Use a Grid for Automatic Layout](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-use-a-grid-for-automatic-layout).
+ * [Tutorial: Create a simple application with C#](https://docs.microsoft.com/en-us/visualstudio/get-started/csharp/tutorial-wpf?view=vs-2019).
+ * [How to: Use a Grid for Automatic Layout](https://docs.microsoft.com/en-us/dotnet/framework/wpf/advanced/how-to-use-a-grid-for-automatic-layout).
+
+It is Windows only. Not portable, neither on macos nor on Linux.
+
+## Avalonia
+
+Avalonia is a cross-platform XAML-based UI framework.
+
+Install with NuGet package manager for .NET:
+```
+nuget install Avalonia
+nuget install Avalonia.Desktop
+```
 
 ## SQL
 
