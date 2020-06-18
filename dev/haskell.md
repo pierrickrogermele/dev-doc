@@ -1,6 +1,8 @@
 <!-- vimvars: b:markdown_embedded_syntax={'haskell':''} -->
 # Haskell
 
+ * [Haskell/Indentation](https://en.wikibooks.org/wiki/Haskell/Indentation).
+
 ## Comment
 
 A comment:
@@ -127,4 +129,41 @@ succ 8 -- Returns 9
 ```haskell
 min 9 10
 max 1.2 6.7
+```
+
+## Errors
+
+```
+    Could not find module ‘System.Environment’
+    There are files missing in the ‘base-4.14.0.0’ package,
+    try running 'ghc-pkg check'.
+    Use -v (or `:set -v` in ghci) to see a list of the files searched for.
+ 
+```
+See <https://wiki.archlinux.org/index.php/Haskell#Installation> about "Problems with linking". `cabal` needs to be invoked with shared libraries use enabled.
+Set the following lines:
+```haskell
+library-vanilla: False
+shared: True
+executable-dynamic: True
+program-default-options
+  ghc-options:
+    -dynamic
+```
+inside `~/.cabal/config`.
+
+## Hackage
+
+ * [Hackage: The Haskell Package Repository](https://hackage.haskell.org/).
+
+Use `cabal-install` package to install packages.
+
+To download package list (needed before first install):
+```sh
+cabal update
+```
+
+Install a package:
+```sh
+cabal install mypkg
 ```
