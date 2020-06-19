@@ -30,6 +30,8 @@ Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/rec
  * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
  * [Cookies maison au chocolat](https://www.marmiton.org/recettes/recette_cookies-maison_86989.aspx).
 
+ * [Sablés aux fruits confits](https://cuisine.journaldesfemmes.fr/recette/315684-sables-aux-fruits-confits).
+
 ## Chocolat
 
  * [Brownies](https://www.marmiton.org/recettes/recette_brownies_16951.aspx).
