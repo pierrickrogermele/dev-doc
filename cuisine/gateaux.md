@@ -32,6 +32,8 @@ Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/rec
 
  * [Sablés aux fruits confits](https://cuisine.journaldesfemmes.fr/recette/315684-sables-aux-fruits-confits).
 
+ * [Scones](https://www.bbc.co.uk/food/recipes/scones_1285).
+
 ## Chocolat
 
  * [Brownies](https://www.marmiton.org/recettes/recette_brownies_16951.aspx).

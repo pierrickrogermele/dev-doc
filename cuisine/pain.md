@@ -72,18 +72,18 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
  * [Pain de mie](https://cuisine.journaldesfemmes.fr/recette/309493-pain-de-mie).
 
- * 40min à 210 C
+ * 40min à 210 C --> arrêter avant 30min?
 
 Produit                     | Base  | J1    | J2
 --------------------------- | ----- | ----- | ----
 Farine de blé semi-complète | 500g  | 200g  | 300g
 Farine de seigle            | 300g  | 0     | 300g
-sel                         | 13g   | 0     | 13g (dans le cas de beurre salé)
+sel                         | 13g   | 0     | 13g (dans le cas de beurre salé), ou 24g
 sucre                       | 24g   | 0     | 24g
 levure                      | 8g    | 3g    | 5g
 eau                         | 250ml | 250ml | 0
 lait                        | 250ml | 0     | 250ml + 125ml
-beurre salé                 | 80g   | 0     | 80g
+beurre salé ou huile        | 80g   | 0     | 80g
 
 ## Pain de froment sur poolish
 
