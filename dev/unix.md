@@ -502,6 +502,11 @@ dhclient enp2s0    # Obtain a new lease
 
  * ArchLinux wifi: [WPA supplicant](https://wiki.archlinux.org/index.php/WPA_supplicant).
 
+Monitor wifi signal quality:
+```sh
+wavemon
+```
+
 Start daemon:
 ```bash
 sudo wpa_supplicant -B -i wlp2s0 -c /etc/wpa_supplicant/wpa_supplicant-wlp2s0.conf
@@ -1011,9 +1016,20 @@ Stop a service under macOS:
 Launchctl stop org.postfix.master
 ```
 
-#### systemctl
+#### systemd
 
  * [systemd](https://wiki.archlinux.org/index.php/Systemd).
+
+`systemd` configuration for power management is stored in `/etc/systemd/logind.conf`.
+It handles how to react when system is idle, and when power/sleep/hibernate button is pressed, or when laptop lid is closed.
+
+See man page `logind.conf`.
+
+In `/etc/systemd/sleep.conf` is enabled or disabled suspend, hibernate and other hydrid modes.
+
+See man page `systemd-sleep.conf`.
+
+#### systemctl
 
 Enable a service with systemd (ArchLinux, ...) for starting on bootup:
 ```bash
@@ -1231,6 +1247,11 @@ Execute some code for each found file:
 find . | while read f ; do 
 	echo Found: $f
 done
+```
+
+Move recent files (from today) from Download folder to another place:
+```sh
+find ~/Downloads/ -type f -daystart -mtime 0 -exec mv \{\} my/other/place/ \;
 ```
 
 Levels of search
@@ -2465,6 +2486,12 @@ If `-S` is not set:
 
 ## Power management
 
+See:
+ * [XScreenSaver](https://wiki.archlinux.org/index.php/XScreenSaver).
+ * [Session lock](https://wiki.archlinux.org/index.php/Session_lock).
+ * `xset dpms`.
+ * `systemd` about `logind.conf` and `sleep.conf`.
+
 ### pmset
 
 BSD command.
@@ -2473,6 +2500,14 @@ Get battery information:
 ```bash
 pmset -g batt
 ```
+
+### acpi
+
+Shows battery information.
+```sh
+acpi
+```
+
 
 ## Package management
 
@@ -3627,10 +3662,20 @@ seq 100 104 # --> 100 101 102 103 104
 ### bc
 
 Set the number of decimals to print for output:
-```
+```bc
 scale=2
 ```
 By default only integer parts are printed (zero decimals).
+
+`;` can be used to separate instructions.
+```bc
+scale=3;print 1.2356
+```
+
+Taking the integer part of a number:
+```bc
+scale=0;print 1.23
+```
 
 ### calc
 
@@ -3739,6 +3784,30 @@ Set user preferences for X.
 Get current settings:
 ```sh
 xset q
+```
+
+Set DPMS (Display Power Management Settings / Energy Star):
+```sh
+xset dpms 240 480 720 # standby suspend off (in seconds)
+```
+
+### xrdb
+
+Load Xresources file.
+
+Load values and merge with current settings:
+```sh
+xrdb -merge ~/.Xresources
+```
+
+Load values and replace current settings:
+```sh
+xrdb ~/.Xresources
+```
+
+Print current values:
+```sh
+xrdb -query -all
 ```
 
 ### xrandr
@@ -3870,9 +3939,19 @@ Getting list of fonts:
 xlsfonts
 ```
 
-Open a window with a list of fonts:
+Open a window and display characters of a font:
 ```bash
 xfd -fn fontname
+```
+
+After installing a font run the following command in order to reload the fonts list dynamically:
+```sh
+xset fp rehash
+```
+
+Selecting a font using "X logical font description":
+```sh
+xfontsel
 ```
 
 ### xterm
@@ -3910,6 +3989,12 @@ xterm -cr white
 ### urxvt
 
  * [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
+
+Help:
+```sh
+man urxvt # main manpage
+man 7 urxvt # reference, FAQ
+```
 
 ### xsel
 
