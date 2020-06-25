@@ -555,6 +555,11 @@ Getting unique elements (remove duplicates):
 x <- y[ ! duplicated(y)]
 ```
 
+Select unique values:
+```r
+x <- unique(x)
+```
+
 Split a vector in smaller vectors (chunks) of equal size:
 ```r
 chunks <- split(v, ceiling(seq_along(v) / 50))
@@ -3174,6 +3179,24 @@ UI panels:
 Slider input:
 ```r
 sliderInput(inputId="mySliderId", label="My Title", min=1, max=50, value=20)
+```
+
+#### Dynamic input widget
+
+Insde the UI:
+```r
+uiOutput("numberOfCountries"),
+```
+
+Inside the server:
+```r
+output$numberOfCountries <- renderUI({
+    n <- length(getAllCountries())
+    sliderInput("nCountries", h3("Number of countries to select"),
+               min=1, max=n, value=10)
+})
+# ...
+getTopCountries <- reactive({computeSelectedCountries(getTotalNbCasesByCountry(), input$nCountries)$country})
 ```
 
 #### Loading data
