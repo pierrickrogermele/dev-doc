@@ -160,7 +160,7 @@ db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
 
  * [Create a User-Defined Role](https://docs.mongodb.com/manual/tutorial/manage-users-and-roles/#create-a-user-defined-role).
 
-Print users with all their privileges:
+Print defined roles:
 ```js
 db.getRoles({showPrivileges:1})
 ```
@@ -187,7 +187,7 @@ In one step:
 mongodump --archive --db=test | mongorestore --archive  --nsFrom='test.*' --nsTo='examples.*'
 ```
 
-There is an option `--dumpDbUsersAndRoles` for `mongodump` for dumping users and roles, and an option `--restoreDbUsersAndRoles` for `mongorestore` for restoring users and roles. However restoring users does not work when restoring to a different destination database (`--toDb`), it seems only to work when restoring  to the same database name.
+There is an option `--dumpDbUsersAndRoles` for `mongodump` for dumping users and roles, and an option `--restoreDbUsersAndRoles` for `mongorestore` for restoring users and roles. However restoring users does not work when restoring to a different destination database (`--toDb`), it seems only to work when restoring to the same database name.
 
 ### Managing databases
 
