@@ -1,13 +1,32 @@
 <!-- vimvars: b:markdown_embedded_syntax={'haskell':''} -->
 # Haskell
 
+ * [Haskell](https://en.wikibooks.org/wiki/Haskell).
  * [Haskell/Indentation](https://en.wikibooks.org/wiki/Haskell/Indentation).
 
-## Comment
+Bookmark:
+<https://en.wikibooks.org/wiki/Haskell/Type_basics>
 
-A comment:
+## Run
+
+Running interactively:
+```sh
+ghci
+```
+`Ctrl-d` to exit, `:?` for help.
+
+## Comments
+
+A single line comment:
 ```haskell
 -- My comment
+x = 1 -- My other comment
+```
+
+Multi-lines comment:
+```haskell
+y = 2 {- My multi-lines
+	Comment -}
 ```
 
 ## Types
@@ -78,11 +97,62 @@ Getting the length of a list:
 length [1, 2, 3]
 ```
 
+## Built-in constants/variables
+
+```haskell
+pi
+```
+
+## Variables
+
+A variable in Haskell gets defined only once and cannot change.
+==> All variables are immutable.
+==> Order of variable declarations has no importance.
+
+Set a variable:
+```haskell
+r = 6.0
+```
+
+Is `let` keyword optional?:
+```haskell
+let a = 1
+```
+
 ## Statements
 
-If:
+### if then else
+
 ```haskell
 if x < 10 then x + 1 else x - 1
+```
+
+### where
+
+The `where` statement is used to define local variables inside a function:
+```haskell
+MyFct x y z =  (x + y) / a + (y + z) / b
+  where
+  a = MyFct2(x+y)
+  b = MyFct2(y+z)
+```
+
+### guards (switch/case)
+
+```haskell
+absolute x
+    | x < 0     = -x
+    | otherwise = x
+```
+
+Use of `where` inside guards:
+```haskell
+numOfRealSolutions a b c
+    | disc > 0  = 2
+    | disc == 0 = 1
+    | otherwise = 0
+        where
+        disc = b^2 - 4*a*c
 ```
 
 ## Operators
@@ -95,6 +165,26 @@ Equality test:
 Inequality test:
 ```haskell
 1 /= 0
+```
+
+Boolean operators:
+```haskell
+(1 == 2) && True
+(1 > 2) || True
+not False
+```
+
+The `$` operator replaces the use of parenthesis. Everything on the right of the operator will take precedence:
+```haskell
+myFunc (1 + 2) -- is equivalent to:
+myFunc $ 1 + 2
+```
+
+The `.` operator chains function calls:
+```haskell
+myFunc1(myFunc2(10))    -- is equivalent to:
+(myFunc1 . myFunc2)(10) -- and:
+myFunc1 . myFunc2 $ 10
 ```
 
 ## Functions
@@ -115,6 +205,18 @@ div 10 2
 Defining a function:
 ```haskell
 MyFct x = x + x
+```
+
+Parenthesis can be used when calling a function, and are necessary in some cases because a function takes precendence to other operators:
+```haskell
+MyFct 3 * 5 -- same as MyFct(3) * 5
+MyFct(3) * 5 -- same as previous
+MyFct(3 * 5) -- 
+```
+
+Function with multiple parameters:
+```haskell
+MyFct x y  = x + y
 ```
 
 ## succ
