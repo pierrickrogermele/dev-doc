@@ -1,5 +1,11 @@
 # Tartes salées, cakes, pizzas & chaussons
 
+ * [Gino Sorbillo's Neapolitan Pizza](https://www.youtube.com/watch?v=E4r0tGfTh68).
+  - Farina  1,55kg
+  - Sale    45gr
+  - Acqua   1L
+  - Lievito 1,5g  (levure fraîche)
+
  * [Panzerotti (calzoni) fritti](https://ricette.giallozafferano.it/Panzerotti-calzoni-fritti.html).
 
 CHAUSSONS LIBANAIS À LA VIANDE		Liban		http://aime-mange.com/chaussons-libanais-a-la-viande/	
