@@ -8,9 +8,6 @@
  * [lightbot](https://lightbot.com/).
   - [lightbot HOC](https://lightbot.com/hour-of-code.html).
 
-## Livres audio
-
- * [HARRY POTTER À L'ÉCOLE DES SORCIERS](https://www.franceculture.fr/emissions/harry-potter-a-lecole-des-sorciers/chapitres-1-et-2-le-survivant-et-une-vitre-disparait).
 
 ## Expériences
 

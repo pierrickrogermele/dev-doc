@@ -1,4 +1,6 @@
-# Médias
+# Radios, TVs & podcasts
+
+## Radios
 
  * [France Culture](https://www.franceculture.fr/programmes).
  * [BBC Radio 4](https://www.bbc.co.uk/radio4).
@@ -11,3 +13,13 @@
  * [BBC](https://www.bbc.com/).
  * [EURACTIV](https://www.euractiv.fr/).
  * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+
+## Podcasts
+
+### Documentaires
+
+### Fictions
+
+ * [Le Mystère de la Chambre Jaune](https://www.franceculture.fr/emissions/les-nuits-de-france-culture/le-mystere-de-la-chambre-jaune-rouletabille-114).
+
+ * [HARRY POTTER À L'ÉCOLE DES SORCIERS](https://www.franceculture.fr/emissions/harry-potter-a-lecole-des-sorciers/chapitres-1-et-2-le-survivant-et-une-vitre-disparait).
