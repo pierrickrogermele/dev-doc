@@ -493,9 +493,27 @@ wakeonlan hardware_addr
 ### dhclient
 
 Renew client lease on specific card:
-```bash
+```sh
 dhclient -r enp2s0 # Revoke
 dhclient enp2s0    # Obtain a new lease
+```
+
+### USB tethering & bluetooth (iPhone Hotspot)
+
+ * [iPhone tethering](https://wiki.archlinux.org/index.php/IPhone_tethering).
+
+List network devices:
+```sh
+networkctl list
+```
+
+Get the link name of the iPhone, and then create the `.network` file `/etc/systemd/network/30-tethering.network`:
+```conf
+[Match]
+Name=enp0s26u1u2c4i2
+
+[Network]
+DHCP=yes
 ```
 
 ### Wifi
@@ -1672,6 +1690,10 @@ Test if a command exists:
 ```bash
 command -v mycmd >/dev/null 2>&1
 ```
+
+### ranger
+
+An ncurses file browser.
 
 ## Compression and uncompression
 
@@ -4000,3 +4022,24 @@ man 7 urxvt # reference, FAQ
 
  A clipboard manager.
  Can be used in combination with urxvt, since urxvt has no copy&paste feature by default (it needs a perl extesion). See [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
+
+### xscreesaver
+
+ * [XScreenSaver](https://wiki.archlinux.org/index.php/XScreenSaver).
+
+To configure:
+```sh
+xscreensaver-demo
+```
+
+To run xscreensaver automatically, add the following line in `~/.xinitrc`:
+```sh
+xscreensaver -no-splash &
+```
+
+Once the daemon is started, call `xscreensaver-command` to control it.
+
+To run immediatly:
+```sh
+xscreensaver-command -activate
+```
