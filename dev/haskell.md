@@ -9,7 +9,7 @@ Bookmark:
 
 ## Run
 
-Running interactively:
+Running interactively (GHCi)):
 ```sh
 ghci
 ```
@@ -28,6 +28,10 @@ Multi-lines comment:
 y = 2 {- My multi-lines
 	Comment -}
 ```
+
+## Abbreviations
+
+All commands and keywords can be abbreviated, as long as there is no ambiguity.
 
 ## Types
 
@@ -52,6 +56,18 @@ Char:
 'z'
 ```
 
+String (see below):
+```haskell
+"A string"
+```
+
+In GHCi, use `:type` (or `:t`) to get the type of an expression:
+```haskell
+:type (3 < 5)
+```
+
+Functions have a type too which is made of the types of its inputs and outputs.
+
 ### Strings
 
 A string is a list of characters:
@@ -59,6 +75,13 @@ A string is a list of characters:
 "My String"
 -- same as:
 ['M', 'y', ' ', 'S', 't', 'r', 'i', 'n', 'g']
+```
+
+### Modules
+
+Loading a module in GHCi:
+```haskell
+:module Data.Char
 ```
 
 ### Lists
@@ -219,6 +242,13 @@ Function with multiple parameters:
 MyFct x y  = x + y
 ```
 
+Define a function with a signature:
+```haskell
+uppercase, lowercase :: String -> String
+uppercase = map toUpper
+lowercase = map toLower
+```
+
 ## succ
 
 Returns the successor:
@@ -231,6 +261,18 @@ succ 8 -- Returns 9
 ```haskell
 min 9 10
 max 1.2 6.7
+```
+
+## chr and ord
+
+Get a character from its code:
+```haskell
+chr 97
+```
+
+Get a character's code:
+```haskell
+ord 'a'
 ```
 
 ## Errors
