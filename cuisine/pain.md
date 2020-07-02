@@ -4,7 +4,7 @@
 
  * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
  * [Fabrication du pain](https://fr.wikipedia.org/wiki/Fabrication_du_pain).
- * Pains: techniques qui font le pain:
+ * Techniques qui font le pain:
   + [Modes de fermentation](https://www.youtube.com/watch?v=Whc2JJnAFGU).
   + [Le Pointage pesage](https://www.youtube.com/watch?v=NX6dQzJXVoY).
   + [Le Façonnage](https://www.youtube.com/watch?v=PWjSa6xBwtw).
@@ -22,7 +22,7 @@
   * [Pain de seigle au citron](https://www.youtube.com/watch?v=QhCXDNDY6w4).
 
   100g farine -> 1g levure sèche
-  100g farine -> 1g sel
+  100g farine -> 1g sel ?
 
 8g levure sèche = 25g levure fraîche = 38ml levure liquide
 
