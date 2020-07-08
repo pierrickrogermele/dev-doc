@@ -543,9 +543,8 @@ empty($my_array);
 Looping on all elements of an array:
 ```php
 <?php
-foreach ($my_array as $elem) {
-}
-?>
+foreach ($my_array as $elem)
+	// ...
 ```
 
 Looping & modifying:
@@ -553,7 +552,6 @@ Looping & modifying:
 <?php
 foreach ($my_array as &$elem)
 	$elem = $elem . "foo";
-?>
 ```
 
 Join & split: see strings.
@@ -563,7 +561,6 @@ Max & min values:
 <?php
 $max = max($array);
 $min = min($array);
-?>
 ```
 
 Search:
@@ -571,7 +568,6 @@ Search:
 <?php
 $bool = in_array($val, $array);
 $index = array_search($val, $array);
-?>
 ```
 
 Map elements:
@@ -579,11 +575,15 @@ Map elements:
 <?php
 array_map("my_func", $my_array);
 array_map(function($x) {return($x+1);}, [1, 2])
-?>
 ```
 To use a variable outside the scope of `array_map()`:
 ```php
 <? array_map(function($x) use($myvar) {/*...*/}, [1, 2]);
+```
+
+Apply a function on each element of an array:
+```php
+<? array_walk(['a', 'b'], 'my_fct');
 ```
 
 Slice (extract a part of an array):
@@ -593,7 +593,6 @@ $input = array("red", "green", "blue", "yellow");
 $output = array_slice($input, -2 /*offset*/, 1 /*length*/);
 array_splice($input, 1/*offset*/, -1/*length*/); // $input is now array("red", "yellow")
 array_splice($my_array, 3/*offset*/, 5/*length*/, $new_elem/*replacement array*/);
-?>
 ```
 Note: negative values are used to count from the end of the array.
 
@@ -604,7 +603,6 @@ array_push($stack, "apple", "raspberry"); // put last
 $fruit = array_pop($stack); // take last
 $fruit = array_shift($stack); // take first
 array_unshift($queue, "apple", "raspberry"); // put first
-?>
 ```
 
 Merge (append two arrays):
@@ -1944,6 +1942,17 @@ Install PHPUnit with PEAR system:
 ```bash
 pear config-set auto_discover 1
 pear install pear.phpunit.de/PHPUnit
+```
+
+Run PHPUnit in project where it is installed with Composer:
+```sh
+./vendor/bin/phpunit --bootstrap vendor/autoload.php tests
+```
+By default `phpunit` will look for files `*Test.php` inside the specified folder (`tests`).
+
+Get all options:
+```sh
+./vendor/bin/phpunit --bootstrap vendor/autoload.php -h
 ```
 
 Writing a test class:
