@@ -210,6 +210,11 @@ myFunc1(myFunc2(10))    -- is equivalent to:
 myFunc1 . myFunc2 $ 10
 ```
 
+List operators:
+```haskell
+[1, 2] ++ [3, 4] -- concatenate
+```
+
 ## Functions
 
 Function names can contain apostrophe characters. Put at then end of a function's name, it usually means: "a strict version of a function (one that isn't lazy) or a slightly modified version of a function".
@@ -273,6 +278,49 @@ chr 97
 Get a character's code:
 ```haskell
 ord 'a'
+```
+
+## concat
+
+Concatenate a list of strings into a single string:
+```haskell
+concat ["abc", "def"]
+```
+
+## unwords
+
+Concatenate strings with space as separator:
+```haskell
+unwords["ab", "cd"] -- "ab cd"
+```
+
+## show
+
+Converts argument to a string:
+```haskell
+show 12 -- "12"
+```
+
+## map
+
+Call a function on each element of a list:
+```haskell
+map myFct [1, 2, 3]
+```
+
+## mapM
+
+<!-- TODO -->
+
+## mapM_
+
+Same as `mapM` but ignores the result.
+
+## zipWith
+
+Calls a function on elements of two lists, two by two:
+```haskell
+zipWith (+) [0, 1, 2] [3, 4, 5] -- [3, 5, 7]
 ```
 
 ## Errors
