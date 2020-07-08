@@ -2475,6 +2475,11 @@ Get full & normalized country name:
 countrycode::countrycode('Antigua', origin='country.name', destination='country.name')
 ```
 
+Get table with continents and country names:
+```r
+countrycode::codelist[, c('continent', 'country.name.en')]
+```
+
 ### Rmpi
 
 HPC package.
