@@ -1,3 +1,5 @@
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'','bash':'sh'} -->
+
 # BASH
 
 ## `.bashrc`, `.bash_profile`, `.bash_logout`
@@ -148,6 +150,15 @@ However the terminal info bust be changed in order to achieve italics handling w
   3. run `tic xterm-256color-italic`.
   4. Modify iTerm2 settings, and set terminal to `xterm-256color-italic`.
 `screen` cannot handle italics, even inside iTerm2.
+
+## read
+
+Read password on prompt:
+```sh
+echo -n 'Password: '
+read -s password
+echo $password
+```
 
 ## Redirections
 
