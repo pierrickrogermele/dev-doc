@@ -1695,6 +1695,10 @@ command -v mycmd >/dev/null 2>&1
 
 An ncurses file browser.
 
+Key | Description
+--- | ----------------------------
+om  | Sort by modification time
+
 ## Compression and uncompression
 
 ### tar
@@ -3781,7 +3785,14 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
  * [Enable tap to click in i3 WM](https://cravencode.com/post/essentials/enable-tap-to-click-in-i3wm/).
 
-### xdg-settings
+### XDG
+
+ XDG = X Desktop Group
+
+ * [freedesktop.org](https://www.freedesktop.org/wiki/).
+ * [xdg-utils](https://www.freedesktop.org/wiki/Software/xdg-utils/).
+
+#### xdg-settings
 
 Get and set settings for the desktop environment.
 
@@ -3795,7 +3806,7 @@ Change default browser:
 xdg-settings set default-web-browser firefox.desktop
 ```
 
-### xdg-open 
+#### xdg-open 
 
 Opens a file with the preferred user's application.
 
