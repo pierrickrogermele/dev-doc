@@ -1967,7 +1967,7 @@ final class MyTest extends TestCase {
 }
 ```
 
-Asserts:
+Miscellaneous assertions:
 ```php
 <?php
 self::assertNull($myvar);
@@ -1976,9 +1976,25 @@ self::assertFalse($myvar);
 self::assertEquals(10, 11);
 self::assertTrue($myvar);
 self::assertInstanceOf(MyClass::class, $myvar);
-self::assertIsArray($myvar);
+```
+
+File assertions:
+```php
+<?php
 self::assertFileExists($myfile);
 self::assertFileNotExists($myfile);
+```
+
+Array assertions:
+```php
+<?php
+self::assertIsArray($myvar);
+self::assertContains(1, [1, 2, 3]);
+self::assertNotContains(4, [1, 2, 3]);
+self::assertArrayNotHasKey('a', ['b'=>1]);
+self::assertArrayHasKey('a', ['a'=>1]);
+self::assertCount(1, ['a']);
+self::assertNotCount(2, ['a']);
 ```
 
 Assert exception:
