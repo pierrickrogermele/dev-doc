@@ -24,6 +24,20 @@
 
  * [Bus 91.11](http://www.albatrans.net/wp-content/uploads/2018/08/Albatrans-9111-Depliant-hiver.pdf).
 
+## Musées, châteaux, ...
+
+ * Château de Maisons-Laffitte
+ * [Château de Fontainebleau](https://www.chateaudefontainebleau.fr/).
+ * Musée d'Archéologie nationale - Château de Saint-Germain-en-Laye
+ * Château de Champs-sur-Marne
+ * Château de Nemours
+ * château de Breteuil dans les Yvelines
+ * Château de Dampierre
+ * Château de Rambouillet
+ * Château de La Roche-Guyon
+ * Chateau de Dourdan
+ * Château d'Ecouen - Musée national de la Renaissance
+
 ## Cueillettes en Île-de-France
 
  * [La Ferme de Viltain](https://www.viltain.fr/).
