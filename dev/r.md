@@ -963,6 +963,20 @@ cummax(1:10)
 cummin(1:10)
 ```
 
+## aggregate
+
+Sum by grouping on one column:
+```r
+x <- data.frame(a=c('a', 'a', 'b', 'b'), b=1:4)
+aggregate(x$b, by=list(x$a), FUN=sum)   
+```
+
+Sum by grouping on two columns:
+```r
+x <- data.frame(a=c('a', 'a', 'a', 'b', 'b', 'b'), b=c(1, 1, 2, 2, 3, 3), c=1:6)
+aggregate(x$c, by=list(x$a, x$b), FUN=sum)
+```
+
 ## Packages
 
 Getting information about loaded packages (package version, ...) in a session:
@@ -2465,6 +2479,21 @@ assay.fiel.names <- getMSAssayFilenames(isa)
 ```
 
 ## Interesting packages
+
+### dplyr
+
+Sum by grouping on one column:
+```r
+library(dplyr)
+x <- data.frame(a=c('a', 'a', 'b', 'b'), b=1:4)
+x %>% group_by(a) %>% summarize_at(vars(b), list(mySum=sum))
+```
+
+Sum by grouping on two columns:
+```r
+x <- data.frame(a=c('a', 'a', 'a', 'b', 'b', 'b'), b=c(1, 1, 2, 2, 3, 3), c=1:6)
+x %>% group_by(a, b) %>% summarize_at(vars(c), list(mySum=sum))
+```
 
 ### countrycode
 
