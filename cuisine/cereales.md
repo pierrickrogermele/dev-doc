@@ -15,3 +15,8 @@ Verser le millet dans une casserole puis ajouter 2 fois son volume d'eau froide.
 
  millet	2 vol. d’eau bouillante pour 1 vol. de millet.
  Faire cuire 30 min. à couvert à feu doux.
+
+## Polenta
+
+ * [POLENTA AL FORNO](https://blog.giallozafferano.it/allacciateilgrembiule/polenta-al-forno/).
+ * [Crostini di polenta ripassati in padella](https://blog.giallozafferano.it/tmm/crostini-di-polenta-ripassati-in-padella/).
