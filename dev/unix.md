@@ -1136,6 +1136,11 @@ Regex:
 killall -r -HUP 'myproc[0-9]*'
 ```
 
+### Virtual consoles
+
+Is possible to open additional consoles with Ctrl+Alt+F?. On archlinux, F1 to F6 are available.
+Still under Archlinux, it seems also to work when X is started on one of the consoles.
+
 ## Password managers
 
  * [pwsafe](https://github.com/nsd20463/pwsafe). Works in command line.
