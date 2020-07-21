@@ -115,6 +115,16 @@ using My.Library;
 
 It is Windows only. Not portable, neither on macos nor on Linux.
 
+## Visual Studio
+
+To see the files of a solution: "Affichage" -> "Explorateur de solutions".
+
+To see the versioning of files: "Affichage" -> "Teams Explorer" -> "Explorateur du contrôle de code source".
+
+To see project dependencies: "Projet" -> "Dépendances du projet".
+
+NuGET
+
 ## Avalonia
 
 Avalonia is a cross-platform XAML-based UI framework.
