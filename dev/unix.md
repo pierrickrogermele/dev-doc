@@ -571,6 +571,32 @@ Get help on Debian:
 nmcli radio wifi help
 ```
 
+### msgconvert
+
+Convert Outlook `.msg` message file into `.eml`.
+
+To install on Archlinux:
+```sh
+yay -S aur/perl-email-outlook-message
+```
+
+To convert a message:
+```sh
+msgconvert mymessage.eml
+```
+
+### mpack
+
+Installing on Archlinux:
+```sh
+yay -S aur/mpack
+```
+
+`munpack` extract attachments from `.eml` file:
+```sh
+munpack mymessage.eml
+```
+
 ## System
 
 ### Installing
@@ -1766,6 +1792,13 @@ Unzip quietly:
 ```bash
 unzip -q myfile.zip
 unzip -qq myfile.zip
+```
+
+## 7z
+
+Uncompress archive:
+```sh
+7z e myarchive.7z
 ```
 
 ## Binary file processing, editing & viewing

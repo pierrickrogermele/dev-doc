@@ -662,7 +662,15 @@ sudo modprob kvm
 or restart the computer.
 ## DOSBox
 
-[DOSBOX](http://www.dosbox.com/) is a DOS emulator that runs on different plateforms (Windows, Linux, MacOS, ...).
+ * [DOSBOX](http://www.dosbox.com/) is a DOS emulator that runs on different plateforms (Windows, Linux, MacOS, ...).
+ * [Special Keys](https://www.dosbox.com/wiki/Special_Keys).
+
+Run executable:
+```sh
+dosbox myprg.exe
+```
+
+Ctrl-F10: Capture/release mouse.
 
 For a tutorial, type `INTRO` on the command line.
 
@@ -670,7 +678,6 @@ Mounting a local dir to C:
 ```bash
 mount c: ~/mydir
 ```
-
 
 ## Thomson computers
 
