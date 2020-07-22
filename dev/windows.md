@@ -97,6 +97,24 @@ System Properties            | control sysdm.cpl
  * [How to Uninstall and Reset Windows Subsystem for Linux Distributions](https://www.petri.com/how-to-uninstall-and-reset-windows-subsystem-for-linux-distributions).
  * [Manually download Windows Subsystem for Linux distro packages](https://docs.microsoft.com/en-us/windows/wsl/install-manual).
 
+To enable WSL: Settings -> Applications -> Apps & features -> Programs and Features (on the right) -> Turn Windows features on or off -> Windows Subsystem for Linux (Beta) (check)
+
+See <https://docs.microsoft.com/en-us/windows/wsl/install-manual> for a list of available Linux distributions.
+From Powershell, download your distribution:
+```dosbatch
+Invoke-WebRequest -Uri https://aka.ms/wsl-debian-gnulinux -OutFile debian.appx -UseBasicParsing
+```
+Or use curl:
+```dosbatch
+curl.exe -L -o debian.appx https://aka.ms/wsl-debian-gnulinux
+```
+
+Install the distribution from Powershell:
+```dosbatch
+Add-AppxPackage .\debian.appx
+```
+Then go to the Windows programs and run "Debian GNU/Linux".
+
 ## Cygwin
 
  * [Cygwin](http://www.cygwin.com/).
