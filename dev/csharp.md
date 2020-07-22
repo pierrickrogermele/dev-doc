@@ -123,7 +123,9 @@ To see the versioning of files: "Affichage" -> "Teams Explorer" -> "Explorateur 
 
 To see project dependencies: "Projet" -> "Dépendances du projet".
 
-NuGET
+ * [NuGET](https://docs.microsoft.com/en-us/nuget/what-is-nuget).
+  - The [packages.config](https://docs.microsoft.com/en-us/nuget/reference/packages-config) file lists NuGET packages dependencies, in XML format.
+  - To install or update NuGET packages of a project: "Projet" -> "Gerer les packages NuGET".
 
 ## Avalonia
 
