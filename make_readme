@@ -135,6 +135,9 @@ sub print_table($) {
 			if ($line < @$files) {
 				print '['.$$files[$line]->{title}.']('.$$files[$line]->{path}.')';
 			}
+			else {
+				print "&nbsp;"; # Write something invisible to fill the cell.
+			}
 		}
 		print "\n";
 	}

@@ -13,34 +13,36 @@ Cuisine | Dev | Misc
 [Pâtes, raviolis, gnocchi chaussons salés](./cuisine/pasta.md) | [AMSTRAD CPC](./dev/cpc.md) | [Histoire](./misc/histoire.md)
 [Poisson](./cuisine/poisson.md) | [C#](./dev/csharp.md) | [Langues](./misc/langues.md)
 [Riz](./cuisine/riz.md) | [CSS](./dev/css.md) | [Littérature](./misc/litterature.md)
-[Sauces](./cuisine/sauces.md) | [Eclipse](./dev/eclipse.md) | [Local](./misc/local.md)
-[Soupes](./cuisine/soupes.md) | [EFI](./dev/efi.md) | [Logement](./misc/logement.md)
-[Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | [EMULATORS](./dev/emulators.md) | [Médias](./misc/media.md)
-[Tofu & seitan](./cuisine/tofu.md) | [GALAXY](./dev/galaxy.md) | [Music](./misc/music.md)
-[Viande](./cuisine/viande.md) | [Game programming](./dev/game_programming.md) | [Nature](./misc/nature.md)
-[Vins](./cuisine/vins.md) | [GIT](./dev/git.md) | [Références](./misc/ref.md)
- | [Haskell](./dev/haskell.md) | [Stop motion](./misc/stopmotion.md)
- | [HDF5](./dev/hdf5.md) | 
- | [HTML](./dev/html.md) | 
- | [JSON](./dev/json.md) | 
- | [LICENSING](./dev/licensing.md) | 
- | [Make](./dev/make.md) | 
- | [Modeling](./dev/modeling.md) | 
- | [MUTT](./dev/mutt.md) | 
- | [NoSQL databases](./dev/nosqldbs.md) | 
- | [PERL](./dev/perl.md) | 
- | [PHONES](./dev/phones.md) | 
- | [PHP](./dev/php.md) | 
- | [PYTHON](./dev/python.md) | 
- | [Quality, testing and integration](./dev/quality.md) | 
- | [R](./dev/r.md) | 
- | [RUBY](./dev/ruby.md) | 
- | [SCREEN](./dev/screen.md) | 
- | [SHELLS](./dev/shells.md) | 
- | [Relational databases](./dev/sqldbs.md) | 
- | [SVG](./dev/svg.md) | 
- | [UNIX](./dev/unix.md) | 
- | [Versioning](./dev/versioning.md) | 
- | [Vim](./dev/vim.md) | 
- | [WEB](./dev/web.md) | 
- | [YAML file](./dev/yaml.md) | 
+[Sauces](./cuisine/sauces.md) | [DOS](./dev/dos.md) | [Local](./misc/local.md)
+[Soupes](./cuisine/soupes.md) | [Eclipse](./dev/eclipse.md) | [Logement](./misc/logement.md)
+[Tartes salées, cakes, pizzas & chaussons](./cuisine/tartes_salees.md) | [EFI](./dev/efi.md) | [Radios, TVs & podcasts](./misc/media.md)
+[Tofu & seitan](./cuisine/tofu.md) | [EMULATORS](./dev/emulators.md) | [Music](./misc/music.md)
+[Viande](./cuisine/viande.md) | [GALAXY](./dev/galaxy.md) | [Nature](./misc/nature.md)
+[Vins](./cuisine/vins.md) | [Game programming](./dev/game_programming.md) | [Références](./misc/ref.md)
+&nbsp; | [GIT](./dev/git.md) | [Stop motion](./misc/stopmotion.md)
+&nbsp; | [Haskell](./dev/haskell.md) | &nbsp;
+&nbsp; | [HDF5](./dev/hdf5.md) | &nbsp;
+&nbsp; | [HTML](./dev/html.md) | &nbsp;
+&nbsp; | [JSON](./dev/json.md) | &nbsp;
+&nbsp; | [LICENSING](./dev/licensing.md) | &nbsp;
+&nbsp; | [Make](./dev/make.md) | &nbsp;
+&nbsp; | [Modeling](./dev/modeling.md) | &nbsp;
+&nbsp; | [MUTT](./dev/mutt.md) | &nbsp;
+&nbsp; | [NoSQL databases](./dev/nosqldbs.md) | &nbsp;
+&nbsp; | [PERL](./dev/perl.md) | &nbsp;
+&nbsp; | [PHONES](./dev/phones.md) | &nbsp;
+&nbsp; | [PHP](./dev/php.md) | &nbsp;
+&nbsp; | [PYTHON](./dev/python.md) | &nbsp;
+&nbsp; | [Quality, testing and integration](./dev/quality.md) | &nbsp;
+&nbsp; | [R](./dev/r.md) | &nbsp;
+&nbsp; | [RUBY](./dev/ruby.md) | &nbsp;
+&nbsp; | [SCREEN](./dev/screen.md) | &nbsp;
+&nbsp; | [SHELLS](./dev/shells.md) | &nbsp;
+&nbsp; | [Relational databases](./dev/sqldbs.md) | &nbsp;
+&nbsp; | [SVG](./dev/svg.md) | &nbsp;
+&nbsp; | [UNIX](./dev/unix.md) | &nbsp;
+&nbsp; | [Versioning](./dev/versioning.md) | &nbsp;
+&nbsp; | [Vim](./dev/vim.md) | &nbsp;
+&nbsp; | [WEB](./dev/web.md) | &nbsp;
+&nbsp; | [Windows](./dev/windows.md) | &nbsp;
+&nbsp; | [YAML file](./dev/yaml.md) | &nbsp;

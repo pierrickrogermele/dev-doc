@@ -1,6 +1,6 @@
 <!-- vimvars: b:markdown_embedded_syntax={'sh':'','dosbatch':''} -->
 
-# Microsoft Windows and DOS
+# Windows
 
  * [Windows 10 ISO download](https://www.microsoft.com/en-us/software-download/windows10ISO).
 
