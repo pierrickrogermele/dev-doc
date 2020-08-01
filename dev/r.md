@@ -299,7 +299,7 @@ result <- gsub('\\.in$', '.out', variable)   # replace all occurences
 ```r
 grep("blabla", df) # returns a list of indices
 length(grep("blabla", df)) > 0
-grep("blabla", df, value = TRUE) # returns a the matched elements of the vector
+grep("blabla", df, value=TRUE) # returns the matched elements of the vector
 ```
 
 `grepl` searches for regexp in vector, and returns a vector of booleans:
@@ -1123,6 +1123,8 @@ Roles are:
 
  * [Writing package vignettes](http://cran.fhcrc.org/doc/manuals/R-exts.html#Writing-package-vignettes).
  * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
+ * [Knitr](https://r-pkgs.org/vignettes.html#knitr), for including code in a vignette.
+  + [Knitr options](https://yihui.org/knitr/options/).
 
 On macOS, for building vignettes with `R CMD build .`, install first the [MacTeX LaTeX](http://www.tug.org/mactex/) distribution.
 
