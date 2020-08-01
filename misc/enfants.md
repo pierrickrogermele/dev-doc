@@ -49,6 +49,13 @@
   + [Les châteaux forts](https://www.youtube.com/watch?v=dybWx0kAYJE).
   + [Les Calendriers : ça date !](https://www.youtube.com/watch?v=de4w6IJiZEs).
 
+### La Terre, le climat, ...
+
+ * [Sur la piste des tornades](https://www.youtube.com/watch?v=HL7LfYHyhQg).
+ * [ORAGES : Les sorciers ont le coup de foudre](https://www.youtube.com/watch?v=YEmPmCEqEqE).
+ * [C'est pas sorcier -METEO : Le bulletin des sorciers](https://www.youtube.com/watch?v=ldlhPV5uOjk).
+ * [5 choses à savoir sur les Tempêtes - On ne sait Jamy !](https://www.youtube.com/watch?v=IwbebCXuxYw).
+
 ### Insects & co:
 
  * [HANNETONS, COCCINELLES ET SCARABÉES : LES COLÉOPTÈRES](https://www.youtube.com/watch?v=IgpF1MtK8s0).
