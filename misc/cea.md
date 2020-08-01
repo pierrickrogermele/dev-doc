@@ -12,6 +12,7 @@
  * [Intranet Saclay](http://www-saclay.cea.fr/).
   - [Liste des arrêts et plans du réseau](http://www-saclay.cea.fr/Phocea/Page/index.php?id=818&ref=502).
  * [Intranet CEA](https://portail.intra.cea.fr/).
+  - [Moorea & Poem](http://moorea.intra.cea.fr/Web/Accueil.aspx).
  * [Sharepoint SID](https://communaute-ladis.intra.cea.fr/).
  * [Annuaire](https://recherche.intra.cea.fr/).
  * [DIGITEO Grid Report](http://is227470.intra.cea.fr/ganglia/).
