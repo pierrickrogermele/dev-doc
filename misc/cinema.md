@@ -41,3 +41,5 @@ Samouraï:
  * The Sword of Doom (1966)
  * The Tale of Zatoichi (1962)
  * Yojimbo (1961)
+Title	Director	Style
+Le Vagabond de Tokyo	Seijun Suzuki	Yakuza
