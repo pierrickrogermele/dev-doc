@@ -3,6 +3,12 @@
  * [Board Game Arena](https://en.boardgamearena.com/).
  * [Project Aon (Lone Wolf)](https://www.projectaon.org/en/Main/Home).
 
+## Règles
+
+ * [BOHNANZA](http://jeuxstrategie.free.fr/Bohnanza_complet.php)
+ * [La vidéorègle du jeu "Bohnanza"](https://www.youtube.com/watch?v=uvgRU5mdfUU). 
+ * [Le Lièvre & la Tortue : comment ça marche ?](https://www.youtube.com/watch?v=7m_DCs5bM2o).
+
 ## Elder Scrolls
 
  * [Morrowind](https://en.uesp.net/wiki/Morrowind:Morrowind).
