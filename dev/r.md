@@ -2484,6 +2484,11 @@ assay.fiel.names <- getMSAssayFilenames(isa)
 
 ### dplyr
 
+Rename columns:
+```r
+x <- x %>% rename(newNameA='colA', newNameB='colB')
+```
+
 Sum by grouping on one column:
 ```r
 library(dplyr)
