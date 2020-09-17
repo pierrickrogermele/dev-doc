@@ -12,6 +12,8 @@ Gaufres de courgettes au saumon fumé	gaufres	France		http://www.marmiton.org/re
 
  * [Tortillas de maïs](https://cuisine.journaldesfemmes.fr/recette/347916-tortillas-de-mais).
 
+ * [Pâte à gaufre](https://www.marmiton.org/recettes/recette_pate-a-gaufre_82416.aspx).
+
  * [Crêpes à la farine de maïs](https://www.monfournil.fr/recettes/crepes-a-farine-de/).
 
  * [Pâte à crêpes de sarasin](http://www.recettes-bretonnes.fr/galette-bretonne/recette-galette-sarrasin.html).
