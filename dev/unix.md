@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','r':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','r':'','hog':''} -->
 # UNIX
 
 These notes refer to UNIX and Linux operating systems.
@@ -672,6 +672,8 @@ poweroff
 ```
 Other commands: `reboot` and `halt`.
 
+Display boot menu on macmini 2,1 : press `Alt` when starting computer.
+
 ### dmesg
 
 Display kernel ring buffer.
@@ -943,7 +945,20 @@ Get list of USB devices in Debian:
 lsusb
 ```
 
+ * [Use Apple’s USB SuperDrive with Linux](https://cmos.blog/use-apples-usb-superdrive-with-linux/).
  * [Use Apple’s USB SuperDrive with Linux](https://christianmoser.me/use-apples-usb-superdrive-with-linux/).
+ * [Using Apple’s SuperDrive on Linux](https://kuziel.nz/notes/2018/02/apple-superdrive-linux.html)
+
+To enable (wake up) Apple Super Drive, install sg3-utils (`sg3_utils` on ArchLinux) package and check which device is your drive (`/dev/sr0` or `/dev/sr1` usually). Then run:
+```sh
+sg_raw /dev/sr0 EA 00 00 00 00 00 01
+```
+
+To make it automatic, create the file `/etc/udev/rules.d/60-apple-superdrive.rules` as root with the following content:
+```hog
+# Apple's USB SuperDrive
+ACTION=="add", ATTRS{idProduct}=="1500", ATTRS{idVendor}=="05ac", DRIVERS=="usb", RUN+="/usr/bin/sg_raw /dev/$kernel EA 00 00 00 00 00 01"
+```
 
 #### macos optical disk handling
 
@@ -1532,6 +1547,20 @@ Edit `/etc/sudoers` and add the following line:
 %samba ALL=(ALL) NOPASSWD: /bin/mount,/bin/umount,/sbin/mount.cifs,/sbin/umount.cifs,/usr/bin/smbmount,/usr/bin/smbumount
 ```
 The `NOPASSWD:` directive prevents `sudo` from prompting for the user's password. It is optional.
+
+### udisks
+
+Mount and unmount removale media.
+
+Mount a removable media:
+```sh
+udisksctl mount -b /dev/sdc1
+```
+
+Unmount a removable media:
+```sh
+udisksctl unmount -b /dev/sdc1
+```
 
 ### Samba
 
@@ -2969,6 +2998,34 @@ alsactl init
 	-alang code		: select audio channel by language code (fr, en, ...)
 	-fs			: fullscreen
 
+Play DVD menu:
+```sh
+mplayer dvdnav:// -dvd-device /dev/sr0
+```
+
+To enable support for encrypted DVD (region DVD support), install `libdvdcss`.
+
+To select audio output, look first at available audio devices with `aplay` (`alsa-utils` package on ArchLinux):
+```sh
+aplay -l
+```
+Then run mplayer with option `-ao`:
+```sh
+mplayer -ao alsa:device=hw=1,0,0
+```
+Where the three indices are in order: the card index, the device index, the subdevice index.
+
+Keys:
+ * `o`: display time elapsed and time remaining for a video.
+ * `f`: video full screen.
+
+### eject
+
+Eject disk:
+```sh
+eject
+```
+
 ### ffmpeg
 
 To convert from AIFF to Apple Lossless:
@@ -3013,6 +3070,17 @@ Extract images from PDF:
 mkdir myfolder
 pdfimages -j myfile.pdf myfolder/myprefix
 ```
+
+### pdfunite
+
+Concatenate multiple PDF files:
+```sh
+pdfunite a.pdf b.pdf c.pdf out.pdf
+```
+
+### pdfarranger
+
+Reorganize PDF file (delete pages, move pages, ...)
 
 ### convert (ImageMagick)
 
@@ -3074,6 +3142,20 @@ Set randomly the background image:
 feh --bg-fill --randomize ~/data/wallpapers/
 ```
 
+### xawtv
+
+display default camera:
+```sh
+xwatv
+```
+
+display USB camera:
+```sh
+xawtv -c /dev/video2
+```
+
+Press 'j' to Shoot a photo and save it in JPEG format.
+
 ### exiftool
 
 Package `perl-image-exiftool` on ArchLinux.
@@ -3114,6 +3196,11 @@ dd if=/dev/scd0 of=cd.iso # if cdrom is scsi
 To write an ISO on a device (and make it bootable):
 ```bash
 dd if=myiso.iso of=/dev/sdb # Do not use the index, /dev/sdb1 or /dev/sdb2, ...
+```
+
+Command for making a USB key bootable with Archlinux on it:
+```bash
+dd bs=4M if=myiso.iso of=/dev/sdx status=progress oflag=sync && sync
 ```
 
 ### mkisofs
