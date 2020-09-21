@@ -85,6 +85,14 @@ eau                         | 250ml | 250ml | 0
 lait                        | 250ml | 0     | 250ml + 125ml
 beurre salé ou huile        | 80g   | 0     | 80g
 
+Essai avec la farine de seigle en J1 :
+ * 200g farine de seigle
+ * 350ml d'eau au moins --> à preciser la prochaine fois.
+ * 3g de levure
+en J2 :
+ * 100g seigle + 500g blé ou 600g blé ?
+ * 10g sel
+
 ## Pain de froment sur poolish
 
  * [Pain sur Poolish à la maison](https://www.youtube.com/watch?v=Me7tGobX-Gw).
