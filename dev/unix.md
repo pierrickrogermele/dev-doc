@@ -1388,6 +1388,34 @@ Quote filenames in output, one filename per line:
 find ... -printf '"%p"\n'
 ```
 
+### trash-cli
+
+Command line trashcan (recycle bin) interface, respecting the freedesktop specifications.
+
+Put file in trash:
+```sh
+trash myfile
+```
+
+Get help:
+```sh
+trash -h
+```
+
+List files in trash:
+```sh
+trash-list
+```
+
+Restore a file:
+```sh
+trash-restore /full/path/to/my/file
+```
+
+The default user Trash folder of the freedesktop specifications is `~/.local/share/Trash`. See:
+ * [The FreeDesktop.org Trash specification](https://specifications.freedesktop.org/trash-spec/trashspec-latest.html)
+ * [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html).
+
 ### chmod
 
 When the sgid bit is set on a directory, all files & dirs created in this directory will automatically have the same group as the directory:

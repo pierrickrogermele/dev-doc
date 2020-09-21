@@ -1,0 +1,4 @@
+jni_basic_example
+*.o
+*.class
+*.log

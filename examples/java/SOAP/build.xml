@@ -1,0 +1,34 @@
+<project name="SOAP" default="all">
+
+  <property name="src.dir" value="."/>
+  <property name="build.dir" value="./build"/>
+
+	<!-- ================ TARGET : clean ====================== -->
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+
+	<!-- ================ TARGET : compile ==================== -->
+  <target name="compile">
+    <mkdir dir="${build.dir}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false"/>
+  </target>
+
+	<!-- ================ TARGET : wsgen ====================== -->
+
+	<taskdef name="wsgen" classname="com.sun.tools.ws.ant.WsGen">
+		<classpath path="/Users/pierrick/Downloads/jaxws-ri/lib/jaxws-tools.jar"/>
+	</taskdef>
+	
+	<target name="stubs">
+<!-- xendorsed="true" is used to force running this tool (version 2.2) on JDK6 which contains already an older version of the same tool (2.1).
+		 Another solution is to copy the jar into lib/endorsed of the JDK.
+		 on MacOS-X: /System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home/lib/endorsed/
+-->
+		<wsgen sei="SOAP.MyServer" classpath="${build.dir}" destdir="${build.dir}" genwsdl="true" xendorsed="true"/>
+	</target>
+
+	<!-- ================ TARGET : all ==================== --> 
+	<target name="all" depends="compile,stubs"/>
+
+</project>
