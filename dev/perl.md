@@ -1,3 +1,4 @@
+<!-- vimvars: b:markdown_embedded_syntax={'perl':''} -->
 # PERL
 
  * [Writing better Perl - Tips and tricks to make Perl easier, faster, and more fun](http://www.sourceformat.com/pdf/perl-coding-standard-robert.pdf).
@@ -210,6 +211,11 @@ package main;
 To force declaring variables:
 ```perl
 use strict;
+```
+
+Get variable type:
+```perl
+ref($v);
 ```
 
 ### Undef
@@ -443,12 +449,17 @@ See `Array::Utils` and `List::Util` for packages providing functions on arrays.
 
 Define a hash:
 ```perl
-my %data = ('John Paul' => 45, 'Lisa' => 30, 'Kumar' => 40);
+my %myhash = ('John Paul' => 45, 'Lisa' => 30, 'Kumar' => 40);
+```
+
+Test for existence:
+```perl
+exists($myhash{'Lisa'});
 ```
 
 Deleting a key:
 ```perl
-delete $HASH{$key};
+delete $myhash{$k};
 ```
 
 Loop on all key/value pairs, without order:
@@ -1706,18 +1717,35 @@ Key presses:
 $mw->bind('Q', sub{exit});
 ```
 
+### XML::LibXML
+
+ * [XML::LibXML](https://metacpan.org/pod/XML::LibXML).
+
+Example:
+```perl
+use XML::LibXML;
+open my $fh, '<', $myfile;
+binmode $fh; # drop all PerlIO layers possibly created by a use open pragma
+$doc = XML::LibXML->load_xml(IO => $fh);
+$root = $doc->documentElement();
+my @nodes = $root->getChildrenByTagName("mytag");
+```
+
 ### XML::Simple
 
 DRAWBACKS
-Doesn't handle correctly `<?...?>` head tag. Change it in `<opt ...>...</opt>`.
-On XMLout use option `XMLDecl => 1`.
+ * DEPRECATED
+ * Doesn't handle correctly `<?...?>` head tag. Change it in `<opt ...>...</opt>`.
+ * On XMLout use option `XMLDecl => 1`.
 
 By default it wants to put a 'name' attribute in tags, so you can't have an empty tag (with no attribute). If you read and write an XML without changing something, then the ouput will be different than the input. Typically something like `<tag1><tag2><tag3>...` becomes `<tag1 name="tag2"><tag3...`
 
 On XMLin and XMLout use option `KeepRoot => 1` to keep root element.
 
+See [XML::Simple](https://metacpan.org/pod/XML::Simple).
+
 ```perl
-use XML::Simple;
+use XML::Simple qw(:strict);
 ```
 
 ### Parse::RecDescent
