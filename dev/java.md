@@ -557,16 +557,47 @@ abstract class MyClass {
 
 ### Inner classes
 
+ * [Java - Inner classes](https://www.tutorialspoint.com/java/java_innerclasses.htm).
+
 You can define a class inside another class:
 ```java
 class MyClass {
+	String s = "Coucou";
+	private class MyInnerClass {
+		void myMethod() {
+			System.out.println(s); // access `i` member of inner class.
+		}
+	}
+}
+```
+This inner class has access to members of its outer class.
 
-	private MyInnerClass {
+An inner class can also be declared static, in which case it can be accessed without an outer class instance. Also a static inner class will not have access to the outer class members.
+```java
+class MyClass {
+	static class MyInnerClass {
+		void myMethod() {
+			System.out.println("Coucou");
+		}
+	}
+	static void main(String[] args) {
+		MyInnerClass c = new MyInnerClass();
+		c.myMethod();
 	}
 }
 ```
 
-You can define a class localy inside a method.
+You can also define a class localy inside a method:
+```java
+class MyClass {
+	public void myMethod() {
+		class MyInnerClass {
+			public void myInnerMethod() {
+			}
+		}
+	}
+}
+```
 
 You can define a class within the body of a method without naming it (anonymous inner class).
 ```java
@@ -945,7 +976,7 @@ System.setProperty(String key, String value);
 
 Power:
 ```java
-z = Math.pow(x, y);
+z = java.lang.Math.pow(x, y);
 ```
 
 Absolute value:
@@ -1334,13 +1365,16 @@ The solution is to exclude all inner classes class files from JUnit tests. In An
 </junit>
 ```
 
-## Swing & Awt
+## Properties
 
-### BoxLayout
+ * [Properties File Format](https://docs.oracle.com/cd/E23095_01/Platform.93/ATGProgGuide/html/s0204propertiesfileformat01.html).
+ * [Properties](https://docs.oracle.com/javase/tutorial/essential/environment/properties.html).
 
-```java
-import javax.swing.BoxLayout;
-```
+## AWT
+
+Abstract Window Toolkit.
+
+Running an AWT app in some window managers (e.g.: xmonad) may result in a blank window. Solution is to export the following env var: `_JAVA_AWT_WM_NONREPARENTING=1`.
 
 ### GridBagLayout
 
@@ -1348,6 +1382,42 @@ import javax.swing.BoxLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 ```
+
+## Swing
+
+GUI widget toolkit, successor of AWT.
+
+### BoxLayout
+
+```java
+import javax.swing.BoxLayout;
+```
+
+### Menus
+
+ * [How to Use Menus](https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html).
+
+Keyboard events:
+ * Mnemonics: for navigating inside the menu. Normally an alphanumeric character, the first occurence of this character is underlined on the menu title.
+ * Accelerators: for bypassing the menu. The shorcut is displayed on the right of the menu title.
+
+Example of mnemonics:
+```java
+// When creating a menu item:
+new javax.swing.JMenuItem("My menu item", java.awt.event.KeyEvent.VK_M)
+// or after menu item creation:
+myMenuItem.setMnemonic(KeyEvent.VK_A);
+```
+
+Example of accelerator:
+```java
+myMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.ActionEvent.ALT_MASK));
+```
+
+## i18n
+
+ * [Java Internationalization Support](https://docs.oracle.com/javase/8/docs/technotes/guides/intl/).
+ * [A Quick Example](https://docs.oracle.com/javase/tutorial/i18n/intro/quick.html).
 
 ## Annotations
 
@@ -1781,3 +1851,7 @@ Element root = doc.getDocumentElement();
 // getting all children
 NodeList children = root.getChildNodes();
 ```
+### Apache Batik SVG Toolkit
+
+ * [Apache Batik SVG Toolkit](https://xmlgraphics.apache.org/batik/).
+ * [Batik Swing components](https://xmlgraphics.apache.org/batik/using/swing.html).
