@@ -345,7 +345,8 @@ To convert from numeric to string and vice-versa:
 ```php
 <?php
 $str = strval($number);
-$number = intval($str);
+$integer = intval($str);
+$float = floatval($str);
 ?>
 ```
 
@@ -653,7 +654,7 @@ $array = [
 
 Build an associative array from a list of keys and a list of values:
 ```php
-<?php array+combine($keys, $values);
+<?php array_combine($keys, $values);
 ```
 
 Test if a key exists:
