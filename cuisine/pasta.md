@@ -3,6 +3,9 @@
  * [Gnocchi di patate](https://ricette.giallozafferano.it/Gnocchi-di-patate.html).
  * [Spaetzle, pâtes alsaciennes](https://www.recettes-alsace.fr/spaetzle-pates-alsaciennes/).
 
+ * [Pasta e patate alla napoletana](https://ricette.giallozafferano.it/Pasta-e-patate-alla-napoletana.html).
+ * [Soupe de haricots blancs et croutes de Parmesan](https://www.gastronomico.fr/soupe-haricots-blancs-parmesan/).
+
 Soba noodles in duck broth	canard	Japon		http://www.japanesefoodreport.com/2008/01/soba-noodles-in-duck-broth.html	
 
 Spaghetti alla Carbonara	pâtes	Italie	Rome	https://ricette.giallozafferano.it/Spaghetti-alla-Carbonara.html	
