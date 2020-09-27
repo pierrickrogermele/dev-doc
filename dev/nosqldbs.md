@@ -244,6 +244,11 @@ db.mycol.find().pretty()
 ```
 to have JSON printed with new lines.
 
+Search with a filter:
+```js
+db.mycol.find({myfield:'myvalue'})
+```
+
 To drop a collection:
 ```js
 db.mycol.drop()
