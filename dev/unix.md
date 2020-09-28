@@ -3959,6 +3959,62 @@ Bootloader:
 
 Gentoo:
  * [Gentoo Linux in Mac Mini 2009, soundcard issue](https://forums.gentoo.org/viewtopic-t-749525-start-0.html).
+
+## Graphics
+
+### dia
+
+Key shortcuts:
+	Ctrl E : Fit diagram on screen
+	Ctrl + : Zoom in
+	Crtl - : Zoom out
+	Arrows : Move diagram
+Export to a file and exit:
+```sh
+dia -e <output_file> -t <format> <input_file>
+```
+Formats:
+	cgm (Computer Graphics Metafile, ISO 8632)
+	dia (Native dia diagram)
+	dxf (Drawing Interchange File)
+	eps or eps-builtin or eps-pango (Encapsulated PostScript) The format specifications eps and eps-pango both use the font renderer of the Pango library, while eps-builtin uses a dia specific font renderer. If you have problems with Pango rendering, e.g. Unicode, try eps-builtin instead.
+	fig (XFig format)
+	mp (TeX MetaPost macros)
+	plt or hpgl (HP Graphics Language)
+	png (Portable Network Graphics)
+	shape (Dia Shape File)
+	svg (Scalable Vector Graphics)
+	tex (TeX PSTricks macros)         --> BAD OUTPUT, the figure is full of bugs.
+	wpg (WordPerfect Graphics)
+	wmf (Windows MetaFile)
+
+Remove splash screen:
+```sh
+dia -n ...
+```
+
+#### dia under macos
+
+Under MacOS-X, dia is no more available in Homebrew.
+A MacOS-X integrated version must be downloaded and installed.
+
+Unfortunately it doesn't allow to use options from command line.
+The script /Applications/Dia.app/Contents/Resources/bin/dia that launches dia-bin, doesn't accept arguments.
+The solution is to modify the last line of the script so it allows passing of arguments and doesn't run in GUI mode by default.
+```sh
+exec "$CWD/dia-bin" --integrated
+```
+becomes:
+```sh
+# From MacOS-X GUI, dia script is called with the command "dia -psn_0_??????"
+if [ $# -gt 1 ] ; then
+	"$CWD/dia-bin" "$@"
+else
+	exec "$CWD/dia-bin" --integrated
+fi
+```
+Then add `/Applications/Dia.app/Contents/Resources/bin` to the PATH.
+
 ## X11 & other graphical display managers
 
  * [256 Xterm 24bit RGB color chart](http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html).
