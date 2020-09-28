@@ -219,6 +219,18 @@ Get the class of an object:
 <? $type = get_class($myvar) ?>
 ```
 
+Test type:
+```php
+<? is_int($myvar);
+   is_float($myvar);
+   is_bool($myvar);
+   is_string($myvar);
+   is_null($myvar);
+   is_array($myvar);
+   is_object($myvar);
+   is_numeric($myvar); # Tests if number of numeric string.
+```
+
 ### Constants
 
 Constant names are case sensitive by default.
