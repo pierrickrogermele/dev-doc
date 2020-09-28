@@ -1,18 +1,38 @@
 # Media: radios, TVs, music & podcasts
 
+## Newspapers
+
+ * [EURACTIV](https://www.euractiv.fr/).
+ * [The Euroculturer](https://euroculturer.eu).
+ * [Le Canard Enchaîné](https://www.lecanardenchaine.fr/).
+ * [Mediapart](http://www.mediapart.fr/).
+ * [4 Revues](https://www.4revues.fr/): XXI, 6 Mois, La Revue Dessinée, Topo.
+ * [La Presse Libre](https://beta.lapresselibre.fr).
+ * [The Atlantic](https://www.theatlantic.com/world/).
+ * [Virigilio Città Cicciano](http://cicciano.virgilio.it/).
+ * [The Economist](http://www.economist.com).
+ * [Financial Times](www.ft.com).
+ * [The New-York Times](http://international.nytimes.com).
+
 ## Radios
 
  * [France Culture](https://www.franceculture.fr/programmes).
- * [BBC Radio 4](https://www.bbc.co.uk/radio4).
+  + [La Méthode scientifique](https://www.franceculture.fr/emissions/la-methode-scientifique).
  * [France Inter](https://www.franceinter.fr/).
- * [TSF Jazz](https://www.franceinter.fr/).
  * [FIP](https://www.fip.fr/).
- * [Netflix](https://www.netflix.com/).
+ * [TSF Jazz](https://www.franceinter.fr/).
+ * [BBC Radio 4](https://www.bbc.co.uk/radio4).
+ * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+
+## TVs
+
  * [Mon Arte](https://my.arte.tv/index.php?lang=fr#section/landing).
+ * [France TV](http://www.francetv.fr).
  * [France TV Info](https://www.francetvinfo.fr/).
  * [BBC](https://www.bbc.com/).
- * [EURACTIV](https://www.euractiv.fr/).
- * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+ * [Netflix](https://www.netflix.com/).
+ * [TF1](http://www.tf1.fr).
+ * [RAI Play](https://www.raiplay.it/).
 
 ## Podcasts
 
