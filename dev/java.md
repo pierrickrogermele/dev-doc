@@ -1386,6 +1386,7 @@ import java.awt.GridBagLayout;
 ## Swing
 
 GUI widget toolkit, successor of AWT.
+Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
 
 ### BoxLayout
 
@@ -1468,6 +1469,11 @@ Java debugger.
 Same command line as java:
 ```bash
 jdb -classpath <myclasspath> -sourcepath <pathtosources> ClassName [arguments...]
+```
+
+Remote debugging (attach to port):
+```bash
+jdb -attach 8000 -sourcepath /my/path/to/my/repos/src/main/java
 ```
 
 Misc:
@@ -1855,3 +1861,5 @@ NodeList children = root.getChildNodes();
 
  * [Apache Batik SVG Toolkit](https://xmlgraphics.apache.org/batik/).
  * [Batik Swing components](https://xmlgraphics.apache.org/batik/using/swing.html).
+
+ * [Displays a SVG icon in SVG using apache Batik](https://gist.github.com/lindenb/1003235).
