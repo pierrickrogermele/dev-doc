@@ -22,10 +22,15 @@ See [Introduction to the Build Lifecycle](https://maven.apache.org/guides/introd
 
 To execute a class of your project, run:
 ```bash
-mvn exec:java -Dexec.mainClass=HelloWorld
+mvn exec:java -e -Dexec.mainClass=my.path.to.my.MainClass
 ```
 See [3 ways to run Java main from Maven](http://www.vineetmanohar.com/2009/11/3-ways-to-run-java-main-from-maven/).
 Arguments and env vars can also be defined.
+
+Execute application under tiling window managers (like xmonad):
+```sh
+_JAVA_AWT_WM_NONREPARENTING=1 mvn exec:java -e -Dexec.mainClass=my.path.to.my.MainClass
+```
 
 It can also be done be defining a plugin goal:
 ```xml
@@ -116,6 +121,18 @@ Downloading Javadoc of dependencies:
 ```bash
 mvn dependency:resolve -Dclassifier=javadoc
 ```
+
+## Debugging
+
+Execute code in debug mode:
+```sh
+mvnDebug exec:java -e -Dexec.mainClass=my.path.to.my.MainClass
+```
+`mvnDebug` will start listening to port 8000. You will then have to run a debugger on that port:
+```sh
+jdb -attach 8000
+```
+
 ## Test
 
 Running tests:
