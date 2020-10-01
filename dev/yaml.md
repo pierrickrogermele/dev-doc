@@ -1,5 +1,5 @@
-YAML file
-=========
+<!-- vimvars: b:markdown_embedded_syntax={'yaml':''} -->
+# YAML file
 
  * [YAML](https://en.wikipedia.org/wiki/YAML).
  * [Official YAML website](http://yaml.org/).
@@ -34,10 +34,29 @@ In a multiline text, if you want to escape colon char (`:`):
 ```yaml
 ---
 -
-	field:
-	  - some text
-	  - some other text
-	  - |-
-	      "some text with a colon : inside it"
+  field:
+    - some text
+    - some other text
+    - |-
+        "some text with a colon : inside it"
 ```
 Quoting is not enough.
+
+Write a null value in YAML:
+```yaml
+---
+myfield1: ~
+myfield2:
+myfield3: null
+myfield3: Null
+myfield3: NULL
+```
+
+The `---` line indicates the start of a new data set. Thus you can store multiple YAML "files" inside a single YAML file:
+```yaml
+---
+field1: value1
+field2: value2
+---
+fieldOfAnotherDataset: someValue
+```
