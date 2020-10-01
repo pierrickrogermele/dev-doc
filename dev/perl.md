@@ -338,6 +338,26 @@ Repeating a string:
 my $s = "mystring" x 4;
 ```
 
+Replace:
+```perl
+$s =~ s/aaa/bbb/;
+```
+
+Affect and replace:
+```perl
+my $s =~ s/aaa/bbb/;
+```
+
+Copy and replace:
+```perl
+(my $s = $r) =~ s/aaa/bbb/;
+```
+
+Replace with substring:
+```perl
+$s =~ s/^.* (\d+)$/$1/;
+```
+
 Joining values of an array into a string:
 ```perl
 print join("\n", keys(%ENV));
@@ -377,6 +397,12 @@ The `=>` operator is called the "fat comma" and has the effect to transform its 
 Define an array:
 ```perl
 my @arr = (1, 2, 3);
+```
+
+Define an array of strings:
+```perl
+my @arr1 = ('abc', 'def');
+my @arr2 = qw(abc def);
 ```
 
 Get a value from an array:
@@ -1752,3 +1778,22 @@ use XML::Simple qw(:strict);
 
  * [Parse::RecDescent](https://metacpan.org/pod/Parse::RecDescent).
  * [Parse::RecDescent Tutorial]( https://www.perl.com/pub/2001/06/13/recdecent.html/).
+
+### Spreadsheet::Reader::ExcelXML
+
+ * [Spreadsheet::Reader::ExcelXML](https://metacpan.org/pod/Spreadsheet::Reader::ExcelXML).
+
+### YAML::XS
+ 
+ * [YAML](https://metacpan.org/pod/YAML::XS).
+
+Load a YAML file:
+```perl
+use YAML::XS;
+my $data = YAML::XS::LoadFile('myfile.yml');
+```
+
+Create a YAML file:
+```perl
+YAML::XS::DumpFile('output.yml', $data);
+```
