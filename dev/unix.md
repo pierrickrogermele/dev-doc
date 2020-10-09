@@ -822,7 +822,14 @@ sudo pfctl -s rules
 
 ### offlineimap
 
+ * [OfflineIMAP](https://wiki.archlinux.org/index.php/OfflineIMAP).
+
 Synchronize locally with an IMAP account.
+
+On Archlinux:
+```sh
+pacman -S offlineimap
+```
 
 Install on MacOS-X:
 ```sh
@@ -1450,7 +1457,7 @@ Restore a file:
 trash-restore /full/path/to/my/file
 ```
 
-The default user Trash folder of the freedesktop specifications is `~/.local/share/Trash`. See:
+The default user Trash folder of the freedesktop specifications is `~/.local/share/Trash` (`$XDG_DATA_HOME/Trash`). See:
  * [The FreeDesktop.org Trash specification](https://specifications.freedesktop.org/trash-spec/trashspec-latest.html)
  * [XDG Base Directory Specification](https://specifications.freedesktop.org/basedir-spec/basedir-spec-0.6.html).
 
@@ -4015,6 +4022,40 @@ fi
 ```
 Then add `/Applications/Dia.app/Contents/Resources/bin` to the PATH.
 
+### vimiv
+
+ * [vimiv](https://karlch.github.io/vimiv-qt/documentation/index.html).
+
+Config dir: `$XDG_CONFIG_HOME/vimiv/`.
+
+General keys:
+	`gi`    Enters image mode.
+	`gl`    Enters library mode.
+	`gt`    Enters thumbnail mode.
+	`gm`    Enters manipulate mode.
+
+Keys:
+	`+`     Zoom in
+	`-`     Zoom out
+	`n`     Next image
+	`p`     Previous image
+	`gg`    First image
+	`G`     Last image
+	`h`     Scroll image
+	`j`     Scroll image
+	`k`     Scroll image
+	`l`     Scroll image
+	`w`     Fit window size
+	`e`     Fit horizontally
+	`E`     Fit vertically
+	`ss`    Start slideshow
+	`sh`    Decrease speed of slideshow
+	`sl`    Increase speed of slideshow
+	`>`     Rotate right.
+	`<`     Rotate left.
+	`|`     Flip vertically.
+	`_`     Flip horizontally.
+
 ## X11 & other graphical display managers
 
  * [256 Xterm 24bit RGB color chart](http://www.calmar.ws/vim/256-xterm-24bit-rgb-color-chart.html).
@@ -4069,6 +4110,8 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
  * [freedesktop.org](https://www.freedesktop.org/wiki/).
  * [xdg-utils](https://www.freedesktop.org/wiki/Software/xdg-utils/).
+
+Default trash directory: `$XDG_DATA_HOME/Trash`.
 
 #### xdg-settings
 
