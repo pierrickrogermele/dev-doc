@@ -39,8 +39,17 @@
 
  * [Pois cassés et Morteau](https://www.cuisinemaison.net/legumes/pois-casse-et-morteau-18950).
 
+### Haricots
+
+ * [Soupe de haricots blancs et croutes de Parmesan](https://www.gastronomico.fr/soupe-haricots-blancs-parmesan/).
+ * [Fagioli all'uccelletto](https://ricette.giallozafferano.it/Fagioli-all-uccelletto.html).
+ * [Haricots blancs à la tomate](https://www.meilleurduchef.com/fr/recette/haricot-blanc-tomate.html).
+ * [Coco de Paimpol](https://www.marmiton.org/recettes/recette_coco-de-paimpol_31642.aspx).
+
 ### Lentilles
 
+ * [ Lentilles Vertes du Puy](https://www.marmiton.org/recettes/recette_lentilles-vertes-du-puy_34542.aspx).
+ * [Ragù di lenticchie](https://ricette.giallozafferano.it/Ragu-di-lenticchie.html).
  * [Dal tempering](https://thoughtsfromajoy.wordpress.com/2013/01/09/perfect-dal-is-all-about-tadka-baghar-vagharne-chonk-phodni-or-just-call-it-tempering/).
 
 ## Algues

@@ -34,6 +34,9 @@ Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/rec
 
  * [Scones](https://www.bbc.co.uk/food/recipes/scones_1285).
 
+ * [Madeleines à belle bosse](https://cuisine.journaldesfemmes.fr/recette/343692-madeleines).
+ * [Madeleines parfumées avec une jolie bosse](https://www.marmiton.org/recettes/recette_madeleines-parfumees-avec-une-jolie-bosse_372523.aspx).
+
 ## Chocolat
 
  * [Brownies](https://www.marmiton.org/recettes/recette_brownies_16951.aspx).
