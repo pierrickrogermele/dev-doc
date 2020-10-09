@@ -1,5 +1,7 @@
-MAVEN
-=====
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','bash':'','xml':''} -->
+# Maven
+
+ * [Maven Repository](https://mvnrepository.com/).
 
 For a quick introduction, see [Maven in 5 Minutes](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html).
 
@@ -85,6 +87,18 @@ JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/ mvn .
 To search for dependencies, go to <http://mvnrepository.com/>.
 
 On OSX, dependencies are stored inside `~/.m2`.
+
+Inside `pom.xml`:
+```xml
+<dependencies>
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.12</version>
+		<scope>test</scope>
+	</dependency>
+</dependencies>
+```
 
 List all dependencies:
 ```bash
