@@ -525,16 +525,28 @@ my $path = $ENV{PATH};
 
 ### For
 
+Loop with implicit iterator:
 ```perl
-for my $v (@array) {
+foreach (@array) {
+	print $_;
+}
+```
+`for` is a synonym of `foreach`.
+
+Loop with an explicit iterator:
+```perl
+foreach my $v (@array) {
 }
 ```
 
-`foreach` and `for` are synonyms.
+One line for loop:
+```perl
+print $_ foreach @myarray;
+```
 
 To leave a loop:
 ```perl
-for my $v (@array) {
+foreach my $v (@array) {
 	if ($v->{value})  {
 		# ...
 		last;
@@ -544,12 +556,18 @@ for my $v (@array) {
 
 To process next element:
 ```perl
-for my $v (@array) {
+foreach my $v (@array) {
 	if (...) {
 		# ...
 		next;
 	}
 	...
+}
+```
+
+C style loop:
+```perl
+for (my $i = 0 ; $i < 10 ; ++$i) {
 }
 ```
 
@@ -891,6 +909,13 @@ Open a file for reading:
 ```perl
 open(FILE_TAG, "<:utf8", "some file");
 open(FILE_TAG, "<some file");
+```
+
+Open a file with specific encoding:
+```perl
+open(my $fh, "<:encoding(Latin1)", 'myfile.txt');
+open(my $fh, "<:encoding(Windows-1252)", 'myfile.txt');
+open(my $fh, "<:encoding(UTF-8)", 'myfile.txt');
 ```
 
 Open a file for writing:
@@ -1783,6 +1808,38 @@ use XML::Simple qw(:strict);
 
  * [Spreadsheet::Reader::ExcelXML](https://metacpan.org/pod/Spreadsheet::Reader::ExcelXML).
 
+### Spreadsheet::XLSX
+
+ * [Spreadsheet::XLSX](https://html.duckduckgo.com/html/?q=perl%20xlsx).
+
+### Spreadsheet::Read
+
+ * [Spreadsheet::Read](https://metacpan.org/pod/Spreadsheet::Read).
+
+Depends on `Spreadsheet::ParseExcel` for xls file and `Spreadsheet::ParseXLSX` for xlsx files.
+
+--> Installation OK.
+
+### Spreadsheet::ParseExcel
+
+ * [Spreadsheet::ParseExcel](https://metacpan.org/pod/Spreadsheet::ParseExcel).
+For Excel 95-2003 files.
+
+### Spreadsheet::ParseXLSX
+
+ * [Spreadsheet::ParseXLSX](https://metacpan.org/pod/Spreadsheet::ParseXLSX).
+
+For Excel 2007 Open XML XLSX.
+
+Depends on `Archive::Zip`.
+Installation of `Archive::Zip` fails on tests when install with cpan ==> try to install it directly from system package.
+
+### Excel::Writer::XLSX
+
+ * [Excel::Writer::XLSX](https://www.geeksforgeeks.org/perl-creating-excel-files/).
+
+For creating Excel files.
+
 ### YAML::XS
  
  * [YAML](https://metacpan.org/pod/YAML::XS).
@@ -1797,3 +1854,8 @@ Create a YAML file:
 ```perl
 YAML::XS::DumpFile('output.yml', $data);
 ```
+
+### JSON
+
+ * [JSON](https://metacpan.org/pod/JSON).
+
