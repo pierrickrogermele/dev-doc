@@ -359,3 +359,7 @@ Install a package:
 ```sh
 cabal install mypkg
 ```
+
+### xmonad-contrib
+
+ * [xmonad-contrib](https://hackage.haskell.org/package/xmonad-contrib).
