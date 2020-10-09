@@ -1070,6 +1070,12 @@ while (i.hasNext())
 	String element = i.next();
 ```
 
+Iterate with a for loop:
+```java
+for (String s: names) {
+}
+```
+
 ### Map
 
 ```java
@@ -1604,11 +1610,6 @@ For computing binomial coefficients, see [CombinatoricsUtils](http://commons.apa
  * [JUnit 4](https://junit.org/junit4/).
  * [JUnit 5](https://junit.org/junit5/).
 
-```java
-import org.junit.Before;
-import org.junit.Test;
-```
-
 Assertions:
 ```java
 import static org.junit.Assert.*;
@@ -1617,7 +1618,7 @@ assertTrue(a == 2);
 
 Testing that an exception is thrown:
 ```java
-@Test(expected=IndexOutOfBoundsException.class)
+@org.junit.Test(expected=IndexOutOfBoundsException.class)
 public void testIndexOutOfBoundsException() {
 	ArrayList emptyList = new ArrayList();
 	Object o = emptyList.get(0);
@@ -1733,9 +1734,13 @@ Framework for exchanging data between independently developed software tools and
 
 Can connect software like : R, Matlab, MeV, ...
 
-### GOOGLE Guava
+### Google Guava
 
  * [Google Guava](http://guava-libraries.googlecode.com/svn/trunk/javadoc/index.html).
+
+### Google JSON Simple
+
+ * [JSON Simple](https://code.google.com/archive/p/json-simple/).
 
 ### EJML
 
