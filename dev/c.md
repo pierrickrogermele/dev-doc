@@ -794,6 +794,10 @@ if (usleep(300))
 
  * [zfp & fpzip: Floating Point Compression](https://computing.llnl.gov/projects/floating-point-compression).
 
+### PCRE (regex)
+
+ * [PCRE - Perl Compatible Regular Expressions](https://pcre.org/).
+
 ## IDEs
 
 ### Xcode
