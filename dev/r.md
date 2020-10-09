@@ -680,16 +680,16 @@ all2006 <- read.csv("2006.csv", header=TRUE, as.is=TRUE) # read CSV file. as.is=
 
 Reading a UTF-16 file, with tab separated columns:
 ```r
-df <- read.table("SPI-N1.txt", header=TRUE, stringsAsFactors = FALSE, sep="\t", fileEncoding="UTF-16")
+df <- read.table("SPI-N1.txt", header=TRUE, quote="", stringsAsFactors = FALSE, sep="\t", fileEncoding="UTF-16")
 ```
 
 #### Writing
 
 ```r
-write.csv(df, file = "myfile.csv") # period for decimal separator and comma for field separator
-write.csv2(df, file = "myfile.csv") # coma for decimal separator and semicolon for field separtor
-write.table(df, file = "myfile.tsv", sep = "\t")
-write.table(df, file = "myfile.tsv", sep = "\t", row.names = FALSE) # Do not write row names
+write.csv(df, file="myfile.csv") # period for decimal separator and comma for field separator
+write.csv2(df, file="myfile.csv") # coma for decimal separator and semicolon for field separtor
+write.table(df, file="myfile.tsv", sep="\t")
+write.table(df, file="myfile.tsv", sep="\t", row.names=FALSE, quote=FALSE) # Do not write row names, do not quote strings.
 ```
 
 #### Subdata frames
