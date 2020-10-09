@@ -8,6 +8,11 @@ On UNIX, to reindent an XML run:
 xmllint --format myfile.xml >myfile_indented.xml
 ```
 
+Reindent in VIM buffer:
+```vim
+%!xmllint --format -
+```
+
 To check syntax of an XML file:
 ```bash
 xmllint --noout myfile.xml
