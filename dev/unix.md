@@ -3082,7 +3082,7 @@ Search for a package:
 pkg search mypkg
 ```
 
-## Media
+## Sound & video
 
 ### Sound configuration
 
@@ -3155,67 +3155,6 @@ Convert mp4 to avi:
 ffmpeg -i input.mp4 -c:v libx264 -c:a libmp3lame -b:a 384K output.avi
 ```
 
-### pdfcrack
-
-Tool for cracking user password and/or owner password in PDF files.
-
-```bash
-pdfcrack myfile.pdf
-```
-
-### pdfimages
-
-From package xpdf or poppler.
-
-Extract images from PDF:
-```bash
-mkdir myfolder
-pdfimages -j myfile.pdf myfolder/myprefix
-```
-
-### pdfunite
-
-Concatenate multiple PDF files:
-```sh
-pdfunite a.pdf b.pdf c.pdf out.pdf
-```
-
-### pdfarranger
-
-Reorganize PDF file (delete pages, move pages, ...)
-
-### convert (ImageMagick)
-
-Resize to 50%:
-```bash
-magick convert -resize 50% input.jpg output.jpg
-```
-
-Make a PDF from images:
-```bash
-magick convert *.jpg myfile.pdf
-```
-
-Image quality for jpeg and mpeg (1 lowest, 100 best):
-```bash
-magick convert -quality 60% input.jpg output.jpg
-```
-See <http://www.imagemagick.org/script/command-line-options.php#quality>.
-
-Convert to gray scale:
-```bash
-magick convert -colorspace Gray input.jpg output.jpg
-```
-
-```bash
-for f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done 
-```
-
-Rotate 180 degrees:
-```bash
-magick convert -rotate 180 input.jpeg output.jpeg
-```
-
 ### feh
 
 Light image viewer.
@@ -3257,34 +3196,6 @@ xawtv -c /dev/video2
 ```
 
 Press 'j' to Shoot a photo and save it in JPEG format.
-
-### exiftool
-
-Package `perl-image-exiftool` on ArchLinux.
-
-Read EXIF information:
-```bash
-exiftool myfile.jpeg
-```
-
-Remove a orientation information:
-```bash
-exiftool -Orientation= myfile.jpeg
-```
-
-### banner
-
-Generates simple ASCII art:
-```sh
-banner 0123
-```
-
-### figlet
-
-Generates ASCII art:
-```sh
-figlet -f ogre "Potion"
-```
 
 ### dd
 
@@ -3968,6 +3879,113 @@ Gentoo:
  * [Gentoo Linux in Mac Mini 2009, soundcard issue](https://forums.gentoo.org/viewtopic-t-749525-start-0.html).
 
 ## Graphics
+
+### banner
+
+Generates simple ASCII art:
+```sh
+banner 0123
+```
+
+### figlet
+
+Generates ASCII art:
+```sh
+figlet -f ogre "Potion"
+```
+
+### exiftool
+
+Package `perl-image-exiftool` on ArchLinux.
+
+Read EXIF information:
+```bash
+exiftool myfile.jpeg
+```
+
+Remove a orientation information:
+```bash
+exiftool -Orientation= myfile.jpeg
+```
+
+### masterpdfeditor
+
+A powerful GUI PDF editor.
+
+### pdftk
+
+A PDF tool.
+
+Reverse order of pages:
+```sh
+pdftk my.pdf cat end-1 output my_reversed.pdf
+```
+
+Merge a PDF containg odd pages with a PDF containg even pages:
+```sh
+pdftk A=odd.pdf B=even.pdf shuffle output merged.pdf
+```
+
+### pdfcrack
+
+Tool for cracking user password and/or owner password in PDF files.
+
+```bash
+pdfcrack myfile.pdf
+```
+
+### pdfimages
+
+From package xpdf or poppler.
+
+Extract images from PDF:
+```bash
+mkdir myfolder
+pdfimages -j myfile.pdf myfolder/myprefix
+```
+
+### pdfunite
+
+Concatenate multiple PDF files:
+```sh
+pdfunite a.pdf b.pdf c.pdf out.pdf
+```
+
+### pdfarranger
+
+Reorganize PDF file (delete pages, move pages, ...)
+
+### convert (ImageMagick)
+
+Resize to 50%:
+```bash
+magick convert -resize 50% input.jpg output.jpg
+```
+
+Make a PDF from images:
+```bash
+magick convert *.jpg myfile.pdf
+```
+
+Image quality for jpeg and mpeg (1 lowest, 100 best):
+```bash
+magick convert -quality 60% input.jpg output.jpg
+```
+See <http://www.imagemagick.org/script/command-line-options.php#quality>.
+
+Convert to gray scale:
+```bash
+magick convert -colorspace Gray input.jpg output.jpg
+```
+
+```bash
+for f in *ppm ; do convert -quality 100 $f `basename $f ppm`jpg; done 
+```
+
+Rotate 180 degrees:
+```bash
+magick convert -rotate 180 input.jpeg output.jpeg
+```
 
 ### dia
 
