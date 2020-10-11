@@ -1387,9 +1387,125 @@ my $dbh = DBI->connect('DBI:mysql:mydatabase');
 my $dbh = DBI->connect('DBI:mysql:mydatabase', $user, $password, { RaiseError => 1, AutoCommit => 0 });
 ```
 
+Setting parameters after connection is created:
+```perl
+$dbh->{AutoCommit} = 1;
+```
+
 Espace and quote query string before using it:
 ```perl
 my $quoted_string = $dbh->quote($unquoted_string);
+```
+
+Run query:
+```perl
+my $sth = $dbh->prepare("INSERT INTO mytable VALUES (1, 2)");
+$sth->execute();
+```
+
+When `AutoCommit` is on, every query is commited. To open a transaction run:
+```perl
+$dbh->begin_work();
+# or
+$dbh->do('BEGIN TRANSACTION');
+```
+Then `AutoCommit` is turned off automatically.
+When you are done, commit the transaction with:
+```perl
+$dbh->commit();
+# or
+$dbh->do('COMMIT');
+```
+Or cancel it with:
+```perl
+$dbh->rollback();
+```
+Then `AutoCommit` is turned on again.
+
+When `AutoCommit` is off, we are always in a transaction mode. Thus opening explictly a transaction is not needed but does not harm:
+However closing a transaction is needed.
+
+### SQLite
+
+Install:
+```sh
+cpan -i DBD::SQLite
+```
+
+Open an SQLite connection:
+```perl
+use DBI;
+my $dbh = DBI->connect("dbi:SQLite:dbname=/my/db/file.sqlite", "", "");
+```
+
+### MySQL
+
+```perl
+use Mysql;
+```
+
+Connecting:
+```perl
+my $db = Mysql->connect($host, $database, $user, $password);
+```
+
+Selecting database:
+```perl
+$db->selectdb($database);
+```
+
+List databases:
+```perl
+my @array = $db->listdbs;
+```
+
+List tables:
+```perl
+my @array = $db->listtables;
+```
+
+Fields info:
+```perl
+my $fields = $db->listfields($table);
+$fields->name;
+$fields->type;
+$fields->length;
+$fields->isnotnull;
+$fields->isprikey;
+$fields->isnum;
+$fields->isblob;
+```
+
+Query:
+```perl
+my $query = $db->query($sql_query);
+mysql_fetch_row($query_id); # get one row, call again to get the next row
+my %hash = $query->fetchhash; # get one row in a hash (column name as key)
+$query->dataseek($row_number); # first row has index 0
+```
+
+Query Statement Statistics:
+```perl
+my $number = $query->numrows;
+my $number = $query->numfields;
+my $number = $query->affectedrows;
+my $id = $query->insertid; # gives back the automatically inserted id in the new row, if there's one.
+```
+
+Espace and quote query string before using it:
+```perl
+my $quoted_string = $db->quote($unquoted_string);
+```
+
+Error:
+```perl
+$error_message = $db->errmsg();
+```
+
+Create/remove a database:
+```perl
+my $newdb = $dbh->createdb("database name");
+my $nodb = $db->dropdb("database name");
 ```
 
 ### Encode::Supported
@@ -1614,76 +1730,6 @@ use LWP::Simple;
 Getting a web page content:
 ```perl
 $content = get("http://www.sn.no/");
-```
-
-### MySQL
-
-```perl
-use Mysql;
-```
-
-Connecting:
-```perl
-my $db = Mysql->connect($host, $database, $user, $password);
-```
-
-Selecting database:
-```perl
-$db->selectdb($database);
-```
-
-List databases:
-```perl
-my @array = $db->listdbs;
-```
-
-List tables:
-```perl
-my @array = $db->listtables;
-```
-
-Fields info:
-```perl
-my $fields = $db->listfields($table);
-$fields->name;
-$fields->type;
-$fields->length;
-$fields->isnotnull;
-$fields->isprikey;
-$fields->isnum;
-$fields->isblob;
-```
-
-Query:
-```perl
-my $query = $db->query($sql_query);
-mysql_fetch_row($query_id); # get one row, call again to get the next row
-my %hash = $query->fetchhash; # get one row in a hash (column name as key)
-$query->dataseek($row_number); # first row has index 0
-```
-
-Query Statement Statistics:
-```perl
-my $number = $query->numrows;
-my $number = $query->numfields;
-my $number = $query->affectedrows;
-my $id = $query->insertid; # gives back the automatically inserted id in the new row, if there's one.
-```
-
-Espace and quote query string before using it:
-```perl
-my $quoted_string = $db->quote($unquoted_string);
-```
-
-Error:
-```perl
-$error_message = $db->errmsg();
-```
-
-Create/remove a database:
-```perl
-my $newdb = $dbh->createdb("database name");
-my $nodb = $db->dropdb("database name");
 ```
 
 ### Tk
