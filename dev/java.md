@@ -715,7 +715,7 @@ A `final` class cannot be derived.
 A `final` method cannot be overwritten in a derived class.
 `final` applied to a class attribute or a local variable means that it cannot be changed (i.e.: it is a constant).
 
-## Main method
+## main method
 
 ```java
 public class MyClass {
