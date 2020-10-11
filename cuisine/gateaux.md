@@ -22,7 +22,7 @@
 
  * [Comment utiliser du cacao à la place du chocolat](https://fr.wikihow.com/utiliser-du-cacao-%C3%A0-la-place-du-chocolat).
 
-Bûche de Noël aux fruits et mascarpone				http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx	
+ * [Bûche de Noël aux fruits et mascarpone](http://www.marmiton.org/recettes/recette_buche-de-noel-aux-fruits-et-mascarpone_65657.aspx).
 
 ## Biscuits
 
