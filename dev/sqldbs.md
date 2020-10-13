@@ -140,6 +140,8 @@ Avoid partitioning on values which may change in future, since an "update" of a 
 
 ## Standard SQL
 
+ * [SQL Tutorial](https://www.tutorialspoint.com/sql/index.htm).
+
 ### Comments
 
 ```sql
@@ -165,6 +167,7 @@ int64       |
 bool        |
 string      | variable length unicode character string
 date        |
+varchar(255)| 
 
 ### List tables
 
@@ -216,7 +219,7 @@ Insert into a table:
 insert into mytable (col1, col2, col3, ...) values (val1, val2, val3, ...);
 ```
 
-### Indexes
+### index
 
 Create an index:
 ```sql
@@ -519,6 +522,10 @@ where city = 'GOTHAM'
 		                  where a.artname = 'BATMOBILE'
 		                  and a.artid = od.artid));
 ```
+
+## SQLite
+
+ * [Datatypes In SQLite Version 3](https://www.sqlite.org/datatype3.html).
 
 ## MySQL
 
