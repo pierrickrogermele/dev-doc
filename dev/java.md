@@ -151,6 +151,34 @@ java -Xss1024k
 Default value of system property `java.library.path` on MacOS-X:
 	/Users/pierrick/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
 
+### Beanshell
+
+Beanshell is a Java interpreter.
+
+See [official site](http://www.beanshell.org/).
+
+To install as an extension place the `bsh.jar` file in your `$JAVA_HOME/jre/lib/ext` folder. For *MacOS-X* users, place the `bsh.jar` in either `/Library/Java/Extensions` for all users, or inside `~/Library/Java/Extensions` for individual users.
+
+You can also add the *BeanShell* jar to your classpath like this:
+
+	* unix:     `export CLASSPATH=$CLASSPATH:bsh-xx.jar`.
+	* windows:  `set classpath %classpath%;bsh-xx.jar`.
+
+To run the graphical desktop:
+```bash
+java bsh.Console
+```
+
+To run as text-only on the command line:
+```bash
+java bsh.Interpreter
+```
+
+To run a script file:
+```bash
+java bsh.Interpreter filename [ args ]
+```
+
 ### javadoc
 
  * [How to Write Doc Comments for the Javadoc Tool](http://www.oracle.com/technetwork/articles/java/index-137868.html).
@@ -1868,3 +1896,110 @@ NodeList children = root.getChildNodes();
  * [Batik Swing components](https://xmlgraphics.apache.org/batik/using/swing.html).
 
  * [Displays a SVG icon in SVG using apache Batik](https://gist.github.com/lindenb/1003235).
+
+### SQLite
+
+ * [SQLite Java](https://www.sqlitetutorial.net/sqlite-java/).
+ * [SQLite - Java](https://www.tutorialspoint.com/sqlite/sqlite_java.htm).
+
+### Jade
+
+*JADE* is a multi-agent system framework.
+
+For documentation and downloading, see the [official web site](http://jade.tilab.com).
+
+#### Containers
+
+Start a main container:
+```bash
+java -cp <classpath> jade.Boot
+```
+
+Start a main container using the JADE management GUI:
+```bash
+java -cp <classpath> jade.Boot -gui
+```
+
+Start a peripheral container (-container option) on host myhost and activate an agent myname of clas MyClass:
+```bash
+java -cp <classpath> jade.Boot -container -host myhost -agents myname:my.package.MyClass
+```
+
+A main container holds two special agents:
+
+ * AMS (Agent Management System): naming service. Ensures uniqueness of agent names. Creates and kills agents on remote containers.
+ * DF (Directory Facilitator): yellow pages service.
+
+#### Terminating a container
+
+From within an agent, it is possible to ask the container to kill itself:
+```java
+this.getContainerController().kill();
+```
+Care must be taken that this action does not occure while agents are still running. First one must be sure that all agents are terminated excepted the one trying to kill the container, and then create a new thread that will kill effectively the container after the last agent has terminated properly.
+If agents are still running, an exception will be thrown for each agent, but the container will be killed anyway.
+
+#### Test suite
+
+Use the [JADE Test Suite](http://jade.tilab.com/doc/tutorials/JADE_TestSuite.pdf).
+
+#### Create a new agent
+
+```java
+import jade.core.Agent;
+public class BookBuyerAgent extends Agent {
+	protected void setup() {
+		// Printout a welcome message
+		System.out.println("Hello! Buyer-agent "+getAID().getName()+" is ready.");
+	}
+}
+```
+
+`getAID()` retrieves the agent identifier.
+
+#### Agent identifier
+
+Getting the agent identifier:
+```java
+AID aid = myagent.getAID();
+```
+The AID is constructed as name@platform.
+
+Constructing a new AID:
+```java
+AID id = new AID("bob", AID.ISLOCALNAME);
+```
+
+#### Arguments
+
+Arguments to an agent must be passed on the command line. They are retrieved with the getArguments() method.
+```java
+Object[] args = getArguments();
+```
+
+#### Terminating
+
+In order to terminate, an agent must call its `doDelete()` method.
+
+When terminating, the `takeDown()` method of an agent is called, allowing for running clean-up operations.
+
+#### Behaviours
+
+For each agent action a behaviour must be created. A behaviour is an instance of a class inheriting from `jade.core.behaviours.Behaviour` class.
+
+Behaviours are added through method `addBehaviour()`. This is normally done inside the `setup()` method.
+
+A behaviour class must define two methods:
+
+	* The `action()` method, which contains the operations to execute.
+	* The `done()` method, which returns true if the behaviour has completed.
+
+Since in *JADE* each agent has its own thread, all behaviours of an agent are executed in the same thread. Behaviours are executed in sequential order, so there is no concurrency issue. This means that the developer of an agent is responsible of the switching between one behaviour to the next, i.e. that each behaviour terminates its action properly and let the next behaviour's action execute.
+
+#### Agent life cycle
+
+ 1. The `setup()` method is called.
+ 2. If agent has been killed (i.e.: `doDelete()` has been called), then the `takeDown()` method is called. The agent stops running.
+ 3. Call the `action()` method of the next behaviour.
+ 4. Call the `done()` of the same behaviour, and if it returns true then the behaviour is removed from the pool of behaviours.
+ 5. Go to step 2.
