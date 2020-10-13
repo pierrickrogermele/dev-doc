@@ -3084,12 +3084,23 @@ pkg search mypkg
 
 ## Sound & video
 
-### Sound configuration
+### alsactl
 
 Configure sound on Debian with ALSA system:
 ```bash
 alsactl init
 ```
+
+### alsamixer
+
+Console tool to manage sound card configuration.
+Move with left/right to select.
+Press up/down to modify.
+
+Disabling "Auto-Mute Mode" is possible.
+
+### pacmd
+
 
 ### mplayer
 
