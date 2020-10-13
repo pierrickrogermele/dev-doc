@@ -7,6 +7,8 @@
  * lentilles: Mettre les lentilles avec 3 fois leur volume d’eau froide dans une casserole. Portez à ébullition et laissez cuire à petit feu et à couvert, pendant 10 à 15 minutes.
  * pommes de terre à l’eau: Dans l’eau froide, entières, avec la peau, porter à ébullition. 45 minutes en tout pour des grosses pommes de terre.
 
+ * [Cuisson de la quinoa](https://www.marmiton.org/trucs-et-astuces/cuisson-quinoa-s3004193.html).
+
 ## Millet
 
 Verser le millet dans une casserole puis ajouter 2 fois son volume d'eau froide. Porter à ébullition, saler et couvrir. Laisser cuire à feu doux pendant 20 minutes jusqu'à absorption totale de l'eau
