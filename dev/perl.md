@@ -608,7 +608,7 @@ if ($pid) {
 }
 ```
 
-### Map
+### map
 
 To apply a function on each element of an array:
 ```perl
@@ -1131,7 +1131,11 @@ use Scalar::Util 'blessed';
 my $classname = blessed($obj);
 ```
 
-## Die & warn
+## Errors and warnings
+
+ * [Exception handling in Perl: How to deal with fatal errors in external modules](https://perlmaven.com/fatal-errors-in-external-modules).
+ * [Try::Tiny - Minimal try/catch with proper preservation of $@ - metacpan.org](https://metacpan.org/pod/Try::Tiny).
+ * [Perl - Error Handling - Tutorialspoint](https://www.tutorialspoint.com/perl/perl_error_handling.htm).
 
 Quit immediatly the program, printing the specified message:
 ```perl
@@ -1144,6 +1148,27 @@ warn "my message";
 ```
 
 See `Carp` package for printing the callstack on failure.
+
+Catch an exception with `eval`:
+```perl
+eval {
+	do_something();
+	1;
+} or do {
+	my $error = $@ || 'Unknown failure';
+	handle_error();
+};
+```
+
+Catch an exception with `try`:
+```perl
+use Try::Tiny;
+try {
+	# do something
+} catch {
+	# handle error
+};
+```
 
 ## Profiling
 	
