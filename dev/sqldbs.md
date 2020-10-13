@@ -5,6 +5,11 @@ Relational databases
  * [SQL Tutorial](https://www.w3schools.com/sql/default.asp).
  * [SQL 92](http://www.contrib.andrew.cmu.edu/~shadow/sql/sql1992.txt).
 
+Books:
+ * [The Art of SQL](https://www.amazon.com/Art-SQL-Stephane-Faroult/dp/0596008945/ref=sr_1_1?s=books&ie=UTF8&qid=1472635113&sr=1-1&keywords=the+art+of+SQL).
+ * [Learning SQL]( https://www.amazon.com/Learning-SQL-Alan-Beaulieu/dp/0596520832/ref=sr_1_1?s=books&ie=UTF8&qid=1472635257&sr=1-1&keywords=learning+SQL).
+ * [Database Design for Mere Mortals: A Hands-On Guide to Relational Database Design (3rd Edition)](https://www.amazon.com/Database-Design-Mere-Mortals-Hands-/dp/0321884493/ref=sr_1_1?s=books&ie=UTF8&qid=1472635186&sr=1-1&keywords=database+design+for+mere+mortals).
+
 ## Design
 
 ### Database schema symbols

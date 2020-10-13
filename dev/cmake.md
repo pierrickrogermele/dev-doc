@@ -1,5 +1,7 @@
-CMAKE
-=====
+# cmake
+
+Books:
+ * [Mastering CMake](https://www.amazon.com/Mastering-CMake-Ken-Martin/dp/1930934319/ref=sr_1_1?s=books&ie=UTF8&qid=1472635645&sr=1-1&keywords=mastering+cmake).
 
 ## Running
 

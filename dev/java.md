@@ -12,6 +12,9 @@
  * [Tutorials](http://docs.oracle.com/javase/tutorial/index.html).
  * [API](http://docs.oracle.com/javase/7/docs/api/index.html).
 
+Books:
+ * [Effective Java (2nd Edition)](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683/ref=sr_1_1?s=books&ie=UTF8&qid=1472635292&sr=1-1&keywords=effective+java).
+
 ## Install
 
 On Ubuntu, to install jre:
