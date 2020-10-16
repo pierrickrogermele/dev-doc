@@ -1,0 +1,34 @@
+<installation version="5.0">
+	<info>
+		<appname>@{izpack.appname}</appname>
+		<appversion>@{izpack.appversion}</appversion>
+		<authors>
+			<author name="Pierrick Roger" email="pierrick.roger@free.fr"/>
+		</authors>
+	</info>
+
+	<guiprefs width="640" height="480" resizable="yes"/>
+
+	<locale>
+		<langpack iso3="eng"/>
+	</locale>
+
+	<panels>
+		<panel classname="HelloPanel"/>
+		<panel classname="TargetPanel"/>        
+		<panel classname="InstallPanel"/>        
+		<panel classname="FinishPanel"/>
+	</panels>
+
+	<variables>
+		<variable name="RESOURCEROOT" value="src/main/izpack"/>
+	</variables>
+
+	<packs>
+		<pack name="Core" required="yes">
+			<description>Core installation files</description>
+			<file src="@{izpack.staging}/../@{izpack.appjar}" targetdir="$INSTALL_PATH"/>
+		</pack>
+	</packs>
+
+</installation>
