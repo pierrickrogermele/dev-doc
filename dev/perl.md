@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'perl':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'perl':'','perl6':''} -->
 # PERL
 
  * [Writing better Perl - Tips and tricks to make Perl easier, faster, and more fun](http://www.sourceformat.com/pdf/perl-coding-standard-robert.pdf).
@@ -230,7 +230,7 @@ $myvar = undef;
 ```
 
 Test if a variable is set with `defined()`:
-```perl
+```perl6
 if (defined $myvar) {
 }
 ```
@@ -304,8 +304,9 @@ my $upper_case = lc($lower_case);
 
 Removing end of line:
 ```perl
-chop; # remove last character of $_ (not safe)
-chomp; # remove last character of $_ if it's an end of line or similar char.
+chop; # remove last character of $_ (not safe).
+chomp; # remove $/ at the end of $_. $/ is set to \n by default.
+s/\r$//; # removes \r at the end of $_.
 chomp(my $var = $line);
 ```
 
@@ -315,7 +316,7 @@ my $i = index($s, $substr, $pos);
 ```
 
 Look for all regexp matches in a string:
-```perl
+```perl6
 while ($s =~ m/[A-Z]+/g) {
 }
 ```
@@ -421,7 +422,7 @@ $#arr;
 ```
 
 Loop on indices of an array:
-```perl
+```perl6
 for my $i (0 .. $#myarr) {
 	#...
 }
@@ -455,13 +456,20 @@ splice(@a, -1);         # pop last value from @a
 splice(@a, 0,  0, $v);  # insert $v at beginning of @a
 ```
 
-Search a value:
+Search for a fixed value:
 ```perl
-my @a = grep(/^$someval$/, @myarray); # be careful of what is inside $someval, because it will be interpreted as regexp.
+my @a = grep($_ eq 'mytext', @myarray);
 ```
-or
+
+Search for a regex:
 ```perl
-if ($someval ~~ @myarray) # Good !
+my @a = grep(/^$myregex$/, @myarray);
+```
+
+Smartmatch (experimental):
+```perl6
+if ($someval ~~ @myarray) {
+}
 ```
 
 See `map` statement for applying a function on each element of an array.
@@ -489,17 +497,17 @@ delete $myhash{$k};
 ```
 
 Loop on all key/value pairs, without order:
-```perl
+```perl6
 while (my ($key, $value) = each %hash) {}
 ```
 
 Loop on all key:
-```perl
+```perl6
 for my $k (keys %myhash) {}
 ```
 
 Loop on all keys, sorted:
-```perl
+```perl6
 for my $k (sort keys %myhash) { }
 ```
 
@@ -526,7 +534,7 @@ my $path = $ENV{PATH};
 ### For
 
 Loop with implicit iterator:
-```perl
+```perl6
 foreach (@array) {
 	print $_;
 }
@@ -534,7 +542,7 @@ foreach (@array) {
 `for` is a synonym of `foreach`.
 
 Loop with an explicit iterator:
-```perl
+```perl6
 foreach my $v (@array) {
 }
 ```
@@ -545,7 +553,7 @@ print $_ foreach @myarray;
 ```
 
 To leave a loop:
-```perl
+```perl6
 foreach my $v (@array) {
 	if ($v->{value})  {
 		# ...
@@ -555,7 +563,7 @@ foreach my $v (@array) {
 ```
 
 To process next element:
-```perl
+```perl6
 foreach my $v (@array) {
 	if (...) {
 		# ...
@@ -566,7 +574,7 @@ foreach my $v (@array) {
 ```
 
 C style loop:
-```perl
+```perl6
 for (my $i = 0 ; $i < 10 ; ++$i) {
 }
 ```
@@ -574,7 +582,7 @@ for (my $i = 0 ; $i < 10 ; ++$i) {
 ### While
 
 Loop on all key/value pairs of a hash:
-```perl
+```perl6
 while (my ($key, $value) = each(%hash)) {
 	print "$key -> $value\n";
 }
@@ -584,7 +592,7 @@ while (my ($key, $value) = each(%hash)) {
 
 An experimental switch statement has been introduced in Perl 5.10.1.
 
-```perl
+```perl6
 use feature "switch";
 given($var) {
 	when(/^aaa/) { do_something() }
@@ -598,7 +606,7 @@ given($var) {
 
  * [perlfork](http://perldoc.perl.org/perlfork.html).
 
-```perl
+```perl6
 my $pid = fork();
 die "fork() failed: $!" unless defined $pid;
 if ($pid) {
@@ -717,7 +725,7 @@ my $scalar_ref = \$scalar;
 ```
 
 To create a reference to an anonymous array or hash:
-```perl
+```perl6
 my $array_ref = ['a', 'b'];
 my $hash_ref = {'a' => 1, 'b' => 2};
 ```
@@ -746,7 +754,7 @@ ref($var);
 It returns one of: SCALAR, ARRAY, HASH, CODE, REF, GLOB, LVALUE.
 
 To test if it is a reference:
-```perl
+```perl6
 if (ref($var)) {
 	# it's a reference
 	if (ref($var) eq 'ARRAY') {
@@ -762,13 +770,13 @@ else {
 ```
 
 Compare references:
-```perl
+```perl6
 if ($r1 == $r2) {
 	# only works if r1 and r2 aren't object and haven't overloaded the value they return
 }
 ```
 Or use `refaddr()` function:
-```perl
+```perl6
 use Scalar::Util 'refaddr';
 if ($obj1 && ref($obj1) && $obj2 && ref($obj2) && refaddr($obj1) == refaddr($obj2)) {
 		# objects are the same...
@@ -778,14 +786,14 @@ if ($obj1 && ref($obj1) && $obj2 && ref($obj2) && refaddr($obj1) == refaddr($obj
 ## Regex
 
 Regexp match:
-```perl
+```perl6
 if (/^a.*b$/) {} # match regexp against $_
 if ($string =~ /.*aa/) {} # match with a specific variable
 if (/^a.*b$/i) {} # match with case insensitive on
 ```
 
 Get all matches:
-```perl
+```perl6
 while ($s =~ m/[A-Z]+/g) {
 }
 ```
@@ -850,7 +858,7 @@ readlink($f) :
 ```
 
 Test a file type:
-```perl
+```perl6
 if (-f $f) {...}
 ```
 as in shell :
@@ -940,7 +948,7 @@ close($fd);
  * [How can I read in an entire file all at once?](https://metacpan.org/pod/perlfaq5#How-can-I-read-in-an-entire-file-all-at-once).
 
 Load an entire file content into a scalar:
-```perl
+```perl6
 my $var;
 {
 	local $/;
@@ -950,7 +958,7 @@ my $var;
 ```
 
 Read line by line:
-```perl
+```perl6
 while(<STDIN>) {
 	if (/sometext/) { # $_ is the line
 		do_something($_);
@@ -960,13 +968,13 @@ while(<STDIN>) {
 ```
 
 Reading file descriptor:
-```perl
+```perl6
 while(<FILE>) {
 }
 ```
 
 Using a variable:
-```perl
+```perl6
 while (my $line = <FILE>) {
 }
 ```
@@ -1119,7 +1127,7 @@ our @ISA = qw(A);
 ### Introspection
 
 Testing inheritance:
-```perl
+```perl6
 if ($obj->isa('AClassName')) {
 	# ...
 }
@@ -1150,7 +1158,7 @@ warn "my message";
 See `Carp` package for printing the callstack on failure.
 
 Catch an exception with `eval`:
-```perl
+```perl6
 eval {
 	do_something();
 	1;
@@ -1161,7 +1169,7 @@ eval {
 ```
 
 Catch an exception with `try`:
-```perl
+```perl6
 use Try::Tiny;
 try {
 	# do something
@@ -1199,7 +1207,7 @@ binmode (STDIN, ":utf8");
 WARNING: coherence between input data encoding and output data encoding is essential !
 So when forcing encoding for an input stream, be sure to set accordingly the output stream.
 Example:
-```perl
+```perl6
 open(FILE, "<:utf8", "some file");
 while(<FILE>) {
 	print $_;
@@ -1384,7 +1392,7 @@ $Class::Date::DATE_FORMAT="%Y-%m-%d";
 To dump a structure:
 ```perl
 use Data::Dumper;
-Data::Dumper->Dump([\@my_array, \%my_hash], ["array_name", "hash_name"]);
+print(Data::Dumper->Dump([\@my_array, \%my_hash], ["array_name", "hash_name"]));
 ```
 the second parameter (variable names) is optional.
 
@@ -1407,7 +1415,7 @@ use DBI;
 ```
 
 Connection:
-```perl
+```perl6
 my $dbh = DBI->connect('DBI:mysql:mydatabase');
 my $dbh = DBI->connect('DBI:mysql:mydatabase', $user, $password, { RaiseError => 1, AutoCommit => 0 });
 ```
@@ -1660,7 +1668,7 @@ GetOptions("myopt1=s" => \$args{myopt1}, "myopt2=s" => \$args{myopt2});
 
 ### HotKey / input keys
 
-```perl
+```perl6
 use HotKey;
 use feature "switch";
 $key = readkey();
@@ -1719,7 +1727,7 @@ my $share = File::ShareDir::dist_dir('My::Module');
 ### List::Util
 	
 Reduce:
-```perl
+```perl6
 use List::Util qw(reduce);
 my $sum = List::Util::reduce { $a + $b } 0, @mynumbers;
 ```
