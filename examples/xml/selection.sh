@@ -1,1 +1,1 @@
-xmlstarlet sel -t -c '//b' -n myxml.xml
+xmlstarlet sel -t -c '//b' -n my.xml

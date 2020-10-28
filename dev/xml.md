@@ -42,6 +42,8 @@ xmlstarlet sel -t -v '//b' -n myxml.xml
 Delete elements using XPath:
 ```sh
 xmlstarlet ed -d '//my/tag' myxml.xml
+# or
+xmlstarlet ed --delete '//my/tag' myxml.xml
 ```
 
 Use a namespace:
