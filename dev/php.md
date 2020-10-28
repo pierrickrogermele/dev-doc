@@ -382,6 +382,16 @@ $char_code = ord('A');
 ?>
 ```
 
+Detect encoding:
+```php
+<? $enc = mb_detect_encoding($line, 'UTF-8, ISO-8859-1');
+```
+
+Convert to UTF-8:
+```php
+<? $line = mb_convert_encoding($line, 'UTF-8'/*to*/, 'ISO-8859-1'/*from*/);
+```
+
 Join elements:
 ```php
 <?php
@@ -1192,18 +1202,22 @@ if (preg_match('/(?P<name>\w+): (?P<digit>\d+)/', 'foobar: 2008', $matches))
 "2" for the first match.
 "name" and "digit" for the named groups.
 
-Replace:
+Replace all matches:
 ```php
-<?php
-$new_string = preg_replace("/([to]+) ([0-9]+)/i", "$2 --- $1", $string);
-?>
+<? $new_string = preg_replace("/([to]+) ([0-9]+)/i", "$2 --- $1", $string);
+```
+Replace first match:
+```php
+<? $new_string = preg_replace("/a/", "b", $string, 1/*limit*/);
+```
+Get number of replacements:
+```php
+<? $new_string = preg_replace("/a/", "b", $string, -1/*limit*/, $count);
 ```
 
 Filter & replace:
 ```php
-<?php
-$ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
-?>
+<? $ids = preg_filter('/^(\d+).html.ref$/', '$1', scandir("files"));
 ```
 
 ## Math
@@ -1238,6 +1252,11 @@ echo round(1241757, -3); // 1242000
 echo round(5.045, 2);    // 5.05
 echo round(5.055, 2);    // 5.06
 ?>
+```
+
+Power:
+```php
+<? pow(10, -8);
 ```
 
 ## I/O
@@ -1285,6 +1304,14 @@ Close a file handle:
 ```php
 <?php
 flclose($fh);
+```
+
+Parse a CSV file (only for UTF-8 files):
+```php
+<?
+if (($fh = fopen("myfile.csv", "r")) !== FALSE)
+	while(($line = fgetcsv($fh, 0, ";")) !== FALSE) {
+	}
 ```
 
 ## File system
@@ -1989,6 +2016,7 @@ self::assertFalse($myvar);
 self::assertEquals(10, 11);
 self::assertTrue($myvar);
 self::assertInstanceOf(MyClass::class, $myvar);
+self::assertNotInstanceOf(MyClass::class, $myvar);
 ```
 
 File assertions:
