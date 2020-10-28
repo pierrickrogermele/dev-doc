@@ -1,5 +1,5 @@
-Relational databases
-====================
+<!-- vimvars: b:markdown_embedded_syntax={'sql':''} -->
+# Relational databases
 
  * [Introduction to Relational Database Design](http://www.edm2.com/0612/msql7.html).
  * [SQL Tutorial](https://www.w3schools.com/sql/default.asp).
@@ -355,7 +355,19 @@ The backsticks can also be used in join and where clauses:
 select `my.col` from mytable join table2 on table2.id = mytable.`my.id.col` where table2.`my.other.col` = `my.col`;
 ```
 
-### Join
+### order by
+
+Order results by a column in ascending order:
+```sql
+select mycol from mytable order by myothercol asc;
+```
+
+Order in descending order:
+```sql
+select mycol from mytable order by myothercol desc;
+```
+
+### join
 
 #### Old join syntax
 
@@ -421,10 +433,11 @@ Testing if different:
 select * from mytab where mycol != 'zap';
 ```
 
-### Distinct
+### distinct
 
-`distinct` keyword asks for result filtering, by removing duplicated rows.
-From "The Art of SQL", p.91:
+Remove duplicated rows in results.
+
+From "The Art of SQL", p.91. The following query could return a "wrong" or unexpected result, by removing customer homonyms. See `exists` and `in` for better solutions.
 ```sql
 select distinct c.custname
 from customers c
@@ -438,9 +451,6 @@ where c.city = 'GOTHAM'
 	and a.artname = 'BATMOBILE'
 	and o.ordered >= somefunc;
 ```
-
-This query could return a "wrong" or unexpected result, by removing customer homonyms.
-See `exists` and `in` for better solutions.
 
 ### Exists
 
