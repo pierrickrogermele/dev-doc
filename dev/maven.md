@@ -187,3 +187,22 @@ Setting encoding to UTF-8, thus producing a platform independent code:
 ```
 Setting this, solves the following warning:
 	[WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+
+## Plugins
+
+### IzPack
+
+ * [IzPack](https://izpack.atlassian.net/wiki/spaces/IZPACK/pages/491576/Compiling+Using+Maven).
+ * [Easy Installer with IzPack](http://dontpanic.42.nl/2011/07/easy-installer-with-izpack.html).
+
+A plugin for building an installer for Windows, MacOS and Linux.
+
+### Apache Maven Assembly
+
+ * [Apache Maven Assembly Plugin](http://maven.apache.org/plugins/maven-assembly-plugin/).
+
+### Apache Maven Shade
+
+ * [Apache Maven Shade Plugin](http://maven.apache.org/plugins/maven-shade-plugin/).
+
+Can create an executable uber-jar.
