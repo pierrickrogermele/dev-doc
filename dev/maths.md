@@ -155,6 +155,29 @@ For instance: the ages of two different categories.
 
 The standard score of an observation x is : (x - mean) / std
 
+### Statistical inference
+
+population = the whole
+sample = subset of the population (if possible, randomly chosen)
+
+Statistical inference is composed of:
+ * [Estimation](https://en.wikipedia.org/wiki/Estimation_statistics)  --> what is the value a population parameter?
+ * Hypothesis testing --> is a population parameter equal to a particular value? --> [NHST](https://en.wikipedia.org/wiki/Statistical_hypothesis_testing) (Null Hypothesis Significance Testing).
+
+Sample statistics (computed from sample data):
+ * sample mean (x bar)
+ * sample percentage (P)
+ * sample standard deviation (s)
+
+Population parameters:
+ * population mean (μ)
+ * population percentage (Π)
+ * population standard deviation (σ)
+
+Estimation technics:
+ * point estimation
+ * interval estimation (interval estimate = confidence estimate)
+
 ### Expected value
 
 Expected value or expectation or mean (or "Espérance mathématique" or "valeur moyenne" in French) of a random variable:
@@ -275,10 +298,6 @@ CDA is non-linear projection method.
 
   * [Curvilinear Distance Analysis](https://www.elen.ucl.ac.be/neural-nets/Research/CDA/CDA.htm).
 
-### Voronoi cells
-
- * [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram).
-
 ## Combinatorics
 
 ### Arrangements without repetitions
@@ -358,6 +377,12 @@ M⁻¹ = 1/det(M) * ⎪ -(a33a21-a31a23)   a33a11-a31a13  -(a23a11-a21a13) ⎪
   n
   ∑ i  = n(n+1)/2
 i = 0
+
+## Graphical representations
+
+### Voronoi cells
+
+ * [Voronoi diagram](https://en.wikipedia.org/wiki/Voronoi_diagram).
 
 ## Geometry
 
