@@ -3,6 +3,10 @@
 
  * [Rationale for International Standard— Programming Languages— C](http://www.open-std.org/jtc1/sc22/wg14/www/C99RationaleV5.10.pdf).
 
+Books:
+ * The C Programming Language, Second Edition: ANSI C Version de Brian W. Kernighan, Dennis Ritchie
+ * The C Answer Book (Second Edition): Solutions to the Exercises in the C Programming Language, Second Edition, by Brian W. Kernighan and Dennis M. Ritchie
+
 ## Compilers
 
  * [Clang Static Analyzer](http://clang-analyzer.llvm.org/).
