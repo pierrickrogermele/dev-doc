@@ -10,12 +10,20 @@
 
  * [Documentation](http://docs.oracle.com/javase/).
  * [Tutorials](http://docs.oracle.com/javase/tutorial/index.html).
- * [API](http://docs.oracle.com/javase/7/docs/api/index.html).
+ * [JDK 15 Documentation](https://docs.oracle.com/en/java/javase/15/).
+ * [Java™ Platform, Standard Edition 7 API](http://docs.oracle.com/javase/7/docs/api/index.html).
 
 Books:
  * [Effective Java (2nd Edition)](https://www.amazon.com/Effective-Java-2nd-Joshua-Bloch/dp/0321356683/ref=sr_1_1?s=books&ie=UTF8&qid=1472635292&sr=1-1&keywords=effective+java).
+ * JDBC et Java Guide du programmeur, George Reese, éd. O'Reilly
+ * Java 2D Graphics, Jonathan Knudsen, éd. O'Reilly
+ * Java In A Nutshell, David Flanagan, éd. O'Reilly
+ * Java Virtual Machine, Jon Meyer & Troy Downing, éd. O'Reilly
+
 
 ## Install
+
+  * [Java JRE Download](https://www.java.com/en/download/manual.jsp).
 
 On Ubuntu, to install jre:
 ```bash
@@ -112,7 +120,7 @@ javap -verbose MyClass.class
 
 To view the content of a jar file:
 ```bash
-jar tf jar_file
+jar -tf jar_file
 ```
 
 ### java (running)
@@ -125,12 +133,17 @@ java MyClass # if in inside the class directory.
 
 To run a program from a jar file:
 ```bash
-java -jar <myfile.jar>
+java -jar my.jar
 ```
 
 To get java version:
 ```bash
 java -version
+```
+
+Run a Uber-jar (self executable JAR) in UTF-8 mode on Windows:
+```bash
+java -Dfile.encoding=UTF8 -jar my.jar
 ```
 
 To get default values (including default memory sizes):
@@ -1362,6 +1375,21 @@ MyObject foo() {
 }
 ```
 
+## Encoding
+
+Set default encoding:
+```bash
+java -Dfile.encoding=UTF8 ...
+```
+Useful on Windows where default encoding is CP1252.
+
+Also when loading a resource bundle, it is essencial to set the encoding directly, otherwise on Windows it will be loaded in CP1252 by default event with `-Dfile.encoding=UTF8` flag:
+```java
+java.io.InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("messages.properties");
+java.io.InputStreamReader isr = new java.io.InputStreamReader(in, "UTF-8");
+this.bundle = new java.util.PropertyResourceBundle(isr);
+```
+
 ## Error messages
 
 ### `java.lang.UnsupportedClassVersionError: TestArray : Unsupported major.minor version 51.0`
@@ -1413,23 +1441,63 @@ Abstract Window Toolkit.
 
 Running an AWT app in some window managers (e.g.: xmonad) may result in a blank window. Solution is to export the following env var: `_JAVA_AWT_WM_NONREPARENTING=1`.
 
-### GridBagLayout
+### BorderLayout
+
+A layout that divides the space in 5 spaces : north, south, east, west and center.
 
 ```java
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+class MyPanel extends javax.swing.JPanel {
+	MyPanel() {
+		super(new java.awt.BorderLayout());
+		this.add(new java.awt.Button("FIRST"), java.awt.BorderLayout.NORTH);
+		this.add(new java.awt.Button("SECOND"), java.awt.BorderLayout.CENTER);
+	}
+}
+```
+
+### GridLayout
+
+A fixed grid layout, with same size for all cells.
+
+```java
+class MyPanel extends javax.swing.JPanel {
+	MyPanel() {
+		super(new java.awt.GridLayout(1/*rows*/, 2/*cols*/));
+		this.add(new java.awt.Button("First"));
+		this.add(new java.awt.Button("Second"));
+	}
+}
+```
+
+### GridBagLayout
+
+A flexible grid layout.
+
+```java
+class MyPanel extends javax.swing.JPanel {
+	MyPanel() {
+		super();
+
+		// Set layout
+		java.awt.GridBagLayout gridBag = new java.awt.GridBagLayout();
+		this.setLayout(gridBag);
+
+		// Prepare contraint
+		java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
+		c.gridwidth = 2;
+
+		// Add button
+		java.awt.Button button = new java.awt.Button(name);
+		gridBag.setConstraints(button, c);
+		this.add(button);
+	}
+}
 ```
 
 ## Swing
 
 GUI widget toolkit, successor of AWT.
 Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
-
-### BoxLayout
-
-```java
-import javax.swing.BoxLayout;
-```
 
 ### Menus
 
@@ -1451,6 +1519,29 @@ Example of accelerator:
 ```java
 myMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.ActionEvent.ALT_MASK));
 ```
+
+### BoxLayout
+
+This layout aline components in one direction:
+	javax.swing.BoxLayout.X_AXIS       horizontally, left to right.
+	javax.swing.BoxLayout.Y_AXIS       vertically, top to bottom.
+	javax.swing.BoxLayout.LINE_AXIS    as words are displayed, based on `ComponentOrientation` property.
+	javax.swing.BoxLayout.PAGE_AXIS    as lines are displayed, based on `ComponentOrientation` property.
+
+```java
+class MyPanel javax.swing.BoxLayout {
+	MyPanel() {
+		super();
+		this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
+		this.add(new JButton("FIRST"));
+		this.add(new JButton("SECOND"));
+	}
+}
+```
+
+### JComboBox
+
+ * [How to Use Combo Boxes](https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html).
 
 ## i18n
 
