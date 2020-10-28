@@ -18,11 +18,17 @@
 
  * [France Culture](https://www.franceculture.fr/programmes).
   + [La Méthode scientifique](https://www.franceculture.fr/emissions/la-methode-scientifique).
+ * [BBC World Service](https://www.bbc.co.uk/sounds/play/live:bbc_world_service).
  * [France Inter](https://www.franceinter.fr/).
  * [FIP](https://www.fip.fr/).
  * [TSF Jazz](https://www.franceinter.fr/).
  * [BBC Radio 4](https://www.bbc.co.uk/radio4).
  * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+
+## Comics
+
+ * [Mutts daily strips](https://mutts.com/shop/strips/).
+ * [Pearls Before Swine strips](https://www.gocomics.com/pearlsbeforeswine/).
 
 ## TVs
 
