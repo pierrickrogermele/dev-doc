@@ -291,7 +291,7 @@ trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 Replacing with regexp:
 ```r
 result <- sub('\\.in$', '.out', variable)    # replace first occurence only
-new_str <- sub('^.*/([^/]+)$', '\\1', str, perl = TRUE)
+new_str <- sub('^.*/([^/]+)$', '\\1', str, perl=TRUE)
 result <- gsub('\\.in$', '.out', variable)   # replace all occurences
 ```
 
@@ -1191,7 +1191,7 @@ NULL
  * [CRAN Repository Policy](https://cran.r-project.org/web/packages/policies.html).
  * [Writing R Extensions](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
 
-#### Submittin to Bioconductor
+#### Submitting to Bioconductor
 
  * [Coding Style](https://bioconductor.org/developers/how-to/coding-style/).
 
@@ -2452,13 +2452,23 @@ library(method)
  * [Advanced R / Bioconductor Programming](https://www.bioconductor.org/help/course-materials/2012/Seattle-Oct-2012/AdvancedR.pdf).
  * [Bioc-devel -- Bioconductor Developers' List](https://stat.ethz.ch/mailman/listinfo/bioc-devel).
  
-Install all Bioconductor packages:
+### Installing
+
+ * [Using Bioconductor](https://bioconductor.org/install).
+
+```r
+if (!requireNamespace("BiocManager", quietly = TRUE))
+	install.packages("BiocManager")
+BiocManager::install("mypkg")
+```
+
+Install all Bioconductor packages (R version <= 3.4):
 ```r
 source("http://bioconductor.org/biocLite.R")
 biocLite()
 ```
 
-Install a package of Bioconductor:
+Install a package of Bioconductor (R version <= 3.4):
 ```r
 source("http://bioconductor.org/biocLite.R")
 biocLite(c("GenomicFeatures", "AnnotationDbi"))
