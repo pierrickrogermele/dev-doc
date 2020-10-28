@@ -721,6 +721,11 @@ Download a file with ftp:
 curl -o myfile.txt "ftp://mysite.fr/my/file.txt"
 ```
 
+Follow page relocation:
+```bash
+curl -L -o myfile.txt "http://mysite.fr/my/file.txt"
+```
+
 ### wget
 
 Download recursively:
@@ -1942,6 +1947,13 @@ Hexademical editor.
 hexedit myfile
 ```
 
+Key    | Description
+------ | --------------------
+/      | Search hexadecimal.
+Tab+/  | Search ASCII.
+Tab    | Toggle between ASCII and hexadecimal.
+Ctrl+T | Toggle between ASCII and hexadecimal.
+
 ### dhex
 
 Diff hexadecimal editor.
@@ -3091,13 +3103,56 @@ Configure sound on Debian with ALSA system:
 alsactl init
 ```
 
+### microphone setup
+
+ * [No microphone input](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting#Microphone).
+
+Run `alsamixer`, and then:
+ * In 'Playback' view (F3), set microphone to "Follow Capture".
+ * In 'Capture' view (F4), increase volume of CAPTURE and "Internal Mic".
+
+To test microphone:
+```sh
+arecord --duration=5 --format=dat test-mic.wav
+aplay test-mic.wav
+```
+
+**Skype** for Linux needs `pulseaudio` in order to recognize microphone, so with alsa configuration, you need first to install `apulse`, a PulseAudio emulator for ALSA and then run:
+```sh
+apulse skypeforlinux
+```
+
 ### alsamixer
 
-Console tool to manage sound card configuration.
+Ncurses console ALSA tool to manage sound card configuration.
 Move with left/right to select.
 Press up/down to modify.
 
 Disabling "Auto-Mute Mode" is possible.
+
+### amixer
+
+Command line ALSA tool to manage sound card.
+
+Get a list of available controls:
+```sh
+amixer scontrols
+```
+
+Get a list of available controls with their set values:
+```sh
+amixer scontents
+```
+
+Set microphone boost level (values: 0, 1, 2 and 3):
+```sh
+amixer sset "Internal Mic Boost" 0
+```
+
+Set microphone LED indicator (values: On, Off, Follow Capture, Follow Mute):
+```sh
+amixer sset "Mic Mute-LED Mode" Off
+```
 
 ### pacmd
 
