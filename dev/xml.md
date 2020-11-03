@@ -55,7 +55,7 @@ xmlstarlet sel -N x="http://my.name/space" -t -v '//x:b' -n myxml.xml
 
  * [XPath Tutorial](http://www.w3schools.com/xsl/xpath_intro.asp).
 
-TO run an XPath command in a terminal:
+To run an XPath command in a terminal on UNIX-like systems:
 ```bash
 xmllint --xpath '//element/@attribute' file.xml
 ```
