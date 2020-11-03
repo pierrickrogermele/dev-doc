@@ -1938,3 +1938,17 @@ YAML::XS::DumpFile('output.yml', $data);
 
  * [JSON](https://metacpan.org/pod/JSON).
 
+Convert to JSON using OOP model:
+```perl
+print JSON->new->pretty->canonical->utf8([0])->encode(\%myhash);
+```
+
+Converting to JSON using old `to_json()` method (slower):
+```perl
+print JSON::to_json(\%myhash, {utf8 => 0, pretty => 1, cannoncal => 1});
+```
+
+Using new method `encode_json()`, no parameters:
+```perl
+print JSON::encode_json(\%myhash);
+```
