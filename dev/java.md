@@ -1499,9 +1499,34 @@ class MyPanel extends javax.swing.JPanel {
 GUI widget toolkit, successor of AWT.
 Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
 
+### JWindow
+
+A bare window: no border, no title bar.
+
+### JFrame
+
+A window with border, title bar, minimize and maximize buttons.
+
+### JPanel
+
+A component used to group other components together.
+
+```java
+javax.swing.JPanel mypanel = new javax.swing.JPanel(); // Create a panel with default layout manager.
+mypane.add(); // Add component.
+```
+
 ### Menus
 
  * [How to Use Menus](https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html).
+
+#### JMenuBar
+
+#### JMenu
+
+#### JMenuItem
+
+#### Mnemonics and accelerators
 
 Keyboard events:
  * Mnemonics: for navigating inside the menu. Normally an alphanumeric character, the first occurence of this character is underlined on the menu title.
@@ -1529,7 +1554,7 @@ This layout aline components in one direction:
 	javax.swing.BoxLayout.PAGE_AXIS    as lines are displayed, based on `ComponentOrientation` property.
 
 ```java
-class MyPanel javax.swing.BoxLayout {
+class MyPanel extends javax.swing.JPanel {
 	MyPanel() {
 		super();
 		this.setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.X_AXIS));
@@ -1574,9 +1599,7 @@ To get the JVM version in runtime:
 String v = System.getProperty("java.version");
 ```
 
-## Playing media files
 
- * [How to play audio and video files in Java applications](https://buddhimawijeweera.wordpress.com/2011/05/01/how-to-play-audio-and-video-files-in-java-applications/).
 
 ## UUID
 
@@ -1711,6 +1734,20 @@ Needs to attach to running application (PID or remote).
 See [Visual VM](https://visualvm.java.net).
 
 ## Libraries
+
+### JMF
+
+ * [How to play audio and video files in Java applications](https://buddhimawijeweera.wordpress.com/2011/05/01/how-to-play-audio-and-video-files-in-java-applications/). Uses JMF (Java Media Framework), which is deprecated and does not play mp4.
+
+Java Media Framework. Deprecated.
+Can play mpg and avi, but not mp4.
+
+### Oracle JavaFX
+
+ * [Integrating JavaFX into Swing Applications](https://docs.oracle.com/javafx/2/swing/swing-fx-interoperability.htm).
+ * [JavaFX Video Player with MediaView](https://coderslegacy.com/java/javafx-mediaview-video-player/). Video player with play/pause/stop buttons.
+
+JavaFX can play mp4.
 
 ### CDK
 
