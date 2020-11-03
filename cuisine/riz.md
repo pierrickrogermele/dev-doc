@@ -5,5 +5,6 @@
  * [Spicy Indian rice](https://www.bbcgoodfood.com/recipes/3238/spicy-indian-rice).
  * [Vegan Indian Basmati Rice Recipe](https://www.thespruceeats.com/easy-vegan-indian-basmati-rice-recipe-3378479).
  * [Risotto allo Zafferano](https://ricette.giallozafferano.it/Risotto-allo-Zafferano.html). Le pistils de safran doit infuser dans l'eau froide toute la nuit, depuis la veille.
+ * [Risotto al cotechino, lenticchie e spumante](https://ricette.giallozafferano.it/Risotto-al-cotechino-lenticchie-e-spumante.html).
 
-Miso Fried Rice with Egg and Greens				https://nourisheveryday.com/miso-fried-rice-with-egg-and-greens/	
+ * [Miso Fried Rice with Egg and Greens](https://nourisheveryday.com/miso-fried-rice-with-egg-and-greens/).

@@ -19,5 +19,7 @@ Verser le millet dans une casserole puis ajouter 2 fois son volume d'eau froide.
 
 ## Polenta
 
+Cuisson polenta instantanée : Faire bouillir 1 litre d'eau (ou de bouillon) avec du sel pour 250g de polenta. Y verser la polenta en tournant pendant 2 minutes.
+
  * [POLENTA AL FORNO](https://blog.giallozafferano.it/allacciateilgrembiule/polenta-al-forno/).
  * [Crostini di polenta ripassati in padella](https://blog.giallozafferano.it/tmm/crostini-di-polenta-ripassati-in-padella/).
