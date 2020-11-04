@@ -430,6 +430,39 @@ The logical AND and OR binary operator are the same than in C language:
 [[ -z $MYVAR1 || -n $MYVAR2 ]] || exit 1
 ```
 
+## Forking
+
+Simple forking to another program:
+```bash
+my_prog &
+do_my_other_stuff
+```
+
+Forking with a function is the same:
+```bash
+my_func &
+do_my_other_stuff
+```
+
+For to do same tasks in parallel:
+```bash
+my_func & # Child
+my_func   # Parent
+```
+
+Get PID of a child process:
+```bash
+my_child &
+child_pid=$!
+current_pid=$$ # (parent)
+parent_pid=$PPID # (parent of parent)
+```
+
+wait for a child to finish:
+```bash
+wait $pid
+```
+
 ## Command line arguments
 
 Several variables allow to access command line arguments:
