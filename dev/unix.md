@@ -3,6 +3,8 @@
 
 These notes refer to UNIX and Linux operating systems.
 
+ * [LSB (Linux Standard Base)](https://en.wikipedia.org/wiki/Linux_Standard_Base).
+ * [POSIX (Portable Operating System Interface)](https://en.wikipedia.org/wiki/POSIX).
  * [Debian](https://www.debian.org).
  * [CentOS](https://www.centos.org).
  * [Arch Linux](https://www.archlinux.org/).
@@ -1033,7 +1035,7 @@ rsync -v ...
 
 Synchronizing deletion of files in the source:
 ```bash
-rsync -av --delete teddy:/home/data/documents .
+rsync -avP --delete teddy:/home/data/documents .
 ```
 
 Specify remote shell to use:
@@ -1077,6 +1079,15 @@ The slash at the end of the source path tells to synchronize all files, it makes
 Print the progress of transfer:
 ```bash
 rsync --progress
+```
+
+Authorize partial transfer (keep partially transferred files):
+```sh
+rsync --partial
+```
+Or for enabling for --partial and --progress at the same time:
+```sh
+rsync -P
 ```
 
 Regular sync (revursive, links, times), doesn't synchronize the permissions:
@@ -1393,6 +1404,11 @@ Create a key (at least one encrypted partition must exists, see `tune2fs` to ena
 e4crypt add_key
 ```
 See `keyctl` to list content of keyring.
+<!-- TODO IMPORTANT After rebooting the new key does not appear in the session keyring. The encrypted folder are still encrypted and thus unreadable. When running `e4crypt get_policy` the right encryption key is listed.
+	* Do we need to save the key in some way?
+	* Does the key have to be reloaded from somewhere?
+	* Does the exact same key need to be created again?
+	-->
 
 Encrypting a directory (must be empty):
 ```sh
