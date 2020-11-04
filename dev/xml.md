@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'xml':'','bash':'sh','sh':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'xml':'','bash':'sh','sh':'','xslt':''} -->
 # XML
 
 ## xmllint
@@ -49,6 +49,29 @@ xmlstarlet ed --delete '//my/tag' myxml.xml
 Use a namespace:
 ```sh
 xmlstarlet sel -N x="http://my.name/space" -t -v '//x:b' -n myxml.xml 
+```
+
+Transform an XML file using XSLT:
+```sh
+xmlstarlet tr myxslt.xsl my.xml
+```
+Note that `xmlstarlet` is limited to XSLT 1.1.
+
+## saxon
+
+Java library and utilities for running XML tools (XSLT, XQuery, ...).
+Latest version is able to run XSLT 2 and XSLT 3.
+
+On ArchLinux, install package `saxon-he` to get the tools to process XSLT 2 and XSLT 3.
+
+Running an XSLT:
+```sh
+saxon-xslt -s:my.xml -xsl:my_xslt.xsl
+```
+
+To put output in a file:
+```sh
+saxon-xslt -s:my.xml -xsl:my_xslt.xsl -o:my_output.xml
 ```
 
 ## XPath
@@ -113,6 +136,69 @@ Search a tag and the go up to find next tag of the same type:
 
  * [FunctX XSLT Functions](http://www.xsltfunctions.com/xsl/).
  * [XSL Transformations (XSLT) Version 2.0](http://www.w3.org/TR/xslt20/).
+ * [Regular Expression Matching in XSLT 2](https://www.xml.com/pub/a/2003/06/04/tr.html).
+
+XSL = eXtensible Stylesheet Language.
+XSLT = XSL Tranformations.
+
+An XSLT file is an XSL file with special elements in it. It start tag may be "<xsl:stylesheet>" as for an XSL but the "<xsl:transform>" equivalent (i.e.: synonym) might be preferable for clarity:
+```xslt
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+...
+</xsl:transform>
+```
+
+Identity in XLST 3.0:
+```xslt
+<xsl:transform version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:mode on-no-match="shallow-copy" />
+</xsl:transform>
+```
+
+Identity in XSLT 1.0:
+```xslt
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="@*|node()">
+		<xsl:copy>
+			<xsl:apply-templates select="@*|node()"/>
+		</xsl:copy>
+	</xsl:template>
+</xsl:transform>
+```
+Can also be written explicitly as:
+```xslt
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:template match="@*|*|processing-instruction()|comment()">
+		<xsl:copy>
+			<xsl:apply-templates select="*|@*|text()|processing-instruction()|comment()"/>
+		</xsl:copy>
+	</xsl:template>
+</xsl:transform>
+```
+Matches explanations:
+ * `*`: any element.
+ * `@*`: any attribute.
+ * `text()`: element text content.
+ * `processing-instruction()`: ???
+ * `comment()`: comments.
+
+Replace text in elements (XSLT 3):
+```xslt
+<xsl:transform version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+	<xsl:mode on-no-match="shallow-copy"/> <!-- Copy all non-matched elements -->
+	<xsl:template match="b"> <!-- match an element -->
+		<xsl:copy>
+			<xsl:apply-templates select="*|@*"/> <!-- copy all children and attributes -->
+			<xsl:value-of select='replace(., "Some","XXX")'/> <!-- replace text content -->
+		</xsl:copy>
+	</xsl:template>
+</xsl:transform>
+```
+
+## XProc
+
+## XQuery
+
 
 ## XML schema
 
