@@ -421,6 +421,11 @@ Put in uppercase/lowercase:
 select * from mytab where upper(mycolumn) = 'ZAP';
 ```
 
+Since strings are delimited with apostrophe characters, apostrophes need to be escaped (using `''`):
+```sql
+select * from mytab where city = 'L''Aquila';
+```
+
 ### Where
 
 Testing if equal:
@@ -541,6 +546,7 @@ where city = 'GOTHAM'
 ## SQLite
 
  * [Datatypes In SQLite Version 3](https://www.sqlite.org/datatype3.html).
+ * [Getting Started with SQLite Full-text Search](https://www.sqlitetutorial.net/sqlite-full-text-search/).
 
 ## MySQL
 
