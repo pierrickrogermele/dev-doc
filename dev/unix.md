@@ -1409,6 +1409,7 @@ See `keyctl` to list content of keyring.
 	* Does the key have to be reloaded from somewhere?
 	* Does the exact same key need to be created again?
 	-->
+The key is created inside the session keyring, thus it will be removed when you log off. We need to create it again, the same way, next time we log in.
 
 Encrypting a directory (must be empty):
 ```sh
@@ -4355,3 +4356,7 @@ To run immediatly:
 ```sh
 xscreensaver-command -activate
 ```
+### unclutter
+
+ * [Auto Hide Mouse Pointer Using Unclutter After A Certain time](https://ostechnix.com/auto-hide-mouse-pointer-using-unclutter-after-a-certain-time/).
+
