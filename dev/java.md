@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'java':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'java':'','xml':''} -->
 # Java
 
  * "The Clean Coder" by Martin.
@@ -1441,6 +1441,25 @@ Abstract Window Toolkit.
 
 Running an AWT app in some window managers (e.g.: xmonad) may result in a blank window. Solution is to export the following env var: `_JAVA_AWT_WM_NONREPARENTING=1`.
 
+### Component
+
+Specify preferred size:
+```java
+this.setPreferredSize(new java.awt.Dimension(width, height));
+```
+
+Repaint component:
+```java
+this.repaint();
+```
+
+Define custom paint:
+```java
+@Override
+public void paintComponent(java.awt.Graphics g) {
+}
+```
+
 ### BorderLayout
 
 A layout that divides the space in 5 spaces : north, south, east, west and center.
@@ -1516,6 +1535,12 @@ javax.swing.JPanel mypanel = new javax.swing.JPanel(); // Create a panel with de
 mypane.add(); // Add component.
 ```
 
+### JScrollPane
+
+ * [How to Use Scroll Panes](https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html).
+
+JScrollPane uses JViewPort to get a partial view of the component to display.
+
 ### Menus
 
  * [How to Use Menus](https://docs.oracle.com/javase/tutorial/uiswing/components/menu.html).
@@ -1567,6 +1592,29 @@ class MyPanel extends javax.swing.JPanel {
 ### JComboBox
 
  * [How to Use Combo Boxes](https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html).
+
+### JList
+
+A list of selectable items.
+
+```java
+javax.swing.JList<String> list = new javax.swing.JList<String>();
+```
+
+### JTabbedPane
+
+A multi tabs pane.
+
+```java
+javax.swing.JTabbedPane tab = new javax.swing.JTabbedPane(javax.swing.JTabbedPane.TOP);
+tab.add(new MyPanel());
+int n = this.tab.getTabCount(); // Number of panes.
+java.awt.Component x = this.tab.getComponentAt(0); // Get one of the pane.
+```
+
+### JTable
+
+A 2D table, with selection by row(s) or column(s).
 
 ## i18n
 
@@ -1853,6 +1901,31 @@ Several methods can be defined.
 ### AssertJ
 
  * [AssertJ](http://joel-costigliola.github.io/assertj/index.html).
+ * [AssertJ fluent assertions API](https://www.javadoc.io/doc/org.assertj/assertj-core/latest/index.html).
+
+Include AssertJ in Maven `pom.xml` dependencies:
+```xml
+<dependency>
+	<groupId>org.assertj</groupId>
+	<artifactId>assertj-core</artifactId>
+	<version>3.18.0</version>
+	<scope>test</scope>
+</dependency>
+```
+
+Example with JUnit:
+```java
+import static org.assertj.core.api.Assertions.assertThat;
+
+public class MyTest {
+
+	@org.junit.Test
+	public void testSomething() {
+		// ...
+		assertThat(mylist).hasSizeGreaterThanOrEqualTo(1);
+	}
+}
+```
 
 ### Reflections
 
