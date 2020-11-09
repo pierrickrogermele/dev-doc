@@ -76,6 +76,8 @@ BBC :
 
  * [10 Japanese Jazz-Fusion Albums that will funk you up!](https://www.youtube.com/watch?v=ebvpa73PEXk)
 
+ * [Les Goguettes (en trio mais à quatre)](https://www.goguettesentrio.fr/).
+
  * http://www.livemusiccompany.com/
  * http://www.deutschegrammophon.com/
  * http://fmad.pagesperso-orange.fr/accueil.htm
