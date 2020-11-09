@@ -747,17 +747,17 @@ source('myfile.R')
 
 Switch to sourced file directory while sourcing:
 ```r
-source('../../blabla/myfile.R', chdir = TRUE)
+source('../../blabla/myfile.R', chdir=TRUE)
 ```
 Before sourcing the file, R will change to directory `../../blabla`.
 
 By default the names parsed and loaded in the sourced file are put inside the global environment. If you want them to reside inside the current environment use:
 ```r
-source('myfile.R', local = TRUE)
+source('myfile.R', local=TRUE)
 ```
 or if you want to load them into another environment:
 ```r
-source('myfile.R', local = myenv)
+source('myfile.R', local=myenv)
 ```
 
 Get the path of the current sourced file:
@@ -3070,8 +3070,14 @@ lda(....., tol = 0.0000001, ....)
 
 ### Testthat
 
+ * [testthat v3.0.0](https://www.rdocumentation.org/packages/testthat/versions/3.0.0).
  * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
  * [Package ‘testthat’](https://cran.r-project.org/web/packages/testthat/testthat.pdf).
+
+Testing code outside a package
+ * Create a folder `test`.
+ * Write a file `test_somename.R`.
+ * Run `R --slave --no-restore -e "testthat::test_dir('test')"`.
 
 Testthat propose different reporters.
 For instance, when called with devtools for a package, we can trigger a progress reporter (`ProgressReporter`) with a failure reporter (`FailReporter`, that will ensure that a fail message is sent):
@@ -3081,6 +3087,20 @@ R -q -e "devtools::test('.', reporter = c('progress', 'fail'))"
 Or use the Stop reporter (`StopReporter`) that will stop at the first error:
 ```r
 R -q -e "devtools::test('.', reporter = c('stop', 'summary', 'fail'))"
+```
+
+Open a context (needs to be done to split tests in different parts):
+```r
+testthat::context("My context of tests")
+```
+
+Run a test:
+```r
+testthat::test_that("Something works", {
+	x <- 5
+	some_code_to_run(x)
+	# ...
+})
 ```
 
 Assertions:
@@ -3142,10 +3162,15 @@ evobiR::SlidingWindow("mean", data, 3, 1)
 ### zoo
 
 Compute mean with sliding window, with output vector same length as input vector:
-```vim
+```r
 B <- c(0, 0, 0, 1, 0, 1, 1, 1, 0)
 k <- 3
 zoo::rollapply(B, 2*k-1, function(x) max(zoo::rollmean(x, k, na.rm = TRUE)), partial = TRUE)
+```
+
+Replace NA values by latest non-NA value:
+```r
+zoo::na.locf(c(1,2,NA,NA,5,NA,9,10,NA))
 ```
 
 ### Grid
