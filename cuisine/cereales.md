@@ -1,12 +1,12 @@
-# Céréales & légumineuses
+# Céréales & co
 
- * [Pois cassés au curry](https://www.marmiton.org/recettes/recette_pois-casses-au-curry_68500.aspx).
  * [Boulgour nature](https://www.marmiton.org/recettes/recette_boulgour-nature_29441.aspx). Cuisson comme le riz asiatique : volume d'eau = 2 x volume de boulgour, absorption sans couvercle puis repos avec couvercle. 
 
- * lentilles: Mettre les lentilles avec 3 fois leur volume d’eau froide dans une casserole. Portez à ébullition et laissez cuire à petit feu et à couvert, pendant 10 à 15 minutes.
- * pommes de terre à l’eau: Dans l’eau froide, entières, avec la peau, porter à ébullition. 45 minutes en tout pour des grosses pommes de terre.
+## Quinoa
 
  * [Cuisson de la quinoa](https://www.marmiton.org/trucs-et-astuces/cuisson-quinoa-s3004193.html). Comme le riz: 1,5 à 2 fois le volume d'eau, portez à ébullition, baisser le feu et cuire à couvert pendant 10 min. Ôter du feu et attendre 10 min.
+
+ * [SALADE DE QUINOA, FÈVES, BROCOLIS, AMANDES ET NOIX](https://www.fashioncooking.fr/2015/07/salade-quinoa-feves-brocolis/).
 
 ## Millet
 

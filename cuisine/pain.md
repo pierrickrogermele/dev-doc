@@ -67,6 +67,23 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * [Croissants sfogliati: la ricetta per farli in casa](https://video.cookist.it/video/an/Xnna_-SwH3PFLOiT).
  * [Pains au lait](http://www.marmiton.org/recettes/recette_petits-pain-au-lait-maison_220199.aspx).
 
+## Oatcakes
+
+ * [Oatcakes](https://www.allrecipes.com/recipe/257958/oatcakes/).
+
+ * 100g son d'avoine
+ * 30g T55
+ * 2,40g sucre
+ * 2,30g sel
+ * 3g levure chimique
+ * 20g d'huile
+ * eau bouillante
+
+Mettre le four à 190°C.
+Former une boule, étale la pâte et découper des cercles.
+Disposer sur une plaque huilée.
+Enfourner pour 30 minutes.
+
 ## Pain de mie
 
  * [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
@@ -86,7 +103,7 @@ lait                        | 250ml | 0     | 250ml + 125ml
 beurre salé ou huile        | 80g   | 0     | 80g
 
 Essai avec la farine de seigle en J1 :
- * 200g farine de seigle
+ * 100g farine de seigle + 100g farine normale
  * 350ml d'eau au moins --> à preciser la prochaine fois.
  * 3g de levure
 en J2 :

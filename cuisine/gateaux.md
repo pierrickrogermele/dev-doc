@@ -114,7 +114,18 @@
 
 ## Galettes
 
-Broyé du Poitou	gâteau	France		http://www.marmiton.org/recettes/recette_broyer-du-poitou_53917.aspx	
+ * [Broyé du Poitou](http://www.marmiton.org/recettes/recette_broyer-du-poitou_53917.aspx).
+
+Galette à l'huile :
+ * 250g farine
+ * 125g sucre --> moins ?       utilisé: 110g
+ * 125g d'huile --> 110g utilisé
+ * 1 œuf pour la pâte
+ * 1 sachet de sucre vanillé
+ * 3g de sel
+ * du lait s'il manque de liquide pour former une boule ?
+ * 1 jaune pour la dorure --> remplacer par du lait ?
+ * levure chimique ?  --> non
 
 ## Cake aux raisins
 
