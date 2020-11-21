@@ -207,6 +207,7 @@ The switch statement is an optional statement for the GNU version of Awk, that m
 
 ## Removing columns
 
+Removing two first columns:
 ```awk
 {$1=$2="";sub("  "," ")}1
 ```
