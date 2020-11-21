@@ -549,7 +549,7 @@ Get a random number between 0 and 32767:
 n=$RANDOM
 ```
 
-## `if`, `then`, `else`
+## if, then, else
 
 ```bash
 if [ -f $file ] ; then
@@ -561,7 +561,7 @@ else
 fi
 ```
 
-## `while`
+## while
 
 ```bash
 while true ; do
@@ -571,7 +571,7 @@ while true ; do
 done
 ```
 
-## `for`
+## for
 
 For loop:
 ```bash
@@ -611,7 +611,7 @@ done
 IFS=$oldifs
 ```
 
-## `case`
+## case
 
 Case statement:
 ```bash
@@ -624,7 +624,7 @@ case $var in
 esac
 ```
 
-## `read`
+## read
 
 reading a file inside current bash instance:
 ```bash
@@ -658,7 +658,7 @@ while true; do
 done
 ```
 
-## `select`
+## select
 
 Select (user choice):
 ```bash
