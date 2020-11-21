@@ -30,7 +30,11 @@
  * [Mutts daily strips](https://mutts.com/shop/strips/).
  * [Pearls Before Swine strips](https://www.gocomics.com/pearlsbeforeswine/).
 
-## TVs
+## Videos
+
+  * [Format Court](http://www.formatcourt.com/). Festival de courts métrages, en novembre.
+
+### TV channels
 
  * [Mon Arte](https://my.arte.tv/index.php?lang=fr#section/landing).
  * [France TV](http://www.francetv.fr).
@@ -40,7 +44,64 @@
  * [TF1](http://www.tf1.fr).
  * [RAI Play](https://www.raiplay.it/).
 
-## Podcasts
+#### Chaînes FreeboxTV
+
+Canal | Nom                      | Type           | Pays       | Comment
+----- | ------------------------ | -------------- | ---------- | -----------------------
+  52  | Paramount Channel        | Cinéma         | US         | Films en VO.
+ 122  | Paramount Channel Décalé | Cinéma         | US         | Films en VO.
+ 108  | Disneytek                | Cinéma         | US         | Diffusion de films + VOD.
+  97  | Comedy Central           | Divertissement | US         | Comédies en VO.
+  265 | Stingray Djazz (en)      | Musique        | Canada     | Jazz
+ 100  | Stingray Festival 4K     | Musique        | Canada     | Musique moderne variée.
+  274 | Clubbing TV              | Musique        |            | Musique électronique.
+  211 | Souvenirs from Earth     | Art            |            | Œuvres d'art vidéo.
+  213 | Museum                   | Art            | France
+  203 | Ultra Nature             | Nature         | France
+  221 | Connaissance du Monde    | Documentaires  | France
+  70  | TV5 Monde                | Généraliste    | France
+ 102  | Arte HDR                 | Généraliste    | Europe
+ 543  | Rai 1                    | Généraliste    | Italie
+ 544  | Rai 2                    | Généraliste    | Italie
+ 545  | Rai 3                    | Généraliste    | Italie
+ 616  | Arte Allemand            | Généraliste    | Allemagne
+ 617  | DW-TV                    | Généraliste    | Allemagne  | Service international de la Deutsche Welle, en anglais.
+  18  | Gulli                    | Jeunesse       | France
+  88  | J-One                    | Jeunesse       | France     | Mangas. Français.
+  50  | Game One                 | Jeunesse       | France     | Jeux vidéos et mangas. Français.
+  89  | Game One +1              | Jeunesse       | France     | Jeux vidéos et mangas. Français.
+  94  | GONG                     | Jeunesse       | Corée      | Fictions coréennes. VO.
+  141 | Nickelodeon Junior       | Jeunesse       | France     | 
+  147 | Nickelodeon              | Jeunesse       | France     | 
+  152 | Nickelodeon Teen         | Jeunesse       | France     | 
+  156 | Nickelodeon +1           | Jeunesse       | France     | 
+  157 | Mon Nickelodeon Junior   | Jeunesse       | France     | Replay.
+  27  | France Info              | News           | France
+  340 | France 24 (français)     | News           | France
+  343 | LCP                      | News           | France
+  344 | Public Sénat             | News           | France
+  345 | Euronews (français)      | News           | Europe
+  348 | Arrêt sur images         | News           | France
+  352 | BBC World News           | News           | UK
+  353 | Sky News                 | News           | UK
+  357 | CNBC                     | News           | US
+  358 | Al Jazeera English       | News           | Qatar
+  359 | Africa 24                | News           | France
+  360 | i24news                  | News           | France
+  361 | NHK World                | News           | Japon     | Service international de NHK.
+  362 | RT France                | News           | Russie
+  475 | VoxAfrica                |                | UK
+  719 | Mandarin TV              |                | Chine
+  720 | CGTN Documentary         |                | Chine
+  722 | CGTN                     |                | Chine
+  723 | CGTN Français            |                | Chine
+  799 | NTD Television           |                | US        | En chinois.
+
+### Youtube & co channels
+
+ * [Fouloscopie](https://www.youtube.com/channel/UCLXDNUOO3EQ80VmD9nQBHPg).
+
+## Audio Podcasts
 
 ### Documentaires
 
