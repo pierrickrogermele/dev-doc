@@ -1,5 +1,7 @@
-<!-- vimvars: b:markdown_embedded_syntax={'r':'','bash':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'r':'','bash':'','java':''} -->
 # R
+
+ * [BOOKDOWN](https://bookdown.org/). Write HTML, PDF, ePub, and Kindle books with R Markdown.
 
 ## Installing
 
@@ -674,13 +676,18 @@ If a column is missing in b or in c, it is filled with NA values.
 
 Reading a data.frame from file:
 ```r
-df <- read.table("exams", header=TRUE) # In the header, blanks are replaced with period in names.
+x <- read.table("exams", header=TRUE) # In the header, blanks are replaced with period in names.
 all2006 <- read.csv("2006.csv", header=TRUE, as.is=TRUE) # read CSV file. as.is=TRUE disable use of factors (identical to stringsAsFactors=FALSE)
 ```
 
 Reading a UTF-16 file, with tab separated columns:
 ```r
-df <- read.table("SPI-N1.txt", header=TRUE, quote="", stringsAsFactors = FALSE, sep="\t", fileEncoding="UTF-16")
+x <- read.table("SPI-N1.txt", header=TRUE, quote="", stringsAsFactors=FALSE, sep="\t", fileEncoding="UTF-16")
+```
+
+Do not fail when elements are missing on a row:
+```r
+x <- read.table("mytable.tsv", header=TRUE, sep="\t", fill=TRUE)
 ```
 
 #### Writing
@@ -1125,6 +1132,8 @@ Roles are:
  * [Authoring R Markdown vignettes with Bioconductor style](https://bioconductor.org/packages/3.7/bioc/vignettes/BiocStyle/inst/doc/AuthoringRmdVignettes.html).
  * [Knitr](https://r-pkgs.org/vignettes.html#knitr), for including code in a vignette.
   + [Knitr options](https://yihui.org/knitr/options/).
+ * [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/).
+ * [bookdown: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/).
 
 On macOS, for building vignettes with `R CMD build .`, install first the [MacTeX LaTeX](http://www.tug.org/mactex/) distribution.
 
@@ -1149,7 +1158,7 @@ Example of header for an Rmd vignette using knitr package and BiocStyle package:
  ---
 ```
 
-Here is the settings to put insisde the `DESCRIPTION` file:
+Here is the settings to put inside the `DESCRIPTION` file:
 ```
 VignetteBuilder: knitr
 Suggests:
@@ -1157,6 +1166,8 @@ Suggests:
 	knitr,
 	rmarkdown
 ```
+
+Include other `.Rmd` files inside main `.Rmd` using fake empty inserted code: `{r, child=c('one.Rmd', 'two.Rmd')}`.
 
 #### Writing documentation with roxygen2
 
@@ -2371,6 +2382,8 @@ validObject(a)
 Error in validObject(a) : 
 	invalid class "A" object: 'x' must be length 1 and < 11
 
+### R6
+
 ## Profiling
 
 ```r
@@ -3000,13 +3013,13 @@ public class rserveuseClass {
 
 ### RJSONIO
 
-[RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
+ * [RJSONIO](https://cran.r-project.org/web/packages/RJSONIO/index.html) is a JSON package.
 
 A better JSON package is jsonlite.
 
 ### jsonlite
 
- * []().
+ * [jsonlite](https://cran.r-project.org/web/packages/jsonlite/index.html).
 
 Parse JSON:
 ```r
