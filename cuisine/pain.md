@@ -89,8 +89,21 @@ Enfourner pour 30 minutes.
  * [Pain de mie facile](https://www.youtube.com/watch?v=53ZWarr0Yyg).
  * [Pain de mie](https://cuisine.journaldesfemmes.fr/recette/309493-pain-de-mie).
 
- * 40min à 210 C --> arrêter avant 30min?
+ * 20-25min à 210°C avec vapeur d'eau
 
+Pour un seul pain de mie :
+Produit          | Base  | J1    | J2
+---------------- | ----- | ----- | ----
+Farine de blé    | 300g  | 0     | 300g
+Farine de seigle | 100g  | 100g  | 0
+sel              | 7g    | 0     | 7g
+sucre            | 12g   | 0     | 12g
+levure           | 4g    | 1,5g  | 2,5g
+eau              | 185ml | 185ml | 0
+lait             | 125ml | 0     | 125ml
+huile d'olive    | 40g   | 0     | 40g
+
+Pour deux pains de mie (un petit et un grand):
 Produit                     | Base  | J1    | J2
 --------------------------- | ----- | ----- | ----
 Farine de blé semi-complète | 500g  | 200g  | 300g
