@@ -853,13 +853,18 @@ Resume a download:
 wget -c http://some.site.fr/myfile.zip
 ```
 
+Set file output:
+```sh
+wget -O myfile.html http://some.site.fr/some/page.html
+```
+
 ```bash
 wget -i blabla -o zop http://fsgjkbnkfjg.bgjnfdgb/dfbkjgn.xml
 ```
 
 Quiet:
 ```bash
-wget -q -O myfile.html http://jfvndfjvndf/fdj.html
+wget -q -O myfile.html http://some.site.fr/some/page.html
 ```
 
 ### mail
@@ -2481,6 +2486,11 @@ To edit the first line only:
 sed -e '1s/foo/bar/g' myfile
 ```
 
+Edit and print only selected lines:
+```bash
+sed -n -e 's/^some text\(.*\)/new text\1/p' myfile
+```
+
 To add a carriage return to the end of a file:
 ```bash
 sed -i '' -e '$a\' toto.txt
@@ -2673,6 +2683,11 @@ Upgrade/update all packages:
 pacman -Syu
 ```
 
+List out-of-date packages:
+```sh
+pacman -Qu
+```
+
 Install AUR (ArchLinux User Repository) packages:
 ```bash
 yay -S mypkg
@@ -2694,6 +2709,10 @@ Downgrade packages (in case some packages are detected as newer than in reposito
 ```sh
 sudo pacman -Suu
 ```
+
+# yay (ArchLinux)
+
+Package manager for AUR repository.
 
 ### Homebrew / brew
 
@@ -3003,6 +3022,11 @@ pkg search mypkg
 Configure sound on Debian with ALSA system:
 ```bash
 alsactl init
+```
+
+Restore default:
+```bash
+alsactl -F restore
 ```
 
 ### microphone setup
