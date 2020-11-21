@@ -228,11 +228,12 @@ iskeyword   | Define the list of allowed characters for keywords.
 ........... | Used in syntax highlighting.
 autowrite   | Enable buffer writing before running external commands (`!`) or `make`, ...
 
-Local options:
+Local options (buffer):
 Name        | Description
 ----------- | ------------------------------
 buftype     | The type of buffer. (e.g.: `"nofile"` for a scratch buffer)
 filetype    | The type of file (e.g.: `"c", "java", ...`).
+readonly    | Boolean option (`readonly`, `ro`, `noro`, `noreadonly`).
 
 ## map & co
 
