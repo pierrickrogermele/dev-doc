@@ -27,6 +27,8 @@ xmllint --noout --schema myschema.xml myfile.xml
 
  * [Adding a subnode to an XML file](https://www.technomancy.org/xml/add-a-subnode-command-line-xmlstarlet/).
 
+### sel (select)
+
 Select all elements of a same type using XPath:
 ```sh
 xmlstarlet sel -t -c '//b' -n myxml.xml 
@@ -39,6 +41,13 @@ To print only the text (i.e.: values):
 xmlstarlet sel -t -v '//b' -n myxml.xml 
 ```
 
+Use a namespace:
+```sh
+xmlstarlet sel -N x="http://my.name/space" -t -v '//x:b' -n myxml.xml 
+```
+
+### ed (edit)
+
 Delete elements using XPath:
 ```sh
 xmlstarlet ed -d '//my/tag' myxml.xml
@@ -46,10 +55,19 @@ xmlstarlet ed -d '//my/tag' myxml.xml
 xmlstarlet ed --delete '//my/tag' myxml.xml
 ```
 
-Use a namespace:
+Edit in-place:
 ```sh
-xmlstarlet sel -N x="http://my.name/space" -t -v '//x:b' -n myxml.xml 
+xmlstarlet ed -L ...
+# or
+xmlstarlet ed --inplace ...
 ```
+
+Replace value:
+```sh
+xmlstarlet ed -N x="http://maven.apache.org/POM/4.0.0" -u '/x:project/x:version' -v $version "$SCRIPT_DIR/../pom.xml"
+```
+
+### tr (transform)
 
 Transform an XML file using XSLT:
 ```sh
