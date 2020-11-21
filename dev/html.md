@@ -1,6 +1,5 @@
-HTML
-====
-
+<!-- vimvars: b:markdown_embedded_syntax={'html':''} -->
+# HTML
 ## XHTML
 
 XHTML is an XML version of HTML. Tags must always be closed, tag names must be written in lowercase, etc.
@@ -43,7 +42,7 @@ Non-breaking space:
 My text&nbsp;:
 ```
 
-## Form
+## form
 
  * [HTML Form Elements](https://www.w3schools.com/html/html_form_elements.asp).
 
@@ -117,6 +116,24 @@ Select (drop-down list):
 	<option value="choice2">Choice 2</option>
 	<option value="choice3" selected>Choice 3</option> <!-- default -->
 </select>
+```
+
+## onClick
+
+The `onClick` attribute can be used on any HTML element in order to run Javascript code.
+
+Example on a form button:
+```html
+<form action="mypage.php" enctype="multipart/form-data" method="post">
+	<input type="submit" value="Send" onClick="return confirm('Are you sure you want to submit the form?')"/>
+</form>
+```
+
+## onSubmit
+
+Run javascript code when submitting a form:
+```html
+<form action="mypage.php" enctype="multipart/form-data" method="post" onSubmit="return myFct()">
 ```
 
 ## Upload file
@@ -236,3 +253,9 @@ For a paragraph:
 <p style = "background-color: yellow">
 ```
 
+## hr
+
+Display an horizontal line:
+```html
+<hr/>
+```
