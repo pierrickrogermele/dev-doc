@@ -64,8 +64,7 @@ hardcopy -h myfile.txt
 ```
 The file will be saved in $HOME.
 
-General commands
-----------------
+## General commands
 
 Command             | Description
 ------------------- | ---------------------------------------------
