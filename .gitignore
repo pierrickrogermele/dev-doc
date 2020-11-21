@@ -2,3 +2,7 @@
 .*.swp
 bib.aux
 bib-blx.bib
+bib.bbl
+bib.blg
+bib.pdf
+bib.run.xml

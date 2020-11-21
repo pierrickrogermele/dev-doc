@@ -3,10 +3,10 @@ all: README.md
 README.md: make_readme
 	./$< >$@
 
-bib.pdf: bib.tex
-	pdflatex bib.tex
+bib.pdf: bib.tex references.bib
+	pdflatex $<
 	bibtex bib
-	pdflatex bib.tex
+	pdflatex $<
 
 clean:
 	$(RM) README.md README.html
