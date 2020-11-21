@@ -1,5 +1,8 @@
 # Mathemathics
 
+ * [Statistiques pour statophobes](https://perso.univ-rennes1.fr/denis.poinsot/Statistiques_%20pour_statophobes/).
+ * [StatistiqueDescriptive Multidimensionnelle (pourlesnuls)](http://www.math.univ-toulouse.fr/~baccini/zpedago/asdm.pdf).
+
 ## Probability
 
 ### Binomial distribution
