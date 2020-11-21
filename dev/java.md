@@ -609,7 +609,9 @@ class MyClass {
 	String s = "Coucou";
 	private class MyInnerClass {
 		void myMethod() {
-			System.out.println(s); // access `i` member of inner class.
+			System.out.println(s); // Accessing `s` member of inner class.
+			if (MyClass.this.getSomeValue() == 10) // Accessing enclosing instance from an inner class.
+				doSomething()
 		}
 	}
 }
@@ -931,7 +933,7 @@ java.io.File curdir = new java.io.File(".");
 
 List files inside a directory:
 ```java
-java.io.File dir;
+java.io.File dir = new java.io.File(".");
 File[] files = dir.listFiles();
 ```
 
@@ -1501,9 +1503,10 @@ class MyPanel extends javax.swing.JPanel {
 		java.awt.GridBagLayout gridBag = new java.awt.GridBagLayout();
 		this.setLayout(gridBag);
 
-		// Prepare contraint
+		// Prepare constraint
 		java.awt.GridBagConstraints c = new java.awt.GridBagConstraints();
-		c.gridwidth = 2;
+		c.gridwidth = 2; // Number of cells occupied horizontally by component
+		c.gridy = 1; // Put component on the second line.
 
 		// Add button
 		java.awt.Button button = new java.awt.Button(name);
@@ -1515,8 +1518,14 @@ class MyPanel extends javax.swing.JPanel {
 
 ## Swing
 
+ * [How to Make Dialogs](https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html)
+ * [How to Use Modality in Dialogs](https://docs.oracle.com/javase/tutorial/uiswing/misc/modality.html).
+ * [Creating Custom Components](https://www.oreilly.com/library/view/learning-java/1565927184/ch15s06.html).
+
 GUI widget toolkit, successor of AWT.
 Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
+
+Now (2020) being replaced by JavaFX (thread safe).
 
 ### JWindow
 
@@ -1535,6 +1544,15 @@ javax.swing.JPanel mypanel = new javax.swing.JPanel(); // Create a panel with de
 mypane.add(); // Add component.
 ```
 
+### JOptionPane
+
+A modal `JDialog`. More precisely: A `JOptionPane` object is a container that creates a `JDialog` and adds itself to it.
+It is possible to choose a `JInternalFrame` instead of a `JDialog` as the target component.
+
+### JDialog
+
+With `JDialog` you can create modal or non-modal dialogs.
+
 ### JScrollPane
 
  * [How to Use Scroll Panes](https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html).
@@ -1547,12 +1565,46 @@ JScrollPane uses JViewPort to get a partial view of the component to display.
 
 #### JMenuBar
 
+Create a menu bar:
+```java
+javax.swing.JMenuBar menuBar = new javax.swing.JMenuBar();
+```
+
 #### JMenu
+
+Create a menu and add it to the bar:
+```java
+javax.swing.JMenu menu = new javax.swing.JMenu(Msg.getString("help"));
+menuBar.add(menu);
+```
 
 #### JMenuItem
 
+Create a menu item with shortcut, accelerator and a listener and add it to a menu:
+```java
+javax.swing.JMenuItem myItem = new javax.swing.JMenuItem("My Item", java.awt.event.KeyEvent.VK_M);
+myItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.ActionEvent.CTRL_MASK));
+myItem.addActionListener(
+	new java.awt.event.ActionListener {
+		public void actionPerformed(java.awt.event.ActionEvent e) {
+			// do something
+		}
+	}
+);
+menu.add(myItem);
+```
+
+#### JMenuSeparator
+
+Add an horizontal separator:
+```java
+menu.add(new javax.swing.JSeparator());
+```
+
 #### Mnemonics and accelerators
 
+ * [Class KeyEvent](https://docs.oracle.com/javase/8/docs/api/java/awt/event/KeyEvent.html).
+	 
 Keyboard events:
  * Mnemonics: for navigating inside the menu. Normally an alphanumeric character, the first occurence of this character is underlined on the menu title.
  * Accelerators: for bypassing the menu. The shorcut is displayed on the right of the menu title.
