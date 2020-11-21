@@ -1,5 +1,4 @@
-#!/usr/bin/php
-<?php
+<?php declare(strict_types=1);
 
 class A {
 	function foo($n): void {

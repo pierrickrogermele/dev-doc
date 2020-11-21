@@ -1272,26 +1272,22 @@ echo 'Blabla', 'blibli', $myvar;
 
 `print` takes only one argument and always returns `1`:
 ```php
-<?php
-print($mystring);
+<? print($mystring);
 ```
 
 Open a file:
 ```php
-<?php
-$fh = fopen('/my/file', 'r');
+<? $fh = fopen('/my/file', 'r');
 ```
 
 Read a line:
 ```php
-<?php
-$line = fgets($fh);
+<? $line = fgets($fh);
 ```
 
 Read all lines in a loop:
 ```php
-<?php
-while (($line = fgets($fh)) !== FALSE) {
+<? while (($line = fgets($fh)) !== FALSE) {
 }
 ```
 or
@@ -1302,8 +1298,7 @@ or
 
 Close a file handle:
 ```php
-<?php
-flclose($fh);
+<? flclose($fh);
 ```
 
 Parse a CSV file (only for UTF-8 files):
@@ -1421,6 +1416,11 @@ Exit with a string status:
 ```php
 <?php exit('error');
 ```
+
+## Logging
+
+ * [PHP Logging Basics](https://www.loggly.com/ultimate-guide/php-logging-basics/).
+ * [PHP Logging Libraries](https://www.loggly.com/ultimate-guide/php-logging-libraries/).
 
 ## Exceptions
 
@@ -1759,20 +1759,16 @@ $_SERVER['argv'];
 Using `getopt`:
 ```php
 <?php
-$shortopts  = "";
-$shortopts .= "f:";  // Required value
-$shortopts .= "v::"; // Optional value
-$shortopts .= "abc"; // These options do not accept values
-
+$shortopts  = "f:o::h"; // ':' means required value, '::' means optional value.
 $longopts  = array(
-	"required:",     // Required value
-	"optional::",    // Optional value
-	"option",        // No value
-	"opt",           // No value
+	"file:",    // Required value
+	"output::", // Optional value
+	"help"      // No value
 );
 $options = getopt($shortopts, $longopts);
 ?>
 ```
+Short options and long options are recorded separately inside `$options`, and both will be set if both are specified.
 
 ## `_GET`, `_POST`, `$_COOKIE` and `_REQUEST`
 
@@ -2014,6 +2010,8 @@ self::assertNull($myvar);
 self::assertNotNull($myvar);
 self::assertFalse($myvar);
 self::assertEquals(10, 11);
+self::assertGreaterThan(10, 12);
+self::assertGreaterThanOrEqual(10, 10);
 self::assertTrue($myvar);
 self::assertInstanceOf(MyClass::class, $myvar);
 self::assertNotInstanceOf(MyClass::class, $myvar);
@@ -2101,6 +2099,7 @@ BSON classes:
 
 Create a connector:
 ```php
+<? $dbConn = new MongoDB\Client("mongodb://$host/", [ 'username' => $user, 'password' => $pwd, 'authSource' => $authdb ]);
 ```
 
 Get info about all users:
@@ -2120,6 +2119,7 @@ Get info about one user (works when the user itself asks info about its account)
 
 Get a reference to a collection:
 ```php
+<? $coll = $dbConn->selectCollection("myColl");
 ```
 
 Get all objects of a collection:
@@ -2158,6 +2158,26 @@ Use two filters together with OR operator:
 <? $result = $coll->find(['$or'=>[['myfield1' => ['$exists'=>false]], ['myfield1' => ['$in' => ['myvalue1', 'myvalue2']]]]]);
 ```
 `$or` can take more than 2 arguments, but not just one.
+
+Insert one object implementing `MongoDB\BSON\Persistable`:
+```php
+<? $coll->insertOne($myObj);
+```
+
+Insert many objects implementing `MongoDB\BSON\Persistable`:
+```php
+<?  $coll->insertMany($myObjects);
+```
+
+Update one object implementing `MongoDB\BSON\Persistable`:
+```php
+<?  $coll->replaceOne(['myId' => 'myValue'], $myObject, ['upsert' => true]);
+```
+
+Update some fields on a selected set of objects:
+```php
+<?  $coll->updateMany(['myfield' => 'myvalue'], ['$set' => ['myOtherField' => 'myOtherVale']], ['upsert' => true]);
+```
 
 ### Gettext
 

@@ -1,5 +1,4 @@
-#!/usr/bin/php
-<?php
+<?php declare(strict_types=1);
 
 # Create a table
 $a = [
