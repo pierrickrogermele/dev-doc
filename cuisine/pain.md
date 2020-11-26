@@ -1,6 +1,7 @@
 # Pain, pâtes et viennoiseries
 
  * [Pâte feuilletée](http://www.marmiton.org/recettes/recette_pate-feuilletee_20642.aspx).
+ * [Pâte brisée à l'huile d'olive](https://cuisine.journaldesfemmes.fr/recette/1013751-pate-brisee-a-l-huile-d-olive).
 
  * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
  * [Fabrication du pain](https://fr.wikipedia.org/wiki/Fabrication_du_pain).
@@ -92,16 +93,16 @@ Enfourner pour 30 minutes.
  * 20-25min à 210°C avec vapeur d'eau
 
 Pour un seul pain de mie :
-Produit          | Base  | J1    | J2
----------------- | ----- | ----- | ----
-Farine de blé    | 300g  | 0     | 300g
-Farine de seigle | 100g  | 100g  | 0
-sel              | 7g    | 0     | 7g
-sucre            | 12g   | 0     | 12g
-levure           | 4g    | 1,5g  | 2,5g
-eau              | 185ml | 185ml | 0
-lait             | 125ml | 0     | 125ml
-huile d'olive    | 40g   | 0     | 40g
+Produit               | Base  | J1    | J2
+--------------------- | ----- | ----- | ----
+Farine de blé T55     | 300g  | 0     | 300g
+Farine de seigle T130 | 100g  | 100g  | 0
+sel                   | 7g    | 0     | 7g
+sucre                 | 12g   | 0     | 12g
+levure                | 4g    | 1,5g  | 2,5g
+eau                   | 185ml | 185ml | 0
+lait                  | 125ml | 0     | 125ml
+huile d'olive         | 40g   | 0     | 40g
 
 Pour deux pains de mie (un petit et un grand):
 Produit                     | Base  | J1    | J2
