@@ -21,6 +21,8 @@
  * [Lasagne con la zucca](http://ricette.giallozafferano.it/Lasagne-con-la-zucca.html).
  * [Lasagne di carciofi ai formaggi](http://ricette.giallozafferano.it/Lasagne-ai-carciofi.html).
 
+ * [Pasta con barbabietola e pecorino](https://ricette.giallozafferano.it/Pasta-con-barbabietola-e-pecorino.html)
+
  * [Pasta con crema di carote](https://blog.giallozafferano.it/graficareincucina/pasta-crema-carote/).
  * [Pasta con pesto di carote](https://www.misya.info/ricetta/pasta-con-pesto-di-carote.htm).
  * [Pasta di semola di grano duro a mano](http://www.cookaround.com/ricetta/Pasta-di-semola-di-grano-duro-a-mano.html).
