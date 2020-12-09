@@ -72,6 +72,7 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
 
  * [Oatcakes](https://www.allrecipes.com/recipe/257958/oatcakes/).
 
+Pour quatre galettes:
  * 100g son d'avoine
  * 30g T55
  * 2,40g sucre
@@ -81,7 +82,7 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * eau bouillante
 
 Mettre le four à 190°C.
-Former une boule, étale la pâte et découper des cercles.
+Former une boule, étaler la pâte et découper des cercles.
 Disposer sur une plaque huilée.
 Enfourner pour 30 minutes.
 
@@ -103,6 +104,9 @@ levure                | 4g    | 1,5g  | 2,5g
 eau                   | 185ml | 185ml | 0
 lait                  | 125ml | 0     | 125ml
 huile d'olive         | 40g   | 0     | 40g
+
+Essai avec curcuma:
+ * 02.12.2020 : 5g
 
 Pour deux pains de mie (un petit et un grand):
 Produit                     | Base  | J1    | J2
