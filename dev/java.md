@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'java':'','xml':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'java':'','xml':'','jproperties':''} -->
 # Java
 
  * "The Clean Coder" by Martin.
@@ -264,6 +264,12 @@ String hex = java.lang.Integer.toHexString(i);
 Convert a string to an int:
 ```java
 int aInt = Integer.parseInt(aString);
+```
+
+Create an `Integer` instance:
+```java
+Integer i = Integer.valueOf(10);
+Integer j = Integer.valueOf("30");
 ```
 
 ### float & double
@@ -1437,6 +1443,23 @@ The solution is to exclude all inner classes class files from JUnit tests. In An
  * [Properties File Format](https://docs.oracle.com/cd/E23095_01/Platform.93/ATGProgGuide/html/s0204propertiesfileformat01.html).
  * [Properties](https://docs.oracle.com/javase/tutorial/essential/environment/properties.html).
 
+Comment in a properties files:
+```jproperties
+# My comment
+```
+
+A value:
+```jproperties
+my.prop = My Value
+```
+
+A multi-lines vale:
+```jproperties
+my.prop = My Value \
+          on multiple \
+          lines
+```
+
 ## AWT
 
 Abstract Window Toolkit.
@@ -1526,6 +1549,18 @@ GUI widget toolkit, successor of AWT.
 Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
 
 Now (2020) being replaced by JavaFX (thread safe).
+
+### JComponent
+
+Draw border:
+```java
+myComponent.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.black));
+```
+
+Paint background:
+```java
+myComponent.setBackground(java.awt.Color.blue);
+```
 
 ### JWindow
 
@@ -1667,6 +1702,27 @@ java.awt.Component x = this.tab.getComponentAt(0); // Get one of the pane.
 ### JTable
 
 A 2D table, with selection by row(s) or column(s).
+
+### JLabel
+
+### JTextArea
+
+All text in same font (i.e.: no formatting).
+
+### JEditorPane
+
+Can render plain text, HTML or RTF, and allow editing.
+
+### JTextPane
+
+Can render text with styles, and accept embedded components.
+
+### javax.json
+
+Read a JSON file:
+```java
+// TODO
+```
 
 ## i18n
 
@@ -1844,6 +1900,7 @@ Can play mpg and avi, but not mp4.
 
 ### Oracle JavaFX
 
+ * [JavaFX API overview](https://docs.oracle.com/javase/8/javafx/api/overview-summary.html).
  * [Integrating JavaFX into Swing Applications](https://docs.oracle.com/javafx/2/swing/swing-fx-interoperability.htm).
  * [JavaFX Video Player with MediaView](https://coderslegacy.com/java/javafx-mediaview-video-player/). Video player with play/pause/stop buttons.
 
