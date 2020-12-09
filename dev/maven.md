@@ -190,6 +190,22 @@ Setting this, solves the following warning:
 
 ## Plugins
 
+Plugins must be declared inside `<project><build><plugins>` section.
+
+### Apache Maven Compiler
+
+```xml
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>3.0</version>
+	<configuration>
+		<compilerArgument>-Xlint</compilerArgument>
+		<verbose>true</verbose>
+	</configuration>
+</plugin>
+```
+
 ### IzPack
 
  * [IzPack](https://izpack.atlassian.net/wiki/spaces/IZPACK/pages/491576/Compiling+Using+Maven).
