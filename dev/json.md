@@ -12,6 +12,10 @@ Reindent JSON within VIM:
 python -m json.tool <myfile.json
 ```
 
+## Comments
+
+Comments are not allowed inside JSON files.
+
 ## Lists / dictionaries
 
 ```json
