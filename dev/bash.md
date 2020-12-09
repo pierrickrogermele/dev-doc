@@ -1,6 +1,5 @@
 <!-- vimvars: b:markdown_embedded_syntax={'sh':'','bash':'sh'} -->
-
-# BASH
+# bash
 
 ## `.bashrc`, `.bash_profile`, `.bash_logout`
 
@@ -272,6 +271,16 @@ It's also possible to use the `declare` keyword:
 declare "${account}_email=zozo@gmail.com"
 ```
 
+## Built-in variables
+
+`IFS`: Stores the characters used to separate elements of a list. By default it is set to space, tabulation and new line, but it can be set to any value.
+
+`LINENO`: Current line number.
+
+`BASH_LINENO`: Array containing the line numbers of the call stack. `${BASH_LINENO[$i]}` is the line number in the source file `(${BASH_SOURCE[$i+1]})` where `${FUNCNAME[$i]}` was called (or `${BASH_LINENO[$i-1]`} if referenced within another shell function).
+`FUNCNAME`: Array of function names of the call stack.
+`BASH_SOURCE`: Array of the script names of the call stack.
+
 ## Arrays
 
  * [The Ultimate Bash Array Tutorial with 15 Examples](http://www.thegeekstuff.com/2010/06/bash-array-tutorial).
@@ -293,6 +302,11 @@ myarr+=('newval')
 Getting first value of an array:
 ```bash
 ${my_array[0]}
+```
+
+Getting last value of an array:
+```bash
+${my_array[-1]}
 ```
 
 Getting all values of an array:
@@ -332,12 +346,17 @@ echo ${my_array[some_key]}
 keys=${!my_array[@]}
 ```
 
-Join elements of an array:
+Read an array from a file:
+```bash
+readarray -t my_array <my_file.txt
+```
+
+Join elements of an array using space as separator:
 ```bash
 echo "${my_array[*]}"
 ```
 
-Join elements of an array (see [Join elements of an array?](https://stackoverflow.com/questions/1527049/join-elements-of-an-array)):
+Join elements of an array using a custom separator (see [Join elements of an array?](https://stackoverflow.com/questions/1527049/join-elements-of-an-array)):
 ```bash
 function join_by { local IFS="$1"; shift; echo "$*"; }
 join_by , a "b c" d #a,b c,d
@@ -358,6 +377,13 @@ echo ${MYVAR%%.*}	# Remove the longest string .* at the end of MYVAR
 Test if a string contains another string:
 ```bash
 if [[ $s1 == *$s2* ]] ; then
+	# ...
+fi
+```
+
+Test with a [POSIX extended regex](https://en.wikibooks.org/wiki/Regular_Expressions/POSIX-Extended_Regular_Expressions):
+```bash
+if [[ $s =~ .*-[0-9]\.txt ]] ; then
 	# ...
 fi
 ```
@@ -409,10 +435,22 @@ for f in *.txt ; do
 		echo $f
 done
 ```
-will print `*.txt` literaly if no `.txt` file exists.
+will print `*.txt` literally if no `.txt` file exists.
 To get an empty string when no file exists, the following option must be set:
 ```bash
-shopt -s nullglob # make glob pattern yelds empty string if no file exists.
+shopt -s nullglob # make glob pattern yields empty string if no file exists.
+```
+
+## Operator !
+
+Negates the status code of a command:
+```sh
+! my_command || echo "My command was successful"
+```
+
+When you set environment variables for the command, put the `!` operator before:
+```sh
+! MYVAR=myvalue my_command || echo "My command was successful"
 ```
 
 ## [[ Test operator - Double bracket
