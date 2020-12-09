@@ -1,6 +1,5 @@
 <!-- vimvars: b:markdown_embedded_syntax={'python':''} -->
-PYTHON
-======
+# Python
 
  * [Cheat Sheet: Writing Python 2-3 compatible code](http://python-future.org/compatible_idioms.html).
 
@@ -2169,6 +2168,13 @@ from ..package import module3
 
 ## Some interesting modules
 
+### json
+
+```python
+import json
+s  = json.dumps(myObj)
+```
+
 ### SQLAlchemy
 
  * [SQLAlchemy 1.3 Documentation](https://docs.sqlalchemy.org/en/13/).
@@ -2350,6 +2356,23 @@ py.test -k MyClass
 
 Test classes must not define an `__init__()` method or they will be ignored by PyTest.
 
+#### Fixture
+
+Test fixtures are used to initialize test functions.
+When calling a test function, if it has parameters then each parameter is set
+using the existing fixture function whose name is the same as the parameter.
+
+Example:
+```python
+@pytest.fixture
+def someparam():
+	# ...
+	return somevalue
+
+def test_something(someparam):
+	# ...
+```
+
 ### unittest
 
 Running tests from files in tests subfolder:
@@ -2375,6 +2398,27 @@ easy_install tox
 To launch tests, you need a `tox.ini` file and run:
 ```bash
 tox
+```
+
+Tun run tests for only one Python version:
+```bash
+tox  -e py38
+```
+
+To run tests in only one file:
+```bash
+tox  -e py38 -- tests/my_tests.py
+```
+
+To run tests in only one class or function:
+```bash
+tox  -e py38 -- tests/my_tests.py::MyClass
+tox  -e py38 -- tests/my_tests.py::myFct
+```
+
+To run tests in only one class' method:
+```bash
+tox  -e py38 -- tests/my_tests.py::MyClass::myMethod
 ```
 
 ### Bisect
@@ -2458,7 +2502,7 @@ root.addHandler(fh)
 
 Log a message from some part of code:
 ```python
-logger = logging.getLogger(__name__) # A good practice is to use __name__ (the name of the module) for definning a logger
+logger = logging.getLogger(__name__) # A good practice is to use __name__ (the name of the module) for defining a logger
 logger.debug('Debugging information')
 logger.info('Informational message')
 logger.warning('Warning:config file %s not found' % 'server.conf')
