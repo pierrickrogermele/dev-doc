@@ -1,6 +1,5 @@
 # Local
 
- * [Météo France Bourg-la-Reine](http://www.meteofrance.com/previsions-meteo-france/bourg-la-reine/92340).
  * [Windfinder Cicciano](https://www.windfinder.com/#10/40.9357/14.7179).
  * [Centro di allerta meteo Italia](http://allarmi.meteo-allerta.it/index.html).
 
