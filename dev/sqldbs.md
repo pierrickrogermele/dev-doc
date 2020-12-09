@@ -548,6 +548,10 @@ where city = 'GOTHAM'
  * [Datatypes In SQLite Version 3](https://www.sqlite.org/datatype3.html).
  * [Getting Started with SQLite Full-text Search](https://www.sqlitetutorial.net/sqlite-full-text-search/).
 
+Full-text search with `MATCH`:
+ * Boolean operators: `NOT`, `OR`, and `AND`.
+ * Parenthesis.
+
 ## MySQL
 
  * [9.3.1 How MySQL Uses Indexes](http://dev.mysql.com/doc/refman/5.7/en/mysql-indexes.html).
