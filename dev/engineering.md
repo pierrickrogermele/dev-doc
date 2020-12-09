@@ -1,6 +1,36 @@
 <!-- vimvars: b:markdown_embedded_syntax={'dosbatch':''} -->
 # Engineering
 
+## NEWS file
+
+What to put inside a NEWS file (or CHANGELOG file?) and how to present it.
+
+```
+CHANGES IN VERSION 1.3.4
+------------------------
+
+BUG FIXES
+
+  * blablabla...
+  * blablabla...
+  * blablabla...
+
+NEW FEATURES
+
+  * blablabla...
+  * blablabla...
+
+DEPRECATION ANNOUNCEMENT
+
+  * blablabla...
+  * blablabla...
+
+USER SIGNIFICANT CHANGES
+
+  * blablabla...
+  * blablabla...
+```
+
 ## Deployment
 
 ### MSI Packager
