@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'r':'','bash':'','java':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'r':'','sh':'bash','bash':'','java':''} -->
 # R
 
  * [BOOKDOWN](https://bookdown.org/). Write HTML, PDF, ePub, and Kindle books with R Markdown.
@@ -1063,6 +1063,38 @@ rownames(installed.packages())
 
 See also devtools package.
 
+### Running commands on package sources
+
+Build package:
+```sh
+R CMD build .
+```
+
+Build vignettes:
+```sh
+R --slave --no-restore -e "devtools::build_vignettes('.')"
+```
+
+Install dependencies:
+```sh
+R --slave --no-restore -e "devtools::install_dev_deps('.')"
+```
+
+Install package:
+```sh
+R --slave --no-restore -e "devtools::install_local('.', dependencies=TRUE, build_manual=TRUE, build_vignettes=TRUE)"
+```
+
+Uninstall package:
+```sh
+R --slave --no-restore -e "devtools::uninstall('.')"
+```
+
+Run checks:
+```sh
+R --slave --no-restore -e "devtools::check('.')"
+```
+
 ### Removing packages
 
 ```r
@@ -1398,6 +1430,11 @@ s <- readChar(filename, file.info(filename)$size)
 Read lines:
 ```r
 lines <- readLines(filename)
+```
+
+Print a whole file:
+```r
+cat(readLines(filename), sep="\n")
 ```
 
 ### Reading from stdin
@@ -2470,7 +2507,7 @@ library(method)
  * [Using Bioconductor](https://bioconductor.org/install).
 
 ```r
-if (!requireNamespace("BiocManager", quietly = TRUE))
+if (!requireNamespace("BiocManager", quietly=TRUE))
 	install.packages("BiocManager")
 BiocManager::install("mypkg")
 ```
@@ -2504,6 +2541,13 @@ assay.fiel.names <- getMSAssayFilenames(isa)
 ```
 
 ## Interesting packages
+
+### tidyverse
+
+ * [tidyverse](https://www.tidyverse.org/).
+ * [R for Data Science](https://r4ds.had.co.nz/). About the Tidyverse.
+
+A package gathering the following packages: `dplyr`, `ggplot2`, `tibble`, `tidyr`, `readr`, `purrr`, `stringr`, `forcats`.
 
 ### dplyr
 
@@ -2673,6 +2717,13 @@ install.packages('RMySQL', type='source')
 Be careful of choosing compatible binary versions (32 or 64 bits) for the 3 software: R, Rtools (and the extension to install: "Extras to build 32 bit R: TCL/TK, bitmap code, internationalization") and MySQL.
 Eventually look at <http://www.r-bloggers.com/installing-the-rmysql-package-on-windows-7/>.
 You'll have to define `MYSQL_HOME` env var to be `C:\Program Files\MySQL\MySQL Server 5.6`, and also to copy `libmysql.dll` from the lib folder of `C:\Program Files\MySQL\MySQL Server 5.6` to its bin folder.
+
+### BiocCheck (Bioconductor)
+
+Run checks on a Bioconductor package:
+```sh
+R --slave --no-restore -e 'BiocCheck::BiocCheck(".")'
+```
 
 ### Rdisop (Bioconductor)
 
@@ -3081,7 +3132,7 @@ The condition to detect that the matrix is singular is that a variable has withi
 lda(....., tol = 0.0000001, ....)
 ```
 
-### Testthat
+### testthat
 
  * [testthat v3.0.0](https://www.rdocumentation.org/packages/testthat/versions/3.0.0).
  * [testthat: Get Started with Testing](https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf).
@@ -3092,7 +3143,7 @@ Testing code outside a package
  * Write a file `test_somename.R`.
  * Run `R --slave --no-restore -e "testthat::test_dir('test')"`.
 
-Testthat propose different reporters.
+*testthat* propose different reporters.
 For instance, when called with devtools for a package, we can trigger a progress reporter (`ProgressReporter`) with a failure reporter (`FailReporter`, that will ensure that a fail message is sent):
 ```r
 R -q -e "devtools::test('.', reporter = c('progress', 'fail'))"
@@ -3153,6 +3204,18 @@ Assert exception:
 checkException(some_expression_or_function, "Some message") # checks that an exception is thrown
 checkException(some_expression_or_function, "Some message", silent = TRUE) # Tells 'try' to do not print error message.
 ```
+
+### covr
+
+ * [covr](https://github.com/r-lib/covr).
+
+Test coverage.
+
+To add test coverage for a R package repository using Travis-CI:
+```sh
+R --slave --no-restore -e 'usethis::use_coverage()'
+```
+Then follow the instructions and include the badge inside the README file and update the Travis YAML file with a command for codecov update.
 
 ### SSOAP
 
