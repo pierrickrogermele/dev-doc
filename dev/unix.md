@@ -1,4 +1,4 @@
-<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','bash':'','r':'','hog':''} -->
+<!-- vimvars: b:markdown_embedded_syntax={'sh':'bash','bash':'','r':'','hog':'','conf':'','systemd':''} -->
 # UNIX
 
 These notes refer to UNIX and Linux operating systems.
@@ -262,6 +262,34 @@ Regex:
 killall -r -HUP 'myproc[0-9]*'
 ```
 
+#### watch
+
+Runs a command periodically.
+
+Example watching updates of a file (e.g.: when copying a file or monitoring an output progress) every two seconds (default):
+```sh
+watch ls -l /my/file
+```
+
+Watch every 500ms:
+```sh
+watch -n 0.5 ls -l /my/file
+```
+
+#### progress
+
+Monitors progress of Coreutils commands (i.e.: mv, cp, tar, gzip, rsync, grep, md5sum, sha256sum, xz, 7z, etc.).
+
+Print progress:
+```sh
+progress
+```
+
+Running with watch to monitor constantly:
+```sh
+watch progress
+```
+
 ### Machine name
 
 Under macOS, to set the name of a machine, run:
@@ -295,12 +323,12 @@ The name of the symbolic link begin by `K` for stopping the service and `S` for 
 LOGIN
 
 Remove login manager:
-```bash
+```sh
 update-rc.d -f gdm remove
 ```
 
 Restore login manager:
-```bash
+```sh
 update-rc.d -f gdm defaults
 ```
 
@@ -740,11 +768,47 @@ systemctl enable --now org.cups.cupsd
  * ArchLinux [Network configuration](https://wiki.archlinux.org/index.php/Network_configuration).
  * ArchLinux network: [systemd-networkd](https://wiki.archlinux.org/index.php/Systemd-networkd).
  * ArchLinux [iPhone tethering](https://wiki.archlinux.org/index.php/IPhone_tethering).
- * [khal](http://lostpackets.de/khal/), CLI calendar program.
- * [khard](https://github.com/scheibler/khard/), CLI address book program.
- * [Vdirsyncer](https://github.com/pimutils/vdirsyncer), synchronizes your calendars and addressbooks between two storages.
 
 The DNS address is stored inside `/etc/resolv.conf`.
+
+### khal
+
+CLI calendar program.
+
+ * [khal](http://lostpackets.de/khal/).
+ * [Sync private iCloud calendar with MagicMirror](https://forum.magicmirror.builders/topic/5327/sync-private-icloud-calendar-with-magicmirror).
+
+### khard
+
+CLI address book program.
+
+ * [khard](https://github.com/scheibler/khard/).
+
+### vdirsyncer
+
+Synchronizes your calendars and addressbooks between two storages.
+
+ * [Vdirsyncer](https://github.com/pimutils/vdirsyncer).
+
+Enable service:
+```sh
+systemctl --user enable --now vdirsyncer.timer
+```
+
+Show service logs:
+```sh
+journalctl --user -u vdirsyncer
+```
+
+Edit service configuration (and set time interval):
+```sh
+systemctl --user edit vdirsyncer
+```
+Then write inside:
+```systemd
+OnBootSec=5m  # This is how long after boot the first run takes place.
+OnUnitActiveSec=15m  # This is how often subsequent runs take place.
+```
 
 ### Avahi
 
@@ -756,7 +820,7 @@ systemctl disable systemd-resolved
 systemctl enable --now avahi-daemon
 ```
 
-### newsboat.
+### newsboat
 
 RSS Feed reader.
 
@@ -810,8 +874,18 @@ and restart FortiClient.
 
 ### lsof
 
-List processes that uses a port:
-```bash
+Lists open files:
+```sh
+lsof
+```
+
+Lists open files in a specific folder:
+```sh
+lsof /my/folder
+```
+
+Lists processes that uses a port:
+```sh
 lsof -i:8080
 ```
 
@@ -2710,7 +2784,7 @@ Downgrade packages (in case some packages are detected as newer than in reposito
 sudo pacman -Suu
 ```
 
-# yay (ArchLinux)
+### yay (ArchLinux)
 
 Package manager for AUR repository.
 
@@ -3048,6 +3122,10 @@ aplay test-mic.wav
 apulse skypeforlinux
 ```
 
+Testing microphone in browser:
+ * <https://mozilla.github.io/webrtc-landing/gum_test.html>
+ * <https://rendez-vous.renater.fr/home/test_browser>
+
 ### alsamixer
 
 Ncurses console ALSA tool to manage sound card configuration.
@@ -3085,19 +3163,37 @@ amixer sset "Mic Mute-LED Mode" Off
 
 ### mplayer
 
-	-dvd-device /dev/hdd	: set dvd device
-	Dvd://1			: read track 1 of DVD
-	-ss 0:16:00		: start at position "16 minutes after the beginning"
-	-aid <ID>		: select audio channel by ID (0x80, 0x81, ...)
-	-alang code		: select audio channel by language code (fr, en, ...)
-	-fs			: fullscreen
-
 Play DVD menu:
 ```sh
 mplayer dvdnav:// -dvd-device /dev/sr0
 ```
 
 To enable support for encrypted DVD (region DVD support), install `libdvdcss`.
+
+Play DVD track 1:
+```sh
+mplayer -dvd-device /dev/sr0 dvd://1
+```
+
+Start 16 minutes after the beginning:
+```sh
+mplayer -ss 0:16:00 ...
+```
+
+Select audio channel by ID:
+```sh
+mplayer -aid 0x80 ...
+```
+
+Select audio channel by language code:
+```sh
+mplayer -alang fr ...
+```
+
+Run in full screen:
+```sh
+mplayer -fs ...
+```
 
 To select audio output, look first at available audio devices with `aplay` (`alsa-utils` package on ArchLinux):
 ```sh
@@ -3109,9 +3205,13 @@ mplayer -ao alsa:device=hw=1,0,0
 ```
 Where the three indices are in order: the card index, the device index, the subdevice index.
 
-Keys:
- * `o`: display time elapsed and time remaining for a video.
- * `f`: video full screen.
+Key   | Description
+----- | ------------------------------
+o     | Display time elapsed and time remaining for a video.
+f     | Full screen.
+j     | Change subtitle track.
+`#`   | Change audio track.
+space | Pause.
 
 ### eject
 
@@ -3877,25 +3977,13 @@ List keys in keyring:
 keyctl show
 ```
 
-## Graphics
+## Books & PDFs
 
-### exiftool
+ * [Where are Amazon Kindle ebooks on my Linux PC after I download them for offline reading w/“Kindle Cloud Reader” Chrome app, & how to convert to PDF?](https://askubuntu.com/questions/1011989/where-are-amazon-kindle-ebooks-on-my-linux-pc-after-i-download-them-for-offline).
 
-Package `perl-image-exiftool` on ArchLinux.
+### iBook (macos)
 
-Read EXIF information:
-```bash
-exiftool myfile.jpeg
-```
-
-Remove a orientation information:
-```bash
-exiftool -Orientation= myfile.jpeg
-```
-
-### masterpdfeditor
-
-A powerful GUI PDF editor.
+Downloaded books are stored in `~/Library/Mobile Documents/iCloud~com~apple~iBooks/Documents/` for iCloud stored books and in `~/Library/Containers/com.apple.BKAgentService/Data/Documents/iBooks` otherwise.
 
 ### pdftk
 
@@ -3939,6 +4027,26 @@ pdfunite a.pdf b.pdf c.pdf out.pdf
 ### pdfarranger
 
 Reorganize PDF file (delete pages, move pages, ...)
+
+## Graphics (images & diagrams)
+
+### exiftool
+
+Package `perl-image-exiftool` on ArchLinux.
+
+Read EXIF information:
+```bash
+exiftool myfile.jpeg
+```
+
+Remove a orientation information:
+```bash
+exiftool -Orientation= myfile.jpeg
+```
+
+### masterpdfeditor
+
+A powerful GUI PDF editor.
 
 ### convert (ImageMagick)
 
@@ -4125,10 +4233,11 @@ Get default browser:
 xdg-settings get default-web-browser
 ```
 
-Change default browser:
+Set default browser:
 ```sh
 xdg-settings set default-web-browser firefox.desktop
 ```
+Needs to be a X Desktop application.
 
 #### xdg-open 
 
