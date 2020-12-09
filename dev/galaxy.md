@@ -1,10 +1,10 @@
-GALAXY
-======
+# Galaxy
 
   * [Galaxy](https://galaxyproject.org) official site.
   * [Galaxy wiki](https://wiki.galaxyproject.org/FrontPage).
   * [Un petit tutoriel](http://cati-bbric.toulouse.inra.fr/doku.php/galaxy).
   * [IFB Galaxy tutorial](http://www.france-bioinformatique.fr/sites/default/files/20150522v0.99.1-galaxyadvancedfeaturesfortoolintegration_0.pdf).
+  * [Galaxy Training!](https://training.galaxyproject.org/). Training by scientific theme.
 
   * [John Chilton's page](https://wiki.galaxyproject.org/JohnChilton) on the Galaxy Project Wiki.
   * [John Chilton's GitHub page](https://github.com/jmchilton?tab=repositories).
