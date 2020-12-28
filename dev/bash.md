@@ -112,6 +112,13 @@ Escape sequence | Description
 
  * [Moving cursor](http://www.tldp.org/HOWTO/Bash-Prompt-HOWTO/x361.html).
 
+Printing carriage returns:
+```sh
+echo -ne 'A\nB\nC\n' # Prints with carriage returns
+echo $(echo -ne 'A\nB\nC\n') # Transforms carriage returns in spaces: "A B C"
+echo "$(echo -ne 'A\nB\nC\n')" # Prints with carriage returns
+```
+
 To print in color, one must the -e option and the escape character (`\e`, `\033` or `\x1B`):
 ```bash
 echo -e "\e[31mHello World\e[0m"
