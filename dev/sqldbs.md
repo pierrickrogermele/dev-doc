@@ -203,6 +203,15 @@ create table mytable (
 	   foreign key(other_id) references other_table(id));
 ```
 
+```sql
+CREATE TABLE $table (
+	id INT PRIMARY KEY NOT NULL,
+	s text,
+	key text NOT NULL,
+	n INTEGER NOT NULL
+);
+```
+
 ### drop table
 
 rop a table:
