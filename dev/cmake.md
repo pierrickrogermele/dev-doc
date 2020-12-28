@@ -9,8 +9,8 @@ Default project file is `CMakeLists.txt`.
 
 Using building is done by creating a `build` directory from inside the source code root directory:
 ```bash
-mkdir build
-cd build
+mkdir mybuild
+cd mybuild
 cmake ..
 ```
 
@@ -32,6 +32,16 @@ cmake .. -DCMAKE_BUILD_TYPE=
 Set directories where to look for include and libs:
 ```bash
 export CMAKE_PREFIX_PATH=/opt/local:$HOME/install
+```
+
+Build a generated project:
+```sh
+cmake --build mybuild
+```
+
+Build using 8 jobs in parallel:
+```sh
+cmake --build mybuild -j 8
 ```
 
 Get full help manual, with description of all commands:
