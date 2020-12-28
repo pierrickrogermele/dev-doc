@@ -917,8 +917,22 @@ class MyClass  {
 
 ## File system
 
+Create a File instance:
 ```java
 java.io.File file = new java.io.File("/my/path/to/my/file.txt");
+java.io.File file = new java.io.File("/my/path/to/my", "file.txt");
+java.io.File dir = new java.io.File("/my/path/to/my");                                             
+java.io.File file = new java.io.File(dir, "file.txt");
+```
+
+Tests if a file exists:
+```java
+file.exists();
+```
+
+Make directory:
+```java
+file.mkdirs();
 ```
 
 File path character separator:
@@ -1131,8 +1145,7 @@ for (String s: names) {
 ### Map
 
 ```java
-import java.util.HashMap;
-private Map<String, String> params = new HashMap<String, String>();
+private java.util.Map<String, String> params = new java.util.HashMap<String, String>();
 ```
 
 Testing if a key exists:
@@ -1442,6 +1455,7 @@ The solution is to exclude all inner classes class files from JUnit tests. In An
 
  * [Properties File Format](https://docs.oracle.com/cd/E23095_01/Platform.93/ATGProgGuide/html/s0204propertiesfileformat01.html).
  * [Properties](https://docs.oracle.com/javase/tutorial/essential/environment/properties.html).
+ * [Class Properties](https://docs.oracle.com/javase/7/docs/api/java/util/Properties.html).
 
 Comment in a properties files:
 ```jproperties
@@ -1453,11 +1467,40 @@ A value:
 my.prop = My Value
 ```
 
-A multi-lines vale:
+A multi-lines value:
 ```jproperties
 my.prop = My Value \
           on multiple \
           lines
+```
+
+Load a properties file:
+```java
+java.util.Properties prop = new java.util.Properties();
+java.io.Reader reader = new java.io.FileReader(new File("/my/file/properties/to/read.properties"));
+prop.load(reader);
+```
+
+Get a value:
+```java
+String s = prop.getProperty("mykey"); // Returns null if absent
+String s = prop.getProperty("mykey", "My default value");
+```
+
+Save properties to a file:
+```java
+java.io.Writer writer = new java.io.FileWriter(new File("/my/file/properties/to/write.properties"));
+prop.store(writer, "A comment to write at the beginning of the file.");
+```
+
+An XML format is also possible:
+```java
+java.io.OutputStream out = new java.io.FileOutputStream(new File("/my/file/properties.xml"));
+prop.storeToXML(out, "A comment to write at the beginning of the file.");
+// Then to load:
+java.util.Properties prop2 = new java.util.Properties();
+java.io.InputStream in = new java.io.FileInputStream(new File("/my/file/properties.xml"));
+prop2.loadFromXML(in);
 ```
 
 ## AWT
@@ -1498,6 +1541,10 @@ class MyPanel extends javax.swing.JPanel {
 	}
 }
 ```
+
+### FlowLayout
+
+Layout as a line of text, with justification to the left, to the right or centered.
 
 ### GridLayout
 
@@ -1579,6 +1626,13 @@ javax.swing.JPanel mypanel = new javax.swing.JPanel(); // Create a panel with de
 mypane.add(); // Add component.
 ```
 
+Attention, default layout is `FlowLayout`, which does not resize children components when parent component is resized.
+Better is to use `BorderLayout`:
+```java
+new javax.swing.JPanel(new java.awt.BorderLayout());
+```
+
+
 ### JOptionPane
 
 A modal `JDialog`. More precisely: A `JOptionPane` object is a container that creates a `JDialog` and adds itself to it.
@@ -1593,6 +1647,15 @@ With `JDialog` you can create modal or non-modal dialogs.
  * [How to Use Scroll Panes](https://docs.oracle.com/javase/tutorial/uiswing/components/scrollpane.html).
 
 JScrollPane uses JViewPort to get a partial view of the component to display.
+
+### JSplitPane
+
+ * [JSplitPane](https://docs.oracle.com/javase/7/docs/api/javax/swing/JSplitPane.html).
+
+Put two components inside a split pane, separated by a movable vertical bar:
+```java
+javax.swing.JSplitPane sp = new javax.swing.JSplitPane(javax.swing.JSplitPane.HORIZONTAL_SPLIT, leftComp, rightComp);
+```
 
 ### Menus
 
@@ -1627,6 +1690,14 @@ myItem.addActionListener(
 	}
 );
 menu.add(myItem);
+```
+
+#### JCheckBoxMenuItem
+
+```java
+cbMenuItem = new JCheckBoxMenuItem("My check box item");
+cbMenuItem.setMnemonic(KeyEvent.VK_C);
+menu.add(cbMenuItem);
 ```
 
 #### JMenuSeparator
@@ -1709,15 +1780,15 @@ A 2D table, with selection by row(s) or column(s).
 
 All text in same font (i.e.: no formatting).
 
-### JEditorPane
-
-Can render plain text, HTML or RTF, and allow editing.
-
 ### JTextPane
 
 Can render text with styles, and accept embedded components.
 
-### javax.json
+### JEditorPane
+
+Can render plain text, HTML or RTF, and allow editing.
+
+## javax.json
 
 Read a JSON file:
 ```java
@@ -1902,6 +1973,7 @@ Can play mpg and avi, but not mp4.
 
  * [JavaFX API overview](https://docs.oracle.com/javase/8/javafx/api/overview-summary.html).
  * [Integrating JavaFX into Swing Applications](https://docs.oracle.com/javafx/2/swing/swing-fx-interoperability.htm).
+ * [Integrating JavaFX into Swing Applications](https://docs.oracle.com/javase/8/javafx/interoperability-tutorial/swing-fx-interoperability.htm).
  * [JavaFX Video Player with MediaView](https://coderslegacy.com/java/javafx-mediaview-video-player/). Video player with play/pause/stop buttons.
 
 JavaFX can play mp4.
@@ -2214,6 +2286,48 @@ NodeList children = root.getChildNodes();
 
  * [SQLite Java](https://www.sqlitetutorial.net/sqlite-java/).
  * [SQLite - Java](https://www.tutorialspoint.com/sqlite/sqlite_java.htm).
+
+To connect to a SQLite file:
+```java
+java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:/my/path/to/my/file.db");
+```
+
+To connect to a SQLite file inside resource folder:
+```java
+java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite::resource:process.sqlite");
+```
+
+To open a new SQLite db inside memory:
+```java
+java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite::memory:");
+```
+
+Run a query with parameters:
+```java
+java.util.List<String> activities = new java.util.ArrayList<String>();
+String sql = "SELECT DISTINCT activity FROM diag WHERE phaseIndex = ? ORDER BY id ASC;";
+java.sql.PreparedStatement stmt = this.conn.prepareStatement(sql);
+stmt.setInt(1, phase);
+java.sql.ResultSet rs = stmt.executeQuery();
+while (rs.next())
+	activities.add(rs.getString("activity"));
+```
+
+Create a table:
+```java
+String sql = "CREATE TABLE IF NOT EXISTS notes (id INT PRIMARY KEY NOT NULL, value text);";
+java.sql.Statement stmt = conn.createStatement();
+stmt.execute(sql);
+```
+
+Insert/update data:
+```java
+String sql = this.getNote(key) == null ? "INSERT INTO notes(note,key) VALUES(?,?)" : "UPDATE notes SET note = ? WHERE key = ?";
+java.sql.PreparedStatement stmt = this.conn.prepareStatement(sql);
+stmt.setString(1, note);
+stmt.setString(2, key);
+stmt.executeUpdate();
+```
 
 ### Jade
 
