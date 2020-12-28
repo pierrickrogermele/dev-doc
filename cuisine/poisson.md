@@ -4,6 +4,10 @@
 
  * [Filet de hoki à la bordelaise](https://cuisine.notrefamille.com/recettes-cuisine/filet-de-hoki-a-la-bordelaise-_29953-r.html).
 
+Langoustines : dans l'eau bouillante, attendre que l'ébullition redémarre et compter 2-3 minutes.
+
+Crevettes roses : 30s dsans l'eau bouillante ?
+
 ## Morue
 
  * [Brandade de morue](http://www.marmiton.org/recettes/recette_brandade-de-morue_12736.aspx).

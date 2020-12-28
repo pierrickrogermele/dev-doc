@@ -3,17 +3,14 @@
  * [Gnocchi di patate](https://ricette.giallozafferano.it/Gnocchi-di-patate.html).
  * [Gnocchi alla romana](http://ricette.giallozafferano.it/Gnocchi-alla-romana.html).
 
- * [Spaetzle, pâtes alsaciennes](https://www.recettes-alsace.fr/spaetzle-pates-alsaciennes/).
-
  * [Pasta e patate alla napoletana](https://ricette.giallozafferano.it/Pasta-e-patate-alla-napoletana.html).
 
  * [Pasta e fagioli](https://ricette.giallozafferano.it/Pasta-e-fagioli.html).
  * [Pasta e fagioli alla napoletana](https://ricette.giallozafferano.it/Pasta-e-fagioli-alla-napoletana.html).
-
+ * [Pasta e ceci](https://ricette.giallozafferano.it/Pasta-e-ceci.html).
  * [Pasta e lenticchie](https://ricette.giallozafferano.it/Pasta-e-lenticchie.html).
 
- * [Soba noodles in duck broth](http://www.japanesefoodreport.com/2008/01/soba-noodles-in-duck-broth.html).
-
+ * [Spaghetti al tonno](https://ricette.giallozafferano.it/Spaghetti-al-tonno.html).
  * [Spaghetti alla Carbonara](https://ricette.giallozafferano.it/Spaghetti-alla-Carbonara.html).
  * [Spaghetti con sugo alle carote](https://ricette-utenti.cookaround.com/spaghetti-con-sugo-alle-carote.html).
 
@@ -29,3 +26,7 @@
 
  * [Orecchiette](http://ricette.giallozafferano.it/Orecchiette.html).
  * [Orecchiette broccoli e salsiccia](https://ricette.giallozafferano.it/Orecchiette-broccoli-e-salsiccia.html).
+
+ * [Spaetzle, pâtes alsaciennes](https://www.recettes-alsace.fr/spaetzle-pates-alsaciennes/).
+
+ * [Soba noodles in duck broth](http://www.japanesefoodreport.com/2008/01/soba-noodles-in-duck-broth.html).

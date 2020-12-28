@@ -50,11 +50,11 @@
  * [Riz au lait de ma maman](https://www.marmiton.org/recettes/recette_riz-au-lait-de-ma-maman_20380.aspx).
  * [Riz au lait](https://lacuisinedannie.20minutes.fr/recette-riz-au-lait-165.html).
 
+ * [Gâteau de semoule (à la casserole)](http://www.marmiton.org/recettes/recette_gateau-de-semoule-a-la-casserole_43864.aspx). Sans œufs.
+ * [Gâteau de semoule](http://www.marmiton.org/recettes/recette_gateau-de-semoule_24969.aspx).
  * [Migliaccio](http://ricette.giallozafferano.it/Migliaccio.html).
  * [Migliaccio senza ricotta, ricetta facile](https://www.youtube.com/watch?v=BZJw_wZ6n2w).
  * [Mamounié (gâteau de semoule libanais)](https://www.marmiton.org/recettes/recette_mamounie-gateau-de-semoule-libanais_59693.aspx).
- * [Gâteau de semoule](http://www.marmiton.org/recettes/recette_gateau-de-semoule_24969.aspx).
- * [Gâteau de semoule (à la casserole)](http://www.marmiton.org/recettes/recette_gateau-de-semoule-a-la-casserole_43864.aspx).
 
 ## Far, quatre-quarts et gâteaux bretons
 

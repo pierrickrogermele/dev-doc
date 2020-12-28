@@ -2,6 +2,8 @@
 
  * [Boulgour nature](https://www.marmiton.org/recettes/recette_boulgour-nature_29441.aspx). Cuisson comme le riz asiatique : volume d'eau = 2 x volume de boulgour, absorption sans couvercle puis repos avec couvercle. 
 
+ * Pois chiche: réhydrater dans l'eau froide pendant 12h. Mettre dans une casserole dans l'eau froide, porter à ébullition et faire cuire 1h30.
+
 ## Quinoa
 
  * [Cuisson de la quinoa](https://www.marmiton.org/trucs-et-astuces/cuisson-quinoa-s3004193.html). Comme le riz: 1,5 à 2 fois le volume d'eau, portez à ébullition, baisser le feu et cuire à couvert pendant 10 min. Ôter du feu et attendre 10 min.

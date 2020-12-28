@@ -1,7 +1,6 @@
 # Pain, pâtes et viennoiseries
 
  * [Pâte feuilletée](http://www.marmiton.org/recettes/recette_pate-feuilletee_20642.aspx).
- * [Pâte brisée à l'huile d'olive](https://cuisine.journaldesfemmes.fr/recette/1013751-pate-brisee-a-l-huile-d-olive).
 
  * [Le Petit Boulanger](http://lepetitboulanger.com/index.htm).
  * [Fabrication du pain](https://fr.wikipedia.org/wiki/Fabrication_du_pain).
@@ -68,6 +67,15 @@ Levure sèche : la diluer dans l'eau tiède. Attention pas plus de 45 degrés.
  * [Croissants sfogliati: la ricetta per farli in casa](https://video.cookist.it/video/an/Xnna_-SwH3PFLOiT).
  * [Pains au lait](http://www.marmiton.org/recettes/recette_petits-pain-au-lait-maison_220199.aspx).
 
+## Pâte brisée
+
+ * [Pâte brisée à l'huile d'olive](https://cuisine.journaldesfemmes.fr/recette/1013751-pate-brisee-a-l-huile-d-olive).
+
+ * 200g farine
+ * 50ml huile
+ * 50ml eau
+ * 3,5g sel
+
 ## Oatcakes
 
  * [Oatcakes](https://www.allrecipes.com/recipe/257958/oatcakes/).
@@ -81,10 +89,11 @@ Pour quatre galettes:
  * 20g d'huile
  * eau bouillante
 
+Former une boule, et mettre au réfrigérateur pour 30 minutes.
 Mettre le four à 190°C.
-Former une boule, étaler la pâte et découper des cercles.
+Étaler la pâte et découper des cercles.
 Disposer sur une plaque huilée.
-Enfourner pour 30 minutes.
+Enfourner pour 20-30 minutes. --> plutôt 20min.
 
 ## Pain de mie
 
