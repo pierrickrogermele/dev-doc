@@ -73,7 +73,7 @@ To upgrade to macOS High Sierra on a computer running with mac OS X Lion, one mu
 
 ### Booting, starting and stoping
 
-Putting a machine to sleep in Debian:
+Putting a machine to sleep with systemctl:
 ```bash
 systemctl suspend
 ```
@@ -612,6 +612,25 @@ systemctl list-units
 Deactivate a service (stop it):
 ```bash
 systemctl stop myunit
+```
+
+Suspend computer:
+```bash
+systemctl suspend
+```
+
+Hibernate computer:
+```bash
+systemctl hibernate 
+```
+
+Suspend then hibernate:
+```bash
+systemctl suspend-then-hibernate 
+```
+Set delay for hibernate inside `/etc/systemd/sleep.conf`:
+```
+HibernateDelaySec=15min
 ```
 
 #### journalctl
@@ -2156,6 +2175,11 @@ unzip -qq myfile.zip
 
 Uncompress archive:
 ```sh
+7z x myarchive.7z
+```
+
+Extract files without full path:
+```sh
 7z e myarchive.7z
 ```
 
@@ -2700,7 +2724,6 @@ Shows battery information.
 ```sh
 acpi
 ```
-
 
 ## Package management
 
@@ -4221,6 +4244,7 @@ On Debian the `xsession` is not parsed but executed in order to run the window m
 
  * [freedesktop.org](https://www.freedesktop.org/wiki/).
  * [xdg-utils](https://www.freedesktop.org/wiki/Software/xdg-utils/).
+ * [XDG Base Directory](https://wiki.archlinux.org/index.php/XDG_Base_Directory).
 
 Default trash directory: `$XDG_DATA_HOME/Trash`.
 
@@ -4469,6 +4493,19 @@ Press M-s (Alt-s) to search in scrollback.
  A clipboard manager.
  Can be used in combination with urxvt, since urxvt has no copy&paste feature by default (it needs a perl extesion). See [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
 
+### xlock
+
+A locking program with screen saver feature.
+
+### xautolock
+
+Runs a program after computer idle time.
+```sh
+xautolock -time 5 -locker "systemctl suspend-then-hibernate"
+```
+Time is in minutes.
+Default locker program is `xlock`.
+
 ### xscreesaver
 
  * [XScreenSaver](https://wiki.archlinux.org/index.php/XScreenSaver).
@@ -4489,7 +4526,12 @@ To run immediatly:
 ```sh
 xscreensaver-command -activate
 ```
+
+To set folder of images to use, define `imageDirectory` inside `~/.xscreensaver`:
+```
+imageDirectory: /my/absolute/path/to/my/images/folder
+```
+
 ### unclutter
 
  * [Auto Hide Mouse Pointer Using Unclutter After A Certain time](https://ostechnix.com/auto-hide-mouse-pointer-using-unclutter-after-a-certain-time/).
-
