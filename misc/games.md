@@ -13,6 +13,8 @@
 
  * [Morrowind](https://en.uesp.net/wiki/Morrowind:Morrowind).
  * [Arena](https://elderscrolls.bethesda.net/en/arena).
+ * [NexusMods](https://www.nexusmods.com/). pierrick.roger@gmail.com / pkrog / cons ucfirst new comm alphanum.
+ * [How To Install and Use Mods](https://openmw.readthedocs.io/en/stable/reference/modding/mod-install.html).
 
 ## Roguelike
 

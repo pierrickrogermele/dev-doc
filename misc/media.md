@@ -17,22 +17,78 @@
 ## Radios
 
  * [France Culture](https://www.franceculture.fr/programmes).
-  + [La Méthode scientifique](https://www.franceculture.fr/emissions/la-methode-scientifique).
- * [BBC World Service](https://www.bbc.co.uk/sounds/play/live:bbc_world_service).
  * [France Inter](https://www.franceinter.fr/).
  * [FIP](https://www.fip.fr/).
  * [TSF Jazz](https://www.franceinter.fr/).
+ * [BBC World Service](https://www.bbc.co.uk/sounds/play/live:bbc_world_service).
  * [BBC Radio 4](https://www.bbc.co.uk/radio4).
+ * [BBC Radios](https://www.bbc.co.uk/sounds).
+ * [BBC Radios schedules](https://www.bbc.co.uk/sounds/schedules).
  * [GR3](https://www.raiplayradio.it/programmi/gr3/).
+
+Émissions :
+ * [La Méthode scientifique](https://www.franceculture.fr/emissions/la-methode-scientifique).
 
 ## Comics
 
  * [Mutts daily strips](https://mutts.com/shop/strips/).
  * [Pearls Before Swine strips](https://www.gocomics.com/pearlsbeforeswine/).
 
+## Humour
+
+ * [Best Programming Jokes](http://www.devtopics.com/best-programming-jokes/).
+ * [45 Jokes Only Programmers Will Get](https://www.hongkiat.com/blog/programming-jokes/).
+
 ## Videos
 
+  * [Common Sense Media](https://www.commonsensemedia.org/). Pour connaître l'âge minimum d'un film.
+
   * [Format Court](http://www.formatcourt.com/). Festival de courts métrages, en novembre.
+
+ * [Nessuno mi troverà](http://www.comingsoon.it/film/nessuno-mi-trovera/53224/scheda/). Documentaire sur un physicien disparu mystérieusement en 1938.
+
+Yakuza:
+ * Le Vagabond de Tokyoi, Seijun Suzuki
+
+### Animation
+
+ * [The Fantastic Flying Books of Mr. Morris Lessmore](https://m.youtube.com/watch?feature=youtu.be&v=Ad3CMri3hOs).
+
+### SF
+
+Old SF movies:
+ * The Day the Earth Stood Still
+ * Flash Gordon
+ * The Invisible Man
+ * King Kong
+ * It Came From Outer Space
+ * Doctor X
+ * Forbidden Planet
+ * [Tarantula](https://archive.org/details/PhantasmagoriaTheater-Tarantula1955871).
+ * [Day of the Triffids](https://archive.org/details/TheDayOfTheTriffids).
+ * Night of the Demon
+ * When Worlds Collide.
+
+## Martial art (wuxia, samouraï, ...)
+
+Wuxia:
+ * A Touch of Zen                           (King Hu)
+ * Come Drink with Me (L'Hirondelle d'Or)   (King Hu)
+ * Dragon Inn                               (King Hu)
+ * Shaolin Challenges Ninja (1978)
+ * The Shadow Whip (1971)
+ * Golden Swallow (Le Retour de l'Hirondelle d'Or)
+
+Samouraï:
+ * After the Rain (1999)
+ * Gate of Hell (1953)
+ * Hara-Kiri Death of a Samurai (2011)
+ * Seven Samurai (1940)
+ * The 47 Ronin (1941)
+ * The Hidden Fortress (1958)
+ * The Sword of Doom (1966)
+ * The Tale of Zatoichi (1962)
+ * Yojimbo (1961)
 
 ### TV channels
 
@@ -102,8 +158,6 @@ Canal | Nom                      | Type           | Pays       | Comment
  * [Fouloscopie](https://www.youtube.com/channel/UCLXDNUOO3EQ80VmD9nQBHPg).
 
 ## Audio Podcasts
-
-### Documentaires
 
 ### Fictions
 
