@@ -28,9 +28,14 @@
 
  * [Étoiles de Noël](https://noel.tourisme-alsace.com/fr/idees-de-recettes-de-noel/pain-epices.html).
  * [Les Leckerli de Bâle](http://misstamkitchenette.com/les-leckerli-de-bale/#.Wj92CyOZOHo).
+ * [Sablés de Noël (Ausstecherle)](https://www.marmiton.org/recettes/recette_sables-de-noel-ausstecherle_33325.aspx).
+
  * [Cookies maison au chocolat](https://www.marmiton.org/recettes/recette_cookies-maison_86989.aspx).
 
  * [Sablés aux fruits confits](https://cuisine.journaldesfemmes.fr/recette/315684-sables-aux-fruits-confits).
+ * [Sablés au beurre faciles](https://www.marmiton.org/recettes/recette_sables-au-beurre-faciles_16916.aspx).
+ * [Biscuits sablés aux noisettes](https://www.marmiton.org/recettes/recette_biscuits-sables-aux-noisettes_26136.aspx).
+
 
  * [Scones](https://www.bbc.co.uk/food/recipes/scones_1285).
 
