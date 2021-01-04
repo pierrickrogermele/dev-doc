@@ -640,6 +640,11 @@ Print system logs:
 journalctl
 ```
 
+Print system logs in reverse time order:
+```sh
+journalctl -r
+```
+
 ### macos Finder
 
 Show all files and directories:
@@ -1193,6 +1198,26 @@ Regular sync (revursive, links, times), doesn't synchronize the permissions:
 rsync -rlt ...
 ```
 
+### rclone
+
+ * [Rclone syncs your files to cloud storage](https://rclone.org/).
+ * [How to Use Microsoft OneDrive in Linux With Rclone Open-Source Tool](https://itsfoss.com/use-onedrive-linux-rclone/).
+
+Configuration of a remote:
+```sh
+rclone config
+```
+
+Mount a remote:
+```sh
+rclone --vfs-cache-mode writes mount myremote:  ~/MyFolder
+```
+
+Sync with local dir (one way sync, erase locally the files deleted on remote):
+```sh
+rclone sync onedrive:Documents/famille /mnt/usb/bumeu/backup/onedrive_famille -P
+```
+
 ### ssh
 
 Generate private and public keys:
@@ -1200,7 +1225,7 @@ Generate private and public keys:
 ssh-keygen 
 ```
 
-Login without password. In /etc/ssh/sshd_config:
+Login without password. In `/etc/ssh/sshd_config`:
 ```
 RSAAuthentication yes
 PubkeyAuthentication yes
@@ -1478,7 +1503,7 @@ security find-internet-password -w -a pierrick.rogermele@icloud.com
 
 ### mkfs
 
-Format an encrypted partition:
+Format a partition with encryption enabled:
 ```sh
 mkfs.ext4 -O encrypt /dev/xxx
 ```
@@ -1896,6 +1921,19 @@ Edit `/etc/sudoers` and add the following line:
 ```
 The `NOPASSWD:` directive prevents `sudo` from prompting for the user's password. It is optional.
 
+### autofs
+
+Mount device automatically.
+
+Inside `/etc/autofs/auto.master`, write a line:
+```
+/mnt/myfolder /etc/autofs/auto.myext
+```
+The inside `/etc/autofs/auto.myext`, to mount automatically a USB drive:
+```
+mysubfoldername -fstype=auto UUID=f5450ff5-0f84-4194-96ad-638149a5897e
+```
+
 ### udisks
 
 Mount and unmount removale media.
@@ -2033,6 +2071,16 @@ On macos:
 See dscl tool for setting NFS server.
 Use Disk Utility to mount an NFS directory on a client.
 
+### fdisk
+
+Format a disk.
+
+### fsck
+
+Check file system:
+```sh
+fsck /dev/sdb
+```
 
 ### Partition management
 
@@ -2687,6 +2735,13 @@ banner 0123
 Generates ASCII art:
 ```sh
 figlet -f ogre "Potion"
+```
+
+### docx2txt
+
+Extract text from docx file:
+```sh
+docx2txt myfile.docx myfile.txt
 ```
 
 ## env
