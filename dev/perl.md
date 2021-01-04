@@ -1883,6 +1883,16 @@ use XML::Simple qw(:strict);
  * [Parse::RecDescent](https://metacpan.org/pod/Parse::RecDescent).
  * [Parse::RecDescent Tutorial]( https://www.perl.com/pub/2001/06/13/recdecent.html/).
 
+### Text::CSV
+
+ * [Text::CSV](https://metacpan.org/pod/Text::CSV).
+
+Load a TSV file as an array of hashes:
+```perl
+use Text::CSV;
+my $photos = Text::CSV::csv(in => "myfile.tsv", sep_char => "\t", headers => "auto");
+```
+
 ### Spreadsheet::Reader::ExcelXML
 
  * [Spreadsheet::Reader::ExcelXML](https://metacpan.org/pod/Spreadsheet::Reader::ExcelXML).
