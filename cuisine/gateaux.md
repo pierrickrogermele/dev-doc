@@ -15,6 +15,7 @@
  * [Rhubarb crumble](https://www.bbcgoodfood.com/recipes/rhubarb-crumble).
 
  * [Galette des rois à la frangipane](http://www.marmiton.org/recettes/recette_galette-des-rois-a-la-frangipane_20147.aspx).
+ * [Couronne des rois briochée](https://www.750g.com/couronne-des-rois-briochee-r32422.htm).
 
  * [Gâteau à l'orange rapide](http://www.marmiton.org/recettes/recette_gateau-a-l-orange-rapide_13489.aspx#d57983-p3).
 
