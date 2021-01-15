@@ -63,7 +63,10 @@ exit
 reboot
 ```
 
-#### OS X
+#### macos / OS X
+
+ * [How to Install macOS in VirtualBox](https://www.maketecheasier.com/install-macos-virtualbox/).
+ * [How To Fix No Disk To Select Issue When Install Mac OS On MacBook Or Virtual Machine](https://www.dev2qa.com/how-to-fix-no-disk-to-select-issue-when-install-mac-os-on-virtual-machine/).
 
  * [How to reinstall macOS](https://support.apple.com/en-us/HT204904).
  * [Create a bootable USB stick on macOS](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-macos?_ga=2.233519964.315784058.1525944550-1342623189.1521968110#0).
@@ -552,6 +555,47 @@ sudo dpkg-reconfigure keyboard-configuration
 ```
 Under Ubuntu, to configure permanently from command line, and make it also available at boot time (i.e.: at login console), edit the file `/etc/rc.local` and put the line `loadkeys fr` just before the line `exit 0`. `fr` is for french keyboard layout, replace it with whatever keyboard layout you want.
 
+Keyboard brightness: see `brightnessctl` or inside `/sys` (e.g.: `/sys/class/leds/dell\:\:kbd_backlight/brightness`).
+
+### /sys
+
+To list available LEDs on the computer:
+```sh
+ls /sys/class/leds
+```
+
+To get current keyboard backlight intensity:
+```sh
+cat /sys/class/leds/dell\:\:kbd_backlight/brightness
+```
+
+To get maximum keyboard backlight intensity:
+```sh
+cat /sys/class/leds/dell\:\:kbd_backlight/max_brightness
+```
+
+To set current keyboard backlight intensity (as root):
+```sh
+echo 1 | /sys/class/leds/dell\:\:kbd_backlight/brightness
+```
+
+### brightnessctl
+
+List devices:
+```sh
+brightnessctl --list
+```
+
+Get info on one device:
+```sh
+brightnessctl --device='dell::kbd_backlight' info
+```
+
+Set brightness:
+```sh
+brightnessctl --device='dell::kbd_backlight' set 1
+```
+
 ### Services
 
 List all services under Ubuntu:
@@ -807,6 +851,15 @@ CLI calendar program.
 CLI address book program.
 
  * [khard](https://github.com/scheibler/khard/).
+
+### dhcpcd
+
+Network manager.
+
+Restart network service:
+```sh
+systemctl restart dhcpcd
+```
 
 ### vdirsyncer
 
@@ -1526,6 +1579,13 @@ Create a key (at least one encrypted partition must exists, see `tune2fs` to ena
 ```sh
 e4crypt add_key
 ```
+If no salt (option -S) is provided it will create a key for each available hard drive, using a different salt for each drive.
+Otherwise it is possible to specificy the salt, for instance as a character string:
+```sh
+e4crypt add_key -S "s:my string"
+```
+
+
 See `keyctl` to list content of keyring.
 <!-- TODO IMPORTANT After rebooting the new key does not appear in the session keyring. The encrypted folder are still encrypted and thus unreadable. When running `e4crypt get_policy` the right encryption key is listed.
 	* Do we need to save the key in some way?
@@ -2073,13 +2133,34 @@ Use Disk Utility to mount an NFS directory on a client.
 
 ### fdisk
 
-Format a disk.
+Get disk info:
+```sh
+fdisk -l /dev/sdb
+fdisk -l /dev/sdb1
+```
+
+Create/edit partition table:
+```sh
+fdisk /dev/sdb
+```
 
 ### fsck
 
 Check file system:
 ```sh
 fsck /dev/sdb
+```
+
+### lsblk
+
+List block devices:
+```sh
+lsblk
+```
+
+Print UUID of devices:
+```sh
+lsblk -o NAME,UUID
 ```
 
 ### Partition management
