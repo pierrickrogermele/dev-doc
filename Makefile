@@ -1,4 +1,7 @@
-all: README.md
+all: README.html
+
+README.html:README.md
+	pandoc -t html $< >$@
 
 README.md: make_readme
 	./$< >$@
