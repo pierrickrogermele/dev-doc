@@ -1,6 +1,13 @@
 <!-- vimvars: b:markdown_embedded_syntax={'dosbatch':''} -->
 # Engineering
 
+## Life cycle
+
+pre-alpha: still in development.
+alpha: not all features included. Not fully tested by developers.
+beta: all features included, but contains bugs.
+gamma: last version before release.
+
 ## NEWS file
 
 What to put inside a NEWS file (or CHANGELOG file?) and how to present it.
@@ -32,6 +39,21 @@ USER SIGNIFICANT CHANGES
 ```
 
 ## Deployment
+
+### Building a .dmg for macos
+
+ * [How do I create a DMG file on linux Ubuntu for MacOS](https://askubuntu.com/questions/1117461/how-do-i-create-a-dmg-file-on-linux-ubuntu-for-macos).
+
+### Packaging a Java application for macos
+
+ * [Bringing your Java Application to Mac OS X Part Three](https://www.oracle.com/technical-resources/articles/javase/javatomac3.html).
+
+Packaging a script can be made with just the script:
+ * Create the app folder using the name of your script: `MyScript.app`.
+ * Then inside this folder put your script and name it `MyScript`, without any extension.
+ * The script must have a shebang.
+ * The script must be made executable for everyone.
+ * Folder and all files inside, must have ownership set to `root:wheel`.
 
 ### MSI Packager
 
