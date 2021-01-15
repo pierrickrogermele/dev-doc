@@ -1,5 +1,4 @@
-EMULATORS
-=========
+# Emulators
 
 ## Ansible
 
@@ -514,11 +513,17 @@ Forward a port in NAT mode, while the machine is running:
 VBoxManage controlvm "minikube" natpf1 "glx,tcp,,30700,,30700"
 ```
 
+Show info on hard disk:
+```sh
+vboxmanage showmediuminfo ~/VirtualBox\ VMs/crocodiles/crocodiles.vdi
+```
+
 ### Creating a macOS VM
 
  * [How to Install macOS High Sierra in VirtualBox on Windows 10](https://www.howtogeek.com/289594/how-to-install-macos-sierra-in-virtualbox-on-windows-10/).
+ * [How to Install macOS in VirtualBox](https://www.maketecheasier.com/install-macos-virtualbox/).
  
-1. Create the ISO
+1. Create the ISO from the cdr file
 ```bash
 hdiutil create -o $HOME/tmp/HighSierra.cdr -size 7316m -layout SPUD -fs HFS+J
 hdiutil attach $HOME/tmp/HighSierra.cdr.dmg -noverify -nobrowse -mountpoint /Volumes/install_build
@@ -532,12 +537,12 @@ mv $HOME/tmp/HighSierra.iso.cdr $HOME/tmp/HighSierra.iso
 
 3. VM post-configuration
 ```bash
-VBoxManage modifyvm crocodiles --cpuidset 00000001 000306a9 04100800 7fbae3ff bfebfbff
-VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "MacBookPro11,3"
-VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
-VBoxManage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-2BD1B31983FE1663"
-VBoxManage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
-VBoxManage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
+vboxmanage modifyvm crocodiles --cpuidset 00000001 000306a9 04100800 7fbae3ff bfebfbff
+vboxmanage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemProduct" "MacBookPro11,3"
+vboxmanage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiSystemVersion" "1.0"
+vboxmanage setextradata crocodiles "VBoxInternal/Devices/efi/0/Config/DmiBoardProduct" "Mac-2BD1B31983FE1663"
+vboxmanage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/DeviceKey" "ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc"
+vboxmanage setextradata crocodiles "VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC" 1
 ```
 
 4. Open VirtualBox and start the VM
