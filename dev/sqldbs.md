@@ -226,11 +226,17 @@ show tables;
 
 ### alter table
 
-### insert into
+### insert
 
 Insert into a table:
 ```sql
 insert into mytable (col1, col2, col3, ...) values (val1, val2, val3, ...);
+```
+
+### delete
+
+```sql
+delete from mytable where mycol = 'somevalue';
 ```
 
 ### index
@@ -560,6 +566,11 @@ where city = 'GOTHAM'
 Full-text search with `MATCH`:
  * Boolean operators: `NOT`, `OR`, and `AND`.
  * Parenthesis.
+
+Run SQL statement on SQLite file with `sqlite3` command line:
+```sh
+sqlite3 myfile.sqlite "select * from mytable;"
+```
 
 ## MySQL
 
