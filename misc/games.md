@@ -13,8 +13,47 @@
 
  * [Morrowind](https://en.uesp.net/wiki/Morrowind:Morrowind).
  * [Arena](https://elderscrolls.bethesda.net/en/arena).
+
  * [NexusMods](https://www.nexusmods.com/). pierrick.roger@gmail.com / pkrog / cons ucfirst new comm alphanum.
  * [How To Install and Use Mods](https://openmw.readthedocs.io/en/stable/reference/modding/mod-install.html).
+ * [Découvrez Morrowind complètement métamorphosé grâce à plus de 300 mods dans deux vidéos](https://www.tomshardware.fr/decouvrez-morrowind-completement-metamorphose-grace-a-plus-de-300-mods-dans-deux-videos/).
+  + List of 300 mods: <https://pastebin.com/2excpc9L>.
+ * [OpenMW Mod Management](https://danjb.com/morrowind/openmw_mod_management).
+ * [mlox](https://github.com/mlox/mlox). A mod organizer for sorting mods in dependency order.
+ * [ModOrganizer-to-OpenMW](https://www.nexusmods.com/morrowind/mods/45642/). Mod organizer plugin with GUI.
+
+### portmod
+
+Mods manager.
+
+ * [portmod](https://forum.openmw.org/viewtopic.php?t=5875).
+  + [Portmod wiki](https://gitlab.com/portmod/portmod/-/wikis/Home#guide).
+
+Init prefix (for architecture):
+```sh
+portmod init openmw openmw
+```
+
+Select repository:
+```sh
+portmod openmw select repo list
+portmod openmw select repo add openmw
+```
+
+Select profile:
+```sh
+portmod openmw select profile list
+portmod openmw select profile set 1
+```
+
+```sh
+MORROWIND_PATH=~/games/morrowind_basedata portmod openmw merge -uDN @world
+```
+
+Search for mod:
+```sh
+portmod openmw search moon
+```
 
 ## Roguelike
 
