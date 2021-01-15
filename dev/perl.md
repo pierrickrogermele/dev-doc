@@ -884,6 +884,11 @@ use Cwd 'abs_path';
 my $abs_path = abs_path($file);
 ```
 
+Make directory:
+```perl
+mkdir("mydir") || die "Error";
+```
+
 Rename a file:
 ```perl
 rename $old_name => $new_name || die "Failed.";
