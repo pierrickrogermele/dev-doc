@@ -20,7 +20,6 @@ Books:
  * Java In A Nutshell, David Flanagan, éd. O'Reilly
  * Java Virtual Machine, Jon Meyer & Troy Downing, éd. O'Reilly
 
-
 ## Install
 
   * [Java JRE Download](https://www.java.com/en/download/manual.jsp).
@@ -225,6 +224,10 @@ public Image getImage(URL url, String name) {
 }
 ```
 
+## Deployment
+
+ * [Bringing your Java Application to Mac OS X Part Three](https://www.oracle.com/technical-resources/articles/javase/javatomac3.html).
+
 ## Types, variables and constants
 
 ### null
@@ -304,6 +307,11 @@ Test equality of strings:
 if (s1.equals(s2)) {
     // ...
 }
+```
+
+Test if empty:
+```java
+s.isEmpty();
 ```
 
 Transforming into a float or int:
@@ -959,10 +967,14 @@ File[] files = dir.listFiles();
 
 ## Resources
 
-Open a resource file:
+Get the URL of a resource file:
 ```java
 java.net.URL url = Thread.currentThread().getContextClassLoader().getResource("metfrag-chemspider-output.sdf");
-java.io.File file = new java.io.File(url.getFile());
+```
+
+Open a resource file as a stream:
+```java
+java.io.InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("process.json");
 ```
 
 ## I/O
@@ -1038,11 +1050,11 @@ Setting an environment variable
 System.setProperty(String key, String value);
 ```
 
-## Math
+## Maths
 
 Power:
 ```java
-z = java.lang.Math.pow(x, y);
+z = Math.pow(x, y);
 ```
 
 Absolute value:
@@ -1597,6 +1609,23 @@ Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com
 
 Now (2020) being replaced by JavaFX (thread safe).
 
+### UIManager
+
+Change default font size:
+```java
+int delta = +4; // increase all font sizes by 4 points.
+java.util.Enumeration keys = javax.swing.UIManager.getDefaults().keys();
+while (keys.hasMoreElements()) {
+	Object key = keys.nextElement();
+	Object obj = javax.swing.UIManager.get(key);
+	if (obj instanceof java.awt.Font) {
+		java.awt.Font font = (java.awt.Font)obj;
+		font = font.deriveFont(font.getSize2D() + (float)delta);
+		javax.swing.UIManager.put(key, font);
+	}
+}
+```
+
 ### JComponent
 
 Draw border:
@@ -1775,6 +1804,11 @@ java.awt.Component x = this.tab.getComponentAt(0); // Get one of the pane.
 A 2D table, with selection by row(s) or column(s).
 
 ### JLabel
+
+Create an image label:
+```java
+new javax.swing.JLabel(new javax.swing.ImageIcon(new java.net.URL("/my/path/to/my/image/file.jpg")));
+```
 
 ### JTextArea
 
