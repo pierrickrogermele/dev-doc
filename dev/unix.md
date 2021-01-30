@@ -19,11 +19,12 @@ These notes refer to UNIX and Linux operating systems.
  * [How to Install Arch Linux (also on VirtualBox)](https://medium.com/@gevorggalstyan/how-to-install-arch-linux-on-virtualbox-93bc83ded692).
  * [Installation guide](https://wiki.archlinux.org/index.php/Installation_guide).
  * [Install Arch Linux in Virtualbox with UEFI Firmware](https://www.linuxbabe.com/virtualbox/install-arch-linux-uefi-hardware-virtualbox).
+ * Installing on a [Mac](https://wiki.archlinux.org/index.php/Mac).
 
 In VirtualBox with EFI:
-
  * Enable EFI in VirtualBox VM: Settings -> System -> Enable EFI.
  * Boot on ArchLinux ISO CD install.
+
 ```bash
 fdisk -l # Look for the device name of the harddrive (should be `/dev/sda`).
 fdisk /dev/sda # Make 3 partitions:
@@ -40,7 +41,7 @@ mkdir /mnt/boot
 mount /dev/sda1 /mnt/boot
 swapon /dev/sda3
 vi /etc/pacman.d/mirrorlist
-pacstrap /mnt base linux linux-... # see ArchLinux installation
+pacstrap /mnt base linux linux-firmware
 genfstab -U -p /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 vi /etc/locale.gen
@@ -839,6 +840,23 @@ systemctl enable --now org.cups.cupsd
 
 The DNS address is stored inside `/etc/resolv.conf`.
 
+### ping
+
+Ping server:
+```sh
+ping myserver
+```
+
+Ping only once:
+```sh
+ping -c 1 myserver
+```
+
+Set timeout (in case of no response) to 1 second:
+```sh
+ping -W 1 myserver
+```
+
 ### khal
 
 CLI calendar program.
@@ -1604,6 +1622,10 @@ Check if a directory is encrypted:
 e4crypt get_policy myfolder
 ```
 
+### dm-crypt
+
+ * [dm-crypt/Encrypting an entire system](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system)
+
 ### mktemp
 
  * GNU version replaces Xs in template.
@@ -2142,6 +2164,20 @@ fdisk -l /dev/sdb1
 Create/edit partition table:
 ```sh
 fdisk /dev/sdb
+```
+
+### parted
+
+Get disks info:
+```sh
+parted -l
+```
+
+### gdisk
+
+Get disk info:
+```sh
+gdisk -l /dev/sda
 ```
 
 ### fsck
@@ -4614,6 +4650,7 @@ xterm -cr white
 
 ### urxvt
 
+ * [rxvt-unicode/Tips and tricks](https://wiki.archlinux.org/index.php/Rxvt-unicode/Tips_and_tricks#Use_urxvt_as_application_launcher).
  * [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
 
 Help:
@@ -4626,8 +4663,23 @@ Press M-s (Alt-s) to search in scrollback.
 
 ### xsel
 
- A clipboard manager.
- Can be used in combination with urxvt, since urxvt has no copy&paste feature by default (it needs a perl extesion). See [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
+A clipboard manager.
+Can be used in combination with urxvt, since urxvt has no copy&paste feature by default (it needs a perl extesion). See [Configuring URxvt to Make It Usable and Less Ugly](https://addy-dclxvi.github.io/post/configuring-urxvt/).
+
+Print primary selection (usually middle mouse button):
+```sh
+xsel -o
+```
+
+Print seconday selection (???):
+```sh
+xsel -s -o
+```
+
+Print the clipboard selection (usually CTRL+C):
+```sh
+xsel -b -o
+```
 
 ### xlock
 
