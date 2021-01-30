@@ -1425,15 +1425,30 @@ V    | Select current line.
 
  * [How to paste yanked text into Vim command line?](http://stackoverflow.com/questions/3997078/how-to-paste-yanked-text-into-vim-command-line).
 
+Visual mode (VISUAL LINE or VISUAL BLOCK):
+keys   | Description
+------ | -------------------
+`y`    | Copy selection to default register (").
+`P`    | Paste from default register (") above current line or before cursor.
+`x`    | Cut selection to default register (").
+
 Normal mode:
 keys   | Description
 ------ | -------------------
-`P`    | Paste above current line or before cursor.
-`p`    | Paste below current line or after cursor.
-`"k`   | Set/access (depending on the following command) register k (any letter can be used). Example: `"kyy`, `"kp`.
-`"K`   | Append to register k.
-`:reg` | Get list of all actual registers.
-`x`    | Delete current character.
+`ye`   | Copy from current position to end of word to default register (").
+`yy`   | Copy line under cursor to default register (").
+`P`    | Paste from default register (") above current line or before cursor.
+`p`    | Paste from default register (") below current line or after cursor.
+`x`    | Cut character under cursor to default register (").
+`"ayy` | Copy line under cursor to register a.
+`"kp`  | Paste register k after cursor.
+`"Aye` | Append word under cursor to register a.
+`"bx`  | Cut character under cursor to register b.
+
+Command mode:
+Cmd | Description
+--- | --------------------------------
+reg | Get list of all actual registers.
 
 In command or insert mode:
 keys        | Description
