@@ -220,6 +220,8 @@ Replace text in elements (XSLT 3):
 
 ## XML schema
 
+ * [XML Schema Tutorial](https://www.w3schools.com/xml/schema_intro.asp).
+
 XML Schema (aka XSD) is the language that is used to describe the structure of an XML.
 
 Element with children:
