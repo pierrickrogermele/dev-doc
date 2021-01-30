@@ -119,6 +119,15 @@ x <- myFirstFunctionToCall() +
 
 ## Variables & Types
 
+Getting dynamically the value of a variable:
+```r
+x <- get("myvar")
+```
+Remove a variable from the environment:
+```r
+rm(myvar)
+```
+
 ### Assignment
 
 Local assignment:
@@ -137,11 +146,6 @@ Assigning dynamically:
 ```r
 assign("varname", value) # create a new variable varname inside current environment.
 assign("varname", value, pos=.GlobalEnv) # create a new variable varname inside global environment.
-```
-
-Getting dynamically the value of a variable:
-```r
-x <- get("myvar")
 ```
 
 ### NA
@@ -290,6 +294,9 @@ trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
 #### Search, replace and regex
 
+ * [PERL regular expressions](https://perldoc.perl.org/perlre).
+ * [ICU Regular Expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html).
+
 Replacing with regexp:
 ```r
 result <- sub('\\.in$', '.out', variable)    # replace first occurence only
@@ -324,17 +331,17 @@ indices <- as.integer(pos)
 
 Extracting substrings:
 ```r
-library(stringr)
-str_extract("blabla lala", "la") # search once for the regexp
-str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
+stringr::str_extract("blabla lala", "la") # search once for the regexp
+stringr::str_extract_all("blabla lala", "la") # search several times for the same regexp: returns a list
 ```
 
 Searching for groups:
 ```r
-library(stringr)
-str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups.
-str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups.
+stringr::str_match("id=1244 id=3939", "id=([0-9]+)") # Return the first match in the form of a list: first is the whole, then the groups.
+stringr::str_match_all("id=1244 id=3939", "id=([0-9]+)") # Return all matches in the form of a matrix: first column is the whole match, then the groups.
 ```
+
+For `stringr`, see [ICU Regular Expressions](https://unicode-org.github.io/icu/userguide/strings/regexp.html) for the regex format.
 
 Ignoring case:
 ```r
@@ -984,6 +991,25 @@ x <- data.frame(a=c('a', 'a', 'a', 'b', 'b', 'b'), b=c(1, 1, 2, 2, 3, 3), c=1:6)
 aggregate(x$c, by=list(x$a, x$b), FUN=sum)
 ```
 
+## options
+
+Set global options.
+
+Set the number of decimal to display:
+```r
+options(digits=22)
+```
+
+Set the user agent for `download.file()`:
+```r
+options(HTTPUserAgent="myapp")
+```
+
+Set timeout for `download.file()`:
+```r
+options(timeout=120)
+ ```
+
 ## Packages
 
 Getting information about loaded packages (package version, ...) in a session:
@@ -1200,6 +1226,8 @@ Suggests:
 ```
 
 Include other `.Rmd` files inside main `.Rmd` using fake empty inserted code: `{r, child=c('one.Rmd', 'two.Rmd')}`.
+
+Do not evaluate R code: `{r, eval=TRUE}`.
 
 #### Writing documentation with roxygen2
 
@@ -1648,6 +1676,11 @@ Get list of function parameters:
 ```r
 formals(my_func)
 formals('my_func')
+```
+
+Get list of function parmater names:
+```r
+formalArgs(my_func)
 ```
 
 Calling a function from its name as a string:
@@ -2475,6 +2508,8 @@ TODO see CRAN packages doMC and DoSnow.
  * [High-Performance and Parallel Computing with R](https://cran.r-project.org/web/views/HighPerformanceComputing.html).
  * [(A Very) Experimental Threading in R – Random Remarks](https://random-remarks.net/2016/12/11/a-very-experimental-threading-in-r/).
  * [GPU computing](http://www.r-tutor.com/gpu-computing).
+
+ * [Parallel processing with foreach package](https://riptutorial.com/r/example/5164/parallel-processing-with-foreach-package).
 
 See packages Rmpi, foreach, doParallel.
 
