@@ -1,5 +1,5 @@
-Quality, testing and integration
-================================
+<!-- vimvars: b:markdown_embedded_syntax={'yaml':''} -->
+# Quality, testing and integration
 
 ## CI (Continuous integration)
 
@@ -19,6 +19,15 @@ Setting R version:
 ```yaml
 language: r
 r: release
+```
+
+#### Branches
+
+Restrict to branch "master":
+```yaml
+branches:
+  only:
+    - master
 ```
 
 #### Using Docker
