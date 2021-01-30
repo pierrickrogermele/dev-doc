@@ -1,5 +1,4 @@
-MUTT
-====
+# Mutt
 
  * [Mutt cheat sheet](http://sheet.shiar.nl/mutt).
 
