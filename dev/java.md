@@ -302,6 +302,8 @@ Double.NaN;
 
 ### Strings
 
+ * [Format String Syntax](https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax).
+
 Test equality of strings:
 ```java
 if (s1.equals(s2)) {
@@ -368,8 +370,18 @@ java.util.Arrays.fill(c, 'X');
 String s = new String(c);
 ```
 
+Format (sprintf equivalent):
+```java
+String.format("%4d", 0.12345);
+```
+See [Format String Syntax](https://docs.oracle.com/javase/7/docs/api/java/util/Formatter.html#syntax).
+
 StringBuilder VS StringBuffer:
-StringBuilder has the same capabilities as StringBuffer. The main difference is StringBuffer is thread safe, but StringBuilder is not good at multi-threading. If your program is a single thread, then use StringBuilder, because it is faster. If multiple threads require access to the same dynamic string information, use class StringBuffer in your code.
+StringBuilder has the same capabilities as StringBuffer. The main difference is
+StringBuffer is thread safe, but StringBuilder is not good at multi-threading.
+If your program is a single thread, then use StringBuilder, because it is
+faster. If multiple threads require access to the same dynamic string
+information, use class StringBuffer in your code.
 
 ### Array
 
@@ -691,6 +703,14 @@ else
 ```
 
 
+### while
+
+```java
+while (a > 1) {
+	do_something();
+}
+```
+
 ### do / while
 
 ```java
@@ -826,6 +846,28 @@ Object o = a.getObject();
 String s = (String)o;
 ```
 
+## Methods
+
+To define default values for a method, one must use method overloading:
+```java
+// Plain method
+void foo(int a, SomeClass obj) {
+	if (obj == null)
+		obj = new SomeClass();
+	// ...
+}
+
+// Method with no second parameters
+void foo(int a) {
+	foo(a, null);
+}
+
+// Method with no parameters
+void foo() {
+	foo(2, null);
+}
+```
+
 ## Garbage collector & References
 
 Abstract reference class:
@@ -949,6 +991,11 @@ char separator = java.io.File.separatorChar;
 String separator = java.io.File.separator;
 ```
 
+Delete a file:
+```java
+new java.io.File("/some/file.txt").delete();
+```
+
 Get pathname:
 ```java
 String path = file.getAbsolutePath();
@@ -985,6 +1032,11 @@ java.lang.System.out.println("Coucou !");
 java.lang.System.err.println("Coucou !");
 ```
 
+Open a stream on a file:
+```java
+new java.io.FileInputStream(new java.io.File("myfile.txt"));
+```
+
 Reading a file line by line:
 ```java
 java.io.BufferedReader br = new BufferedReader(new java.io.FileReader(new File(file)));
@@ -997,6 +1049,13 @@ Writing into a file:
 java.io.BufferedWriter output = new java.io.BufferedWriter(new java.io.FileWriter(file));
 output.write(text);
 output.close();
+```
+
+Write into a string:
+```java
+java.io.ByteArrayOutputStream os = new java.io.ByteArrayOutputStream();
+// Write on output stream ...
+String s = os.toString();
 ```
 
 Loading a key=value file into a dictionnary:
@@ -1356,9 +1415,17 @@ Try/catch:
 ```java
 try {
 	// ...
+} catch (MyException1 e) {
+} catch (MyException2 e) {
 }
-catch (MyException1 e) {}
-catch (MyException2 e) {}
+```
+
+Catch multiple exceptions:
+```java
+try {
+	// ...
+} catch (IOException | SQLException ex) {
+}
 ```
 
 Creating a new exception:
@@ -1370,7 +1437,7 @@ public class MyException extends java.lang.Exception {
 
 	/* one can overwrite toString() method */
 	public String toString() {
-		return "Exception : " + msg + " !";
+		return "Exception : " + this.getMessage() + " !";
 	}
 }
 ```
@@ -1603,6 +1670,7 @@ class MyPanel extends javax.swing.JPanel {
  * [How to Make Dialogs](https://docs.oracle.com/javase/tutorial/uiswing/components/dialog.html)
  * [How to Use Modality in Dialogs](https://docs.oracle.com/javase/tutorial/uiswing/misc/modality.html).
  * [Creating Custom Components](https://www.oreilly.com/library/view/learning-java/1565927184/ch15s06.html).
+ * [Adding Cut, Copy and Paste (CCP)](https://docs.oracle.com/javase/tutorial/uiswing/dnd/cutpaste.html).
 
 GUI widget toolkit, successor of AWT.
 Swing is not thread safe, see [Swing's Threading Policy](https://docs.oracle.com/javase/7/docs/api/javax/swing/package-summary.html#threading).
@@ -1666,6 +1734,31 @@ new javax.swing.JPanel(new java.awt.BorderLayout());
 
 A modal `JDialog`. More precisely: A `JOptionPane` object is a container that creates a `JDialog` and adds itself to it.
 It is possible to choose a `JInternalFrame` instead of a `JDialog` as the target component.
+
+Error message:
+```java
+javax.swing.JOptionPane.showMessageDialog(null, "My error message", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+```
+
+Warning message with choice:
+```java
+Object[] options = { "yes", "no" };
+int choice = javax.swing.JOptionPane.showOptionDialog(null, "My message", "Warning", javax.swing.JOptionPane.DEFAULT_OPTION, javax.swing.JOptionPane.WARNING_MESSAGE, null, options, options[0]);
+```
+
+### JFileChooser
+
+Open a file chooser for saving:
+```java
+	javax.swing.JFileChooser fileChooser = new javax.swing.JFileChooser();
+	javax.swing.filechooser.FileNameExtensionFilter filter = new javax.swing.filechooser.FileNameExtensionFilter("Images", "jpg", "jpeg", "png");
+	fileChooser.setFileFilter(filter);
+	if (fileChooser.showSaveDialog(myFrame) == javax.swing.JFileChooser.APPROVE_OPTION) {
+		java.io.File file = fileChooser.getSelectedFile();
+		// ...
+	} else
+		// CANCEL
+```
 
 ### JDialog
 
@@ -1779,6 +1872,38 @@ class MyPanel extends javax.swing.JPanel {
 ### JComboBox
 
  * [How to Use Combo Boxes](https://docs.oracle.com/javase/tutorial/uiswing/components/combobox.html).
+
+### JCheckBox
+
+ * [How to Use Buttons, Check Boxes, and Radio Buttons](https://docs.oracle.com/javase/tutorial/uiswing/components/button.html).
+
+### JRadioButton
+
+  * [How to Use Radio Buttons](https://docs.oracle.com/javase/tutorial/uiswing/components/button.html#radiobutton).
+
+Create a group of two radio buttons with action listeners:
+```java
+javax.swing.JRadioButton btn1 = new javax.swing.JRadioButton("Button 1");
+btn1.setMnemonic(KeyEvent.VK_B);
+btn1.setActionCommand("btn1");
+btn1.setSelected(true);
+
+javax.swing.JRadioButton btn2 = new javax.swing.JRadioButton("Button 2");
+btn2.setMnemonic(KeyEvent.VK_B);
+btn2.setActionCommand("btn2");
+
+javax.swing.ButtonGroup group = new javax.swing.ButtonGroup();
+group.add(btn1);
+group.add(btn2);
+
+btn1.addActionListener(this);
+btn2.addActionListener(this);
+//...
+public void actionPerformed(ActionEvent e) {
+	String s = e.getActionCommand();
+	// ...
+}
+```
 
 ### JList
 
@@ -2027,10 +2152,9 @@ See `biocheminfo.md`.
 For computing binomial coefficients, see [CombinatoricsUtils](http://commons.apache.org/proper/commons-math/apidocs/org/apache/commons/math3/util/CombinatoricsUtils.html).
 
 
-### JUnit
+### JUnit4
 
  * [JUnit 4](https://junit.org/junit4/).
- * [JUnit 5](https://junit.org/junit5/).
 
 Assertions:
 ```java
@@ -2050,6 +2174,38 @@ public void testIndexOutOfBoundsException() {
 Testing equality of particular objects:
 ```bash
 assertTrue("Wrong.", myobj.equals(my_other_obj));
+```
+
+### JUnit5
+
+ * [JUnit 5](https://junit.org/junit5/).
+ * [JUnit 5 - How to Run Test Methods in Order](https://www.codejava.net/testing/junit-tests-order).
+
+Maven:
+```xml
+<!-- JUnit5 https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+<dependency>
+	<groupId>org.junit.jupiter</groupId>
+	<artifactId>junit-jupiter-engine</artifactId>
+	<version>5.7.0</version>
+	<scope>test</scope>
+</dependency>
+
+<!-- JUnit Jupiter API https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
+<dependency>
+	<groupId>org.junit.jupiter</groupId>
+	<artifactId>junit-jupiter-api</artifactId>
+	<version>5.7.0</version>
+	<scope>test</scope>
+</dependency>
+```
+
+Run methods in alphabetical order:
+```java
+@org.junit.jupiter.api.TestMethodOrder(org.junit.jupiter.api.MethodOrderer.MethodName.class)
+public class MyTest {
+	// ...
+}
 ```
 
 ### Customized runner
@@ -2142,6 +2298,25 @@ public class MyTest {
 }
 ```
 
+Object:
+```java
+assertThat(myObj).isNull();
+assertThat(myObj).isNotNull();
+```
+
+List:
+```java
+assertThat(mylist).hasSizeGreaterThanOrEqualTo(1);
+```
+
+File:
+```java
+assertThat(new java.io.File("myfile.txt")).exists();
+assertThat(new java.io.File("myfile.txt")).doesNotExist();
+assertThat(new java.io.File("myfile.txt")).isEmpty();
+assertThat(new java.io.File("myfile.txt")).isNotEmpty();
+```
+
 ### Reflections
 
  * [Reflections](https://github.com/ronmamo/reflections), Java runtime metadata analysis, in the spirit of Scannotations.
@@ -2188,6 +2363,23 @@ Can connect software like : R, Matlab, MeV, ...
 ### Google JSON Simple
 
  * [JSON Simple](https://code.google.com/archive/p/json-simple/).
+ * [JSON.simple Tutorial - Read and Write JSON in Java](https://www.javaguides.net/2019/07/jsonsimple-tutorial-read-and-write-json-in-java.html).
+
+Load JSON from resource file:
+```java
+org.json.simple.parser.JSONParser jsonParser = new org.json.simple.parser.JSONParser();
+java.io.InputStream in = Thread.currentThread().getContextClassLoader().getResourceAsStream("myfile.json");
+org.json.simple.JSONObject root = (org.json.simple.JSONObject) jsonParser.parse(new java.io.BufferedReader(new java.io.InputStreamReader(in)));
+```
+
+Get keys/values on the JSON root object:
+```java
+java.util.Set myKeys = root.keySet();
+for (Object o: myKeys) {
+	String key = (String)o;
+	org.json.simple.JSONObject value = (org.json.simple.JSONObject)root.get(key);
+}
+```
 
 ### EJML
 
@@ -2290,31 +2482,86 @@ On macOS:
 
 ### W3C XML DOM
 
+ * [How to create XML file in Java](https://www.programmergate.com/how-to-create-xml-file-in-java/).
+
+Create a new XML document:
 ```java
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.DocumentBuilder;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Node;
-import org.w3c.dom.Element;
-
-// loading an XML
-DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-DocumentBuilder builder = dbFactory.newDocumentBuilder();
-Document doc = dBuilder.parse(xml_handler.getInputStream());
-
-// getting root elements
-Element root = doc.getDocumentElement();
-
-// getting all children
-NodeList children = root.getChildNodes();
+javax.xml.parsers.DocumentBuilderFactory docFactory = javax.xml.parsers.DocumentBuilderFactory.newInstance();
+javax.xml.parsers.DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+org.w3c.dom.Document doc = docBuilder.newDocument();
 ```
+
+Create a root element:
+```java
+org.w3c.dom.Element root = doc.createElement("myroot");
+doc.appendChild(root);
+```
+
+Create children elements:
+```java
+org.w3c.dom.Element mychild = doc.createElement("mychild");
+org.w3c.dom.Element mySubChild = doc.createElement("mySubChild");
+myChild.appendChild(mySubChild);
+root.appendChild(myChild);
+```
+
+Set text:
+```java
+myElem.setTextContent("My Text");
+```
+
+Set attribute:
+```java
+myElem.setAttribute("myAttribute", "My Value");
+```
+
+Produce the XML:
+```java
+javax.xml.transform.dom.DOMSource source = new javax.xml.transform.dom.DOMSource(doc);
+javax.xml.transform.stream.StreamResult result = new javax.xml.transform.stream.StreamResult(new File("myfile.xml"));
+javax.xml.transform.TransformerFactory transformerFactory = javax.xml.transform.TransformerFactory.newInstance();
+javax.xml.transform.Transformer transformer = transformerFactory.newTransformer();
+transformer.setOutputProperty(javax.xml.transform.OutputKeys.INDENT, "yes");
+transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+transformer.transform(source, result);
+```
+
+Exclude the XML declaration in the output:
+```java
+transformer.setOutputProperty(javax.xml.transform.OutputKeys.OMIT_XML_DECLARATION, "yes");
+```
+
+Loading an XML:
+```java
+javax.xml.parsers.DocumentBuilderFactory dbFactory = javax.xml.parsers.DocumentBuilderFactory.newInstance();
+javax.xml.parsers.DocumentBuilder builder = dbFactory.newDocumentBuilder();
+org.w3c.dom.Document doc = builder.parse(new FileInputStream("myfile.xml"));
+```
+
+Getting root element:
+```java
+org.w3c.dom.Element root = doc.getDocumentElement();
+```
+
+Getting all children:
+```java
+org.w3c.dom.NodeList children = root.getChildNodes();
+```
+
 ### Apache Batik SVG Toolkit
 
  * [Apache Batik SVG Toolkit](https://xmlgraphics.apache.org/batik/).
  * [Batik Swing components](https://xmlgraphics.apache.org/batik/using/swing.html).
 
  * [Displays a SVG icon in SVG using apache Batik](https://gist.github.com/lindenb/1003235).
+
+### JDBC
+
+Test if database is read-only:
+```java
+java.sql.DatabaseMetaData meta = myConn.getMetaData();
+boolean ro = meta.isReadOnly();
+```
 
 ### SQLite
 
@@ -2334,6 +2581,20 @@ java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite::re
 To open a new SQLite db inside memory:
 ```java
 java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite::memory:");
+```
+
+Set database as read-only:
+```java
+org.sqlite.SQLiteConfig config = new org.sqlite.SQLiteConfig();
+config.setReadOnly(true); 
+java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:mydb.sqlite", config.toProperties());
+```
+
+Try to lock the database in exclusive mode:
+```java
+org.sqlite.SQLiteConfig config = new org.sqlite.SQLiteConfig();
+config.setLockingMode(org.sqlite.SQLiteConfig.LockingMode.EXCLUSIVE); 
+java.sql.Connection conn = java.sql.DriverManager.getConnection("jdbc:sqlite:mydb.sqlite", config.toProperties());
 ```
 
 Run a query with parameters:
