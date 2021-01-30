@@ -518,6 +518,11 @@ Show info on hard disk:
 vboxmanage showmediuminfo ~/VirtualBox\ VMs/crocodiles/crocodiles.vdi
 ```
 
+List OS types:
+```sh
+vboxmanage list ostypes
+```
+
 ### Creating a macOS VM
 
  * [How to Install macOS High Sierra in VirtualBox on Windows 10](https://www.howtogeek.com/289594/how-to-install-macos-sierra-in-virtualbox-on-windows-10/).
