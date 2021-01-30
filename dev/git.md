@@ -1,5 +1,4 @@
-GIT
-===
+# Git
 
  * [Pro Git book](http://git-scm.com/book/en/v2) by Scott Chacon and Ben Straub.
  * [Reference Manual](https://git-scm.com/docs).
@@ -73,6 +72,13 @@ Putting current modifications into an existing branch:
 git stash
 git checkout other_branch
 git stash pop
+```
+
+## cherry-pick
+
+Apply an existing commit to the current branch:
+```bash
+git cherry-pick mycommit
 ```
 
 ## clean
@@ -454,7 +460,7 @@ List tags:
 git tag -l
 ```
 
-Delete a tag:
+Delete a tag locally:
 ```bash
 git tag -d mytagname
 ```
@@ -787,13 +793,6 @@ For remove a folder in all branches:
 ```bash
 git filter-branch -f --tree-filter 'rm -rf myfolder' my list of branches
 git push origin -f --all
-```
-
-## Cherry pick
-
-Apply an existing commit to the current branch:
-```bash
-git cherry-pick mycommit
 ```
 
 ## ls-files
