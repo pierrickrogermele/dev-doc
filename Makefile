@@ -1,4 +1,4 @@
-all: README.html
+all: README.html bib.pdf
 
 README.html:README.md
 	pandoc -t html $< >$@

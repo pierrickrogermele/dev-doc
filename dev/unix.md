@@ -4176,6 +4176,15 @@ keyctl show
 
  * [Where are Amazon Kindle ebooks on my Linux PC after I download them for offline reading w/“Kindle Cloud Reader” Chrome app, & how to convert to PDF?](https://askubuntu.com/questions/1011989/where-are-amazon-kindle-ebooks-on-my-linux-pc-after-i-download-them-for-offline).
 
+### bibutils
+
+A package for converting between bibliographic citation formats.
+
+Convert from `.ris` to `.bib`:
+```sh
+ris2xml mycitation.ris | xml2bib >mycitation.bib
+```
+
 ### iBook (macos)
 
 Downloaded books are stored in `~/Library/Mobile Documents/iCloud~com~apple~iBooks/Documents/` for iCloud stored books and in `~/Library/Containers/com.apple.BKAgentService/Data/Documents/iBooks` otherwise.
