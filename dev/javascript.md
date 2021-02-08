@@ -1,6 +1,9 @@
 <!-- vimvars: b:markdown_embedded_syntax={'javascript':'','html':''} -->
 # Javascript
 
+ * [The JavaScript language](https://javascript.info/js).
+ * [JavaScript Introduction](https://www.w3schools.com/js/js_intro.asp).
+
  * [JavaScript and HTML: possibilities and caveats](https://www.cs.tut.fi/~jkorpela/forms/javascript.html).
  * [Using keyboard shortcuts in Javascript](http://www.catswhocode.com/blog/using-keyboard-shortcuts-in-javascript).
  * [Nifty Corners Cube](http://www.html.it/articoli/niftycube/index.html).
@@ -13,6 +16,28 @@ Write javascript in HTML:
 function myFunc() {
 }
 </script>
+```
+
+## Line ending
+
+Statements should end with a semicolon.
+If omitted at the end of a line, it will be most of the time automatically
+added by the engine, but not always, and it sometimes leads to silent bugs.
+
+## Comments
+
+One line comment:
+```javascript
+// My comment
+```
+
+Multiple lines comment:
+```javascript
+/* My
+  multiple
+  lines
+  comment
+ */
 ```
 
 ## Types
