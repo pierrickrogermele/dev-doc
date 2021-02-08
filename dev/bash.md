@@ -159,6 +159,28 @@ However the terminal info bust be changed in order to achieve italics handling w
 
 ## read
 
+ * [Bash read builtin command](https://www.computerhope.com/unix/bash/read.htm).
+
+Read stdin line by line:
+```bash
+while read myvar ; do
+	echo $myvar
+done
+```
+
+Read line by line the output of a command:
+```bash
+mycommand | while read myvar ; do
+	echo $myvar
+done
+```
+or
+```bash
+while read myvar ; do
+	echo $myvar
+done <<(mycommand)
+```
+
 Read password on prompt:
 ```sh
 echo -n 'Password: '
@@ -423,6 +445,11 @@ Convert a string to lowercase:
 echo $MY_VAR | tr '[:upper:]' '[:lower:]'
 ```
 
+Capitalize first letter:
+```bash
+$(tr '[:lower:]' '[:upper:]' <<< ${myvar:0:1})${myvar:1}
+```
+
 Get the length of string variable:
 ```bash
 str=abcd
@@ -498,9 +525,9 @@ my_func   # Parent
 Get PID of a child process:
 ```bash
 my_child &
-child_pid=$!
-current_pid=$$ # (parent)
-parent_pid=$PPID # (parent of parent)
+child_pid=$! # (when asked from inside parent)
+current_pid=$$ # (the same PID value of the parent script is returned when asked either from child or parent)
+parent_pid=$PPID # (parent of parent, same value returned from child or parent)
 ```
 
 wait for a child to finish:
