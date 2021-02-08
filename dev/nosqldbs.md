@@ -53,7 +53,20 @@ mongo -u admin -p admin --authenticationDatabase admin
 
 Run javascript on command line:
 ```sh
-mongo --eval 'db.collection.find().forEach(printjson)'
+mongo -u admin -p admin --authenticationDatabase admin -eval 'db.collection.find()' mydb
+```
+Run javascript from stdin:
+```sh
+mongo -u admin -p admin --authenticationDatabase admin <<END_JS
+"use strict";
+use mydb;
+db.collection.find();
+END_JS
+```
+
+Run quietly:
+```sh
+mongo -quiet ...
 ```
 
 Authenticate from inside the interpreter:
@@ -76,7 +89,7 @@ The interpreter can also be run in script mode. Script are written in Javascript
 See [Write Scripts for the mongo Shell](https://docs.mongodb.com/manual/tutorial/write-scripts-for-the-mongo-shell/).
 Example of running a Javascript:
 ```bash
-mongo mylocaldb muyscript.js
+mongo mylocaldb myscript.js
 ```
 
 Exit:
@@ -163,6 +176,20 @@ db.createUser({user:'pierrick',pwd:'cea', roles:["readWrite"]})
 Print defined roles:
 ```js
 db.getRoles({showPrivileges:1})
+```
+
+Create a role:
+```js
+db.createRole(
+   {
+     role: "manageOpRole",
+     privileges: [
+       { resource: { cluster: true }, actions: [ "killop", "inprog" ] },
+       { resource: { db: "", collection: "" }, actions: [ "killCursors" ] }
+     ],
+     roles: []
+   }
+)
 ```
 
 "Except for roles created in the admin database, a role can only include privileges that apply to its database and can only inherit from other roles in its database."
