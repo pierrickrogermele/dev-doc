@@ -316,6 +316,11 @@ Test if empty:
 s.isEmpty();
 ```
 
+Remove white spaces at start and end:
+```java
+s = s.trim();
+```
+
 Transforming into a float or int:
 ```java
 float f = Float.valueOf(s.trim()).floatValue();
@@ -332,9 +337,19 @@ s2 = s.substring(1); // from second char to end
 s3 = s.substring(0,4); // from first char to 4th char
 ```
 
-Replace characters:
+Replace all occurrences of character `'a'` by `'b'`:
 ```java
-s.replace('o'/*old char*/, 'n' /*new char*/);
+s.replace('a', 'b');
+```
+
+Replace first occurrence of a regex:
+```java
+s.replaceFirst("[^A-Z]*", "_");
+```
+
+Replace all occurrences of a regex:
+```java
+s.replaceAll("[^A-Z]", "_");
 ```
 
 Get length of a string:
@@ -353,6 +368,11 @@ s.startsWith("MyPrefix");
 ```
 
 Join:
+```java
+java.util.List<String> lst = java.util.Arrays.asList("x", "y", "z");
+String s = lst.stream().collect(java.util.stream.Collectors.joining(";"));
+```
+or
 ```java
 import org.apache.commons.lang.StringUtils;
 StringUtils.join(my_array, ",");
@@ -1010,6 +1030,11 @@ List files inside a directory:
 ```java
 java.io.File dir = new java.io.File(".");
 File[] files = dir.listFiles();
+```
+
+Remove extension:
+```java
+String filenameWithoutExt = filename.replaceFirst("[.][^.]+$", "");
 ```
 
 ## Resources
@@ -2120,6 +2145,15 @@ Needs to attach to running application (PID or remote).
 See [Visual VM](https://visualvm.java.net).
 
 ## Libraries
+
+### Jsoup
+
+HTML parsing.
+
+```java
+org.jsoup.nodes.Document doc = org.jsoup.Jsoup.parse(htmlString);
+content = doc.text();
+```
 
 ### JMF
 
