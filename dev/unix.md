@@ -1734,6 +1734,12 @@ find . | while read f ; do
 	echo Found: $f
 done
 ```
+or
+```bash
+while IFS= read -r -d $'\0' file; do
+  echo "$file"
+done <<(find . -print0)
+```
 
 Move recent files (from today) from Download folder to another place:
 ```sh
@@ -3286,7 +3292,39 @@ pkg search mypkg
 
 ## Sound & video
 
-### alsactl
+ * ALSA: linux kernel level subsystem.
+ * PulseAudio: sound server program, runs on top of kernel level subsystems like ALSA or OSS (legacy).
+
+### Pulse Audio
+
+#### pacmixer
+
+Console mode mixer for pulse audio.
+
+#### pacmd
+
+#### pacat
+
+Play a wav file:
+```sh
+pacat <myfile.wav
+```
+
+### ALSA
+
+#### aplay
+
+Play a wav file:
+```sh
+aplay myfile.wav
+```
+
+List available audio devices:
+```sh
+aplay -l
+```
+
+#### alsactl
 
 Configure sound on Debian with ALSA system:
 ```bash
@@ -3298,30 +3336,7 @@ Restore default:
 alsactl -F restore
 ```
 
-### microphone setup
-
- * [No microphone input](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting#Microphone).
-
-Run `alsamixer`, and then:
- * In 'Playback' view (F3), set microphone to "Follow Capture".
- * In 'Capture' view (F4), increase volume of CAPTURE and "Internal Mic".
-
-To test microphone:
-```sh
-arecord --duration=5 --format=dat test-mic.wav
-aplay test-mic.wav
-```
-
-**Skype** for Linux needs `pulseaudio` in order to recognize microphone, so with alsa configuration, you need first to install `apulse`, a PulseAudio emulator for ALSA and then run:
-```sh
-apulse skypeforlinux
-```
-
-Testing microphone in browser:
- * <https://mozilla.github.io/webrtc-landing/gum_test.html>
- * <https://rendez-vous.renater.fr/home/test_browser>
-
-### alsamixer
+#### alsamixer
 
 Ncurses console ALSA tool to manage sound card configuration.
 Move with left/right to select.
@@ -3329,7 +3344,7 @@ Press up/down to modify.
 
 Disabling "Auto-Mute Mode" is possible.
 
-### amixer
+#### amixer
 
 Command line ALSA tool to manage sound card.
 
@@ -3353,8 +3368,29 @@ Set microphone LED indicator (values: On, Off, Follow Capture, Follow Mute):
 amixer sset "Mic Mute-LED Mode" Off
 ```
 
-### pacmd
 
+### microphone setup
+
+ * [No microphone input](https://wiki.archlinux.org/index.php/Advanced_Linux_Sound_Architecture/Troubleshooting#Microphone).
+
+Run `alsamixer`, and then:
+ * In 'Playback' view (F3), set microphone to "Follow Capture".
+ * In 'Capture' view (F4), increase volume of CAPTURE and "Internal Mic".
+
+To test microphone:
+```sh
+arecord --duration=5 --format=dat test-mic.wav
+aplay test-mic.wav
+```
+
+**Skype** for Linux needs `pulseaudio` in order to recognize microphone, so with alsa configuration, you need first to install `apulse`, a PulseAudio emulator for ALSA and then run:
+```sh
+apulse skypeforlinux
+```
+
+Testing microphone in browser:
+ * <https://mozilla.github.io/webrtc-landing/gum_test.html>
+ * <https://rendez-vous.renater.fr/home/test_browser>
 
 ### mplayer
 
@@ -3390,7 +3426,7 @@ Run in full screen:
 mplayer -fs ...
 ```
 
-To select audio output, look first at available audio devices with `aplay` (`alsa-utils` package on ArchLinux):
+To select audio output at ALSA level, look first at available audio devices with `aplay` (`alsa-utils` package on ArchLinux):
 ```sh
 aplay -l
 ```
@@ -3420,6 +3456,11 @@ eject
 To convert from AIFF to Apple Lossless:
 ```bash
 ffmpeg -i audio.wav -acodec alac audio.m4a
+```
+
+To convert from mp3 to wav:
+```sh
+ffmpeg -i myfile.mp3 myfile.wav
 ```
 
 To convert m4a into mp3:
@@ -4188,6 +4229,11 @@ ris2xml mycitation.ris | xml2bib >mycitation.bib
 ### iBook (macos)
 
 Downloaded books are stored in `~/Library/Mobile Documents/iCloud~com~apple~iBooks/Documents/` for iCloud stored books and in `~/Library/Containers/com.apple.BKAgentService/Data/Documents/iBooks` otherwise.
+
+### foxitreader
+
+PDF viewer and editor.
+ * dark mode.
 
 ### pdftk
 
