@@ -1,0 +1,113 @@
+#!/bin/bash
+
+# Constants {{{1
+################################################################
+
+PROG_NAME=$(basename $0)
+PROG_PATH=$(dirname $0)
+
+# Global variables {{{1
+################################################################
+
+WAV_FILES=
+
+# Print help {{{1
+################################################################
+
+function print_help {
+	echo "Usage: $PROG_NAME [options] files"
+	echo
+	echo "Generate C data file for embedded WAV files."
+	echo
+	echo "Options:"
+	echo "   -h, --help   Print this help message."
+}
+
+# Error {{{1
+################################################################
+
+function error {
+
+	local msg=$1
+
+	echo "ERROR: $msg" >&2
+
+	exit 1
+}
+
+# Debug {{{1
+################################################################
+
+function debug {
+
+	local dbgmsg="$1"
+
+	[[ $DEBUG -ge 1 ]] && echo "[DEBUG] $dbgmsg" >&2
+}
+
+# Read args {{{1
+################################################################
+
+function read_args {
+
+	local args="$*" # save arguments for debugging purpose
+	
+	# Read options
+	while true ; do
+		shift_count=1
+		case $1 in
+			-h|--help)              print_help ; exit 0 ;;
+			-) error "Illegal option $1." ;;
+			--) error "Illegal option $1." ;;
+			--*) error "Illegal option $1." ;;
+			-?) error "Unknown option $1." ;;
+			-[^-]*) split_opt=$(echo $1 | sed 's/^-//' | sed 's/\([a-zA-Z]\)/ -\1/g') ; set -- $1$split_opt "${@:2}" ;;
+			*) break
+		esac
+		shift $shift_count
+	done
+	shift $((OPTIND - 1))
+
+	# Read remaining arguments
+	[ $# -gt 0 ] || error "You must specify at least one WAV file to process."
+	WAV_FILES="$*"
+
+	# Debug
+	debug "Arguments are : $args"
+}
+
+# Main {{{1
+################################################################
+
+read_args "$@"
+
+echo '#include "play_embedded_wav.h"'
+
+n_files=0
+for wav in $WAV_FILES ; do
+	name=$(basename "$wav" | sed 's/.wav$//')
+	size=$(wc -c $wav | sed 's/^ *\([0-9]*\) .*$/\1/')
+	echo "const char ${name}_wav[] = {"
+	xxd -i <$wav
+	echo "};"
+	declare "${name}_wav_length=$size"
+	((++n_files))
+done
+
+echo "const wav_sound_data_t sound_data[] = {"
+
+n=0
+for wav in $WAV_FILES ; do
+	name=$(basename "$wav" | sed 's/.wav$//')
+	length_var="${name}_wav_length"
+	echo -n "{ .name = \"$name\", .wav_data = ${name}_wav, .wav_data_length = ${!length_var} }"
+	if [[ $n -lt $((n_files - 1)) ]] ; then
+		echo ","
+	else
+		echo
+	fi
+done
+
+echo "};"
+
+echo "const size_t sound_data_length = $n_files;"

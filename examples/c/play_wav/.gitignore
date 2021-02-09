@@ -1,0 +1,4 @@
+*.o
+wav_data.c
+play_wav_file
+play_embedded_wav
