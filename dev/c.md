@@ -598,8 +598,9 @@ suseconds_t microseconds               = tp.tv_usec;
 int main(int argc, char *argv[]) {
 	int c;
 	int flag;
+	char *c_param = NULL; 
 
-	while ((c = getopt(argc, argv, "ab:")) != -1) {
+	while ((c = getopt(argc, argv, "ab:c:")) != -1)
 		switch (c) {
 			case 'a':
 				flag = 1;
@@ -608,8 +609,16 @@ int main(int argc, char *argv[]) {
 			case 'b':
 				printf("a string argument: %s\n", optarg);
 				break;
+
+			case 'c':
+				c_param = (char*)malloc(strlen(optarg) + 1);
+				strcpy(c_param, optarg);
+				break;
 		}
-	}
+	argc -= optind;
+	argv += optind;
+
+	/* Read remaining arguments */
 }
 ```
 
