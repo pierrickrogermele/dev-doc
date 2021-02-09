@@ -1,5 +1,5 @@
-Make
-====
+<!-- vimvars: b:markdown_embedded_syntax={'make':''} -->
+# Make
 
 ## Running
 
@@ -85,6 +85,20 @@ sorted_list = $(sort $(files))
 Take last:
 ```make
 last_file = $(lastword $(files))
+```
+
+## filter
+
+Filtering object files from a list:
+```make
+objs=$(filter %.o,$(files))
+```
+
+Filtering out some files from a list:
+```make
+objects=main1.o foo.o main2.o bar.o
+mains=main1.o main2.o
+$(filter-out $(mains),$(objects))
 ```
 
 ## firstword
@@ -291,14 +305,6 @@ foo:= a b c
 bar:= $(subst $(space),$(comma),$(foo))
 ```
 bar is 'a,b,c'.
-
-Filtering:
-```make
-objs=$(filter %.o,$(files))
-objects=main1.o foo.o main2.o bar.o
-mains=main1.o main2.o
-$(filter-out $(mains),$(objects))
-```
 
 ## File system
 
