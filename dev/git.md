@@ -14,6 +14,16 @@ Create archive (zip) of sources.
 git archive --prefix=myrepos-v1.0.1/ -o myrepos-1.0.1.tar.gz v1.0.1
 ```
 
+Create a zip of sources:
+```bash
+git archive HEAD --format=zip > archive.zip
+```
+
+Create a tar with a prefix directory:
+```bash
+git archive --prefix=prefix-dir/ -o archive.tar HEAD
+```
+
 ## branch
 
 List local branches:
@@ -135,6 +145,36 @@ git clone --recurse-submodule https://my.server/myrepos
 Creating a bare repository (no working files):
 ```bash
 git clone --bare  /my/original/repos /my/new/repos
+```
+
+## filter-branch
+
+ * [Permanently remove files and folders from Git repo](https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository).
+
+Remove a folder from all commits of the current branch:
+```bash
+git filter-branch -f --tree-filter 'rm -rf myfolder' HEAD
+git push origin -f
+```
+
+For remove a folder in all branches:
+```bash
+git filter-branch -f --tree-filter 'rm -rf myfolder' my list of branches
+git push origin -f --all
+```
+
+## filter-repo
+
+ * [git-filter-repo](https://github.com/newren/git-filter-repo/).
+ * [Removing sensitive files from git](https://boopathi.blog/removing-sensitive-files-from-git/).
+
+Additional tool to install from package `git-filter-repo`.
+
+Remove files from the whole repos (whole history):
+```sh
+git filter-repo --force --invert-paths --path myfile1 --path myfile2 ...
+git log --all -- myfile1 # test
+git push -f --all
 ```
 
 ## init
@@ -296,6 +336,28 @@ git log --stat --summary
 Look for a version which introduce or remove a certain string:
 ```bash
 git log -S<string> -- <file>
+```
+
+## ls-files
+
+List files:
+```bash
+git ls-files
+```
+
+List deleted (in comparison with HEAD) files:
+```bash
+git ls-files -d
+```
+
+List one precised file:
+```bash
+git ls-files <filename>
+```
+
+List one precised file and exit with 1 if files isn't tracked:
+```bash
+git ls-files <filename> --error-unmatch
 ```
 
 ## merge
@@ -777,56 +839,6 @@ git reset --hard HEAD
 Reset local branch to look like origin's one:
 ```bash
 git reset --hard origin/mybranch
-```
-
-## Removing files and folders
-
- * [Permanently remove files and folders from Git repo](https://dalibornasevic.com/posts/2-permanently-remove-files-and-folders-from-a-git-repository).
-
-Remove a folder from all commits of the current branch:
-```bash
-git filter-branch -f --tree-filter 'rm -rf myfolder' HEAD
-git push origin -f
-```
-
-For remove a folder in all branches:
-```bash
-git filter-branch -f --tree-filter 'rm -rf myfolder' my list of branches
-git push origin -f --all
-```
-
-## ls-files
-
-List files:
-```bash
-git ls-files
-```
-
-List deleted (in comparison with HEAD) files:
-```bash
-git ls-files -d
-```
-
-List one precised file:
-```bash
-git ls-files <filename>
-```
-
-List one precised file and exit with 1 if files isn't tracked:
-```bash
-git ls-files <filename> --error-unmatch
-```
-
-## Archive
-
-Create a zip of sources:
-```bash
-git archive HEAD --format=zip > archive.zip
-```
-
-Create a tar with a prefix directory:
-```bash
-git archive --prefix=prefix-dir/ -o archive.tar HEAD
 ```
 
 ## Case sensitivity of filenames
